@@ -111,11 +111,17 @@
 
 
 
-        <div class="flex justify-center mt-6 md:hidden">
+        <div class="flex justify-center mt-6 md:hidden hidden">
 
             <button class="h-[55px] w-[209px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"  onclick="window.location.href='/consultation'">Consult Now</button>
 
         </div>
+
+
+        <div class="bg-white h-[60vh] flex flex-col justify-center items-center">
+
+        </div>
+
 
 
         <div class="flex flex-col justify-center mt-6  md:max-w-[1280px]  mx-auto">
