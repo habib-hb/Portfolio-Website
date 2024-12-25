@@ -22,6 +22,8 @@ class HomepageWire extends Component
 
     public $banner_headline;
 
+    public $first_load = true;
+
 
     public function mount()
     {
@@ -115,7 +117,12 @@ class HomepageWire extends Component
 
         session(['search_input_field_is_active' => $this->search_input_field_is_active]);
 
+        if($this->first_load){
 
+            $this->dispatch('load_animation');
+
+            $this->first_load = false;
+        }
     }
 
 
