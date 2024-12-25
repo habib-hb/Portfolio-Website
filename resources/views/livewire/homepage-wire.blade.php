@@ -2,6 +2,8 @@
 
     <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}">
 
+        <div class="h-[100vh] flex flex-col">
+
         <nav class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
             <div class=" flex justify-start md:w-[20vw] cursor-pointer">
@@ -118,11 +120,39 @@
         </div>
 
 
-        <div class="bg-white h-[60vh] flex flex-col justify-center items-center">
+        <div class="flex flex-col max-w-[1280px] justify-center items-center mx-auto grow ">
 
-        </div>
+        <div class="{{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} gap-6 flex max-w-[1280px] mx-auto justify-center items-center ">
+
+            <div class="mt-[-5vh]">
+
+                <p class="font-poppins text-xl mb-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Hello, I'm Habib,</p>
+
+                <h2 class="font-poppins text-6xl {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Full Stack</h2>
+
+                <h2 class="font-poppins text-6xl {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Developer</h2>
+
+                <p class="font-poppins text-xl mt-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">based in Dhaka, Bangladesh.</p>
+
+            </div>
 
 
+            <div  class="">
+                    <img src="{{asset('images/whole_profile.png')}}" class="w-[400px]" alt="">
+                </div>
+
+            </div>
+
+                <div class="mt-[10vh]">
+                    <img src="{{asset('images/scroll-down.png')}}" class="w-[60px] animate-bounce" alt="Scroll Down">
+                </div>
+
+
+
+
+    </div>
+
+    </div>
 
         <div class="flex flex-col justify-center mt-6  md:max-w-[1280px]  mx-auto">
 
