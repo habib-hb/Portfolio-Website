@@ -126,25 +126,25 @@
 
             <div class=" md:mt-[-5vh]">
 
-                <p id="my_name" class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} {{$first_load ? 'hidden' : ''}}">Hello, I'm Habib,</p>
+                <p id="my_name" class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Hello, I'm Habib,</p>
 
-                <h2 id="full_stack" class="font-poppins text-center md:text-left text-6xl {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} {{$first_load ? 'hidden' : ''}}">Full Stack</h2>
+                <h2 id="full_stack" class="font-poppins text-center md:text-left text-6xl {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  ">Full Stack</h2>
 
-                <h2 id="developer" class="font-poppins text-6xl text-center md:text-left  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} {{$first_load ? 'hidden' : ''}}">Developer</h2>
+                <h2 id="developer" class="font-poppins text-6xl text-center md:text-left  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  ">Developer</h2>
 
-                <p id="based_in" class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} {{$first_load ? 'hidden' : ''}}">based in Dhaka, Bangladesh.</p>
+                <p id="based_in" class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  ">based in Dhaka, Bangladesh.</p>
 
             </div>
 
 
             <div  class="">
-                    <img id="profile_img" src="{{asset('images/whole_profile.png')}}" class=" w-[30vh] md:w-[40vh] {{$first_load ? 'hidden' : ''}}" alt="">
+                    <img id="profile_img" src="{{asset('images/whole_profile-min.png')}}" class=" w-[30vh] md:w-[40vh] " alt="">
                 </div>
 
             </div>
 
-                <div class="mt-[10vh]">
-                    <img id="scroll_down" src="{{asset('images/scroll-down.png')}}" class="w-[60px] animate-bounce  {{$first_load ? 'hidden' : ''}}" alt="Scroll Down">
+                <div class="mt-[10vh] animate-fadeIn5">
+                    <img id="scroll_down" src="{{asset('images/scroll-down.png')}}" class="w-[60px] animate-bounce " alt="Scroll Down">
                 </div>
 
 
@@ -465,77 +465,77 @@
                     Livewire.on('load_animation', () => {// Doing this to avoid the rerendering issue in javascript
 
                         // Doing 100ms delay cause the DOM is not loaded yet.
-                        setTimeout(() => {
-                        const profile_img = document.getElementById("profile_img");
-                        const my_name_text = document.getElementById("my_name");
-                        const full_stack = document.getElementById("full_stack");
-                        const developer = document.getElementById("developer");
-                        const based_in = document.getElementById("based_in");
-                        const scroll_down = document.getElementById("scroll_down");
+                        // setTimeout(() => {
+                        // const profile_img = document.getElementById("profile_img");
+                        // const my_name_text = document.getElementById("my_name");
+                        // const full_stack = document.getElementById("full_stack");
+                        // const developer = document.getElementById("developer");
+                        // const based_in = document.getElementById("based_in");
+                        // const scroll_down = document.getElementById("scroll_down");
 
-                        profile_img.style.opacity = 0;
-                        profile_img.style.transform = "translateY(16px)";
+                        // profile_img.style.opacity = 0;
+                        // profile_img.style.transform = "translateY(16px)";
 
-                        my_name_text.style.opacity = 0;
-                        my_name_text.style.transform = "translateY(16px)";
+                        // my_name_text.style.opacity = 0;
+                        // my_name_text.style.transform = "translateY(16px)";
 
-                        full_stack.style.opacity = 0;
-                        full_stack.style.transform = "translateY(16px)";
+                        // full_stack.style.opacity = 0;
+                        // full_stack.style.transform = "translateY(16px)";
 
-                        developer.style.opacity = 0;
-                        developer.style.transform = "translateY(16px)";
+                        // developer.style.opacity = 0;
+                        // developer.style.transform = "translateY(16px)";
 
-                        based_in.style.opacity = 0;
-                        based_in.style.transform = "translateY(16px)";
+                        // based_in.style.opacity = 0;
+                        // based_in.style.transform = "translateY(16px)";
 
-                        scroll_down.style.opacity = 0;
-                        scroll_down.style.transform = "translateY(16px)";
+                        // scroll_down.style.opacity = 0;
+                        // scroll_down.style.transform = "translateY(16px)";
 
 
-                        const timeline = gsap.timeline();
+                        // const timeline = gsap.timeline();
 
-                            // Add animations to the timeline in sequence
-                            timeline
-                                .to(my_name_text, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(full_stack, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(developer, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(based_in, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(profile_img, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(scroll_down, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
+                        //     // Add animations to the timeline in sequence
+                        //     timeline
+                        //         .to(my_name_text, {
+                        //             opacity: 1,
+                        //             duration: 1,
+                        //             transform: "translateY(0)",
+                        //             ease: "power2.out",
+                        //         })
+                        //         .to(full_stack, {
+                        //             opacity: 1,
+                        //             duration: 1,
+                        //             transform: "translateY(0)",
+                        //             ease: "power2.out",
+                        //         })
+                        //         .to(developer, {
+                        //             opacity: 1,
+                        //             duration: 1,
+                        //             transform: "translateY(0)",
+                        //             ease: "power2.out",
+                        //         })
+                        //         .to(based_in, {
+                        //             opacity: 1,
+                        //             duration: 1,
+                        //             transform: "translateY(0)",
+                        //             ease: "power2.out",
+                        //         })
+                        //         .to(profile_img, {
+                        //             opacity: 1,
+                        //             duration: 1,
+                        //             transform: "translateY(0)",
+                        //             ease: "power2.out",
+                        //         })
+                        //         .to(scroll_down, {
+                        //             opacity: 1,
+                        //             duration: 1,
+                        //             transform: "translateY(0)",
+                        //             ease: "power2.out",
+                        //         })
 
-                            }, 1);
+                        //     }, 1);
 
-                        })
+                        // })
 
 
 
