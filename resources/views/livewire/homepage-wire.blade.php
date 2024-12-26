@@ -120,31 +120,31 @@
         </div>
 
 
-        <div class="flex flex-col max-w-[1280px] justify-center items-center mx-auto grow mt-8 md:mt-0">
+        <div class="flex flex-col max-w-[1280px] justify-center items-center mx-auto grow mt-2 md:mt-0">
 
         <div class="{{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} gap-4 md:gap-16 flex flex-col-reverse md:flex-row max-w-[1280px] mx-auto justify-center items-center ">
 
             <div class=" md:mt-[-5vh]">
 
-                <p id="my_name" class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Hello, I'm Habib,</p>
+                <p id="my_name" class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  "  style="opacity: 0">Hello, I'm Habib,</p>
 
-                <h2 id="full_stack" class="font-poppins text-center md:text-left text-6xl {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  ">Full Stack</h2>
+                <h2 id="full_stack" class="font-poppins text-center md:text-left text-6xl {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}    "   style="opacity: 0">Full Stack</h2>
 
-                <h2 id="developer" class="font-poppins text-6xl text-center md:text-left  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  ">Developer</h2>
+                <h2 id="developer" class="font-poppins text-6xl text-center md:text-left  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}    "   style="opacity: 0">Developer</h2>
 
-                <p id="based_in" class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  ">based in Dhaka, Bangladesh.</p>
+                <p id="based_in" class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}    "   style="opacity: 0">based in Dhaka, Bangladesh.</p>
 
             </div>
 
 
             <div  class="">
-                    <img id="profile_img" src="{{asset('images/whole_profile-min.png')}}" class=" w-[30vh] md:w-[40vh] " alt="">
+                    <img id="profile_img" src="{{asset('images/whole_profile-min.png')}}" class=" w-[30vh] md:w-[40vh]   "  style="opacity: 0"  alt="">
                 </div>
 
             </div>
 
-                <div class="mt-[10vh] animate-fadeIn5">
-                    <img id="scroll_down" src="{{asset('images/scroll-down.png')}}" class="w-[60px] animate-bounce " alt="Scroll Down">
+                <div class="mt-[4vh] md:mt-[10vh] animate-fadeIn5">
+                    <img id="scroll_down" src="{{asset('images/scroll-down.png')}}" class="w-[60px] animate-bounce   "   style="opacity: 0" alt="Scroll Down">
                 </div>
 
 
@@ -153,6 +153,206 @@
     </div>
 
     </div>
+
+
+    {{-- Portfolio Showcase Section --}}
+    <div class="flex w-full {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} h-[600px]"
+    style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
+
+
+            <div class="max-w-[1280px] gap-[10%] mx-auto flex   w-[1280px]">
+
+                <div class="flex justify-center w-[45%] items-center h-full ">
+
+                    <img src="{{asset('images/nature.jpg')}}" class="max-h-[400px] rounded-lg" alt="">
+
+                </div>
+
+                <div class="flex flex-col justify-center w-[45%] items-center h-full ">
+                    <h2 class="text-left text-2xl font-medium w-full mb-4">E-Commerce
+                    </h2>
+
+                    <p class="text-left">Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. </p>
+
+                    <div class="flex gap-4 justify-start w-full my-4">
+                        <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Demo</button>
+
+                        <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Source Code</button>
+                    </div>
+
+                    <h2 class="text-left  w-full"><span class="text-lg font-medium">Technologies Used:</span> React , Laravel , Mysql</h2>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+    </div>
+
+    <div class="flex w-full h-[600px]">
+
+        <div class="max-w-[1280px] gap-[10%] mx-auto flex flex-row-reverse   w-[1280px]">
+
+            <div class="flex justify-center w-[45%] items-center h-full ">
+
+                <img src="{{asset('images/nature.jpg')}}" class="max-h-[400px] rounded-lg" alt="">
+
+            </div>
+
+            <div class="flex flex-col justify-center w-[45%] items-center h-full ">
+                <h2 class="text-left text-2xl font-medium w-full mb-4">E-Commerce
+                </h2>
+
+                <p class="text-left">Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. </p>
+
+                <div class="flex gap-4 justify-start w-full my-4">
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Demo</button>
+
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Source Code</button>
+                </div>
+
+                <h2 class="text-left  w-full"><span class="text-lg font-medium">Technologies Used:</span> React , Laravel , Mysql</h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="flex w-full {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} h-[600px]" style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2) ,  inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
+
+
+        <div class="max-w-[1280px] gap-[10%] mx-auto flex   w-[1280px]">
+
+            <div class="flex justify-center w-[45%] items-center h-full ">
+
+                <img src="{{asset('images/nature.jpg')}}" class="max-h-[400px] rounded-lg" alt="">
+
+            </div>
+
+            <div class="flex flex-col justify-center w-[45%] items-center h-full ">
+                <h2 class="text-left text-2xl font-medium w-full mb-4">E-Commerce
+                </h2>
+
+                <p class="text-left">Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. </p>
+
+                <div class="flex gap-4 justify-start w-full my-4">
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Demo</button>
+
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Source Code</button>
+                </div>
+
+                <h2 class="text-left  w-full"><span class="text-lg font-medium">Technologies Used:</span> React , Laravel , Mysql</h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="flex w-full h-[600px]">
+
+        <div class="max-w-[1280px] gap-[10%] mx-auto flex flex-row-reverse   w-[1280px]">
+
+            <div class="flex justify-center w-[45%] items-center h-full ">
+
+                <img src="{{asset('images/nature.jpg')}}" class="max-h-[400px] rounded-lg" alt="">
+
+            </div>
+
+            <div class="flex flex-col justify-center w-[45%] items-center h-full ">
+                <h2 class="text-left text-2xl font-medium w-full mb-4">E-Commerce
+                </h2>
+
+                <p class="text-left">Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. </p>
+
+                <div class="flex gap-4 justify-start w-full my-4">
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Demo</button>
+
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Source Code</button>
+                </div>
+
+                <h2 class="text-left  w-full"><span class="text-lg font-medium">Technologies Used:</span> React , Laravel , Mysql</h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="flex w-full {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} h-[600px]" style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2) ,  inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
+
+
+        <div class="max-w-[1280px] gap-[10%] mx-auto flex   w-[1280px]">
+
+            <div class="flex justify-center w-[45%] items-center h-full ">
+
+                <img src="{{asset('images/nature.jpg')}}" class="max-h-[400px] rounded-lg" alt="">
+
+            </div>
+
+            <div class="flex flex-col justify-center w-[45%] items-center h-full ">
+                <h2 class="text-left text-2xl font-medium w-full mb-4">E-Commerce
+                </h2>
+
+                <p class="text-left">Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. </p>
+
+                <div class="flex gap-4 justify-start w-full my-4">
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Demo</button>
+
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Source Code</button>
+                </div>
+
+                <h2 class="text-left  w-full"><span class="text-lg font-medium">Technologies Used:</span> React , Laravel , Mysql</h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="flex w-full h-[600px]" style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)">
+
+        <div class="max-w-[1280px] gap-[10%] mx-auto flex flex-row-reverse   w-[1280px]">
+
+            <div class="flex justify-center w-[45%] items-center h-full ">
+
+                <img src="{{asset('images/nature.jpg')}}" class="max-h-[400px] rounded-lg" alt="">
+
+            </div>
+
+            <div class="flex flex-col justify-center w-[45%] items-center h-full ">
+                <h2 class="text-left text-2xl font-medium w-full mb-4">E-Commerce
+                </h2>
+
+                <p class="text-left">Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. Some details about the project. </p>
+
+                <div class="flex gap-4 justify-start w-full my-4">
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Demo</button>
+
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Source Code</button>
+                </div>
+
+                <h2 class="text-left  w-full"><span class="text-lg font-medium">Technologies Used:</span> React , Laravel , Mysql</h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    {{-- End Portfolio Showcase Section --}}
+
+
+
 
         <div class="flex flex-col justify-center mt-6  md:max-w-[1280px]  mx-auto">
 
@@ -364,6 +564,123 @@
 
         <script>
 
+                        const profile_img = document.getElementById("profile_img");
+                        const my_name_text = document.getElementById("my_name");
+                        const full_stack = document.getElementById("full_stack");
+                        const developer = document.getElementById("developer");
+                        const based_in = document.getElementById("based_in");
+                        const scroll_down = document.getElementById("scroll_down");
+
+            const animation_function = () => {
+
+                   //Doing 100ms delay cause the DOM is not loaded yet.
+                   setTimeout(() => {
+                        // const profile_img = document.getElementById("profile_img");
+                        // const my_name_text = document.getElementById("my_name");
+                        // const full_stack = document.getElementById("full_stack");
+                        // const developer = document.getElementById("developer");
+                        // const based_in = document.getElementById("based_in");
+                        // const scroll_down = document.getElementById("scroll_down");
+
+                        profile_img.style.opacity = 0;
+                        profile_img.style.transform = "translateY(16px)";
+
+                        my_name_text.style.opacity = 0;
+                        my_name_text.style.transform = "translateY(16px)";
+
+                        full_stack.style.opacity = 0;
+                        full_stack.style.transform = "translateY(16px)";
+
+                        developer.style.opacity = 0;
+                        developer.style.transform = "translateY(16px)";
+
+                        based_in.style.opacity = 0;
+                        based_in.style.transform = "translateY(16px)";
+
+                        scroll_down.style.opacity = 0;
+                        scroll_down.style.transform = "translateY(16px)";
+
+
+                        const timeline = gsap.timeline();
+
+                            // Add animations to the timeline in sequence
+                            timeline
+                                .to(my_name_text, {
+                                    opacity: 1,
+                                    duration: 1,
+                                    transform: "translateY(0)",
+                                    ease: "power2.out",
+                                })
+                                .to(full_stack, {
+                                    opacity: 1,
+                                    duration: 1,
+                                    transform: "translateY(0)",
+                                    ease: "power2.out",
+                                })
+                                .to(developer, {
+                                    opacity: 1,
+                                    duration: 1,
+                                    transform: "translateY(0)",
+                                    ease: "power2.out",
+                                })
+                                .to(based_in, {
+                                    opacity: 1,
+                                    duration: 1,
+                                    transform: "translateY(0)",
+                                    ease: "power2.out",
+                                })
+                                .to(profile_img, {
+                                    opacity: 1,
+                                    duration: 1,
+                                    transform: "translateY(0)",
+                                    ease: "power2.out",
+                                })
+                                .to(scroll_down, {
+                                    opacity: 1,
+                                    duration: 1,
+                                    transform: "translateY(0)",
+                                    ease: "power2.out",
+                                })
+
+                            }, 1);
+
+            }
+
+
+
+
+            const css_stablizer = () => {
+                //Doing 100ms delay cause the DOM is not loaded yet.
+                setTimeout(() => {
+                // const profile_img = document.getElementById("profile_img");
+                // const my_name_text = document.getElementById("my_name");
+                // const full_stack = document.getElementById("full_stack");
+                // const developer = document.getElementById("developer");
+                // const based_in = document.getElementById("based_in");
+                // const scroll_down = document.getElementById("scroll_down");
+
+                profile_img.style.opacity = 1;
+                profile_img.style.transform = "translateY(0)";
+
+                my_name_text.style.opacity = 1;
+                my_name_text.style.transform = "translateY(0)";
+
+                full_stack.style.opacity = 1;
+                full_stack.style.transform = "translateY(0)";
+
+                developer.style.opacity = 1;
+                developer.style.transform = "translateY(0)";
+
+                based_in.style.opacity = 1;
+                based_in.style.transform = "translateY(0)";
+
+                scroll_down.style.opacity = 1;
+                scroll_down.style.transform = "translateY(0)";
+
+                  }, 1);
+
+            }
+
         //    function changeThemeMode(){
 
         //         Livewire.dispatch('theme-change', { })
@@ -441,6 +758,8 @@
 
                     }
 
+                    css_stablizer();
+
 
 
                 })
@@ -464,76 +783,7 @@
 
                     Livewire.on('load_animation', () => {// Doing this to avoid the rerendering issue in javascript
 
-                        Doing 100ms delay cause the DOM is not loaded yet.
-                        setTimeout(() => {
-                        const profile_img = document.getElementById("profile_img");
-                        const my_name_text = document.getElementById("my_name");
-                        const full_stack = document.getElementById("full_stack");
-                        const developer = document.getElementById("developer");
-                        const based_in = document.getElementById("based_in");
-                        const scroll_down = document.getElementById("scroll_down");
-
-                        profile_img.style.opacity = 0;
-                        profile_img.style.transform = "translateY(16px)";
-
-                        my_name_text.style.opacity = 0;
-                        my_name_text.style.transform = "translateY(16px)";
-
-                        full_stack.style.opacity = 0;
-                        full_stack.style.transform = "translateY(16px)";
-
-                        developer.style.opacity = 0;
-                        developer.style.transform = "translateY(16px)";
-
-                        based_in.style.opacity = 0;
-                        based_in.style.transform = "translateY(16px)";
-
-                        scroll_down.style.opacity = 0;
-                        scroll_down.style.transform = "translateY(16px)";
-
-
-                        const timeline = gsap.timeline();
-
-                            // Add animations to the timeline in sequence
-                            timeline
-                                .to(my_name_text, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(full_stack, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(developer, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(based_in, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(profile_img, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-                                .to(scroll_down, {
-                                    opacity: 1,
-                                    duration: 1,
-                                    transform: "translateY(0)",
-                                    ease: "power2.out",
-                                })
-
-                            }, 1);
+                                 animation_function();
 
                         })
 
