@@ -42,6 +42,10 @@ class RootCanalTreatmentService extends Component
 
     public $total_estimated_amount;
 
+    public $currency_mode = "USD";
+
+    public $currency_rate = 1;
+
 
 
     public function mount(){
@@ -340,5 +344,16 @@ class RootCanalTreatmentService extends Component
 
         return view('livewire.root-canal-treatment-service');
 
+    }
+
+    public function toggle_currency_mode (){
+         if($this->currency_mode == 'USD'){
+             $this->currency_mode = 'TK';
+             $this->currency_rate = 80;
+         }else{
+             $this->currency_mode = 'USD';
+             $this->currency_rate = 1;
+         }
+         $this->dispatch('currency_updated');
     }
 }
