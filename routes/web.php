@@ -42,8 +42,8 @@ Route::get('/consultation', function () {
 
 
 
-Route::get('/services/root_canal_treatment', function () {
-    return view('services.root_canal_treatment');
+Route::get('/services/full-project', function () {
+    return view('services.full-project');
 });
 
 
@@ -121,8 +121,8 @@ Route::get('/services/prevention', function () {
 
 
 
-Route::get('/details/root_canal_treatment', function () {
-    return view('details.details_root_canal_treatment_root');
+Route::get('/details/full-project', function () {
+    return view('details.details-full-project');
 });
 
 

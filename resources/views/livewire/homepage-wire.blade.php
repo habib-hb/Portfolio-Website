@@ -1,4 +1,5 @@
-<div id="main_div" class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
+<div id="main_div"
+    class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
 
     <div class="h-[100vh] flex flex-col">
 
@@ -62,15 +63,15 @@
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                    onclick="window.location.href=`' .
+                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                    onclick="window.location.href=`' .
+                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -80,15 +81,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                    onclick="window.location.href=`' .
+                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                    onclick="window.location.href=`' .
+                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -178,7 +179,7 @@
 
 
                 <div class="">
-                    <img id="profile_img" src="{{ asset('images/whole_profile-min.png') }}"
+                    <img id="profile_img" src="{{ asset('images/whole_profile_new.png') }}"
                         class=" w-[30vh] md:w-[40vh]   " style="opacity: 0" alt="">
                 </div>
 
@@ -200,7 +201,8 @@
 
     <div class="flex flex-col justify-center items-center mx-auto my-8">
 
-        <img src="{{$theme_mode == 'light' ? asset('images/portfolio-light-mode.png') : asset('images/portfolio-dark-mode.png') }}" class="max-h-[100px]" alt="">
+        <img src="{{ $theme_mode == 'light' ? asset('images/portfolio-light-mode.png') : asset('images/portfolio-dark-mode.png') }}"
+            class="max-h-[100px]" alt="">
 
     </div>
 
@@ -244,7 +246,8 @@
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql</h2>
+                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
+                </h2>
 
             </div>
 
@@ -294,7 +297,8 @@
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql</h2>
+                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
+                </h2>
 
             </div>
 
@@ -345,7 +349,8 @@
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql</h2>
+                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
+                </h2>
 
             </div>
 
@@ -395,7 +400,8 @@
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql</h2>
+                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
+                </h2>
 
             </div>
 
@@ -446,7 +452,8 @@
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql</h2>
+                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
+                </h2>
 
             </div>
 
@@ -496,7 +503,8 @@
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql</h2>
+                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
+                </h2>
 
             </div>
 
@@ -513,11 +521,11 @@
 
 
 
-    <div class="flex flex-col justify-center mt-6  md:max-w-[1280px]  mx-auto">
+    <div class="flex flex-col justify-center mt-[15vh]  md:max-w-[1280px]  mx-auto">
 
         <h1
             class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            Our Dental Services</h1>
+            The Services</h1>
 
         <p class="text-sm   text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             {{ $banner_headline }}</p>
@@ -535,35 +543,34 @@
     <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
 
 
-        {{-- Root Canal Treatment --}}
+        {{-- Full Project --}}
         <div
             class="flex flex-col w-[96vw] md:max-w-[30%] h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
             <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
-                <img src="{{ asset('images/root_canal_treatment.gif') }}"
+                <img src="{{ asset('images/full-project.gif') }}"
                     class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                     alt="">
             </div>
 
             <h1
                 class="text-2xl font-semibold mt-1 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Root Canal Treatment</h1>
+                Full Project</h1>
 
             <p
                 class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a
-                tooth.</p>
+                Full Project encompasses Figma design, frontend, and backend for complete digital solutions.</p>
 
             <div class="mt-4 flex flex-row gap-4 mb-6">
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/root_canal_treatment'"><a
-                        href="{{ env('BASE_LINK') }}/services/root_canal_treatment">Select</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/full-project'"><a
+                        href="{{ env('BASE_LINK') }}/services/full-project">Select</a></button>
 
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/root_canal_treatment'"><a
-                        href="{{ env('BASE_LINK') }}/details/root_canal_treatment">Details</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/full-project'"><a
+                        href="{{ env('BASE_LINK') }}/details/full-project">Details</a></button>
             </div>
 
         </div>
