@@ -81,8 +81,8 @@ Route::get('/services/back-end', function () {
 
 
 
-Route::get('/services/teeth_whitening', function () {
-    return view('services.teeth_whitening');
+Route::get('/services/figma-design', function () {
+    return view('services.figma-design');
 });
 
 
@@ -164,8 +164,8 @@ Route::get('/details/back-end', function () {
 
 
 
-Route::get('/details/teeth_whitening', function () {
-    return view('details.details_teeth_whitening');
+Route::get('/details/figma-design', function () {
+    return view('details.details-figma-design');
 });
 
 
