@@ -56,8 +56,8 @@ Route::get('/services/full-project', function () {
 
 
 
-Route::get('/services/cosmetic_dentist', function () {
-    return view('services.cosmetic_dentist');
+Route::get('/services/front-end', function () {
+    return view('services.front-end');
 });
 
 
@@ -69,8 +69,8 @@ Route::get('/services/cosmetic_dentist', function () {
 
 
 
-Route::get('/services/dental_implants', function () {
-    return view('services.dental_implants');
+Route::get('/services/back-end', function () {
+    return view('services.back-end');
 });
 
 
@@ -135,8 +135,8 @@ Route::get('/details/full-project', function () {
 
 
 
-Route::get('/details/cosmetic_dentist', function () {
-    return view('details.details_cosmetic_dentist');
+Route::get('/details/front-end', function () {
+    return view('details.details-front-end');
 });
 
 
@@ -150,8 +150,8 @@ Route::get('/details/cosmetic_dentist', function () {
 
 
 
-Route::get('/details/dental_implants', function () {
-    return view('details.details_dental_implants');
+Route::get('/details/back-end', function () {
+    return view('details.details-back-end');
 });
 
 

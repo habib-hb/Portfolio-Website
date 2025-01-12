@@ -521,7 +521,7 @@
 
 
 
-    <div class="flex flex-col justify-center mt-[15vh]  md:max-w-[1280px]  mx-auto">
+    <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
         <h1
             class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -578,35 +578,35 @@
 
 
 
-        {{-- Cosmetic Dentistry --}}
+        {{-- Front End --}}
         <div
             class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
             <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/cosmetic_dentist.gif') }}"
+                <img src="{{ asset('images/front-end.gif') }}"
                     class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                     alt="">
             </div>
 
             <h1
                 class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Cosmetic Dentistry</h1>
+                Front End</h1>
 
             <p
                 class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Cosmetic dentistry is the branch of dentistry that focuses on improving the appearance of your smile.
+                Frontend focuses on crafting responsive, interactive user interfaces for seamless digital experiences.
             </p>
 
             <div class="mt-4 flex flex-row gap-4 mb-6">
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/cosmetic_dentist'"><a
-                        href="{{ env('BASE_LINK') }}/services/cosmetic_dentist">Select</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/front-end'"><a
+                        href="{{ env('BASE_LINK') }}/services/front-end">Select</a></button>
 
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/cosmetic_dentist'"><a
-                        href="{{ env('BASE_LINK') }}/details/cosmetic_dentist">Details</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/front-end'"><a
+                        href="{{ env('BASE_LINK') }}/details/front-end">Details</a></button>
             </div>
 
         </div>
@@ -614,36 +614,35 @@
 
 
 
-        {{-- Dental Implants --}}
+        {{-- Backend --}}
         <div
             class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
             <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/dental_implant.gif') }}"
+                <img src="{{ asset('images/back-end.gif') }}"
                     class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                     alt="">
             </div>
 
             <h1
                 class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Dental Implants</h1>
+                Back End</h1>
 
             <p
                 class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                A dental implant is an artificial tooth root that’s placed into your jaw to hold a prosthetic tooth or
-                bridge.</p>
+                Backend Development powers server-side logic, database management, and seamless API integration for robust digital solutions.</p>
 
             <div class="mt-4 flex flex-row gap-4 mb-6">
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/dental_implants'"><a
-                        href="{{ env('BASE_LINK') }}/services/dental_implants">Select</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/back-end'"><a
+                        href="{{ env('BASE_LINK') }}/services/back-end">Select</a></button>
 
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/dental_implants'"><a
-                        href="{{ env('BASE_LINK') }}/details/dental_implants">Details</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/back-end'"><a
+                        href="{{ env('BASE_LINK') }}/details/back-end">Details</a></button>
             </div>
 
         </div>

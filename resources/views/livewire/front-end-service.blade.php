@@ -105,7 +105,7 @@
                 class="h-[48px] w-[48px] cursor-pointer hover:scale-105" onclick="window.history.back()" alt="">
 
             <h2 class="text-2xl text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} ">
-                Full Project</h2>
+                Front End</h2>
 
             <div class="w-[48px]"></div>
 
@@ -133,93 +133,94 @@
         <div
             class="flex flex-col w-full md:max-w-[800px] md:px-8  mx-auto  p-2  {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}  rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-            <!-- Project Complexity -->
+            <!-- Project Type -->
             <div class="my-2">
                 {{-- <label
                     class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Treatment
                     Complexity</label> --}}
                 <label
-                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Project
-                    Complexity</label>
+                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Project Type</label>
 
-                <select id="complexity"
+                <select id="project_type"
                     class="w-full py-2  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} ">
-                    <option value="300">Basic: A simple static website or landing page - {{300 * $currency_rate}}</option>
-                    <option value="600">Intermediate: A dynamic website with interactive elements - {{600 * $currency_rate}}</option>
-                    <option value="1200">Advanced: A fully functional web application with multiple integrations - {{1200 * $currency_rate}}</option>
+                    <option value="150">Static Website: Simple HTML/CSS/JS with no dynamic content - {{150 * $currency_rate}}</option>
+                    <option value="300">Dynamic Website: Frontend connected to APIs or backend - {{300 * $currency_rate}}</option>
+                    <option value="500">Web Application: Interactive single-page applications (SPAs) - {{500 * $currency_rate}}</option>
                 </select>
 
             </div>
 
 
-            <!-- Design Requirements -->
+            <!-- Design Integration -->
             <div class="my-2">
-                <label class="text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Design Requirements</label>
-                <select id="design_requirements"
+                <label class="text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Design Integration</label>
+                <select id="design_integration"
                     class="w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
-                    <option value="100">Wireframes Only: Minimal design layout with basic structure - {{100 * $currency_rate}}</option>
-                    <option value="250">Custom UI/UX Design: Detailed Figma design tailored to the client’s brand (Pc focused) - {{250 * $currency_rate}} </option>
-                    <option value="400">Responsive Design: Ensures compatibility across devices. (Pc and Mobile) - {{400 * $currency_rate}}</option>
+                    <option value="50">Pre-designed Templates: Use a provided design (e.g., Figma or PSD) - {{50 * $currency_rate}}</option>
+                    <option value="250">Custom Design: Create a new design and implement it (Pc focused) - {{250 * $currency_rate}} </option>
+                    <option value="400">Responsive Design: Mobile-first approach with cross-device compatibility (Pc and Mobile) - {{400 * $currency_rate}}</option>
                 </select>
             </div>
 
 
-            <!-- Frontend Features -->
+            <!-- Framework/Technology -->
             <div class="my-2">
                 <label
-                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Frontend Features</label>
-                <select id="frontend_features"
+                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Framework/Technology</label>
+                <select id="framework"
                     class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
 
-                    <option value="100">Framework: Use frameworks like React, Livewire - {{100 * $currency_rate}}</option>
-                    <option value="150">Animations/Effects: Include animations, transitions, or parallax effects - {{150 * $currency_rate}}</option>
-                    <option value="200">Custom Components: Also include design reusable components for the frontend - {{200 * $currency_rate}}</option>
-
-                </select>
-            </div>
-
-
-            <!-- Backend Features -->
-            <div class="my-2">
-                <label
-                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Backend Features</label>
-                <select id="backend_features"
-                    class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
-
-                    <option value="100">Basic Backend: User authentication, simple database operations - {{100 * $currency_rate}}</option>
-                    <option value="250">Advanced Backend: Include API integrations, role-based access control, advanced database relations - {{250 * $currency_rate}}</option>
-                    <option value="450">Admin Panel: Also include a dashboard for managing site content and user activities - {{450 * $currency_rate}}</option>
+                    <option value="50">HTML/CSS/JS Only: No frameworks, pure frontend code - {{50 * $currency_rate}}</option>
+                    <option value="150">Frontend Frameworks: React, Next - {{150 * $currency_rate}}</option>
+                    <option value="200">Libraries: Material UI, Ant Design, Recharts - {{200 * $currency_rate}}</option>
 
                 </select>
             </div>
 
 
-
-            <!-- Hosting and Deployment -->
+            <!-- Features and Functionality -->
             <div class="my-2">
                 <label
-                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Hosting and Deployment</label>
-                <select id="hosting_deployment"
+                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Features and Functionality</label>
+                <select id="features"
                     class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
 
-                    <option value="50">Hosting Setup: Set up on platforms like Vercel, AWS, or cPanel - {{50 * $currency_rate}}</option>
-                    <option value="250">Maintenance Plan: Monthly/annual maintenance options - {{250 * $currency_rate}}</option>
+                    <option value="50">Basic Features: Navigation bar, forms, and static content - {{50 * $currency_rate}}</option>
+                    <option value="150">Advanced Features: Animations, sliders, carousels, and modals - {{150 * $currency_rate}}</option>
+                    <option value="250">Interactive Components: Filters, accordions, dropdowns, etc - {{250 * $currency_rate}}</option>
 
                 </select>
             </div>
 
 
 
-            <!-- Timeline -->
+            <!-- Pages -->
             <div class="my-2">
                 <label
-                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Timeline</label>
-                <select id="timeline"
+                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Pages</label>
+                <select id="pages"
                     class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
 
-                    <option value="0">Standard Delivery: Cost-effective, longer timeline - {{0 * $currency_rate}}
+                    <option value="50">Single Page: For a landing page or simple application - {{50 * $currency_rate}}</option>
+                    <option value="150">Multiple Pages: Multi-page setup with a consistent design - {{150 * $currency_rate}}</option>
+                    <option value="200">SPA: Single-page application with routing - {{200 * $currency_rate}}</option>
+
+                </select>
+            </div>
+
+
+
+            <!-- Responsiveness -->
+            <div class="my-2">
+                <label
+                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Responsiveness</label>
+                <select id="responsiveness"
+                    class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
+
+                    <option value="100">Desktop Only: Designed for desktop browsers - {{100 * $currency_rate}}
                     </option>
-                    <option value="200">Express Delivery: Higher cost for shorter timelines - {{200 * $currency_rate}}</option>
+                    <option value="200">Tablet & Mobile: Includes responsive adjustments for smaller devices - {{200 * $currency_rate}}</option>
+                    <option value="250">Cross-Browser Compatibility: Ensure functionality on major browsers - {{250 * $currency_rate}}</option>
 
 
                 </select>
@@ -227,16 +228,18 @@
 
 
 
-            <!-- Optional Add-Ons -->
+            <!-- Animations -->
             <div class="my-2">
                 <label
-                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Optional Add-Ons</label>
-                <select id="optional_add_ons"
+                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Animations</label>
+                <select id="animations"
                     class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
 
-                    <option value="100">SEO Optimization: Basic or advanced SEO strategies - {{100 * $currency_rate}}
+                    <option value="50">Basic Animations: Simple transitions and hover effects - {{50 * $currency_rate}}
                     </option>
-                    <option value="300">Third-Party Integrations: Include payment gateways, analytics tools, etc - {{300 * $currency_rate}}
+                    <option value="150">Advanced Animations: Parallax effects, scroll animations, and complex transitions - {{150 * $currency_rate}}
+                    </option>
+                    <option value="300">3D Animations: Interactive 3D elements using libraries like Three.js - {{300 * $currency_rate}}
                     </option>
 
 
@@ -255,6 +258,21 @@
                     <option value="50">Limited Revisions: Fixed number of revisions - {{50 * $currency_rate}}</option>
 
                     <option value="150">Unlimited Revisions: Higher cost for flexibility - {{150 * $currency_rate}}</option>
+
+                </select>
+            </div>
+
+
+            <!-- Timeline -->
+            <div class="my-2">
+                <label
+                    class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Timeline</label>
+                <select id="timeline"
+                    class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
+
+                    <option value="0">Standard Delivery: Cost-effective, longer delivery time - {{0 * $currency_rate}}</option>
+
+                    <option value="200">Express Delivery: Additional cost for quicker completion - {{200 * $currency_rate}}</option>
 
                 </select>
             </div>
@@ -547,21 +565,23 @@
 
         // ***Price Estimation
 
-        const complexitySelect = document.getElementById('complexity');
+        const project_type_select = document.getElementById('project_type');
 
-        const design_requirements_select = document.getElementById('design_requirements');
+        const design_integration_select = document.getElementById('design_integration');
 
-        const frontend_features_select = document.getElementById('frontend_features');
+        const framework_select = document.getElementById('framework');
 
-        const backend_features_select = document.getElementById('backend_features');
+        const features_select = document.getElementById('features');
 
-        const hosting_deployment_select = document.getElementById('hosting_deployment');
+        const pages_select = document.getElementById('pages');
 
-        const timeline_select = document.getElementById('timeline');
+        const responsiveness_select = document.getElementById('responsiveness');
 
-        const optional_add_ons_select = document.getElementById('optional_add_ons');
+        const animations_select = document.getElementById('animations');
 
         const revisions_select = document.getElementById('revisions');
+
+        const timeline_select = document.getElementById('timeline');
 
 
         // const sessionsInput = document.getElementById('sessions');
@@ -581,40 +601,44 @@
         function calculateTotal() {
 
             // Base price from complexity
-            let total = parseInt(complexitySelect.value);
+            let total = parseInt(project_type_select.value);
 
-            if (design_requirements_select.value) {
-                total = parseInt(design_requirements_select.value) + parseInt(complexitySelect.value);
+            if (design_integration_select.value) {
+                total = parseInt(design_integration_select.value) + parseInt(project_type_select.value);
             }
 
             // if (affected_tooth_type_select.value) {
             //     total += parseInt(affected_tooth_type_select.value) * parseInt(number_of_affected_teeth_select.value);
             // }
 
-            if (frontend_features_select.value) {
-                total += parseInt(frontend_features_select.value);
+            if (framework_select.value) {
+                total += parseInt(framework_select.value);
             }
 
-            if (backend_features_select.value) {
-                total += parseInt(backend_features_select.value);
+            if (features_select.value) {
+                total += parseInt(features_select.value);
             }
 
-            if (hosting_deployment_select.value) {
-                total += parseInt(hosting_deployment_select.value);
+            if (pages_select.value) {
+                total += parseInt(pages_select.value);
             }
 
-            if (timeline_select.value) {
+            if (responsiveness_select.value) {
 
-                total += parseInt(timeline_select.value);
+                total += parseInt(responsiveness_select.value);
 
             }
 
-            if (optional_add_ons_select.value) {
-                total += parseInt(optional_add_ons_select.value);
+            if (animations_select.value) {
+                total += parseInt(animations_select.value);
             }
 
             if (revisions_select.value) {
                 total += parseInt(revisions_select.value);
+            }
+
+            if (timeline_select.value) {
+                total += parseInt(timeline_select.value);
             }
 
             // Multiply by number of sessions
@@ -678,21 +702,45 @@
         // cbctCheckbox.addEventListener('change', calculateTotal);
 
         // anesthesiaCheckbox.addEventListener('change', calculateTotal);
-        complexitySelect.addEventListener('change', calculateTotal);
+        // complexitySelect.addEventListener('change', calculateTotal);
 
-        design_requirements_select.addEventListener('change', calculateTotal);
+        // design_requirements_select.addEventListener('change', calculateTotal);
 
-        frontend_features_select.addEventListener('change', calculateTotal);
+        // frontend_features_select.addEventListener('change', calculateTotal);
 
-        backend_features_select.addEventListener('change', calculateTotal);
+        // backend_features_select.addEventListener('change', calculateTotal);
 
-        hosting_deployment_select.addEventListener('change', calculateTotal);
+        // hosting_deployment_select.addEventListener('change', calculateTotal);
 
-        timeline_select.addEventListener('change', calculateTotal);
+        // timeline_select.addEventListener('change', calculateTotal);
 
-        optional_add_ons_select.addEventListener('change', calculateTotal);
+        // optional_add_ons_select.addEventListener('change', calculateTotal);
+
+        // revisions_select.addEventListener('change', calculateTotal);
+
+        // dark_mode_supportCheckbox.addEventListener('change', calculateTotal);
+
+        // hero_section_copywrittingCheckbox.addEventListener('change', calculateTotal);
+
+        // technical_business_consultancyCheckbox.addEventListener('change', calculateTotal);
+
+        project_type_select.addEventListener('change', calculateTotal);
+
+        design_integration_select.addEventListener('change', calculateTotal);
+
+        framework_select.addEventListener('change', calculateTotal);
+
+        features_select.addEventListener('change', calculateTotal);
+
+        pages_select.addEventListener('change', calculateTotal);
+
+        responsiveness_select.addEventListener('change', calculateTotal);
+
+        animations_select.addEventListener('change', calculateTotal);
 
         revisions_select.addEventListener('change', calculateTotal);
+
+        timeline_select.addEventListener('change', calculateTotal);
 
         dark_mode_supportCheckbox.addEventListener('change', calculateTotal);
 

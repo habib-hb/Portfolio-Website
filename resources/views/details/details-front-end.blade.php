@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Full Project -Blog</title>
+        <title>Front End -Blog</title>
 
 
 
@@ -18,7 +18,7 @@
 
 
 
-        <livewire:details-full-project/>
+        <livewire:details-front-end/>
 
         @livewireScripts
     </body>
