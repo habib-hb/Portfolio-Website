@@ -93,8 +93,8 @@ Route::get('/services/figma-design', function () {
 
 
 
-Route::get('/services/emergency_dentistry', function () {
-    return view('services.emergency_dentistry');
+Route::get('/services/wordpress', function () {
+    return view('services.wordpress');
 });
 
 
@@ -178,8 +178,8 @@ Route::get('/details/figma-design', function () {
 
 
 
-Route::get('/details/emergency_dentistry', function () {
-    return view('details.details_emergency_dentistry');
+Route::get('/details/wordpress', function () {
+    return view('details.details-wordpress');
 });
 
 

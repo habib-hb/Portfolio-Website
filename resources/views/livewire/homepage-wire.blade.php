@@ -685,37 +685,37 @@
 
 
 
-        {{-- Emergency Dentistry --}}
+        {{-- WordPress --}}
         <div
             class="flex flex-col w-[96vw]  md:max-w-[30%] h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
             <div
                 class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/emergency_dentistry.gif') }}"
+                <img src="{{ asset('images/wordpress.gif') }}"
                     class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                     alt="">
             </div>
 
             <h1
                 class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Emergency Dentistry</h1>
+                WordPress</h1>
 
             <p
                 class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                In general, any dental problem that needs immediate treatment to stop bleeding, alleviate severe pain.
+                Crafting tailored WordPress solutions, from design to seamless launch, for a powerful online presence.
             </p>
 
             <div class="mt-4 flex flex-row gap-4 mb-6">
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/emergency_dentistry'"><a
-                        href="{{ env('BASE_LINK') }}/services/emergency_dentistry">Select</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/wordpress'"><a
+                        href="{{ env('BASE_LINK') }}/services/wordpress">Select</a></button>
 
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/emergency_dentistry'"><a
-                        href="{{ env('BASE_LINK') }}/details/emergency_dentistry">Details</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/wordpress'"><a
+                        href="{{ env('BASE_LINK') }}/details/wordpress">Details</a></button>
             </div>
 
         </div>
