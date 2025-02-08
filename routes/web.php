@@ -107,8 +107,8 @@ Route::get('/services/wordpress', function () {
 
 
 
-Route::get('/services/prevention', function () {
-    return view('services.prevention');
+Route::get('/services/error-fixing', function () {
+    return view('services.error-fixing');
 });
 
 
@@ -192,8 +192,8 @@ Route::get('/details/wordpress', function () {
 
 
 
-Route::get('/details/prevention', function () {
-    return view('details.details_prevention');
+Route::get('/details/error-fixing', function () {
+    return view('details.details-error-fixing');
 });
 
 

@@ -25,6 +25,7 @@ class HomepageWire extends Component
     public $first_load = true;
 
 
+
     public function mount()
     {
         if(!session('theme_mode')) {

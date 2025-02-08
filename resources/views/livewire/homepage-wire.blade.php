@@ -217,7 +217,7 @@
 
             <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
 
-                <img src="{{ asset('images/nature.jpg') }}" class="max-h-[400px] rounded-lg" alt="">
+                <img src="{{ asset('images/ecommerce-portfolio.png') }}" class="max-h-[400px] rounded-lg" alt="">
 
             </div>
 
@@ -228,20 +228,16 @@
                     E-Commerce
                 </h2>
 
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. </p>
+                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">This moderately simple e-commerce project is designed to cater to small and medium-sized businesses, providing them with a solid foundation to sell their products online. It features a user-friendly admin dashboard with robust customizability, making it easy for businesses to manage their store effortlessly.
+                    This project holds a special place in my heart because I built it during my early days as a developer. I still remember the excitement, the challenges, and the sheer joy of bringing it to life. It wasn’t just a project—it was a transformative learning experience that deepened my passion for web development.</p>
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button>
+                    <a href="https://ecommerce.valueadderhabib.com/" target="_blank"><button
+                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
 
-                    <button
+                    <a href="https://github.com/habib-hb" target="_blank"><button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                        Code</button>
+                        Code</button></a>
                 </div>
 
                 <h2
@@ -722,37 +718,36 @@
 
 
 
-        {{-- Prevention --}}
+        {{-- Error Fixing --}}
         <div
             class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
             <div
                 class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/prevention.gif') }}"
+                <img src="{{ asset('images/error-fixes.gif') }}"
                     class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                     alt="">
             </div>
 
             <h1
                 class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Prevention</h1>
+                Error Fixing</h1>
 
             <p
                 class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Preventive dentistry is dental care that helps maintain good oral health. a combination of regular
-                dental.</p>
+                Error fixing identifies and resolves issues in code, ensuring optimal performance, stability, and reliable functionality.</p>
 
             <div class="mt-4 flex flex-row gap-4 mb-6">
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/prevention'"><a
-                        href="{{ env('BASE_LINK') }}/services/prevention">Select</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/error-fixing'"><a
+                        href="{{ env('BASE_LINK') }}/services/error-fixing">Select</a></button>
 
                 <button
                     class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/prevention'"><a
-                        href="{{ env('BASE_LINK') }}/details/prevention">Details</a></button>
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/error-fixing'"><a
+                        href="{{ env('BASE_LINK') }}/details/error-fixing">Details</a></button>
             </div>
 
         </div>
