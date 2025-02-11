@@ -352,6 +352,21 @@ Route::get('/admin_dashboard/schedules_management', function () {
 
 
 
+Route::get('/admin_dashboard/explore_section_management', function () {
+    return view('admin_dashboard.explore-section-management');
+});
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/blogs/{slug}', function ($slug) {
     $post = blog_posts::where('blog_link', '/blogs/' . $slug)->first();
     return view('dynamic_content.custom_blog', ['post' => $post]);

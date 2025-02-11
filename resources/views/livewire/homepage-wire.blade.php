@@ -264,7 +264,7 @@
 
             <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
 
-                <img src="{{ asset('images/nature.jpg') }}" class="max-h-[400px] rounded-lg" alt="">
+                <img src="{{ asset('images/dental-portfolio.png') }}" class="max-h-[400px] rounded-lg" alt="">
 
             </div>
 
@@ -272,28 +272,25 @@
                 class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
                 <h2
                     class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    E-Commerce
+                    Appointment Booking & Price Estimator
                 </h2>
 
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. </p>
+                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">This is a demo medical website and one of my favorite projects, focused on Dental Care. It has a clean, user-friendly design with easy navigation, an appointment booking system, and a powerful price estimator. There's also a dark mode for a better viewing experience.<br>
 
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button>
+                    The admin panel is packed with features, letting you manage appointments, write blogs, set schedules, adjust timings, mark holidays, and more. I designed everything in Figma, and the entire process—both designing and coding—was incredibly rewarding and fulfilling. This is easily one of the projects I’m most passionate about!</p>
 
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                        Code</button>
-                </div>
+                    <div class="flex gap-4 justify-center md:justify-start w-full my-4">
+                        <a href="https://dental.valueadderhabib.com/" target="_blank"><button
+                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
+
+                        <a href="https://github.com/habib-hb/Dental-Website" target="_blank"><button
+                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
+                            Code</button></a>
+                    </div>
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
+                    <span class="text-lg font-medium ">Technologies Used:</span> Laravel , Livewire , Mysql
                 </h2>
 
             </div>
