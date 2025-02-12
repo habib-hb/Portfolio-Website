@@ -32,6 +32,8 @@ class AdminExploreSectionManagement extends Component
 
     public $blog_area;
 
+    public $site_link;
+
     public $options_array = [];
 
     public $items_array = [];
@@ -79,6 +81,7 @@ class AdminExploreSectionManagement extends Component
                 'item_title' => $item->item_title,
                 'image_link' => $item->item_image,
                 'item_description' => $item->item_description,
+                'site_link' => $item->site_link,
                 'id' => $item->item_id
             ];
         }, $items_db);
@@ -106,8 +109,8 @@ class AdminExploreSectionManagement extends Component
         // $this->validate([
         //     'item_image' => 'image|max:1024', // Image validation (1MB max)
         // ]);
-        if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_item) {
-            DB::insert("INSERT INTO explore_items (option_id, item_title , image_link , item_description) VALUES (?, ?, ?, ?)", [$this->option, $this->item_title, $this->temporary_image_item, $this->blog_area]);
+        if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_item && $this->site_link) {
+            DB::insert("INSERT INTO explore_items (option_id, item_title , image_link , item_description , site_link) VALUES (?, ?, ?, ? , ?)", [$this->option, $this->item_title, $this->temporary_image_item, $this->blog_area , $this->site_link]);
 
 
             $items_db = DB::select("SELECT
@@ -127,6 +130,7 @@ class AdminExploreSectionManagement extends Component
                     'item_title' => $item->item_title,
                     'image_link' => $item->item_image,
                     'item_description' => $item->item_description,
+                    'site_link' => $item->site_link,
                     'id' => $item->item_id
                 ];
             }, $items_db);
@@ -136,6 +140,8 @@ class AdminExploreSectionManagement extends Component
             $this->item_title = "";
             $this->blog_area = "";
             $this->temporary_image_item = "";
+            $this->item_image = "";
+            $this->site_link = "";
 
             $this->dispatch('alert-manager');
             session()->flash('message', 'Item added successfully.');
@@ -168,6 +174,8 @@ class AdminExploreSectionManagement extends Component
             $this->option_title = "";
 
             $this->temporary_image_option = "";
+
+            $this->option_image = "";
 
             session()->flash('message', 'Option added successfully.');
         } else {
@@ -231,7 +239,7 @@ class AdminExploreSectionManagement extends Component
         if ($exists_record) {
 
             $this->clear_confirmation_alert();
-            
+
             session()->flash('error', 'Please delete the items first before deleting the option.');
 
             return;
@@ -284,6 +292,7 @@ class AdminExploreSectionManagement extends Component
                 'item_title' => $item->item_title,
                 'image_link' => $item->item_image,
                 'item_description' => $item->item_description,
+                'site_link' => $item->site_link,
                 'id' => $item->item_id
             ];
         }, $items_db);

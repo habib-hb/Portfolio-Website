@@ -6,6 +6,7 @@ use App\Models\banner_headline;
 use App\Models\blog_posts;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class HomepageWire extends Component
 {
@@ -23,6 +24,8 @@ class HomepageWire extends Component
     public $banner_headline;
 
     public $first_load = true;
+
+    public $options_array = [];
 
 
 
@@ -54,6 +57,12 @@ class HomepageWire extends Component
             $this->banner_headline = 'We use only the best quality materials on the market in order to provide the best products to our patients, So don’t worry about anything and book yourself.';
 
         }
+
+        $options_db = DB::select("SELECT * FROM explore_options");
+
+        $this->options_array = array_map(function ($item) {
+            return ['id' => $item->id, 'option' => $item->option, 'image_link' => $item->image_link];
+        }, $options_db);
     }
 
 

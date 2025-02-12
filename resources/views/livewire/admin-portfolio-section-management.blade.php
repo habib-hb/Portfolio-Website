@@ -166,26 +166,7 @@
     <main class="flex flex-col min-h-screen w-[96vw]  md:max-w-[800px] mx-auto">
         <h1
             class="text-2xl font-semibold text-center mt-4 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-            Add Explore Item</h1>
-
-        {{-- Option Select --}}
-        <div class="my-2">
-            <label class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Select
-                Option</label>
-            <select id="options" wire:model="option"
-                class="w-full py-2  {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2">
-
-                {{-- <option value="option one">Standard Delivery: Cost-effective, longer timeline -
-                </option>
-                <option value="option two">Express Delivery: Higher cost for shorter timelines -</option> --}}
-                <option value="">Select From Dropdown</option>
-                @foreach ($options_array as $option)
-                    <option value="{{ $option['id'] }}">{{ $option['option'] }}</option>
-                @endforeach
-
-
-            </select>
-        </div>
+            Add Portfolio Item</h1>
 
 
         <div class="flex flex-col mt-2">
@@ -204,9 +185,23 @@
         <div class="flex flex-col mt-2">
 
             <label for="site_link"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Site Link</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Site
+                Link</label>
 
             <input type="text" wire:model="site_link"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="title">
+
+        </div>
+
+
+        <div class="flex flex-col mt-2">
+
+            <label for="github_link"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Github
+                Link</label>
+
+            <input type="text" wire:model="github_link"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="title">
 
@@ -219,8 +214,8 @@
                 class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item Thumbnail
                 Image (Make sure it's less than 1mb)</label>
 
-            @if ($temporary_image_item)
-                <img src="{{ $temporary_image_item }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
+            @if ($temporary_image_portfolio)
+                <img src="{{ $temporary_image_portfolio }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
                     alt="">
             @endif
 
@@ -280,9 +275,9 @@
 
                     setup: function(editor) {
 
-                        editor.on('init', function() {
-                            editor.setContent('');
-                        });
+                        // editor.on('init', function() {
+                        //     editor.setContent(value);
+                        // });
 
                         editor.on('change', function() {
                             // Update the Livewire property when TinyMCE content changes
@@ -307,7 +302,9 @@
                 Livewire.on('alert-manager', () => {
 
                     setTimeout(() => {
-                        tinemce_init()
+
+                        tinemce_init();
+
                     }, 10);
 
                 });
@@ -322,10 +319,24 @@
         <div id="tinymce_div" class="" wire:ignore>
 
             <textarea id="tinymce">
-
+                {{$blog_area}}
             </textarea>
 
         </div>
+
+
+        <div class="flex flex-col mt-2">
+
+            <label for="technologies_used"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Technologies
+                Used (Write Comma Separated Values)</label>
+
+            <input type="text" wire:model="technologies_used"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="title">
+
+        </div>
+
 
         <div class="flex flex-row justify-center items-center my-8">
 
@@ -343,140 +354,54 @@
 
             <h1
                 class="flex flex-row text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                To add new category, click on "Add New Option". To manage existing categories or existing items, click on "Created Options" or "Created Items".</h1>
-
-            {{-- Add New Option Section --}}
-
-            <button wire:click="selectAddOptions"
-                class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Add
-                New Option <img src="{{ asset('images/press_down.png') }}"
-                    class="w-[14px] inline -mt-1 {{ $select_options_selected ? 'rotate-180' : 'rotate-0' }}  transition-all" /></button>
-
-
-            <div
-                class="flex flex-col justify-center items-center my-4 {{ $select_options_selected ? '' : 'hidden' }}">
-
-
-                <div class="flex flex-col mt-2 max-w-[680px]">
-
-                    <label for="title"
-                        class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Option
-                        Title</label>
-
-                    <input type="text" wire:model="option_title"
-                        class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                        id="title">
-
-                </div>
-
-
-                <div class="flex flex-col mt-2 mb-6 md:max-w-[680px]">
-
-                    <label for="option_image"
-                        class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Option
-                        Thumbnail
-                        Image (Make sure it's less than 1mb)</label>
-
-                    @if ($temporary_image_option)
-                        <img src="{{ $temporary_image_option }}"
-                            class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
-                    @endif
-
-                    <input wire:model="option_image" type="file" accept="image/*"
-                        class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                        id="item_image" />
-
-                    @error('blog_image')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-
-                </div>
-
-
-                <button wire:click="save_option"
-                    class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Save</button>
-
-
-            </div>
-
-
-            {{-- End Add New Option Section --}}
-
-
-            {{-- Created Options Section --}}
-            <button wire:click="created_options"
-                class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Created
-                Options <img src="{{ asset('images/press_down.png') }}"
-                    class="w-[14px] inline -mt-1 {{ $created_options_selected ? 'rotate-180' : 'rotate-0' }}  transition-all" /></button>
-
-
-            <div
-                class="flex flex-col gap-4 w-full max-h-[70vh] overflow-auto {{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-black' }} items-center  my-4  px-4 py-4 md:px-8 {{ $created_options_selected ? '' : 'hidden' }} rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-                @foreach ($options_array as $option)
-                    <div
-                        class="flex w-full flex-col justify-center items-center py-4 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#1e1d1d]' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-
-                        <img src="{{ $option['image_link'] }}" class="h-[160px] w-[160px] rounded object-cover"
-                            alt="">
-
-                        <p class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                            {{ $option['option'] }}</p>
-
-                        {{-- <button wire:click="deleteOption('{{ $option['id'] }}')" --}}
-                        <button
-                            wire:click="confirm_window( 'deleteOption' , '{{ $option['id'] }}', 'Are You Sure You Want To Delete This Option?')"
-                            class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
-                    </div>
-                @endforeach
-
-
-                @if (count($options_array) == 0)
-                    <p
-                        class="text-lg text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                        No Options Found</p>
-                @endif
-
-
-
-            </div>
-
-            {{-- End Created Options Section --}}
+                To Select Special Annual Holidays Or Annual Off Days, Click The "Select Annual Holidays" Button Below.
+                If You Want To View Already Submitted Holidays Or Delete Specific Holidays, Click The "Submitted Annual
+                Holidays" Button.</h1>
 
             {{-- Created Items Section --}}
-            <button wire:click="created_items"
+            <button wire:click="created_portfolios"
                 class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Created
-                Items <img src="{{ asset('images/press_down.png') }}"
-                    class="w-[14px] inline -mt-1 {{ $created_items_selected ? 'rotate-180' : 'rotate-0' }}  transition-all" /></button>
+                Portfolios <img src="{{ asset('images/press_down.png') }}"
+                    class="w-[14px] inline -mt-1 {{ $created_portfolios_selected ? 'rotate-180' : 'rotate-0' }}  transition-all" /></button>
 
 
             <div
-                class="flex flex-col gap-4 w-full max-h-[70vh] overflow-auto {{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-black' }} items-center  my-4  px-4 py-4 md:px-8 {{ $created_items_selected ? '' : 'hidden' }} rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                class="flex flex-col gap-4 w-full max-h-[70vh] overflow-auto {{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-black' }} items-center  my-4  px-4 py-4 md:px-8 {{ $created_portfolios_selected ? '' : 'hidden' }} rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
                 @foreach ($items_array as $item)
-                    <div
+                    <div {{-- 'portfolio_title' => $item->portfolio_title,
+                    'portfolio_description' => $item->portfolio_description,
+                    'portfolio_image_link' => $item->portfolio_image_link,
+                    'technologies_used' => $item->technologies_used,
+                    'portfolio_site_link' => $item->portfolio_site_link,
+                    'portfolio_github_link' => $item->portfolio_github_link,
+                    'id' => $item->item_id --}}
                         class="flex w-full flex-col justify-center items-center py-4 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#1e1d1d]' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
 
-                        <img src="{{ $item['image_link'] }}"
+                        <img src="{{ $item['portfolio_image_link'] }}"
                             class="h-[160px] w-auto max-w-[240px] rounded object-contain" alt="">
 
                         <p class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                            {{ $item['item_title'] }}</p>
+                            {{ $item['portfolio_title'] }}</p>
 
-                        <p
-                            class="text-lg opacity-75 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                            {{ $item['option_title'] }}</p>
-
-                        <a href="{{ $item['site_link'] }}" target="_blank"
+                        <a href="{{ $item['portfolio_site_link'] }}" target="_blank"
                             class="text-md opacity-60 {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
-                            {{ $item['site_link'] }}</a>
+                            Site link: {{ $item['portfolio_site_link'] }}</a>
+
+                        <a href="{{ $item['portfolio_github_link'] }}" target="_blank"
+                            class="text-md opacity-60 {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
+                            Github link: {{ $item['portfolio_github_link'] }}</a>
 
                         <div class="px-5 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                            {!! $item['item_description'] !!}</div>
+                            {!! $item['portfolio_description'] !!}</div>
+
+                        <p
+                            class="text-md opacity-75 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                            Technologies Used: {{ $item['technologies_used'] }}</p>
 
                         {{-- <button wire:click="deleteItem('{{ $item['id'] }}')" --}}
                         <button
-                            wire:click="confirm_window( 'deleteItem' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Item?')"
+                            wire:click="confirm_window( 'deletePortfolio' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Portfolio Item?')"
                             class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
                     </div>
                 @endforeach

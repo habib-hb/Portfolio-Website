@@ -195,7 +195,7 @@
             plugins: [
             // Core editing features
             'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-            
+
             ],
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -213,6 +213,9 @@
 
             setup: function (editor) {
 
+                editor.on('init', function() {
+                            editor.setContent('');
+                        });
 
                 editor.on('change', function () {
                     // Update the Livewire property when TinyMCE content changes
@@ -248,7 +251,7 @@
     <div id="tinymce_div"  class=""  wire:ignore>
 
     <textarea id="tinymce">
-       Start Doing Your Magic Here :)
+       
     </textarea>
 
     </div>

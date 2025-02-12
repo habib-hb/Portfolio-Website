@@ -2,6 +2,7 @@
 
 use App\Models\blog_posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 use Spatie\Sitemap\SitemapGenerator;
@@ -354,6 +355,34 @@ Route::get('/admin_dashboard/schedules_management', function () {
 
 Route::get('/admin_dashboard/explore_section_management', function () {
     return view('admin_dashboard.explore-section-management');
+});
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/admin_dashboard/portfolio_section_management', function () {
+    return view('admin_dashboard.portfolio-section-management');
+});
+
+
+
+
+
+
+
+
+
+Route::get('/categories/{category_name}', function ($category_name, Request $request){
+    $id = $request->query('id'); // Get the 'id' query parameter
+
+    return view('dynamic_content.single-category-page', ['category_name' => $category_name, 'category_id' => $id]);
 });
 
 
