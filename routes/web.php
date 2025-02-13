@@ -120,6 +120,18 @@ Route::get('/services/error-fixing', function () {
 
 
 
+Route::get('/services/test', function () {
+    return view('services.test');
+});
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/details/full-project', function () {

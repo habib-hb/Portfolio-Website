@@ -73,13 +73,9 @@ class AdminBlogs extends Component
 
             session()->flash('form_completion_message', 'Blog Post Created Successfully');
 
-
-
-
-
-
-
             $this->dispatch('alert-manager');
+
+            $this->dispatch('refresh-trigger');
 
 
         }else if(!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area || !$this->slug_available){

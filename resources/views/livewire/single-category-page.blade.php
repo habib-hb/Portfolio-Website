@@ -57,12 +57,12 @@
         </div>
 
     @foreach ($items_array as $index => $item)
-       
+
         @if ($index % 2 == 0)
             <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
                 style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
             @else
-                <div class="flex w-full py-8  h-fit md:h-[600px]">
+                <div class="flex w-full py-8  h-fit md:h-[600px]" style="{{$index === count($items_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : ''}} ">
         @endif
 
 

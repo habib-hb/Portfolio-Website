@@ -27,6 +27,8 @@ class HomepageWire extends Component
 
     public $options_array = [];
 
+    public $portfolios_array = [];
+
 
 
     public function mount()
@@ -63,6 +65,21 @@ class HomepageWire extends Component
         $this->options_array = array_map(function ($item) {
             return ['id' => $item->id, 'option' => $item->option, 'image_link' => $item->image_link];
         }, $options_db);
+
+
+        $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+
+        $this->portfolios_array = array_map(function ($item) {
+            return [
+                'portfolio_title' => $item->portfolio_title,
+                'portfolio_description' => $item->portfolio_description,
+                'portfolio_image_link' => $item->portfolio_image_link,
+                'technologies_used' => $item->technologies_used,
+                'portfolio_site_link' => $item->portfolio_site_link,
+                'portfolio_github_link' => $item->portfolio_github_link,
+                'id' => $item->id
+            ];
+        }, $portfolios_db);
     }
 
 

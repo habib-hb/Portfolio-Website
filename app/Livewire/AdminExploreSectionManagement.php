@@ -145,6 +145,7 @@ class AdminExploreSectionManagement extends Component
 
             $this->dispatch('alert-manager');
             session()->flash('message', 'Item added successfully.');
+            $this->dispatch('refresh-trigger');
         } else {
             session()->flash('error', 'Please fill all the fields.');
             $this->dispatch('alert-manager');

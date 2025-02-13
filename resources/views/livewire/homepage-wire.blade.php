@@ -485,6 +485,42 @@
 
 
 
+        {{-- Test --}}
+        <div
+            class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+
+
+            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                <img src="{{ asset('images/error-fixes.gif') }}"
+                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+                    alt="">
+            </div>
+
+            <h1
+                class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                Test</h1>
+
+            <p
+                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                Error fixing identifies and resolves issues in code, ensuring optimal performance, stability, and
+                reliable functionality.</p>
+
+            <div class="mt-4 flex flex-row gap-4 mb-6">
+                <button
+                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/test'"><a
+                        href="{{ env('BASE_LINK') }}/services/test">Select</a></button>
+
+                <button
+                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/error-fixing'"><a
+                        href="{{ env('BASE_LINK') }}/details/error-fixing">Details</a></button>
+            </div>
+
+        </div>
+
+
+
 
     </div>
 
@@ -507,323 +543,63 @@
 
     </div>
 
-    <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
-        style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
+    @foreach ($portfolios_array as $index => $item)
+
+    @if ($index % 2 == 0)
+        <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
+            style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
+        @else
+            <div class="flex w-full py-8  h-fit md:h-[600px]" style="{{$index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : ''}} ">
+    @endif
 
 
-        <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col md:flex-row justify-center items-center h-full">
 
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
+    <div
+        class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} justify-center items-center h-full">
 
-                <img src="{{ asset('images/ecommerce-portfolio.png') }}" class="max-h-[400px] rounded-lg"
-                    alt="">
+        <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
 
-            </div>
-
-            <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-                <h2
-                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    E-Commerce
-                </h2>
-
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">This
-                    moderately simple e-commerce project is designed to cater to small and medium-sized businesses,
-                    providing them with a solid foundation to sell their products online. It features a user-friendly
-                    admin dashboard with robust customizability, making it easy for businesses to manage their store
-                    effortlessly.
-                    This project holds a special place in my heart because I built it during my early days as a
-                    developer. I still remember the excitement, the challenges, and the sheer joy of bringing it to
-                    life. It wasn’t just a project—it was a transformative learning experience that deepened my passion
-                    for web development.</p>
-
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <a href="https://ecommerce.valueadderhabib.com/" target="_blank"><button
-                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
-
-                    <a href="https://github.com/habib-hb" target="_blank"><button
-                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                            Code</button></a>
-                </div>
-
-                <h2
-                    class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
-                </h2>
-
-            </div>
+            <img src="{{ $item['portfolio_image_link'] }}" class="max-h-[400px] rounded-lg"
+                alt="{{ $item['portfolio_title'] }}">
 
         </div>
 
-
-
-
-
-
-    </div>
-
-    <div class="flex w-full py-8  h-fit md:h-[600px]">
-
-
         <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col md:flex-row-reverse justify-center items-center h-full">
-
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-
-                <img src="{{ asset('images/dental-portfolio.png') }}" class="max-h-[400px] rounded-lg"
-                    alt="">
-
-            </div>
+            class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
+            <h2
+                class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                {{ $item['portfolio_title'] }}
+            </h2>
 
             <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-                <h2
-                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    Appointment Booking & Price Estimator
-                </h2>
+                class="flex justify-start items-start w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                {!! $item['portfolio_description'] !!}</div>
 
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">This is a
-                    demo
-                    medical website and one of my favorite projects, focused on Dental Care. It has a clean,
-                    user-friendly design with easy navigation, an appointment booking system, and a powerful price
-                    estimator. There's also a dark mode for a better viewing experience.<br>
+            <div class="flex gap-4 justify-center md:justify-start w-full my-4">
+                <a href="{{ $item['portfolio_site_link'] }}" target="_blank"><button
+                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
 
-                    The admin panel is packed with features, letting you manage appointments, write blogs, set
-                    schedules, adjust timings, mark holidays, and more. I designed everything in Figma, and the entire
-                    process—both designing and coding—was incredibly rewarding and fulfilling. This is easily one of the
-                    projects I’m most passionate about!</p>
-
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <a href="https://dental.valueadderhabib.com/" target="_blank"><button
-                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
-
-                    <a href="https://github.com/habib-hb/Dental-Website" target="_blank"><button
-                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                            Code</button></a>
-                </div>
-
-                <h2
-                    class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> Laravel , Livewire , Mysql
-                </h2>
-
+                <a href="{{ $item['portfolio_github_link'] }}" target="_blank"><button
+                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source Code</button></a>
             </div>
+
+            <h2
+                class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                <span class="text-lg font-medium ">Technologies Used:</span> {{ $item['technologies_used'] }}
+            </h2>
 
         </div>
 
-
-
-
-
-
     </div>
 
-    <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
-        style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
 
 
-        <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col md:flex-row justify-center items-center h-full">
 
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
 
-                <img src="{{ asset('images/nature.jpg') }}" class="max-h-[400px] rounded-lg" alt="">
 
-            </div>
+</div>
+@endforeach
 
-            <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-                <h2
-                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    E-Commerce
-                </h2>
-
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. </p>
-
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button>
-
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                        Code</button>
-                </div>
-
-                <h2
-                    class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
-                </h2>
-
-            </div>
-
-        </div>
-
-
-
-
-
-
-    </div>
-
-    <div class="flex w-full py-8  h-fit md:h-[600px]">
-
-
-        <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col md:flex-row-reverse justify-center items-center h-full">
-
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-
-                <img src="{{ asset('images/nature.jpg') }}" class="max-h-[400px] rounded-lg" alt="">
-
-            </div>
-
-            <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-                <h2
-                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    E-Commerce
-                </h2>
-
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. </p>
-
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button>
-
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                        Code</button>
-                </div>
-
-                <h2
-                    class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
-                </h2>
-
-            </div>
-
-        </div>
-
-
-
-
-
-
-    </div>
-
-    <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
-        style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
-
-
-        <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col md:flex-row justify-center items-center h-full">
-
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-
-                <img src="{{ asset('images/nature.jpg') }}" class="max-h-[400px] rounded-lg" alt="">
-
-            </div>
-
-            <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-                <h2
-                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    E-Commerce
-                </h2>
-
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. </p>
-
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button>
-
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                        Code</button>
-                </div>
-
-                <h2
-                    class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
-                </h2>
-
-            </div>
-
-        </div>
-
-
-
-
-
-
-    </div>
-
-    <div class="flex w-full py-8  h-fit md:h-[600px]" style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)">
-
-
-        <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col md:flex-row-reverse justify-center items-center h-full">
-
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-
-                <img src="{{ asset('images/nature.jpg') }}" class="max-h-[400px] rounded-lg" alt="">
-
-            </div>
-
-            <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-                <h2
-                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    E-Commerce
-                </h2>
-
-                <p class="text-left {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. Some details
-                    about the project. Some details about the project. Some details about the project. </p>
-
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button>
-
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
-                        Code</button>
-                </div>
-
-                <h2
-                    class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> React , Laravel , Mysql
-                </h2>
-
-            </div>
-
-        </div>
-
-
-
-
-
-
-    </div>
     {{-- End Portfolio Showcase Section --}}
 
     {{-- Consult Now Button --}}
@@ -831,6 +607,8 @@
         class="mt-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
         onclick="window.location.href='/consultation'"><a href="{{ env('BASE_LINK') }}/consultation">Consult
             Now</a></button>
+
+
 
     {{-- Footer Element --}}
     <div

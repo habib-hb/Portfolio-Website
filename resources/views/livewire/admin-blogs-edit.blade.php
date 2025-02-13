@@ -213,10 +213,6 @@
 
             setup: function (editor) {
 
-                editor.on('init', function() {
-                            editor.setContent('');
-                        });
-
                 editor.on('change', function () {
                     // Update the Livewire property when TinyMCE content changes
                     Livewire.dispatch('updateTextarea', {text: editor.getContent()});

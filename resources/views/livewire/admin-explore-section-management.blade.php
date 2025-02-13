@@ -280,10 +280,6 @@
 
                     setup: function(editor) {
 
-                        editor.on('init', function() {
-                            editor.setContent('');
-                        });
-
                         editor.on('change', function() {
                             // Update the Livewire property when TinyMCE content changes
                             Livewire.dispatch('updateTextarea', {
@@ -313,6 +309,17 @@
                 });
 
 
+               Livewire.on('refresh-trigger', () => {
+
+                    setTimeout(() => {
+
+                        window.location.reload();
+
+                    }, 10);
+
+                });
+
+
             })
         </script>
 
@@ -322,7 +329,7 @@
         <div id="tinymce_div" class="" wire:ignore>
 
             <textarea id="tinymce">
-
+                {{$blog_area}}
             </textarea>
 
         </div>

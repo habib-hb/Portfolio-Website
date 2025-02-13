@@ -310,6 +310,17 @@
                 });
 
 
+                Livewire.on('refresh-trigger', () => {
+
+                    setTimeout(() => {
+
+                        window.location.reload();
+
+                    }, 10);
+
+                });
+
+
             })
         </script>
 

@@ -2,11 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\available_schedules;
-use App\Models\booked_appointments;
-use App\Models\booked_patient_details;
-use App\Models\holidays;
-use DateTime;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -61,12 +56,6 @@ class AdminPortfolioSectionManagement extends Component
 
     public function mount()
     {
-
-        // $options_db = DB::select("SELECT * FROM explore_options");
-
-        // $this->options_array = array_map(function ($item) {
-        //     return ['id' => $item->id, 'option' => $item->option, 'image_link' => $item->image_link];
-        // }, $options_db);
 
         $portfolios_db = DB::select("SELECT * FROM portfolio_items");
 
@@ -136,42 +125,15 @@ class AdminPortfolioSectionManagement extends Component
 
             $this->dispatch('alert-manager');
             session()->flash('message', 'Item added successfully.');
+            $this->dispatch('refresh-trigger');
         } else {
             session()->flash('error', 'Please fill all the fields. ->> portfolio' . $this->blog_area);
             $this->dispatch('alert-manager');
         }
 
-        // dd([
-        //     'option' => $this->option,
-        //     'title' => $this->title,
-        //     'blog_area' => $this->blog_area,
-        //     'temporary_image' => $this->temporary_image,
-        //     'options_array' => $this->options_array
-        // ]);
     }
 
-    // public function save_option()
-    // {
 
-    //     if ($this->option_title && $this->temporary_image_option) {
-    //         DB::insert("INSERT INTO explore_options (option, image_link) VALUES (?, ?)", [$this->option_title, $this->temporary_image_option]);
-
-    //         $options_db = DB::select("SELECT * FROM explore_options");
-
-    //         $this->options_array = array_map(function ($option) {
-    //             return ['id' => $option->id, 'option' => $option->option , 'image_link' => $option->image_link];
-    //         }, $options_db);
-
-    //         $this->option_title = "";
-
-    //         $this->temporary_image_option = "";
-
-    //         session()->flash('message', 'Option added successfully.');
-    //     } else {
-    //         session()->flash('error', 'Please fill all the fields.');
-    //         $this->dispatch('alert-manager');
-    //     }
-    // }
 
     public function updated($property)
     {
@@ -212,32 +174,6 @@ class AdminPortfolioSectionManagement extends Component
     }
 
 
-    // public function deleteOption($id)
-    // {
-
-    //     $exists_record = DB::table('explore_items')->where('option_id', $id)->exists();
-
-    //     if ($exists_record) {
-
-    //         $this->clear_confirmation_alert();
-
-    //         session()->flash('error', 'Please delete the items first before deleting the option.');
-
-    //         return;
-    //     }
-
-    //     DB::table('explore_options')->where('id', $id)->delete();
-
-    //     $this->clear_confirmation_alert();
-
-    //     $options_db = DB::select("SELECT * FROM explore_options");
-
-    //     $this->options_array = array_map(function ($item) {
-    //         return ['id' => $item->id, 'option' => $item->option, 'image_link' => $item->image_link];
-    //     }, $options_db);
-
-    //     session()->flash('message', 'Option deleted successfully.');
-    // }
 
     public function created_portfolios()
     {
