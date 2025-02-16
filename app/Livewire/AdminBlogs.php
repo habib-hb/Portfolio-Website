@@ -39,14 +39,16 @@ class AdminBlogs extends Component
 
     public $temporary_image;
 
+    public $form_error_message;
+
+    public $form_completion_message;
+
 
 
     public function save()
     {
 
-
-
-        if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area && $this->slug_available){
+        if ($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area && $this->slug_available) {
 
             $this->validate([
                 'blog_image' => 'image|max:1024', // Image validation (1MB max)
@@ -68,24 +70,30 @@ class AdminBlogs extends Component
                 'blog_type' => 'custom',
             ]);
 
-
-
-
-            session()->flash('form_completion_message', 'Blog Post Created Successfully');
+            $this->form_completion_message = 'Blog Post Created Successfully';
 
             $this->dispatch('alert-manager');
 
-            $this->dispatch('refresh-trigger');
+            $this->author_name = null;
+            $this->blog_headline = null;
+            $this->blog_slug = null;
+            $this->blog_excerpt = null;
+            $this->blog_image = null;
+            $this->blog_area = null;
+            $this->temporary_image = null;
+            $this->image_url = null;
+            $this->slug_already_in_use = null;
+            $this->slug_available = null;
+            $this->resetErrorBag('blog_image');
+            $this->dispatch('refresh-blog-area');
 
 
-        }else if(!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area || !$this->slug_available){
+        } else if (!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area || !$this->slug_available) {
 
-            session()->flash('form_error_message', 'Please fill all the fields correctly');
+            $this->form_error_message = 'Please fill all the fields correctly';
 
             $this->dispatch('alert-manager');
-
         }
-
     }
 
     public function updated($property)
@@ -100,28 +108,23 @@ class AdminBlogs extends Component
             $database_check = blog_posts::where('blog_link', '/blogs/' . $this->blog_slug)->get();
 
 
-            if($database_check->count() > 0){
+            if ($database_check->count() > 0) {
 
-                $this->slug_already_in_use ='This slug is already in use';
+                $this->slug_already_in_use = 'This slug is already in use';
 
                 $this->slug_available = null;
-
-
-
-            }else{
+            } else {
 
                 $this->slug_available =  "The slug is available";
 
                 $this->slug_already_in_use = null;
-
             }
-
-
 
         }
 
 
-        if($property === 'blog_image'){
+        if ($property === 'blog_image') {
+
             $imagePath = $this->blog_image->store('temp_blog_images', 'public');
 
             //Full Link
@@ -129,90 +132,49 @@ class AdminBlogs extends Component
 
             $this->temporary_image = $imagePath;
 
+            $this->resetErrorBag('blog_image');
 
         }
-
-
     }
 
-
-
-    // public function updating($property, $value)
-    // {
-    //     // $property: The name of the current property being updated
-    //     // $value: The value about to be set to the property
-
-    //     if ($property === 'blog_image') {
-    //         $this->loading_image = "Loading...";
-
-    //         $this->dispatch('alert-manager');
-
-    //         $this->dispatch('reinitialize_blog_form');
-    //     }
-    // }
-
-
-
-
-    public function test_image(){
-        dd($this->image_url);
-    }
 
 
     #[On('updateTextarea')]
-    public function updateTextarea($text){
-
+    public function updateTextarea($text)
+    {
         $this->blog_area = $text;
-
-
-    }
-
-    public function test_textarea(){
-
-        dd($this->blog_area);
-
-
     }
 
 
-    public function changeThemeMode(){
-
-        if(session('theme_mode') == 'light'){
+    public function changeThemeMode()
+    {
+        if (session('theme_mode') == 'light') {
 
             session(['theme_mode' => 'dark']);
-
-        }else{
+        } else {
 
 
             session(['theme_mode' => 'light']);
-
         }
 
         $this->dispatch('alert-manager');
-
     }
 
-    public function clear_form_completion_message(){
-
-        session()->flash('form_completion_message', null);
-
-        $this->dispatch('alert-manager');
-
+    public function clear_form_completion_message()
+    {
+        $this->form_completion_message = null;
     }
 
 
-    public function clear_form_error_message(){
-
-        session()->flash('form_error_message', null);
+    public function clear_form_error_message()
+    {
+        $this->form_error_message = null;
 
         $this->dispatch('alert-manager');
-
     }
 
     public function render()
     {
-        // $this->dispatch('alert-manager');
-
         return view('livewire.admin-blogs');
     }
 }

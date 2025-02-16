@@ -38,6 +38,10 @@ class AdminBlogsEdit extends Component
 
     public $temporary_image;
 
+    public $form_error_message;
+
+    public $form_completion_message;
+
     public $image_changed;
 
     public $slug_is_compatible = true;
@@ -76,7 +80,6 @@ class AdminBlogsEdit extends Component
 
     public function save(){
 
-
         if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area && $this->slug_is_compatible){
 
 
@@ -97,16 +100,6 @@ class AdminBlogsEdit extends Component
 
             }
 
-            // blog_posts::create([
-                // 'blog_author' => $this->author_name,
-                // 'blog_title' => $this->blog_headline,
-                // 'blog_link' =>  '/blogs/' . $this->blog_slug,
-                // 'blog_excerpt' => $this->blog_excerpt,
-                // 'blog_image' => $this->image_url,
-                // 'blog_text' => $this->blog_area,
-                // 'blog_type' => 'custom',
-            // ]);
-
 
             blog_posts::where('blog_link', '/blogs/' . $this->identifier_slug)->update([
                 'blog_author' => $this->author_name,
@@ -118,19 +111,18 @@ class AdminBlogsEdit extends Component
                 'blog_type' => 'custom',
             ]);
 
-
-
-
-            session()->flash('form_completion_message', 'Blog Post Updated Successfully');
+            $this->form_completion_message = 'Blog Post Created Successfully';
 
             $this->dispatch('alert-manager');
 
-            return redirect()->to('/admin_dashboard/blogs/blogs_manage/blog_edit/' . $this->blog_slug);
+            $this->resetErrorBag('blog_image');
+
+            $this->dispatch('alert-manager');
 
 
         }else if(!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area || !$this->slug_available){
 
-            session()->flash('form_error_message', 'Please fill all the fields correctly');
+            $this->form_error_message = 'Please fill all the fields correctly';
 
             $this->dispatch('alert-manager');
 
@@ -170,8 +162,6 @@ class AdminBlogsEdit extends Component
 
             }
 
-
-
         }
 
 
@@ -185,6 +175,8 @@ class AdminBlogsEdit extends Component
             $this->temporary_image = $imagePath;
 
             $this->image_changed = true;
+
+            $this->resetErrorBag('blog_image');
 
 
         }
@@ -235,21 +227,17 @@ class AdminBlogsEdit extends Component
 
     }
 
-    public function clear_form_completion_message(){
-
-        session()->flash('form_completion_message', null);
-
-        $this->dispatch('alert-manager');
-
+     public function clear_form_completion_message()
+    {
+        $this->form_completion_message = null;
     }
 
 
-    public function clear_form_error_message(){
-
-        session()->flash('form_error_message', null);
+    public function clear_form_error_message()
+    {
+        $this->form_error_message = null;
 
         $this->dispatch('alert-manager');
-
     }
 
     public function render()

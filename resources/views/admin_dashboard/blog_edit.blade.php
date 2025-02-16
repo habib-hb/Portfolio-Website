@@ -13,6 +13,7 @@
 
          <!-- Favicon -->
          <link rel="icon" href="{{ asset('favicons/admin_dashboard_fav.png') }}" type="image/png">
+         <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     </head>
     <body>
 

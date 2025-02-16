@@ -55,6 +55,14 @@ class AdminExploreSectionManagement extends Component
         'title' => 'Confirmation'
     ];
 
+    public $form_error_message;
+
+    public $form_completion_message;
+
+    public $editable_item_id;
+
+    public $editable_option_id;
+
     public function mount()
     {
 
@@ -106,11 +114,70 @@ class AdminExploreSectionManagement extends Component
 
     public function save_item()
     {
+
+        // Cheking if it's an update command
+        if ($this->editable_item_id) {
+
+            if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_item && $this->site_link) {
+
+                DB::table('explore_items')->where('id', $this->editable_item_id)->update([
+                    'option_id' => $this->option,
+                    'item_title' => $this->item_title,
+                    'image_link' => $this->temporary_image_item,
+                    'item_description' => $this->blog_area,
+                    'site_link' => $this->site_link,
+                ]);
+
+                $items_db = DB::select("SELECT
+                explore_items.*,
+                explore_options.*,
+                explore_items.image_link AS item_image,
+                explore_options.image_link AS option_image,
+                explore_items.id AS item_id,
+                explore_options.id AS option_id
+                FROM explore_items
+                LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+                ORDER BY explore_items.option_id;");
+
+                    $this->items_array = array_map(function ($item) {
+                        return [
+                            'option_title' => $item->option,
+                            'item_title' => $item->item_title,
+                            'image_link' => $item->item_image,
+                            'item_description' => $item->item_description,
+                            'site_link' => $item->site_link,
+                            'id' => $item->item_id
+                        ];
+                    }, $items_db);
+
+
+                $this->editable_item_id = null;
+                $this->option = "";
+                $this->item_title = "";
+                $this->blog_area = "";
+                $this->temporary_image_item = "";
+                $this->item_image = "";
+                $this->site_link = "";
+
+                $this->form_completion_message = 'Item Updated Successfully';
+
+                $this->resetErrorBag('blog_image');
+                $this->dispatch('refresh-blog-area');
+
+                $this->dispatch('alert-manager');
+
+                return;
+            } else {
+
+                $this->form_error_message = 'Please fill all the fields correctly';
+            }
+        }
+
         // $this->validate([
         //     'item_image' => 'image|max:1024', // Image validation (1MB max)
         // ]);
         if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_item && $this->site_link) {
-            DB::insert("INSERT INTO explore_items (option_id, item_title , image_link , item_description , site_link) VALUES (?, ?, ?, ? , ?)", [$this->option, $this->item_title, $this->temporary_image_item, $this->blog_area , $this->site_link]);
+            DB::insert("INSERT INTO explore_items (option_id, item_title , image_link , item_description , site_link) VALUES (?, ?, ?, ? , ?)", [$this->option, $this->item_title, $this->temporary_image_item, $this->blog_area, $this->site_link]);
 
 
             $items_db = DB::select("SELECT
@@ -143,11 +210,17 @@ class AdminExploreSectionManagement extends Component
             $this->item_image = "";
             $this->site_link = "";
 
+            $this->form_completion_message = 'Item Created Successfully';
+
+            $this->resetErrorBag('blog_image');
+            $this->dispatch('refresh-blog-area');
+
             $this->dispatch('alert-manager');
-            session()->flash('message', 'Item added successfully.');
-            $this->dispatch('refresh-trigger');
+            // session()->flash('message', 'Item added successfully.');
+            // $this->dispatch('refresh-trigger');
         } else {
-            session()->flash('error', 'Please fill all the fields.');
+            $this->form_error_message = 'Please fill all the fields correctly';
+
             $this->dispatch('alert-manager');
         }
 
@@ -162,6 +235,37 @@ class AdminExploreSectionManagement extends Component
 
     public function save_option()
     {
+        // Checking if it's an update command
+        if ($this->editable_option_id) {
+                if ($this->option_title && $this->temporary_image_option) {
+                DB::table('explore_options')->where('id', $this->editable_option_id)->update([
+                    'option' => $this->option_title,
+                    'image_link' => $this->temporary_image_option
+                ]);
+
+                $options_db = DB::select("SELECT * FROM explore_options");
+
+                $this->options_array = array_map(function ($option) {
+                    return ['id' => $option->id, 'option' => $option->option, 'image_link' => $option->image_link];
+                }, $options_db);
+
+                $this->editable_option_id = null;
+                $this->option_title = "";
+                $this->temporary_image_option = "";
+                $this->option_image = "";
+
+                $this->select_options_selected = null;
+
+                $this->form_completion_message = 'Option Updated Successfully';
+
+                return;
+
+            }else{
+
+                $this->form_error_message = 'Please fill all the fields correctly';
+
+            }
+        }
 
         if ($this->option_title && $this->temporary_image_option) {
             DB::insert("INSERT INTO explore_options (option, image_link) VALUES (?, ?)", [$this->option_title, $this->temporary_image_option]);
@@ -169,7 +273,7 @@ class AdminExploreSectionManagement extends Component
             $options_db = DB::select("SELECT * FROM explore_options");
 
             $this->options_array = array_map(function ($option) {
-                return ['id' => $option->id, 'option' => $option->option , 'image_link' => $option->image_link];
+                return ['id' => $option->id, 'option' => $option->option, 'image_link' => $option->image_link];
             }, $options_db);
 
             $this->option_title = "";
@@ -180,7 +284,7 @@ class AdminExploreSectionManagement extends Component
 
             session()->flash('message', 'Option added successfully.');
         } else {
-            session()->flash('error', 'Please fill all the fields.');
+            $this->form_error_message = 'Please fill all the fields correctly';
             $this->dispatch('alert-manager');
         }
     }
@@ -241,7 +345,7 @@ class AdminExploreSectionManagement extends Component
 
             $this->clear_confirmation_alert();
 
-            session()->flash('error', 'Please delete the items first before deleting the option.');
+            $this->form_error_message = 'Please delete the items first before deleting the option.';
 
             return;
         }
@@ -256,7 +360,7 @@ class AdminExploreSectionManagement extends Component
             return ['id' => $item->id, 'option' => $item->option, 'image_link' => $item->image_link];
         }, $options_db);
 
-        session()->flash('message', 'Option deleted successfully.');
+        $this->form_completion_message = 'Option deleted successfully.';
     }
 
     public function created_items()
@@ -298,24 +402,24 @@ class AdminExploreSectionManagement extends Component
             ];
         }, $items_db);
 
-        session()->flash('message', 'Item deleted successfully.');
+        $this->form_completion_message = 'Item deleted successfully.';
     }
 
-    public function remove_session_message(){
-
-        session()->forget('message');
-
+    public function clear_form_completion_message()
+    {
+        $this->form_completion_message = null;
     }
 
-    public function remove_session_error(){
 
-        session()->forget('error');
+    public function clear_form_error_message()
+    {
+        $this->form_error_message = null;
 
         $this->dispatch('alert-manager');
-
     }
 
-    public function confirm_window($action , $id=null , $message="Are You Sure?" , $type = 'warning', $title="Confirmation"){
+    public function confirm_window($action, $id = null, $message = "Are You Sure?", $type = 'warning', $title = "Confirmation")
+    {
 
         $this->confirmation_alert = [
             'active' => true,
@@ -334,8 +438,10 @@ class AdminExploreSectionManagement extends Component
         ]);
     }
 
-    public function clear_confirmation_alert(){
+    public function clear_confirmation_alert()
+    {
 
+        // Resetting it to default
         $this->confirmation_alert = [
             'active' => false,
             'type' => 'warning',
@@ -344,8 +450,56 @@ class AdminExploreSectionManagement extends Component
             'id' => '',
             'title' => 'Confirmation'
         ];
+    }
+
+    public function editItem($id)
+    {
+
+        $editable_item_db = DB::select("SELECT
+        explore_items.*,
+        explore_options.*,
+        explore_items.image_link AS item_image,
+        explore_options.image_link AS option_image,
+        explore_items.id AS item_id,
+        explore_options.id AS option_id
+        FROM explore_items
+        LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+        WHERE explore_items.id = ?", [$id]);
+
+        if ($editable_item_db) {
+            $this->option = $editable_item_db[0]->option_id;
+            $this->item_title = $editable_item_db[0]->item_title;
+            $this->temporary_image_item = $editable_item_db[0]->item_image;
+            $this->site_link = $editable_item_db[0]->site_link;
+            $this->blog_area = $editable_item_db[0]->item_description;
+
+            $this->editable_item_id = $editable_item_db[0]->item_id;
+
+            $this->dispatch('editable-item-area', item_data: $this->blog_area);
+        }
+
+
+
+        // dd($this->option, $this->item_title, $this->temporary_image_item, $this->site_link, $this->blog_area);
 
     }
+
+    public function editOption($id)
+    {
+
+        $editable_option_db = DB::select("SELECT * FROM explore_options WHERE id = ?", [$id]);
+
+        if ($editable_option_db) {
+            $this->option_title = $editable_option_db[0]->option;
+            $this->temporary_image_option = $editable_option_db[0]->image_link;
+            $this->select_options_selected = true;
+
+            $this->editable_option_id = $editable_option_db[0]->id;
+
+            $this->dispatch('editable-option-area');
+        }
+    }
+
 
 
 

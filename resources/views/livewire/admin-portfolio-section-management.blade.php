@@ -56,6 +56,46 @@
         </div>
     @endif
 
+
+    {{-- Notifications --}}
+    {{-- From Completion Notification --}}
+    @if ($form_completion_message)
+        <div
+            class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-left">{{ $form_completion_message }}</p>
+
+            </div>
+
+            <button wire:click="clear_form_completion_message"
+                class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
+
+        </div>
+    @endif
+
+
+
+    {{-- Form Error Message --}}
+    @if ($form_error_message)
+        <div
+            class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit mx-auto w-[90%] max-w-[400px]  bg-[#9f1a1a] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+                <p class="text-white text-center">{{ $form_error_message }}</p>
+
+            </div>
+
+            <button wire:click="clear_form_error_message"
+                class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
+
+        </div>
+    @endif
+    {{-- End Notifications --}}
+
+
+
     {{-- Confirmation Panel --}}
     @if ($confirmation_alert['active'])
         <div id="appointment_unfulfilled"
@@ -163,10 +203,10 @@
 
 
 
-    <main class="flex flex-col min-h-screen w-[96vw]  md:max-w-[800px] mx-auto">
+    <main id="add_new_portfolio" class="flex flex-col min-h-screen w-[96vw]  md:max-w-[800px] mx-auto">
         <h1
             class="text-2xl font-semibold text-center mt-4 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-            Add Portfolio Item</h1>
+            {{$editable_portfolio_id == null ? 'Add' : 'Edit'}} Portfolio Item</h1>
 
 
         <div class="flex flex-col mt-2">
@@ -229,111 +269,100 @@
 
         </div>
 
-        {{-- TinyMCE Text Area --}}
-        <script src="https://cdn.tiny.cloud/1/l55gbz5vnerknywvd7pxpjk7wsgpu3drem4qpol4u13x5327/tinymce/7/tinymce.min.js"
-            referrerpolicy="origin"></script>
+        <label class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item
+            Description</label>
+
+        <!-- The editor container -->
+        <div
+            class="{{ session('theme_mode') == 'light' ? '[&_.theme-changable]:bg-[#deeaf8] [&_.theme-changable]:text-black' : '[&_.theme-changable]:bg-[#202329] [&_.theme-changable]:text-white' }}">
+            <div wire:ignore>
+                <div id="editor"
+                    class="w-[96vw] md:max-w-full [&_.ql-editor]:min-h-[400px] theme-changable rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none">
+                </div>
+            </div>
+        </div>
+        <!-- The editor container End -->
 
 
+
+        <!-- Include the Quill library -->
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+        <!-- Initialize Quill editor -->
         <script>
-            function tinemce_init() {
-                const themeMode = document.getElementById('main_div').getAttribute('data-theme-mode');
-
-                // Destroying the existing TinyMCE instance if it exists
-                if (tinymce.get('tinymce')) {
-                    tinymce.get('tinymce').remove();
-                }
-
-                tinymce.init({
-                    selector: '#tinymce',
-                    plugins: [
-                        // Core editing features
-                        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists',
-                        'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-
-                    ],
-                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                    tinycomments_mode: 'embedded',
-                    tinycomments_author: 'Author name',
-                    mergetags_list: [{
-                            value: 'First.Name',
-                            title: 'First Name'
-                        },
-                        {
-                            value: 'Email',
-                            title: 'Email'
-                        },
-                    ],
-                    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
-                        'See docs to implement AI Assistant')),
-
-                    // Dark mode logic
-                    skin: themeMode === 'dark' ? 'oxide-dark' : 'oxide',
-                    // skin: 'oxide-dark',
-                    content_css: themeMode === 'dark' ? 'dark' : 'default',
-                    // content_css: 'dark',
-
-
-                    setup: function(editor) {
-
-                        // editor.on('init', function() {
-                        //     editor.setContent(value);
-                        // });
-
-                        editor.on('change', function() {
-                            // Update the Livewire property when TinyMCE content changes
-                            Livewire.dispatch('updateTextarea', {
-                                text: editor.getContent()
-                            });
-
-                        });
-
-
-
-                    }
-                });
-
-            }
-
-            tinemce_init();
+            let quill = new Quill('#editor', {
+                theme: 'snow'
+            });
 
             document.addEventListener('livewire:initialized', function() {
 
 
                 Livewire.on('alert-manager', () => {
 
+                    // setTimeout(() => {
+                    //     quill = new Quill('#editor', {
+                    //         theme: 'snow'
+                    //     })
+                    //     let existing_content = @json($blog_area);
+                    //     quill.setText(existing_content);
+                    //     alert(existing_content);
+                    // }, 10);
+
+                });
+
+                Livewire.on('refresh-blog-area', () => {
+
                     setTimeout(() => {
 
-                        tinemce_init();
+                        quill.setText("");
 
                     }, 10);
 
                 });
 
-
-                Livewire.on('refresh-trigger', () => {
+                Livewire.on('editable-portfolio-area', (data) => {
 
                     setTimeout(() => {
 
-                        window.location.reload();
+                        quill.clipboard.dangerouslyPasteHTML(data.portfolio_data);
+
+                        window.location.href = '#add_new_portfolio';
 
                     }, 10);
 
                 });
+
 
 
             })
+
+            quill.on('text-change', (delta, oldDelta, source) => {
+                // if (source == 'user') {
+                console.log('A user action triggered this change.');
+                let checkNull = quill.getText();
+                if (checkNull == '\n') {
+                    Livewire.dispatch('updateTextarea', {
+                        text: ''
+                    });
+                    return;
+                }
+
+                let deltaOps = quill.root.innerHTML;
+                Livewire.dispatch('updateTextarea', {
+                    text: deltaOps
+                });
+                // }
+            });
         </script>
 
 
-        <label class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item
-            Description</label>
-        <div id="tinymce_div" class="" wire:ignore>
+        {{-- <div id="tinymce_div" class="" wire:ignore>
 
             <textarea id="tinymce">
                 {{$blog_area}}
             </textarea>
 
-        </div>
+        </div> --}}
 
 
         <div class="flex flex-col mt-2">
@@ -411,9 +440,14 @@
                             Technologies Used: {{ $item['technologies_used'] }}</p>
 
                         {{-- <button wire:click="deleteItem('{{ $item['id'] }}')" --}}
-                        <button
-                            wire:click="confirm_window( 'deletePortfolio' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Portfolio Item?')"
-                            class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
+                        <div class="flex gap-4 justify-center items-center">
+                            <button
+                                wire:click="confirm_window( 'deletePortfolio' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Portfolio Item?')"
+                                class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
+
+                            <button wire:click="editPortfolio('{{ $item['id'] }}')"
+                                class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
+                        </div>
                     </div>
                 @endforeach
 

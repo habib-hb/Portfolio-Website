@@ -20,41 +20,42 @@
 
     </nav>
 
-    {{-- Messages --}}
-    @if (session()->has('message'))
+    {{-- Notifications --}}
+    {{-- From Completion Notification --}}
+    @if ($form_completion_message)
         <div
             class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{ session('message') }}</p>
+                <p class="text-white text-left">{{ $form_completion_message }}</p>
 
             </div>
 
-            <button wire:click="remove_session_message"
+            <button wire:click="clear_form_completion_message"
                 class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
     @endif
 
-    @if (session()->has('error'))
-        <div id="appointment_unfulfilled"
-            class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
-            <div class="flex flex-col justify-between items-center px-8">
 
-                <p class="text-white text-center">{{ session('error') }}</p>
+
+    {{-- Form Error Message --}}
+    @if ($form_error_message)
+        <div
+            class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit mx-auto w-[90%] max-w-[400px]  bg-[#9f1a1a] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+                <p class="text-white text-center">{{ $form_error_message }}</p>
 
             </div>
 
-            {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
-
-            <button wire:click="remove_session_error"
+            <button wire:click="clear_form_error_message"
                 class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
-
-
 
         </div>
     @endif
+    {{-- End Notifications --}}
 
     {{-- Confirmation Panel --}}
     @if ($confirmation_alert['active'])
@@ -163,10 +164,10 @@
 
 
 
-    <main class="flex flex-col min-h-screen w-[96vw]  md:max-w-[800px] mx-auto">
+    <main id="form_area" class="flex flex-col min-h-screen w-[96vw]  md:max-w-[800px] mx-auto">
         <h1
             class="text-2xl font-semibold text-center mt-4 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-            Add Explore Item</h1>
+            {{ $editable_item_id ? 'Update' : 'Add' }} Explore Item</h1>
 
         {{-- Option Select --}}
         <div class="my-2">
@@ -204,7 +205,8 @@
         <div class="flex flex-col mt-2">
 
             <label for="site_link"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Site Link</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Site
+                Link</label>
 
             <input type="text" wire:model="site_link"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -235,7 +237,7 @@
         </div>
 
         {{-- TinyMCE Text Area --}}
-        <script src="https://cdn.tiny.cloud/1/l55gbz5vnerknywvd7pxpjk7wsgpu3drem4qpol4u13x5327/tinymce/7/tinymce.min.js"
+        {{-- <script src="https://cdn.tiny.cloud/1/l55gbz5vnerknywvd7pxpjk7wsgpu3drem4qpol4u13x5327/tinymce/7/tinymce.min.js"
             referrerpolicy="origin"></script>
 
 
@@ -321,18 +323,103 @@
 
 
             })
-        </script>
+        </script> --}}
 
 
         <label class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item
             Description</label>
-        <div id="tinymce_div" class="" wire:ignore>
-
-            <textarea id="tinymce">
-                {{$blog_area}}
-            </textarea>
-
+        <!-- The editor container -->
+        <div
+            class="{{ session('theme_mode') == 'light' ? '[&_.theme-changable]:bg-[#deeaf8] [&_.theme-changable]:text-black' : '[&_.theme-changable]:bg-[#202329] [&_.theme-changable]:text-white' }}">
+            <div wire:ignore>
+                <div id="editor"
+                    class="w-[96vw] md:max-w-full [&_.ql-editor]:min-h-[400px] theme-changable rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none">
+                </div>
+            </div>
         </div>
+        <!-- The editor container End -->
+
+
+
+        <!-- Include the Quill library -->
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+        <!-- Initialize Quill editor -->
+        <script>
+            let quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+
+            document.addEventListener('livewire:initialized', function() {
+
+
+                Livewire.on('alert-manager', () => {
+
+                    // setTimeout(() => {
+                    //     quill = new Quill('#editor', {
+                    //         theme: 'snow'
+                    //     })
+                    //     let existing_content = @json($blog_area);
+                    //     quill.setText(existing_content);
+                    //     alert(existing_content);
+                    // }, 10);
+
+                });
+
+                Livewire.on('refresh-blog-area', () => {
+
+                    setTimeout(() => {
+
+                        quill.setText("");
+
+                    }, 10);
+
+                });
+
+
+                Livewire.on('editable-item-area', (data) => {
+
+                    setTimeout(() => {
+                        quill.clipboard.dangerouslyPasteHTML(data.item_data);
+
+                        window.location.href = '#form_area';
+
+                    }, 10);
+
+                });
+
+
+                Livewire.on('editable-option-area', () => {
+
+                    setTimeout(() => {
+
+                        window.location.href = '#add_new_option';
+
+                    }, 10);
+
+                });
+
+
+            })
+
+            quill.on('text-change', (delta, oldDelta, source) => {
+                // if (source == 'user') {
+                console.log('A user action triggered this change.');
+                let checkNull = quill.getText();
+                if (checkNull == '\n') {
+                    Livewire.dispatch('updateTextarea', {
+                        text: ''
+                    });
+                    return;
+                }
+
+                let deltaOps = quill.root.innerHTML;
+                Livewire.dispatch('updateTextarea', {
+                    text: deltaOps
+                });
+                // }
+            });
+        </script>
 
         <div class="flex flex-row justify-center items-center my-8">
 
@@ -350,7 +437,8 @@
 
             <h1
                 class="flex flex-row text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                To add new category, click on "Add New Option". To manage existing categories or existing items, click on "Created Options" or "Created Items".</h1>
+                To add new category, click on "Add New Option". To manage existing categories or existing items, click
+                on "Created Options" or "Created Items".</h1>
 
             {{-- Add New Option Section --}}
 
@@ -360,9 +448,13 @@
                     class="w-[14px] inline -mt-1 {{ $select_options_selected ? 'rotate-180' : 'rotate-0' }}  transition-all" /></button>
 
 
-            <div
+            <div id="add_new_option"
                 class="flex flex-col justify-center items-center my-4 {{ $select_options_selected ? '' : 'hidden' }}">
 
+                @if ($editable_option_id)
+                    <h2 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Update
+                        Option</h2>
+                @endif
 
                 <div class="flex flex-col mt-2 max-w-[680px]">
 
@@ -431,9 +523,13 @@
                             {{ $option['option'] }}</p>
 
                         {{-- <button wire:click="deleteOption('{{ $option['id'] }}')" --}}
-                        <button
-                            wire:click="confirm_window( 'deleteOption' , '{{ $option['id'] }}', 'Are You Sure You Want To Delete This Option?')"
-                            class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
+                        <div class="flex gap-4 justify-center items-center">
+                            <button
+                                wire:click="confirm_window( 'deleteOption' , '{{ $option['id'] }}', 'Are You Sure You Want To Delete This Option?')"
+                                class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
+                            <button wire:click="editOption('{{ $option['id'] }}')"
+                                class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
+                        </div>
                     </div>
                 @endforeach
 
@@ -482,9 +578,14 @@
                             {!! $item['item_description'] !!}</div>
 
                         {{-- <button wire:click="deleteItem('{{ $item['id'] }}')" --}}
-                        <button
-                            wire:click="confirm_window( 'deleteItem' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Item?')"
-                            class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
+                        <div class="flex gap-4 justify-center items-center">
+                            <button
+                                wire:click="confirm_window( 'deleteItem' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Item?')"
+                                class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
+
+                            <button wire:click="editItem('{{ $item['id'] }}')"
+                                class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
+                        </div>
                     </div>
                 @endforeach
 

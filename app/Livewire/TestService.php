@@ -254,9 +254,13 @@ class TestService extends Component
             ],
     ];
 
+    public $estimate_options_json ;
+
 
 
     public function mount(){
+
+            $this->estimate_options_json = json_encode($this->estimate_options);
 
 
             // Theme Mode Stuff

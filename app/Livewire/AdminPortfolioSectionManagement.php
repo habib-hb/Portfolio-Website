@@ -54,6 +54,12 @@ class AdminPortfolioSectionManagement extends Component
         'title' => 'Confirmation'
     ];
 
+    public $form_error_message;
+
+    public $form_completion_message;
+
+    public $editable_portfolio_id;
+
     public function mount()
     {
 
@@ -91,6 +97,52 @@ class AdminPortfolioSectionManagement extends Component
 
     public function save_item()
     {
+
+        if ($this->editable_portfolio_id) {
+            if ($this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->site_link && $this->github_link && $this->technologies_used) {
+                DB::table('portfolio_items')->where('id', $this->editable_portfolio_id)->update([
+                    'portfolio_title' => $this->item_title,
+                    'portfolio_description' => $this->blog_area,
+                    'portfolio_image_link' => $this->temporary_image_portfolio,
+                    'technologies_used' => $this->technologies_used,
+                    'portfolio_site_link' => $this->site_link,
+                    'portfolio_github_link' => $this->github_link
+                ]);
+
+                $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+
+                $this->items_array = array_map(function ($item) {
+                    return [
+                        'portfolio_title' => $item->portfolio_title,
+                        'portfolio_description' => $item->portfolio_description,
+                        'portfolio_image_link' => $item->portfolio_image_link,
+                        'technologies_used' => $item->technologies_used,
+                        'portfolio_site_link' => $item->portfolio_site_link,
+                        'portfolio_github_link' => $item->portfolio_github_link,
+                        'id' => $item->id
+                    ];
+                }, $portfolios_db);
+
+                $this->editable_portfolio_id = null;
+
+                $this->option = "";
+                $this->item_title = "";
+                $this->blog_area = "";
+                $this->temporary_image_portfolio = "";
+                $this->item_image = "";
+                $this->site_link = "";
+                $this->github_link = "";
+                $this->technologies_used = "";
+
+                $this->form_completion_message = 'Portfolio Updated Successfully';
+
+                $this->dispatch('refresh-blog-area');
+
+                return;
+            } else {
+                $this->form_error_message = 'All Fields Are Required';
+            }
+        }
         // $this->validate([
         //     'item_image' => 'image|max:1024', // Image validation (1MB max)
         // ]);
@@ -124,13 +176,12 @@ class AdminPortfolioSectionManagement extends Component
             $this->technologies_used = "";
 
             $this->dispatch('alert-manager');
-            session()->flash('message', 'Item added successfully.');
-            $this->dispatch('refresh-trigger');
+            $this->form_completion_message = "Portfolio Item Added Successfully.";
+            $this->dispatch('refresh-blog-area');
         } else {
-            session()->flash('error', 'Please fill all the fields. ->> portfolio' . $this->blog_area);
+            $this->form_error_message = "All fields are required.";
             $this->dispatch('alert-manager');
         }
-
     }
 
 
@@ -145,7 +196,6 @@ class AdminPortfolioSectionManagement extends Component
 
             $this->temporary_image_portfolio = $imagePath;
         }
-
     }
 
     #[On('updateTextarea')]
@@ -206,24 +256,25 @@ class AdminPortfolioSectionManagement extends Component
             ];
         }, $portfolios_db);
 
-        session()->flash('message', 'Portfolio deleted successfully.');
+        $this->form_completion_message = 'Portfolio deleted successfully.';
     }
 
-    public function remove_session_message(){
+    public function remove_session_message()
+    {
 
         session()->forget('message');
-
     }
 
-    public function remove_session_error(){
+    public function remove_session_error()
+    {
 
         session()->forget('error');
 
         $this->dispatch('alert-manager');
-
     }
 
-    public function confirm_window($action , $id=null , $message="Are You Sure?" , $type = 'warning', $title="Confirmation"){
+    public function confirm_window($action, $id = null, $message = "Are You Sure?", $type = 'warning', $title = "Confirmation")
+    {
 
         $this->confirmation_alert = [
             'active' => true,
@@ -242,7 +293,8 @@ class AdminPortfolioSectionManagement extends Component
         ]);
     }
 
-    public function clear_confirmation_alert(){
+    public function clear_confirmation_alert()
+    {
 
         $this->confirmation_alert = [
             'active' => false,
@@ -252,9 +304,43 @@ class AdminPortfolioSectionManagement extends Component
             'id' => '',
             'title' => 'Confirmation'
         ];
-
     }
 
+
+    public function clear_form_completion_message()
+    {
+        $this->form_completion_message = null;
+    }
+
+
+    public function clear_form_error_message()
+    {
+        $this->form_error_message = null;
+
+        $this->dispatch('alert-manager');
+    }
+
+
+    public function editPortfolio($id)
+    {
+
+        $editable_portfolio_db = DB::select("SELECT * FROM portfolio_items WHERE id = ?", [$id]);
+
+        if ($editable_portfolio_db) {
+
+            $this->item_title = $editable_portfolio_db[0]->portfolio_title;
+            $this->blog_area = $editable_portfolio_db[0]->portfolio_description;
+            $this->temporary_image_portfolio = $editable_portfolio_db[0]->portfolio_image_link;
+            $this->site_link = $editable_portfolio_db[0]->portfolio_site_link;
+            $this->github_link = $editable_portfolio_db[0]->portfolio_github_link;
+            $this->technologies_used = $editable_portfolio_db[0]->technologies_used;
+            $this->select_options_selected = true;
+
+            $this->editable_portfolio_id = $editable_portfolio_db[0]->id;
+
+            $this->dispatch('editable-portfolio-area', portfolio_data: $this->blog_area);
+        }
+    }
 
 
 
