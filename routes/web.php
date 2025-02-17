@@ -391,6 +391,31 @@ Route::get('/admin_dashboard/portfolio_section_management', function () {
 
 
 
+
+Route::get('/admin_dashboard/price_estimator_management', function () {
+    return view('admin_dashboard.price-estimator-management');
+});
+
+
+
+
+
+
+
+
+
+Route::get('/admin_dashboard/price_estimator_management/manage_cards', function () {
+    return view('price_estimator.manage-cards');
+});
+
+
+
+
+
+
+
+
+
 Route::get('/categories/{category_name}', function ($category_name, Request $request){
     $id = $request->query('id'); // Get the 'id' query parameter
 

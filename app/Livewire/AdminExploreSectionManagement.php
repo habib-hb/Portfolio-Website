@@ -298,6 +298,8 @@ class AdminExploreSectionManagement extends Component
             $imagePath = asset('storage/' . $imagePath);
 
             $this->temporary_image_item = $imagePath;
+
+            $this->resetErrorBag('item_image');
         }
 
         if ($property === 'option_image') {
@@ -307,6 +309,8 @@ class AdminExploreSectionManagement extends Component
             $imagePath = asset('storage/' . $imagePath);
 
             $this->temporary_image_option = $imagePath;
+
+            $this->resetErrorBag('option_image');
         }
     }
 

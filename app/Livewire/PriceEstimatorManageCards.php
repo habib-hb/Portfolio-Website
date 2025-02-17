@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 
-class AdminPortfolioSectionManagement extends Component
+class PriceEstimatorManageCards extends Component
 {
     use WithFileUploads;
 
@@ -15,7 +15,7 @@ class AdminPortfolioSectionManagement extends Component
 
     public $option_image;
 
-    public $temporary_image_portfolio;
+    public $temporary_image_estimation_card;
 
     public $temporary_image_option;
 
@@ -58,24 +58,21 @@ class AdminPortfolioSectionManagement extends Component
 
     public $form_completion_message;
 
-    public $editable_portfolio_id;
+    public $editable_estimator_card_id;
 
     public function mount()
     {
 
-        $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+        $estimation_cards_db = DB::select("SELECT * FROM price_estimation");
 
         $this->items_array = array_map(function ($item) {
             return [
-                'portfolio_title' => $item->portfolio_title,
-                'portfolio_description' => $item->portfolio_description,
-                'portfolio_image_link' => $item->portfolio_image_link,
-                'technologies_used' => $item->technologies_used,
-                'portfolio_site_link' => $item->portfolio_site_link,
-                'portfolio_github_link' => $item->portfolio_github_link,
-                'id' => $item->id
+                'id' => $item->id,
+                'title' => $item->title,
+                'description' => $item->description,
+                'icon_link' => $item->icon_link
             ];
-        }, $portfolios_db);
+        }, $estimation_cards_db);
     }
 
     public function changeThemeMode()
@@ -98,12 +95,13 @@ class AdminPortfolioSectionManagement extends Component
     public function save_item()
     {
 
-        if ($this->editable_portfolio_id) {
-            if ($this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->site_link && $this->github_link && $this->technologies_used) {
-                DB::table('portfolio_items')->where('id', $this->editable_portfolio_id)->update([
+        // Checking for update command
+        if ($this->editable_estimator_card_id) {
+            if ($this->item_title && $this->blog_area && $this->temporary_image_estimation_card && $this->site_link && $this->github_link && $this->technologies_used) {
+                DB::table('portfolio_items')->where('id', $this->editable_estimator_card_id)->update([
                     'portfolio_title' => $this->item_title,
                     'portfolio_description' => $this->blog_area,
-                    'portfolio_image_link' => $this->temporary_image_portfolio,
+                    'portfolio_image_link' => $this->temporary_image_estimation_card,
                     'technologies_used' => $this->technologies_used,
                     'portfolio_site_link' => $this->site_link,
                     'portfolio_github_link' => $this->github_link
@@ -123,12 +121,12 @@ class AdminPortfolioSectionManagement extends Component
                     ];
                 }, $portfolios_db);
 
-                $this->editable_portfolio_id = null;
+                $this->editable_estimator_card_id = null;
 
                 $this->option = "";
                 $this->item_title = "";
                 $this->blog_area = "";
-                $this->temporary_image_portfolio = "";
+                $this->temporary_image_estimation_card = "";
                 $this->item_image = "";
                 $this->site_link = "";
                 $this->github_link = "";
@@ -146,37 +144,29 @@ class AdminPortfolioSectionManagement extends Component
         // $this->validate([
         //     'item_image' => 'image|max:1024', // Image validation (1MB max)
         // ]);
-        // if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->site_link) {
-        if ($this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->site_link && $this->github_link && $this->technologies_used) {
-            DB::insert("INSERT INTO portfolio_items (portfolio_title , portfolio_description , portfolio_image_link , technologies_used , portfolio_site_link , portfolio_github_link) VALUES (?, ?, ?, ?, ? , ?)", [$this->item_title, $this->blog_area, $this->temporary_image_portfolio, $this->technologies_used, $this->site_link, $this->github_link]);
+        // if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_estimation_card && $this->site_link) {
+        if ($this->item_title && $this->blog_area && $this->temporary_image_estimation_card) {
+            DB::insert("INSERT INTO price_estimation (title , description , icon_link ) VALUES (?, ?, ?)", [$this->item_title, $this->blog_area, $this->temporary_image_estimation_card]);
 
 
-            $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+            $estimation_cards_db = DB::select("SELECT * FROM price_estimation");
 
             $this->items_array = array_map(function ($item) {
                 return [
-                    'portfolio_title' => $item->portfolio_title,
-                    'portfolio_description' => $item->portfolio_description,
-                    'portfolio_image_link' => $item->portfolio_image_link,
-                    'technologies_used' => $item->technologies_used,
-                    'portfolio_site_link' => $item->portfolio_site_link,
-                    'portfolio_github_link' => $item->portfolio_github_link,
-                    'id' => $item->id
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'description' => $item->description,
+                    'icon_link' => $item->icon_link
                 ];
-            }, $portfolios_db);
+            }, $estimation_cards_db);
 
 
-            $this->option = "";
             $this->item_title = "";
             $this->blog_area = "";
-            $this->temporary_image_portfolio = "";
-            $this->item_image = "";
-            $this->site_link = "";
-            $this->github_link = "";
-            $this->technologies_used = "";
+            $this->temporary_image_estimation_card = "";
 
             $this->dispatch('alert-manager');
-            $this->form_completion_message = "Portfolio Item Added Successfully.";
+            $this->form_completion_message = "Estimation Card Item Added Successfully.";
             $this->dispatch('refresh-blog-area');
         } else {
             $this->form_error_message = "All fields are required.";
@@ -194,7 +184,7 @@ class AdminPortfolioSectionManagement extends Component
             //Full Link
             $imagePath = asset('storage/' . $imagePath);
 
-            $this->temporary_image_portfolio = $imagePath;
+            $this->temporary_image_estimation_card = $imagePath;
 
             $this->resetErrorBag('item_image');
         }
@@ -237,33 +227,36 @@ class AdminPortfolioSectionManagement extends Component
         }
     }
 
-    public function deletePortfolio($id)
+    public function deleteEstimation($id)
     {
+        $record = DB::table('price_estimation')->where('id', $id)->first();
 
-        DB::table('portfolio_items')->where('id', $id)->delete();
+        if ($record && $record->items_array) {
+            $this->clear_confirmation_alert();
+            $this->form_error_message = 'Please delete the options first before deleting the option.';
+            return;
+        }
+
+        DB::table('price_estimation')->where('id', $id)->delete();
 
         $this->clear_confirmation_alert();
 
-        $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+        $estimation_cards_db = DB::select("SELECT * FROM price_estimation");
 
         $this->items_array = array_map(function ($item) {
             return [
-                'portfolio_title' => $item->portfolio_title,
-                'portfolio_description' => $item->portfolio_description,
-                'portfolio_image_link' => $item->portfolio_image_link,
-                'technologies_used' => $item->technologies_used,
-                'portfolio_site_link' => $item->portfolio_site_link,
-                'portfolio_github_link' => $item->portfolio_github_link,
-                'id' => $item->id
+                'id' => $item->id,
+                'title' => $item->title,
+                'description' => $item->description,
+                'icon_link' => $item->icon_link
             ];
-        }, $portfolios_db);
+        }, $estimation_cards_db);
 
-        $this->form_completion_message = 'Portfolio deleted successfully.';
+        $this->form_completion_message = 'Estimation Card deleted successfully.';
     }
 
     public function remove_session_message()
     {
-
         session()->forget('message');
     }
 
@@ -323,24 +316,20 @@ class AdminPortfolioSectionManagement extends Component
     }
 
 
-    public function editPortfolio($id)
+    public function editEstimatorCard($id)
     {
 
-        $editable_portfolio_db = DB::select("SELECT * FROM portfolio_items WHERE id = ?", [$id]);
+        $editable_estimator_card_db = DB::select("SELECT * FROM price_estimation WHERE id = ?", [$id]);
 
-        if ($editable_portfolio_db) {
+        if ($editable_estimator_card_db) {
 
-            $this->item_title = $editable_portfolio_db[0]->portfolio_title;
-            $this->blog_area = $editable_portfolio_db[0]->portfolio_description;
-            $this->temporary_image_portfolio = $editable_portfolio_db[0]->portfolio_image_link;
-            $this->site_link = $editable_portfolio_db[0]->portfolio_site_link;
-            $this->github_link = $editable_portfolio_db[0]->portfolio_github_link;
-            $this->technologies_used = $editable_portfolio_db[0]->technologies_used;
-            $this->select_options_selected = true;
+            $this->blog_area = $editable_estimator_card_db[0]->description;
+            $this->temporary_image_estimation_card = $editable_estimator_card_db[0]->icon_link;
+            $this->item_title = $editable_estimator_card_db[0]->title;
 
-            $this->editable_portfolio_id = $editable_portfolio_db[0]->id;
+            $this->editable_estimator_card_id = $editable_estimator_card_db[0]->id;
 
-            $this->dispatch('editable-portfolio-area', portfolio_data: $this->blog_area);
+            $this->dispatch('editable-estimator-card-area', estimator_data: $this->blog_area);
         }
     }
 
@@ -348,6 +337,6 @@ class AdminPortfolioSectionManagement extends Component
 
     public function render()
     {
-        return view('livewire.admin-portfolio-section-management');
+        return view('livewire.price-estimator-manage-cards');
     }
 }

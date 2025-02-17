@@ -189,6 +189,18 @@
 
     </div>
 
+    <div wire:loading wire:target="item_image"
+    class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+    <div class="flex flex-row justify-center items-center px-2 gap-2">
+        <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+        <span class=" text-white py-2 rounded-lg"> Handling Image...</span>
+    </div>
+
+
+</div>
+
     <div wire:click="changeThemeMode"
         class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all cursor-pointer">
 
@@ -212,7 +224,7 @@
         <div class="flex flex-col mt-2">
 
             <label for="title"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Portfolio
                 Title</label>
 
             <input type="text" wire:model="item_title"
@@ -251,7 +263,7 @@
         <div class="flex flex-col mt-2 mb-6">
 
             <label for="item_image"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item Thumbnail
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Portfolio Thumbnail
                 Image (Make sure it's less than 1mb)</label>
 
             @if ($temporary_image_portfolio)
@@ -263,13 +275,13 @@
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="item_image" />
 
-            @error('blog_image')
+            @error('item_image')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
 
         </div>
 
-        <label class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item
+        <label class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Portfolio
             Description</label>
 
         <!-- The editor container -->
