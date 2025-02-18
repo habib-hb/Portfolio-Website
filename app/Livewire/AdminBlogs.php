@@ -86,6 +86,7 @@ class AdminBlogs extends Component
             $this->slug_available = null;
             $this->resetErrorBag('blog_image');
             $this->dispatch('refresh-blog-area');
+            $this->dispatch('refresh-image-area');
 
 
         } else if (!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area || !$this->slug_available) {

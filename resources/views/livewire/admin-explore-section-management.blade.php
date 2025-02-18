@@ -400,6 +400,26 @@
 
                 });
 
+                Livewire.on('refresh-image-area-item', () => {
+
+                    setTimeout(() => {
+
+                        document.getElementById('item_image').value = null;
+
+                    }, 10);
+
+                });
+
+                Livewire.on('refresh-image-area-option', () => {
+
+                    setTimeout(() => {
+
+                        document.getElementById('option_image').value = null;
+
+                    }, 10);
+
+                });
+
 
                 Livewire.on('editable-item-area', (data) => {
 
@@ -507,7 +527,7 @@
 
                     <input wire:model="option_image" type="file" accept="image/*"
                         class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                        id="item_image" />
+                        id="option_image" />
 
                     @error('option_image')
                         <span class="text-red-500">{{ $message }}</span>

@@ -60,8 +60,22 @@ class AdminPortfolioSectionManagement extends Component
 
     public $editable_portfolio_id;
 
+    public $theme_mode;
+
     public function mount()
     {
+
+        if(!session('theme_mode')) {
+
+            $this->theme_mode = 'light';
+
+            session(['theme_mode' => $this->theme_mode]);
+
+        }else{
+
+            $this->theme_mode = session('theme_mode');
+
+        }
 
         $portfolios_db = DB::select("SELECT * FROM portfolio_items");
 
@@ -137,6 +151,7 @@ class AdminPortfolioSectionManagement extends Component
                 $this->form_completion_message = 'Portfolio Updated Successfully';
 
                 $this->dispatch('refresh-blog-area');
+                $this->dispatch('refresh-image-area');
 
                 return;
             } else {
@@ -178,6 +193,7 @@ class AdminPortfolioSectionManagement extends Component
             $this->dispatch('alert-manager');
             $this->form_completion_message = "Portfolio Item Added Successfully.";
             $this->dispatch('refresh-blog-area');
+            $this->dispatch('refresh-image-area');
         } else {
             $this->form_error_message = "All fields are required.";
             $this->dispatch('alert-manager');

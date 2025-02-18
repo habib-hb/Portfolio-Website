@@ -416,6 +416,32 @@ Route::get('/admin_dashboard/price_estimator_management/manage_cards', function 
 
 
 
+Route::get('/admin_dashboard/price_estimator_management/manage_card_options', function () {
+    return view('price_estimator.manage-card-options');
+});
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/admin_dashboard/price_estimator_management/manage_card_options/{item_id}', function ($item_id) {
+    return view('dynamic_content.estimation-item' , ['item_id' => $item_id]);
+});
+
+
+
+
+
+
+
+
+
 Route::get('/categories/{category_name}', function ($category_name, Request $request){
     $id = $request->query('id'); // Get the 'id' query parameter
 

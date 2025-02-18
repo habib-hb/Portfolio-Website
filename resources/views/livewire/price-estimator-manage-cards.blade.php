@@ -319,6 +319,16 @@
 
                 });
 
+                Livewire.on('refresh-image-area', () => {
+
+                    setTimeout(() => {
+
+                      document.getElementById('item_image').value = null;
+
+                    }, 10);
+
+                });
+
 
 
             })

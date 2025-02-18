@@ -97,44 +97,35 @@ class PriceEstimatorManageCards extends Component
 
         // Checking for update command
         if ($this->editable_estimator_card_id) {
-            if ($this->item_title && $this->blog_area && $this->temporary_image_estimation_card && $this->site_link && $this->github_link && $this->technologies_used) {
-                DB::table('portfolio_items')->where('id', $this->editable_estimator_card_id)->update([
-                    'portfolio_title' => $this->item_title,
-                    'portfolio_description' => $this->blog_area,
-                    'portfolio_image_link' => $this->temporary_image_estimation_card,
-                    'technologies_used' => $this->technologies_used,
-                    'portfolio_site_link' => $this->site_link,
-                    'portfolio_github_link' => $this->github_link
+            if ($this->item_title && $this->blog_area && $this->temporary_image_estimation_card) {
+
+                DB::table('price_estimation')->where('id', $this->editable_estimator_card_id)->update([
+                    'title' => $this->item_title,
+                    'description' => $this->blog_area,
+                    'icon_link' => $this->temporary_image_estimation_card
                 ]);
 
-                $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+                $estimation_cards_db = DB::select("SELECT * FROM price_estimation");
 
                 $this->items_array = array_map(function ($item) {
                     return [
-                        'portfolio_title' => $item->portfolio_title,
-                        'portfolio_description' => $item->portfolio_description,
-                        'portfolio_image_link' => $item->portfolio_image_link,
-                        'technologies_used' => $item->technologies_used,
-                        'portfolio_site_link' => $item->portfolio_site_link,
-                        'portfolio_github_link' => $item->portfolio_github_link,
-                        'id' => $item->id
+                        'id' => $item->id,
+                        'title' => $item->title,
+                        'description' => $item->description,
+                        'icon_link' => $item->icon_link
                     ];
-                }, $portfolios_db);
+                }, $estimation_cards_db);
 
                 $this->editable_estimator_card_id = null;
 
-                $this->option = "";
                 $this->item_title = "";
                 $this->blog_area = "";
                 $this->temporary_image_estimation_card = "";
-                $this->item_image = "";
-                $this->site_link = "";
-                $this->github_link = "";
-                $this->technologies_used = "";
 
-                $this->form_completion_message = 'Portfolio Updated Successfully';
-
+                $this->dispatch('alert-manager');
+                $this->form_completion_message = "Estimation Card Item Updated Successfully.";
                 $this->dispatch('refresh-blog-area');
+                $this->dispatch('refresh-image-area');
 
                 return;
             } else {
@@ -168,6 +159,7 @@ class PriceEstimatorManageCards extends Component
             $this->dispatch('alert-manager');
             $this->form_completion_message = "Estimation Card Item Added Successfully.";
             $this->dispatch('refresh-blog-area');
+            $this->dispatch('refresh-image-area');
         } else {
             $this->form_error_message = "All fields are required.";
             $this->dispatch('alert-manager');

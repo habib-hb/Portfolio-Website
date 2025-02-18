@@ -63,8 +63,22 @@ class AdminExploreSectionManagement extends Component
 
     public $editable_option_id;
 
+    public $theme_mode;
+
     public function mount()
     {
+
+        if(!session('theme_mode')) {
+
+            $this->theme_mode = 'light';
+
+            session(['theme_mode' => $this->theme_mode]);
+
+        }else{
+
+            $this->theme_mode = session('theme_mode');
+
+        }
 
         $options_db = DB::select("SELECT * FROM explore_options");
 
@@ -163,6 +177,7 @@ class AdminExploreSectionManagement extends Component
 
                 $this->resetErrorBag('blog_image');
                 $this->dispatch('refresh-blog-area');
+                $this->dispatch('refresh-image-area');
 
                 $this->dispatch('alert-manager');
 
@@ -214,6 +229,8 @@ class AdminExploreSectionManagement extends Component
 
             $this->resetErrorBag('blog_image');
             $this->dispatch('refresh-blog-area');
+            $this->dispatch('refresh-image-area-item');
+            $this->dispatch('refresh-image-area-option');
 
             $this->dispatch('alert-manager');
             // session()->flash('message', 'Item added successfully.');
