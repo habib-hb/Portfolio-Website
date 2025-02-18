@@ -362,6 +362,24 @@ class AdminPortfolioSectionManagement extends Component
 
 
 
+    public function cancel_portfolio_item_update(){
+        $this->editable_portfolio_id = null;
+
+                $this->option = "";
+                $this->item_title = "";
+                $this->blog_area = "";
+                $this->temporary_image_portfolio = "";
+                $this->item_image = "";
+                $this->site_link = "";
+                $this->github_link = "";
+                $this->technologies_used = "";
+
+                $this->dispatch('refresh-blog-area');
+                $this->dispatch('refresh-image-area');
+    }
+
+
+
     public function render()
     {
         return view('livewire.admin-portfolio-section-management');

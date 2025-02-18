@@ -390,10 +390,13 @@
         </div>
 
 
-        <div class="flex flex-row justify-center items-center my-8">
+        <div class="flex flex-col gap-4 justify-center items-center my-8">
 
             <button wire:click="save_item"
-                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Save</button>
+                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">{{$editable_portfolio_id !== null ? 'Update' : 'Save'}}</button>
+
+            <button wire:click="cancel_portfolio_item_update"
+                class="{{$editable_portfolio_id !== null ? '' : 'hidden'}} bg-red-800  hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel</button>
 
         </div>
 

@@ -282,8 +282,8 @@
     <main id="main_form_element" class="flex flex-col w-[96vw] md:max-w-[800px] mx-auto mt-4 min-h-screen">
 
         <h2
-            class="text-2xl md:text-4xl text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
-            Estimation Item</h2>
+            class="text-2xl md:text-4xl mb-2 text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
+            {{$card_title}}</h2>
         {{--
 
             <pre>{{ print_r($items_array_js_version, true) }}</pre>
@@ -415,8 +415,7 @@
                                     <button wire:click="deleteSelectionItem('{{ $key }}')"
                                         class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
                                     <button wire:click="editSelectionItem('{{ $key }}')"
-                                        class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit
-                                        {{ $key }}</button>
+                                        class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
                                 </div>
                             </div>
                         @endforeach
@@ -583,8 +582,7 @@
                                 <button wire:click="deleteOption('{{ $main_key }}')"
                                     class="h-[35px] w-[100px] rounded-lg bg-red-800 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
                                 <button wire:click="editOption('{{ $main_key }}')"
-                                    class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit
-                                    {{ $main_key }}</button>
+                                    class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
                             </div>
                             <div class="flex flex-wrap gap-4 justify-center items-center">
                                 <button wire:click="moveOptionUp('{{ $main_key }}')"

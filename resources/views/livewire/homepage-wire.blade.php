@@ -63,15 +63,15 @@
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -81,15 +81,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -490,7 +490,8 @@
             class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
-            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+            <div
+                class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{ asset('images/error-fixes.gif') }}"
                     class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                     alt="">
@@ -520,6 +521,43 @@
         </div>
 
 
+        @foreach ($estimation_options as $item)
+            <div
+                class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+
+
+                <div
+                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                    <img src="{{ $item->icon_link }}"
+                        class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+                        alt="">
+                </div>
+
+                <h1
+                    class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    Test</h1>
+
+                <p
+                    class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    Error fixing identifies and resolves issues in code, ensuring optimal performance, stability, and
+                    reliable functionality.</p>
+
+                <div class="mt-4 flex flex-row gap-4 mb-6">
+                    <button
+                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                        onclick="window.location.href='{{ env('BASE_LINK') }}/services/test'"><a
+                            href="{{ env('BASE_LINK') }}/services/test">Select</a></button>
+
+                    <button
+                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                        onclick="window.location.href='{{ env('BASE_LINK') }}/details/error-fixing'"><a
+                            href="{{ env('BASE_LINK') }}/details/error-fixing">Details</a></button>
+                </div>
+
+            </div>
+        @endforeach
+
+
 
 
     </div>
@@ -544,53 +582,54 @@
     </div>
 
     @foreach ($portfolios_array as $index => $item)
+        @if ($index % 2 == 0)
+            <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
+                style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
+            @else
+                <div class="flex w-full py-8  h-fit md:h-[600px]"
+                    style="{{ $index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : '' }} ">
+        @endif
 
-    @if ($index % 2 == 0)
-        <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
-            style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
-        @else
-            <div class="flex w-full py-8  h-fit md:h-[600px]" style="{{$index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : ''}} ">
-    @endif
 
-
-
-    <div
-        class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} justify-center items-center h-full">
-
-        <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-
-            <img src="{{ $item['portfolio_image_link'] }}" class="max-h-[400px] rounded-lg"
-                alt="{{ $item['portfolio_title'] }}">
-
-        </div>
 
         <div
-            class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
-            <h2
-                class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                {{ $item['portfolio_title'] }}
-            </h2>
+            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} justify-center items-center h-full">
 
-            <div
-                class="flex justify-start items-start w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                {!! $item['portfolio_description'] !!}</div>
+            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
 
-            <div class="flex gap-4 justify-center md:justify-start w-full my-4">
-                <a href="{{ $item['portfolio_site_link'] }}" target="_blank"><button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
+                <img src="{{ $item['portfolio_image_link'] }}" class="max-h-[400px] rounded-lg"
+                    alt="{{ $item['portfolio_title'] }}">
 
-                <a href="{{ $item['portfolio_github_link'] }}" target="_blank"><button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source Code</button></a>
             </div>
 
-            <h2
-                class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                <span class="text-lg font-medium ">Technologies Used:</span> {{ $item['technologies_used'] }}
-            </h2>
+            <div
+                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
+                <h2
+                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    {{ $item['portfolio_title'] }}
+                </h2>
+
+                <div
+                    class="flex justify-start items-start w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    {!! $item['portfolio_description'] !!}</div>
+
+                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
+                    <a href="{{ $item['portfolio_site_link'] }}" target="_blank"><button
+                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
+
+                    <a href="{{ $item['portfolio_github_link'] }}" target="_blank"><button
+                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
+                            Code</button></a>
+                </div>
+
+                <h2
+                    class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    <span class="text-lg font-medium ">Technologies Used:</span> {{ $item['technologies_used'] }}
+                </h2>
+
+            </div>
 
         </div>
-
-    </div>
 
 
 
@@ -600,324 +639,324 @@
 </div>
 @endforeach
 
-    {{-- End Portfolio Showcase Section --}}
+{{-- End Portfolio Showcase Section --}}
 
-    {{-- Consult Now Button --}}
-    <button
-        class="mt-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
-        onclick="window.location.href='/consultation'"><a href="{{ env('BASE_LINK') }}/consultation">Consult
-            Now</a></button>
+{{-- Consult Now Button --}}
+<button
+    class="mt-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
+    onclick="window.location.href='/consultation'"><a href="{{ env('BASE_LINK') }}/consultation">Consult
+        Now</a></button>
 
 
 
-    {{-- Footer Element --}}
+{{-- Footer Element --}}
+<div
+    class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
+
+
+
     <div
-        class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
+        class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[500px] mb-4">
 
-
-
-        <div
-            class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[500px] mb-4">
-
-            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/blog_showcase'">Blogs</p><img
-                    src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
-                    class="h-[12px] w-[12px]" alt="">
-            </div>
-            <p
-                class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hidden md:block opacity-50">
-                |</p>
-
-            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/admin_dashboard'">Admin Dashboard</p><img
-                    src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
-                    class="h-[12px] w-[12px]" alt="">
-            </div>
-            <p
-                class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
-                |</p>
-
-            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/privacy_policy'">Privacy Policy</p><img
-                    src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
-                    class="h-[12px] w-[12px]" alt="">
-            </div>
-            <p
-                class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
-                |</p>
-
-            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/about'">About Me</p><img
-                    src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
-                    class="h-[12px] w-[12px]" alt="">
-            </div>
-
-
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
+                onclick="window.location.href='{{ env('BASE_LINK') }}/blog_showcase'">Blogs</p><img
+                src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
+                class="h-[12px] w-[12px]" alt="">
         </div>
+        <p
+            class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hidden md:block opacity-50">
+            |</p>
 
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
+                onclick="window.location.href='{{ env('BASE_LINK') }}/admin_dashboard'">Admin Dashboard</p><img
+                src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
+                class="h-[12px] w-[12px]" alt="">
+        </div>
+        <p
+            class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
+            |</p>
 
-        <img id='footer_icon'
-            src="{{ $theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}"
-            class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
+                onclick="window.location.href='{{ env('BASE_LINK') }}/privacy_policy'">Privacy Policy</p><img
+                src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
+                class="h-[12px] w-[12px]" alt="">
+        </div>
+        <p
+            class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
+            |</p>
 
-        <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All Rights
-            Reserved @2024</p>
-
-        <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">@valueadderhabib
-        </p>
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
+                onclick="window.location.href='{{ env('BASE_LINK') }}/about'">About Me</p><img
+                src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
+                class="h-[12px] w-[12px]" alt="">
+        </div>
 
 
     </div>
 
 
+    <img id='footer_icon'
+        src="{{ $theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}"
+        class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
+
+    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All Rights
+        Reserved @2024</p>
+
+    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">@valueadderhabib
+    </p>
+
+
+</div>
 
 
 
 
 
 
-    {{-- JavaScript --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-    <script>
-        const profile_img = document.getElementById("profile_img");
-        const my_name_text = document.getElementById("my_name");
-        const full_stack = document.getElementById("full_stack");
-        const developer = document.getElementById("developer");
-        const based_in = document.getElementById("based_in");
-        const scroll_down = document.getElementById("scroll_down");
-
-        const animation_function = () => {
-
-            //Doing 100ms delay cause the DOM is not loaded yet.
-            setTimeout(() => {
-                // const profile_img = document.getElementById("profile_img");
-                // const my_name_text = document.getElementById("my_name");
-                // const full_stack = document.getElementById("full_stack");
-                // const developer = document.getElementById("developer");
-                // const based_in = document.getElementById("based_in");
-                // const scroll_down = document.getElementById("scroll_down");
-
-                profile_img.style.opacity = 0;
-                profile_img.style.transform = "translateY(16px)";
-
-                my_name_text.style.opacity = 0;
-                my_name_text.style.transform = "translateY(16px)";
-
-                full_stack.style.opacity = 0;
-                full_stack.style.transform = "translateY(16px)";
-
-                developer.style.opacity = 0;
-                developer.style.transform = "translateY(16px)";
-
-                based_in.style.opacity = 0;
-                based_in.style.transform = "translateY(16px)";
-
-                scroll_down.style.opacity = 0;
-                scroll_down.style.transform = "translateY(16px)";
 
 
-                const timeline = gsap.timeline();
+{{-- JavaScript --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-                // Add animations to the timeline in sequence
-                timeline
-                    .to(my_name_text, {
-                        opacity: 1,
-                        duration: 1,
-                        transform: "translateY(0)",
-                        ease: "power2.out",
-                    })
-                    .to(full_stack, {
-                        opacity: 1,
-                        duration: 1,
-                        transform: "translateY(0)",
-                        ease: "power2.out",
-                    })
-                    .to(developer, {
-                        opacity: 1,
-                        duration: 1,
-                        transform: "translateY(0)",
-                        ease: "power2.out",
-                    })
-                    .to(based_in, {
-                        opacity: 1,
-                        duration: 1,
-                        transform: "translateY(0)",
-                        ease: "power2.out",
-                    })
-                    .to(profile_img, {
-                        opacity: 1,
-                        duration: 1,
-                        transform: "translateY(0)",
-                        ease: "power2.out",
-                    })
-                    .to(scroll_down, {
-                        opacity: 1,
-                        duration: 1,
-                        transform: "translateY(0)",
-                        ease: "power2.out",
-                    })
+<script>
+    const profile_img = document.getElementById("profile_img");
+    const my_name_text = document.getElementById("my_name");
+    const full_stack = document.getElementById("full_stack");
+    const developer = document.getElementById("developer");
+    const based_in = document.getElementById("based_in");
+    const scroll_down = document.getElementById("scroll_down");
 
-            }, 1);
+    const animation_function = () => {
+
+        //Doing 100ms delay cause the DOM is not loaded yet.
+        setTimeout(() => {
+            // const profile_img = document.getElementById("profile_img");
+            // const my_name_text = document.getElementById("my_name");
+            // const full_stack = document.getElementById("full_stack");
+            // const developer = document.getElementById("developer");
+            // const based_in = document.getElementById("based_in");
+            // const scroll_down = document.getElementById("scroll_down");
+
+            profile_img.style.opacity = 0;
+            profile_img.style.transform = "translateY(16px)";
+
+            my_name_text.style.opacity = 0;
+            my_name_text.style.transform = "translateY(16px)";
+
+            full_stack.style.opacity = 0;
+            full_stack.style.transform = "translateY(16px)";
+
+            developer.style.opacity = 0;
+            developer.style.transform = "translateY(16px)";
+
+            based_in.style.opacity = 0;
+            based_in.style.transform = "translateY(16px)";
+
+            scroll_down.style.opacity = 0;
+            scroll_down.style.transform = "translateY(16px)";
+
+
+            const timeline = gsap.timeline();
+
+            // Add animations to the timeline in sequence
+            timeline
+                .to(my_name_text, {
+                    opacity: 1,
+                    duration: 1,
+                    transform: "translateY(0)",
+                    ease: "power2.out",
+                })
+                .to(full_stack, {
+                    opacity: 1,
+                    duration: 1,
+                    transform: "translateY(0)",
+                    ease: "power2.out",
+                })
+                .to(developer, {
+                    opacity: 1,
+                    duration: 1,
+                    transform: "translateY(0)",
+                    ease: "power2.out",
+                })
+                .to(based_in, {
+                    opacity: 1,
+                    duration: 1,
+                    transform: "translateY(0)",
+                    ease: "power2.out",
+                })
+                .to(profile_img, {
+                    opacity: 1,
+                    duration: 1,
+                    transform: "translateY(0)",
+                    ease: "power2.out",
+                })
+                .to(scroll_down, {
+                    opacity: 1,
+                    duration: 1,
+                    transform: "translateY(0)",
+                    ease: "power2.out",
+                })
+
+        }, 1);
+
+    }
+
+
+
+
+    const css_stablizer = () => {
+        //Doing 100ms delay cause the DOM is not loaded yet.
+        setTimeout(() => {
+            // const profile_img = document.getElementById("profile_img");
+            // const my_name_text = document.getElementById("my_name");
+            // const full_stack = document.getElementById("full_stack");
+            // const developer = document.getElementById("developer");
+            // const based_in = document.getElementById("based_in");
+            // const scroll_down = document.getElementById("scroll_down");
+
+            profile_img.style.opacity = 1;
+            profile_img.style.transform = "translateY(0)";
+
+            my_name_text.style.opacity = 1;
+            my_name_text.style.transform = "translateY(0)";
+
+            full_stack.style.opacity = 1;
+            full_stack.style.transform = "translateY(0)";
+
+            developer.style.opacity = 1;
+            developer.style.transform = "translateY(0)";
+
+            based_in.style.opacity = 1;
+            based_in.style.transform = "translateY(0)";
+
+            scroll_down.style.opacity = 1;
+            scroll_down.style.transform = "translateY(0)";
+
+
+        }, 1);
+
+    }
+
+    //    function changeThemeMode(){
+
+    //         Livewire.dispatch('theme-change', { })
+
+    //         window.location.reload();
+
+    //     }
+
+
+    document.getElementById('input_div').addEventListener('click', () => {
+        document.getElementById('search_input').focus();
+    })
+
+    document.getElementById('search_input').addEventListener('focus', () => {
+
+        document.getElementById('search_icon').style.display = 'none';
+        document.getElementById('search_text').style.display = 'none';
+
+    })
+
+
+
+
+    document.getElementById('search_input').addEventListener('blur', () => {
+
+        if (document.getElementById('search_input').value == '') {
+            document.getElementById('search_icon').style.display = 'block';
+            document.getElementById('search_text').style.display = 'block';
+        }
+
+    })
+
+
+    // Without this , the search bar shows the text previously entered when I come back using the back button even though the actual value of the input field is empty
+    window.addEventListener('load', () => {
+
+
+        setTimeout(() => {
+            document.getElementById('search_input').value = '';
+        }, 100);
+
+
+    });
+
+
+    let item = "";
+
+
+    document.addEventListener('livewire:initialized', () => {
+
+        // Sending Data To backend
+        //  setTimeout(() => {
+
+        if (document.getElementById('search_input').value == '') {
+
+
+            Livewire.dispatch('new_load_alert_for_serch_strings', {});
+
+
 
         }
 
 
+        // }, 10);
 
 
-        const css_stablizer = () => {
-            //Doing 100ms delay cause the DOM is not loaded yet.
-            setTimeout(() => {
-                // const profile_img = document.getElementById("profile_img");
-                // const my_name_text = document.getElementById("my_name");
-                // const full_stack = document.getElementById("full_stack");
-                // const developer = document.getElementById("developer");
-                // const based_in = document.getElementById("based_in");
-                // const scroll_down = document.getElementById("scroll_down");
-
-                profile_img.style.opacity = 1;
-                profile_img.style.transform = "translateY(0)";
-
-                my_name_text.style.opacity = 1;
-                my_name_text.style.transform = "translateY(0)";
-
-                full_stack.style.opacity = 1;
-                full_stack.style.transform = "translateY(0)";
-
-                developer.style.opacity = 1;
-                developer.style.transform = "translateY(0)";
-
-                based_in.style.opacity = 1;
-                based_in.style.transform = "translateY(0)";
-
-                scroll_down.style.opacity = 1;
-                scroll_down.style.transform = "translateY(0)";
+        Livewire.on('alert-manager', () => {
 
 
-            }, 1);
-
-        }
-
-        //    function changeThemeMode(){
-
-        //         Livewire.dispatch('theme-change', { })
-
-        //         window.location.reload();
-
-        //     }
-
-
-        document.getElementById('input_div').addEventListener('click', () => {
-            document.getElementById('search_input').focus();
-        })
-
-        document.getElementById('search_input').addEventListener('focus', () => {
-
-            document.getElementById('search_icon').style.display = 'none';
-            document.getElementById('search_text').style.display = 'none';
-
-        })
-
-
-
-
-        document.getElementById('search_input').addEventListener('blur', () => {
-
-            if (document.getElementById('search_input').value == '') {
-                document.getElementById('search_icon').style.display = 'block';
-                document.getElementById('search_text').style.display = 'block';
-            }
-
-        })
-
-
-        // Without this , the search bar shows the text previously entered when I come back using the back button even though the actual value of the input field is empty
-        window.addEventListener('load', () => {
-
-
-            setTimeout(() => {
-                document.getElementById('search_input').value = '';
-            }, 100);
-
-
-        });
-
-
-        let item = "";
-
-
-        document.addEventListener('livewire:initialized', () => {
-
-            // Sending Data To backend
-            //  setTimeout(() => {
-
-            if (document.getElementById('search_input').value == '') {
-
-
-                Livewire.dispatch('new_load_alert_for_serch_strings', {});
-
-
-
-            }
-
-
-            // }, 10);
-
-
-            Livewire.on('alert-manager', () => {
-
-
-                if (document.getElementById('search_input').value !== '' || document.activeElement ===
-                    document.getElementById('search_input')) {
-
-                    // Doing 100ms delay cause the DOM is not loaded yet.
-                    setTimeout(() => {
-                        document.getElementById('search_icon').style.display = 'none';
-                        document.getElementById('search_text').style.display = 'none';
-                    }, 10);
-
-                }
-
-                css_stablizer();
-
-
-
-            })
-
-            Livewire.on('no_results_found', () => {
+            if (document.getElementById('search_input').value !== '' || document.activeElement ===
+                document.getElementById('search_input')) {
 
                 // Doing 100ms delay cause the DOM is not loaded yet.
                 setTimeout(() => {
-                    document.getElementById('no_results_found').textContent = 'No Results Found';
-
-                    if (document.getElementById('no_results_found').classList.contains('hidden')) {
-                        document.getElementById('no_results_found').classList.remove('hidden');
-                    }
+                    document.getElementById('search_icon').style.display = 'none';
+                    document.getElementById('search_text').style.display = 'none';
                 }, 10);
 
+            }
 
-            })
-
-
-
-
-            Livewire.on('load_animation', () => { // Doing this to avoid the rerendering issue in javascript
-
-                animation_function();
-
-
-            })
-
-
+            css_stablizer();
 
 
 
         })
-    </script>
+
+        Livewire.on('no_results_found', () => {
+
+            // Doing 100ms delay cause the DOM is not loaded yet.
+            setTimeout(() => {
+                document.getElementById('no_results_found').textContent = 'No Results Found';
+
+                if (document.getElementById('no_results_found').classList.contains('hidden')) {
+                    document.getElementById('no_results_found').classList.remove('hidden');
+                }
+            }, 10);
+
+
+        })
+
+
+
+
+        Livewire.on('load_animation', () => { // Doing this to avoid the rerendering issue in javascript
+
+            animation_function();
+
+
+        })
+
+
+
+
+
+    })
+</script>
 
 
 </div>

@@ -10,6 +10,8 @@ class EstimationItem extends Component
 
     public $item_id;
 
+    public $card_title;
+
     public $theme_mode;
 
     public $item_data=[];
@@ -82,9 +84,18 @@ class EstimationItem extends Component
 
         $this->item_data = $item_data_arrayed_version[0];
 
+        $this->card_title = $this->item_data['title'];
+
         $this->items_array_js_version = $this->item_data['items_array'];
 
         $this->items_array_php_version = json_decode($this->item_data['items_array'], true) ?? [];
+
+       // Defining sorting priority (lower number = higher priority)
+        $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+        usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+            return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+        });
 
     }
 
@@ -156,6 +167,17 @@ class EstimationItem extends Component
             $this->selection_title = "";
             $this->addable_selection_items = [];
 
+             // Defining sorting priority (lower number = higher priority)
+             $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+             usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+                 return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+             });
+
+            DB::table('price_estimation')->where('id', $this->item_id)->update(['items_array' => json_encode($this->items_array_php_version)]);
+
+            $this->notify_success = "Option updated successfully";
+
             return;
 
         }
@@ -178,6 +200,17 @@ class EstimationItem extends Component
         $this->addable_selection_items = [];
 
         $this->selection_title = "";
+
+         // Defining sorting priority (lower number = higher priority)
+         $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+         usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+             return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+         });
+
+        DB::table('price_estimation')->where('id', $this->item_id)->update(['items_array' => json_encode($this->items_array_php_version)]);
+
+        $this->notify_success = "Option added successfully";
 
 
 
@@ -237,6 +270,14 @@ class EstimationItem extends Component
         $this->items_array_php_version = array_values($this->items_array_php_version);
 
         $this->confirm_deletable_option_key = null;
+
+        // Defining sorting priority (lower number = higher priority)
+        $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+        usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+            return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+        });
+
     }
 
     public function clear_confirmDeleteOption(){
@@ -321,12 +362,28 @@ class EstimationItem extends Component
             $this->notify_success = "Option already at the top";
             return;
         }
+
+        if($this->items_array_php_version[$key]['type'] == 'checkbox' && $this->items_array_php_version[$key-1]['type'] == 'select'){
+            $this->notify_success = "'Checkbox' type options are programmed to be below 'Select' type options";
+            return;
+        }
+
           $current_option = $this->items_array_php_version[$key];
 
           $this->items_array_php_version[$key] = $this->items_array_php_version[$key-1];
           $this->items_array_php_version[$key-1] = $current_option;
 
           $this->items_array_php_version = array_values($this->items_array_php_version);
+
+            // Defining sorting priority (lower number = higher priority)
+            $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+            usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+                return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+            });
+
+          DB::table('price_estimation')->where('id', $this->item_id)->update(['items_array' => json_encode($this->items_array_php_version)]);
+
 
     }
 
@@ -337,12 +394,26 @@ class EstimationItem extends Component
             return;
         }
 
+        if($this->items_array_php_version[$key]['type'] == 'select' && $this->items_array_php_version[$key+1]['type'] == 'checkbox'){
+            $this->notify_success = "'Select' type options are programmed to be above 'Checkbox' type options";
+            return;
+        }
+
         $current_option = $this->items_array_php_version[$key];
 
         $this->items_array_php_version[$key] = $this->items_array_php_version[$key+1];
         $this->items_array_php_version[$key+1] = $current_option;
 
         $this->items_array_php_version = array_values($this->items_array_php_version);
+
+        // Defining sorting priority (lower number = higher priority)
+        $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+        usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+            return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+        });
+
+        DB::table('price_estimation')->where('id', $this->item_id)->update(['items_array' => json_encode($this->items_array_php_version)]);
 
     }
 
@@ -372,6 +443,17 @@ class EstimationItem extends Component
             $this->editable_option_key_checkbox = null;
             $this->checkbox_title = "";
             $this->checkbox_value = "";
+
+             // Defining sorting priority (lower number = higher priority)
+            $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+            usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+                return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+            });
+
+            DB::table('price_estimation')->where('id', $this->item_id)->update(['items_array' => json_encode($this->items_array_php_version)]);
+
+            $this->notify_success = "Option updated successfully";
             return;
         }
 
@@ -389,6 +471,17 @@ class EstimationItem extends Component
 
         $this->checkbox_title = "";
         $this->checkbox_value = "";
+
+         // Defining sorting priority (lower number = higher priority)
+         $priority = ['select' => 1, 'checkbox' => 3]; // "select" first, "checkbox" last
+
+         usort($this->items_array_php_version, function ($a, $b) use ($priority) {
+             return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
+         });
+
+        DB::table('price_estimation')->where('id', $this->item_id)->update(['items_array' => json_encode($this->items_array_php_version)]);
+
+        $this->notify_success = "Option added successfully";
 
     }
 

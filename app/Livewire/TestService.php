@@ -9,6 +9,7 @@ use App\Models\holidays;
 use DateTime;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class TestService extends Component
 {
@@ -278,6 +279,11 @@ class TestService extends Component
             }
 
             //End Theme Mode Stuff
+
+
+            $this->estimate_options_json = DB::table('price_estimation')->where('id', 4)->value('items_array');
+
+            $this->estimate_options = json_decode($this->estimate_options_json, true);
 
 
 

@@ -465,10 +465,13 @@
             });
         </script>
 
-        <div class="flex flex-row justify-center items-center my-8">
+        <div class="flex flex-col gap-4 justify-center items-center my-8">
 
             <button wire:click="save_item"
-                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Save</button>
+                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">{{$editable_item_id !== null ? 'Update' : 'Save'}}</button>
+
+            <button wire:click="cancel_update_item"
+                class="{{$editable_item_id !== null ? '' : 'hidden'}} bg-red-800 hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel</button>
 
         </div>
 
@@ -537,7 +540,10 @@
 
 
                 <button wire:click="save_option"
-                    class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Save</button>
+                    class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">{{$editable_option_id !== null ? 'Update' : 'Save'}}</button>
+
+                <button wire:click="cancel_update_option"
+                    class="{{ $editable_option_id !== null ? '' : 'hidden' }} h-[35px] w-[100px] rounded-lg bg-red-800 mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Cancel</button>
 
 
             </div>

@@ -29,6 +29,8 @@ class HomepageWire extends Component
 
     public $portfolios_array = [];
 
+    public $estimation_options= [];
+
 
 
     public function mount()
@@ -44,6 +46,16 @@ class HomepageWire extends Component
             $this->theme_mode = session('theme_mode');
 
         }
+
+        //Retriving Estimation Data
+            $estimationItemsArray = DB::table('price_estimation')->get();
+
+            $this->estimation_options = $estimationItemsArray;
+        //End Retriving Estimation Data
+
+
+
+
 
         $this->search_input_field_is_active = session('search_input_field_is_active');
 

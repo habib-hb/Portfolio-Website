@@ -270,9 +270,11 @@
 
 
 
-    <div class="flex flex-row justify-center items-center my-8 {{ $loading_image ? 'hidden' : '' }}">
+    <div class="flex flex-col gap-4 md:gap-8 justify-center items-center my-8 {{ $loading_image ? 'hidden' : '' }}">
 
         <button wire:click="save" class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Update</button>
+
+        <button onclick="history.back()" class="bg-red-800 hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel</button>
 
     </div>
 

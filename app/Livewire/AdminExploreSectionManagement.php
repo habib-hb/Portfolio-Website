@@ -522,6 +522,40 @@ class AdminExploreSectionManagement extends Component
     }
 
 
+    public function cancel_update_item() {
+
+        $this->editable_item_id = null;
+        $this->option = "";
+        $this->item_title = "";
+        $this->blog_area = "";
+        $this->temporary_image_item = "";
+        $this->item_image = "";
+        $this->site_link = "";
+
+
+        $this->resetErrorBag('blog_image');
+        $this->dispatch('refresh-blog-area');
+        $this->dispatch('refresh-image-area');
+
+        $this->dispatch('alert-manager');
+
+
+    }
+
+
+    public function cancel_update_option() {
+
+        $this->editable_option_id = null;
+        $this->option_title = "";
+        $this->temporary_image_option = "";
+        $this->option_image = "";
+
+        $this->select_options_selected = null;
+
+        $this->resetErrorBag('option_image');
+    }
+
+
 
 
 
