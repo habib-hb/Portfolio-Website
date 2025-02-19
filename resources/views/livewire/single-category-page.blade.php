@@ -32,14 +32,12 @@
     </div>
 
 
-    <div wire:click="changeThemeMode"
-        class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all cursor-pointer">
+    <div class="flex justify-center relative w-full max-w-[1280px] mx-auto mt-6">
+        <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
 
-        <img src="{{ asset('images/light_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }}">
+        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
 
-        <img src="{{ asset('images/dark_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }}">
+        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
 
     </div>
 
@@ -85,8 +83,8 @@
                 </h2>
 
                 <div
-                    class="flex justify-start items-start w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    {!! $item['item_description'] !!}</div>
+                    class="w-full [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    <p>{!! $item['item_description'] !!}</p></div>
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">
                     <a href="{{ $item['site_link'] }}" target="_blank"><button

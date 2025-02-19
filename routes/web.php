@@ -132,6 +132,19 @@ Route::get('/services/test', function () {
 
 
 
+Route::get('/services/{service_name}', function ($service_name , Request $request){
+    $id = $request->query('id');
+    return view('dynamic_content.price-estimator-frontend' , ['service_name' => $service_name, 'service_id' => $id]);
+});
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/details/full-project', function () {
@@ -433,6 +446,10 @@ Route::get('/admin_dashboard/price_estimator_management/manage_card_options', fu
 Route::get('/admin_dashboard/price_estimator_management/manage_card_options/{item_id}', function ($item_id) {
     return view('dynamic_content.estimation-item' , ['item_id' => $item_id]);
 });
+
+
+
+
 
 
 

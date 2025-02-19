@@ -56,11 +56,13 @@
             </div> --}}
 
    <main class="min-h-screen flex flex-col">
-    <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all cursor-pointer">
 
-        <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}}">
+    <div class="flex justify-center relative w-full max-w-[1280px] mx-auto mt-6">
+        <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
 
-        <img src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}}">
+        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+
+        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
 
     </div>
 
@@ -92,8 +94,8 @@
 
 
     {{-- The Blog Text Section --}}
-    <div class="max-w-[800px] mx-auto py-4 px-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">
-        <p  style="white-space: pre-line;">{!!$blog_text!!}</p>
+    <div class="max-w-[800px] [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl mx-auto py-4 px-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">
+        <p>{!!$blog_text!!}</p>
     </div>
 
 

@@ -523,7 +523,7 @@
 
         @foreach ($estimation_options as $item)
             <div
-                class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-3 px-4  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div
@@ -535,18 +535,17 @@
 
                 <h1
                     class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    Test</h1>
+                    {{ $item->title }}</h1>
 
                 <p
-                    class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    Error fixing identifies and resolves issues in code, ensuring optimal performance, stability, and
-                    reliable functionality.</p>
+                    class="text-center mt-2 text-lg font-normal px-4 line-clamp-3  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    {!! $item->description !!}</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                        onclick="window.location.href='{{ env('BASE_LINK') }}/services/test'"><a
-                            href="{{ env('BASE_LINK') }}/services/test">Select</a></button>
+                        onclick="window.location.href='{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}'"><a
+                            href="{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}">Select</a></button>
 
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
@@ -610,7 +609,7 @@
                 </h2>
 
                 <div
-                    class="flex justify-start items-start w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    class=" w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                     {!! $item['portfolio_description'] !!}</div>
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">
