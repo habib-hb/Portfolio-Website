@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\booked_client_details;
 use App\Models\booked_patient_details;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -35,6 +37,8 @@ class AdminFulfilledAppointments extends Component
 
       public $name_filter;
 
+      public $email_filter;
+
       public $min_age_filter;
 
       public $max_age_filter;
@@ -61,12 +65,16 @@ class AdminFulfilledAppointments extends Component
 
       public $notification;
 
+      public $services_name_array=[];
+
+      public $services_name_array_json;
+
 
 
 
     public function mount(){
 
-        $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
+        $appointments = \App\Models\booked_client_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)
         ->take($this->database_limit)
         ->get();
@@ -83,6 +91,10 @@ class AdminFulfilledAppointments extends Component
 
          // Increase the offset for the next load
          $this->database_offset += $this->database_limit;
+
+         $this->services_name_array = DB::table('price_estimation')->pluck('title')->toArray();
+
+         $this->services_name_array_json = json_encode($this->services_name_array);
 
     }
 
@@ -122,7 +134,7 @@ class AdminFulfilledAppointments extends Component
 
         }
 
-        $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
+        $appointments = \App\Models\booked_client_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)
         ->take($this->database_limit)
         ->get();
@@ -173,7 +185,7 @@ class AdminFulfilledAppointments extends Component
     public function markAsUnfulfilled($id){
 
 
-        $update = \App\Models\booked_patient_details::find($id);
+        $update = \App\Models\booked_client_details::find($id);
         $update->appointment_status = 'Unfulfilled';
         $update->save();
 
@@ -186,7 +198,7 @@ class AdminFulfilledAppointments extends Component
 
     public function restoreAppointment($id){
 
-        $update = \App\Models\booked_patient_details::find($id);
+        $update = \App\Models\booked_client_details::find($id);
         $update->appointment_status = null;
         $update->save();
 
@@ -237,7 +249,7 @@ class AdminFulfilledAppointments extends Component
 
 
         // Query Database
-        $appointmentsQuery = booked_patient_details::query();
+        $appointmentsQuery = booked_client_details::query();
 
         $appointmentsQuery->where('appointment_status', 'Fulfilled');
 
@@ -269,24 +281,15 @@ class AdminFulfilledAppointments extends Component
         }
 
 
-        if(!$this->min_age_filter == null && !$this->max_age_filter == null){
+        if(!$this->email_filter == null){
 
-            $appointmentsQuery->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
-
-            $this->filtered = true;
-
-
-        }
-
-
-        if(!$this->gender_filter == null){
-
-            $appointmentsQuery->where('gender', $this->gender_filter);
+            $appointmentsQuery->where('email', 'like', '%' . $this->email_filter . '%');
 
             $this->filtered = true;
 
 
         }
+
 
 
         if(!$this->filter_phone == null){
@@ -345,9 +348,7 @@ class AdminFulfilledAppointments extends Component
         $this->selected_services = [];
 
         $this->name_filter = null;
-        $this->min_age_filter = null;
-        $this->max_age_filter = null;
-        $this->gender_filter = null;
+        $this->email_filter = null;
         $this->filter_phone = null;
         $this->min_estimated_filter = null;
         $this->max_estimated_filter = null;
@@ -359,7 +360,7 @@ class AdminFulfilledAppointments extends Component
         $this->all_appointments = [];
         $this->filtered_appointments = [];
         $this->database_offset= 0;
-            $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
+            $appointments = \App\Models\booked_client_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
             ->skip($this->database_offset)
             ->take($this->database_limit)
             ->get();

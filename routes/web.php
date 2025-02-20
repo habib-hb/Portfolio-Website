@@ -233,6 +233,9 @@ Route::get('/details/error-fixing', function () {
 
 
 Route::get('/admin_dashboard', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.admin_dashboard');
 });
 
@@ -249,6 +252,9 @@ Route::get('/admin_dashboard', function () {
 
 
 Route::get('/admin_dashboard/blogs', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.blogs');
 });
 
@@ -262,6 +268,9 @@ Route::get('/admin_dashboard/blogs', function () {
 
 
 Route::get('/admin_dashboard/blogs/blogs_manage', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.blogs_manage');
 });
 
@@ -277,6 +286,9 @@ Route::get('/admin_dashboard/blogs/blogs_manage', function () {
 
 
 Route::get('/admin_dashboard/blogs/blogs_manage/blog_edit/{blog_slug}', function ($blog_slug) {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.blog_edit', ['blog_slug' => $blog_slug ]);
 });
 
@@ -291,6 +303,9 @@ Route::get('/admin_dashboard/blogs/blogs_manage/blog_edit/{blog_slug}', function
 
 
 Route::get('/admin_dashboard/banner_headline', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.banner_headline');
 });
 
@@ -305,6 +320,9 @@ Route::get('/admin_dashboard/banner_headline', function () {
 
 
 Route::get('/admin_dashboard/appointments', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.appointments');
 });
 
@@ -319,6 +337,9 @@ Route::get('/admin_dashboard/appointments', function () {
 
 
 Route::get('/admin_dashboard/appointments/fulfilled_appointments', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.fulfilled_appointments');
 });
 
@@ -334,6 +355,9 @@ Route::get('/admin_dashboard/appointments/fulfilled_appointments', function () {
 
 
 Route::get('/admin_dashboard/appointments/unfulfilled_appointments', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.unfulfilled_appointments');
 });
 
@@ -349,6 +373,9 @@ Route::get('/admin_dashboard/appointments/unfulfilled_appointments', function ()
 
 
 Route::get('/admin_dashboard/appointments/unsettled_appointments', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.unsettled_appointments');
 });
 
@@ -364,6 +391,9 @@ Route::get('/admin_dashboard/appointments/unsettled_appointments', function () {
 
 
 Route::get('/admin_dashboard/schedules_management', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.schedules_management');
 });
 
@@ -379,6 +409,9 @@ Route::get('/admin_dashboard/schedules_management', function () {
 
 
 Route::get('/admin_dashboard/explore_section_management', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.explore-section-management');
 });
 
@@ -393,6 +426,9 @@ Route::get('/admin_dashboard/explore_section_management', function () {
 
 
 Route::get('/admin_dashboard/portfolio_section_management', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.portfolio-section-management');
 });
 
@@ -406,6 +442,9 @@ Route::get('/admin_dashboard/portfolio_section_management', function () {
 
 
 Route::get('/admin_dashboard/price_estimator_management', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('admin_dashboard.price-estimator-management');
 });
 
@@ -418,6 +457,9 @@ Route::get('/admin_dashboard/price_estimator_management', function () {
 
 
 Route::get('/admin_dashboard/price_estimator_management/manage_cards', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('price_estimator.manage-cards');
 });
 
@@ -430,6 +472,9 @@ Route::get('/admin_dashboard/price_estimator_management/manage_cards', function 
 
 
 Route::get('/admin_dashboard/price_estimator_management/manage_card_options', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('price_estimator.manage-card-options');
 });
 
@@ -444,6 +489,9 @@ Route::get('/admin_dashboard/price_estimator_management/manage_card_options', fu
 
 
 Route::get('/admin_dashboard/price_estimator_management/manage_card_options/{item_id}', function ($item_id) {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
     return view('dynamic_content.estimation-item' , ['item_id' => $item_id]);
 });
 

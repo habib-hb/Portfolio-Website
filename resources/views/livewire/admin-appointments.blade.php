@@ -136,6 +136,28 @@
         </div>
 
 
+        <div wire:loading wire:target="markAsUnfulfilled" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing...</span>
+
+            </div>
+        </div>
+
+
+        <div wire:loading wire:target="markAsFulfilled" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing...</span>
+
+            </div>
+        </div>
+
+
 
             {{-- Messages --}}
             @if (session()->has('no_more_appointments'))
@@ -287,54 +309,17 @@
                               <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">All</label>
                             </div>
                           </li>
+
+                          @foreach ($services_name_array as $service)
                           <li>
                             <div class="flex items-center">
-                                <input id="checkbox-item-1"  type="checkbox" value="Root Canal Treatment" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                <label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Root Canal Treatment</label>
+                                <input id="{{ Str::lower(Str::replace(" ", "-", $service)) }}"  type="checkbox" value="{{ $service }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $service }}</label>
                               </div>
                           </li>
+                          @endforeach
 
-                          <li>
-                            <div class="flex items-center">
-                              <input id="checkbox-item-2"  type="checkbox" value="Cosmetic Dentistry" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                              <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cosmetic Dentistry</label>
-                            </div>
-                          </li>
 
-                          <li>
-                            <div class="flex items-center">
-                              <input id="checkbox-item-3"  type="checkbox" value="Dental Implants" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                              <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Dental Implants</label>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="flex items-center">
-                              <input id="checkbox-item-4"  type="checkbox" value="Teeth Whitening" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                              <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Teeth Whitening</label>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="flex items-center">
-                              <input id="checkbox-item-5"  type="checkbox" value="Emergency Dentistry" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                              <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Emergency Dentistry</label>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="flex items-center">
-                              <input id="checkbox-item-6"  type="checkbox" value="Prevention" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                              <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Prevention</label>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="flex items-center">
-                              <input id="checkbox-item-7"  type="checkbox" value="Consultation" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                              <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Consultation</label>
-                            </div>
-                          </li>
 
                         </ul>
                     </div>
@@ -357,60 +342,16 @@
 
 
 
+          {{-- Filter By Email --}}
+          <div>
 
-          {{-- Filter By Age --}}
-
-          <div class="flex flex-col justify-center items-center w-full">
-
-            <div class="flex justify-start items-start w-full">
-                 <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4">Filter By Age</p>
-            </div>
+            <p  class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4">Filter By Email</p>
 
 
-            <div class="flex flex-row justify-center items-center md:justify-start gap-4 w-full">
+            <input wire:model="email_filter" type="text"  class=" bg-[#deeaf8]  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-[#202329]  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none border-none   shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]" placeholder="Type Email">
 
-                <div class="flex flex-col justify-center items-center">
-
-
-                    <input wire:model="min_age_filter" type="number"   class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Min">
-
-                </div>
-
-                <div class="flex flex-col justify-center items-center">
-
-                    <input wire:model="max_age_filter" type="number"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Max">
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-          {{-- End Filter By Age --}}
-
-
-
-
-          {{-- Filter By Gender --}}
-
-            <div class="flex flex-col mt-2">
-
-                <label for="age" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Gender</label>
-
-                <div class="flex flex-row gap-4 mt-2">
-
-                    <button wire:click="selectedGender('male')" class="h-[35px] w-[100px] rounded-lg {{$gender_filter == 'male' ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Male</button>
-
-                    <button wire:click="selectedGender('female')" class="h-[35px] w-[100px] rounded-lg {{$gender_filter == 'female' ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Female</button>
-
-                </div>
-
-            </div>
-
-          {{-- End Filter By Gender --}}
-
+          </div>
+          {{-- End Filter By Email --}}
 
 
 
@@ -494,7 +435,15 @@
 
 
 
+     <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 my-8">
+        <button class="px-4 w-[260px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110
+        transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/fulfilled_appointments'">Fulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
 
+        <button class="px-4 w-[260px]  py-2 bg-red-800 text-white rounded-lg hover:scale-110 transition-all  {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/unfulfilled_appointments'">Unfulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+
+        <button class="px-4 w-[260px]  py-2 bg-[#494c50] text-white rounded-lg hover:scale-110
+        transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/unsettled_appointments'">Unsettled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+    </div>
 
 
 
@@ -504,31 +453,31 @@
 
         @foreach ($all_appointments as $appointment)
 
-        <div class="flex flex-col justify-center  items-center w-[96vw] md:max-w-[800px]  md:p-8 px-4 py-8  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_patient_id'], $appointment_unfulfilled_selected_id) || in_array($appointment['booked_patient_id'], $appointment_fulfilled_selected_id)) ? 'hidden' : ''}}">
+        <div class="flex flex-col justify-center  items-center w-[96vw] md:max-w-[800px]  md:p-8 px-4 py-8  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_client_id'], $appointment_unfulfilled_selected_id) || in_array($appointment['booked_client_id'], $appointment_fulfilled_selected_id)) ? 'hidden' : ''}}">
 
             <h2 class="flex flex-row text-3xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$appointment['appointment_time']}}</h2>
             <p class="  flex flex-row text-lg {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"> {{ \Carbon\Carbon::parse($appointment['appointment_date'])->format('jS F, Y') }}</p>
 
             <p class="flex flex-row text-2xl font-semibold py-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$appointment['service_name'] ? $appointment['service_name'] : 'Not Entered'}}</p>
 
-            <p class=" flex flex-row text-xl font-semibold mb-2  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Patient Details</p>
+            <p class=" flex flex-row text-xl font-semibold mb-2  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Client Details</p>
 
-            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Name: </b>{{$appointment['name']}}</p>
+            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Name: &nbsp;</b>{{$appointment['name']}}</p>
 
-            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Age: </b>{{$appointment['age']}}</p>
+            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Email: &nbsp;</b>{{$appointment['email']}}</p>
 
-            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Gender: </b>{{$appointment['gender']}}</p>
+            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Phone: &nbsp;</b>{{$appointment['contact_number']}}</p>
 
-            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Phone: </b>{{$appointment['contact_number']}}</p>
+            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Address: &nbsp;</b>{{$appointment['address'] ? $appointment['address'] : 'Not Available'}}</p>
 
-            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Problem: </b>{{$appointment['written_problem']}}</p>
+            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Description: &nbsp;</b>{{$appointment['written_need']}}</p>
 
-            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4 text-lg"><b>Estimated Fee: </b>{{$appointment['estimated_price'] ? $appointment['estimated_price'] : 'Not Available'}}</p>
+            <p class=" flex flex-row  {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4 text-lg"><b>Estimated Fee:&nbsp;</b>{{$appointment['estimated_price'] ?  $appointment['estimated_price'] : 'Not Available'}}</p>
 
 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
-                    <button wire:click="markAsUnfulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Unfulfilled</button>
-                    <button wire:click="markAsFulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Fulfilled</button>
+                    <button wire:click="markAsUnfulfilled({{$appointment['booked_client_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Unfulfilled</button>
+                    <button wire:click="markAsFulfilled({{$appointment['booked_client_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Fulfilled</button>
                 </div>
 
 
@@ -624,13 +573,24 @@
 
                 let selected_services = [];
 
-                    document.getElementById('checkbox-item-1').checked == true ? selected_services.push('Root Canal Treatment') : '';
-                    document.getElementById('checkbox-item-2').checked == true ? selected_services.push('Cosmetic Dentistry') : '';
-                    document.getElementById('checkbox-item-3').checked == true ? selected_services.push('Dental Implants') : '';
-                    document.getElementById('checkbox-item-4').checked == true ? selected_services.push('Teeth Whitening') : '';
-                    document.getElementById('checkbox-item-5').checked == true ? selected_services.push('Emergency Dentistry') : '';
-                    document.getElementById('checkbox-item-6').checked == true ? selected_services.push('Prevention') : '';
-                    document.getElementById('checkbox-item-7').checked == true ? selected_services.push('Consultation') : '';
+                let all_available_checkboxes = @json($services_name_array_json);
+
+                all_available_checkboxes = JSON.parse(all_available_checkboxes);
+
+
+                all_available_checkboxes.forEach(item => {
+
+                    document.getElementById(item.toLowerCase().replace(/ /g, '-')).checked == true ? selected_services.push(item) : '';
+
+                })
+
+                    // document.getElementById('checkbox-item-1').checked == true ? selected_services.push('Root Canal Treatment') : '';
+                    // document.getElementById('checkbox-item-2').checked == true ? selected_services.push('Cosmetic Dentistry') : '';
+                    // document.getElementById('checkbox-item-3').checked == true ? selected_services.push('Dental Implants') : '';
+                    // document.getElementById('checkbox-item-4').checked == true ? selected_services.push('Teeth Whitening') : '';
+                    // document.getElementById('checkbox-item-5').checked == true ? selected_services.push('Emergency Dentistry') : '';
+                    // document.getElementById('checkbox-item-6').checked == true ? selected_services.push('Prevention') : '';
+                    // document.getElementById('checkbox-item-7').checked == true ? selected_services.push('Consultation') : '';
 
 
                 document.getElementById('filter_data_loading').classList.remove('hidden');
@@ -644,23 +604,44 @@
 
                 if(document.getElementById('checkbox-all').checked == false){
 
-                    document.getElementById('checkbox-item-1').checked = false;
-                    document.getElementById('checkbox-item-2').checked = false;
-                    document.getElementById('checkbox-item-3').checked = false;
-                    document.getElementById('checkbox-item-4').checked = false;
-                    document.getElementById('checkbox-item-5').checked = false;
-                    document.getElementById('checkbox-item-6').checked = false;
-                    document.getElementById('checkbox-item-7').checked = false;
+                    let all_available_checkboxes = @json($services_name_array_json);
+
+                    all_available_checkboxes = JSON.parse(all_available_checkboxes);
+
+                    all_available_checkboxes.forEach(item => {
+
+                        document.getElementById(item.toLowerCase().replace(/ /g, '-')).checked = false;
+
+                    })
+
+                    // document.getElementById('checkbox-item-1').checked = false;
+                    // document.getElementById('checkbox-item-2').checked = false;
+                    // document.getElementById('checkbox-item-3').checked = false;
+                    // document.getElementById('checkbox-item-4').checked = false;
+                    // document.getElementById('checkbox-item-5').checked = false;
+                    // document.getElementById('checkbox-item-6').checked = false;
+                    // document.getElementById('checkbox-item-7').checked = false;
 
                 }else{
 
-                    document.getElementById('checkbox-item-1').checked = true;
-                    document.getElementById('checkbox-item-2').checked = true;
-                    document.getElementById('checkbox-item-3').checked = true;
-                    document.getElementById('checkbox-item-4').checked = true;
-                    document.getElementById('checkbox-item-5').checked = true;
-                    document.getElementById('checkbox-item-6').checked = true;
-                    document.getElementById('checkbox-item-7').checked = true;
+                    let all_available_checkboxes = @json($services_name_array_json);
+
+                    all_available_checkboxes = JSON.parse(all_available_checkboxes);
+
+
+                    all_available_checkboxes.forEach(item => {
+
+                        document.getElementById(item.toLowerCase().replace(/ /g, '-')).checked = true;
+
+                    })
+
+                    // document.getElementById('checkbox-item-1').checked = true;
+                    // document.getElementById('checkbox-item-2').checked = true;
+                    // document.getElementById('checkbox-item-3').checked = true;
+                    // document.getElementById('checkbox-item-4').checked = true;
+                    // document.getElementById('checkbox-item-5').checked = true;
+                    // document.getElementById('checkbox-item-6').checked = true;
+                    // document.getElementById('checkbox-item-7').checked = true;
 
                 }
 
@@ -678,14 +659,23 @@
 
             let clear_filter = ()=>{
 
+                let all_available_checkboxes = @json($services_name_array_json);
 
-                document.getElementById('checkbox-item-1').checked = false;
-                document.getElementById('checkbox-item-2').checked = false;
-                document.getElementById('checkbox-item-3').checked = false;
-                document.getElementById('checkbox-item-4').checked = false;
-                document.getElementById('checkbox-item-5').checked = false;
-                document.getElementById('checkbox-item-6').checked = false;
-                document.getElementById('checkbox-item-7').checked = false;
+                all_available_checkboxes = JSON.parse(all_available_checkboxes);
+
+                all_available_checkboxes.forEach(item => {
+
+                    document.getElementById(item.toLowerCase().replace(/ /g, '-')).checked = false;
+
+                })
+
+                // document.getElementById('checkbox-item-1').checked = false;
+                // document.getElementById('checkbox-item-2').checked = false;
+                // document.getElementById('checkbox-item-3').checked = false;
+                // document.getElementById('checkbox-item-4').checked = false;
+                // document.getElementById('checkbox-item-5').checked = false;
+                // document.getElementById('checkbox-item-6').checked = false;
+                // document.getElementById('checkbox-item-7').checked = false;
                 document.getElementById('checkbox-all').checked = false;
 
 

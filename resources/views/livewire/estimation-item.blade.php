@@ -257,6 +257,20 @@
 
     </div>
 
+
+
+    <div wire:loading wire:target="save_option_details_link"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Saving Data...</span>
+        </div>
+
+
+    </div>
+
     {{-- <div wire:click="changeThemeMode" class="flex justify-center">
 
                 <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] mt-4 {{session('theme_mode') == 'light' ? '' : 'hidden'}}">
@@ -265,16 +279,14 @@
 
             </div> --}}
 
-    <div wire:click="changeThemeMode"
-        class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all cursor-pointer">
+            <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
+                <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
 
-        <img src="{{ asset('images/light_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }}">
+                <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
 
-        <img src="{{ asset('images/dark_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }}">
+                <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
 
-    </div>
+            </div>
 
 
 
@@ -283,7 +295,7 @@
 
         <h2
             class="text-2xl md:text-4xl mb-2 text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
-            {{$card_title}}</h2>
+            {{ $card_title }}</h2>
         {{--
 
             <pre>{{ print_r($items_array_js_version, true) }}</pre>
@@ -399,13 +411,17 @@
 
                                 <p
                                     class="text-2xl text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                                    <span class="{{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} text-2xl font-bold">Item: </span>{{ $item['name'] }}
+                                    <span
+                                        class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-2xl font-bold">Item:
+                                    </span>{{ $item['name'] }}
                                 </p>
 
 
                                 <p
                                     class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                                    <span class="{{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} text-2xl font-bold">Value: </span>{{ $item['value'] }}
+                                    <span
+                                        class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-2xl font-bold">Value:
+                                    </span>{{ $item['value'] }}
                                 </p>
 
 
@@ -484,7 +500,7 @@
                     <label for="title"
                         class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Value</label>
 
-                    <input  wire:model="checkbox_value" type="number"
+                    <input wire:model="checkbox_value" type="number"
                         class="w-[92vw] md:max-w-[50%] py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                         id="title">
 
@@ -493,9 +509,10 @@
 
                 {{-- End Created Items Section --}}
                 <button wire:click="save_checkbox_option"
-                    class="h-[64px] w-[240px] text-2xl rounded-lg bg-[#1A579F] mt-8 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">{{$editable_option_key_checkbox === null ? 'Save' : 'Update'}}</button>
+                    class="h-[64px] w-[240px] text-2xl rounded-lg bg-[#1A579F] mt-8 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">{{ $editable_option_key_checkbox === null ? 'Save' : 'Update' }}</button>
 
-                <button wire:click="cancel_checkbox_option_edit" class="{{ $editable_option_key_checkbox === null ? 'hidden' : '' }} h-[64px] w-[240px] text-2xl rounded-lg bg-red-800 mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Cancel
+                <button wire:click="cancel_checkbox_option_edit"
+                    class="{{ $editable_option_key_checkbox === null ? 'hidden' : '' }} h-[64px] w-[240px] text-2xl rounded-lg bg-red-800 mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Cancel
                     Edit</button>
 
             </div>
@@ -534,7 +551,7 @@
                         <p class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                             {{-- <span class="text-[#1A579F] text-2xl font-bold">Title: </span>This is the option</p> --}}
                             <span
-                                class="{{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} text-2xl font-bold">{{ $item['type'] == 'select' ? 'Select' : 'Checkbox' }}
+                                class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-2xl font-bold">{{ $item['type'] == 'select' ? 'Select' : 'Checkbox' }}
                                 : </span>{{ $item['title'] }}
                         </p>
 
@@ -544,9 +561,12 @@
                                 @foreach ($item['options'] as $key => $option)
                                     <p
                                         class="text-lg {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                                        <span class="{{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} text-lg font-bold">Option {{ $key + 1 }}:
+                                        <span
+                                            class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-lg font-bold">Option
+                                            {{ $key + 1 }}:
                                         </span>{{ $option['option_name'] }}<span
-                                            class="{{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} text-lg font-bold"> -
+                                            class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-lg font-bold">
+                                            -
                                             {{ $option['option_value'] }}</span>
                                     </p>
                                 @endforeach
@@ -555,12 +575,14 @@
                             @if ($item['type'] == 'checkbox')
                                 <p
                                     class="text-lg {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                                    <span class="{{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} text-lg font-bold">Name:
+                                    <span
+                                        class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-lg font-bold">Name:
                                     </span>{{ $item['option']['checkbox_name'] }}
                                 </p>
                                 <p
                                     class="text-lg {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                                    <span class="{{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} text-lg font-bold">Value:
+                                    <span
+                                        class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-lg font-bold">Value:
                                     </span>{{ $item['option']['checkbox_value'] }}
                                 </p>
                             @endif
@@ -609,8 +631,46 @@
 
 
 
-
     </main>
+
+
+
+
+    <div
+        class="flex flex-col justify-center items-center mt-8 {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+
+
+
+
+        <div id="add_new_option" class="flex flex-col justify-center items-center my-4">
+
+            {{-- @if ($editable_option_id) --}}
+            <h2 class="text-2xl md:text-4xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                Option Details Link</h2>
+            {{-- @endif --}}
+
+            <div class="flex flex-col mt-2 max-w-[680px]">
+
+                <label for="title"
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Blog Link</label>
+
+                <input wire:model="option_details_link" type="text"
+                    class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                    id="title">
+
+            </div>
+
+
+        </div>
+
+
+
+        {{-- End Created Items Section --}}
+        <button wire:click="save_option_details_link"
+            class="h-[64px] w-[240px] text-2xl rounded-lg bg-[#1A579F] mt-8 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Save</button>
+
+
+    </div>
 
 
 
@@ -639,12 +699,11 @@
 
             Livewire.on('edit_option_triggered', () => {
 
-                window.location.href =  "#main_form_element";
+                window.location.href = "#main_form_element";
 
             })
 
         })
-
     </script>
 
 

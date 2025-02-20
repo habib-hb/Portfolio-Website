@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\booked_client_details;
 use App\Models\booked_patient_details;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -40,6 +42,8 @@ class AdminAppointments extends Component
 
     public $name_filter;
 
+    public $email_filter;
+
     public $min_age_filter;
 
     public $max_age_filter;
@@ -66,6 +70,10 @@ class AdminAppointments extends Component
 
     public $notification;
 
+    public $services_name_array=[];
+
+    public $services_name_array_json;
+
 
 
 
@@ -74,7 +82,7 @@ class AdminAppointments extends Component
 
     public function mount(){
 
-        $appointments = \App\Models\booked_patient_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
+        $appointments = \App\Models\booked_client_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)
         ->take($this->database_limit)
         ->get();
@@ -91,6 +99,10 @@ class AdminAppointments extends Component
 
          //Increase the offset for the next load
          $this->database_offset += $this->database_limit;
+
+         $this->services_name_array = DB::table('price_estimation')->pluck('title')->toArray();
+
+         $this->services_name_array_json = json_encode($this->services_name_array);
 
     }
 
@@ -130,7 +142,7 @@ class AdminAppointments extends Component
 
         }
 
-        $appointments = \App\Models\booked_patient_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
+        $appointments = \App\Models\booked_client_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)
         ->take($this->database_limit)
         ->get();
@@ -181,7 +193,7 @@ class AdminAppointments extends Component
     public function markAsUnfulfilled($id){
 
 
-        $update = \App\Models\booked_patient_details::find($id);
+        $update = \App\Models\booked_client_details::find($id);
         $update->appointment_status = 'Unfulfilled';
         $update->save();
 
@@ -194,7 +206,7 @@ class AdminAppointments extends Component
 
     public function markAsFulfilled($id){
 
-        $update = \App\Models\booked_patient_details::find($id);
+        $update = \App\Models\booked_client_details::find($id);
         $update->appointment_status = 'Fulfilled';
         $update->save();
 
@@ -246,7 +258,7 @@ class AdminAppointments extends Component
 
 
         // Query Database
-        $appointmentsQuery = booked_patient_details::query();
+        $appointmentsQuery = booked_client_details::query();
 
         $appointmentsQuery->where('appointment_status', null);
 
@@ -278,24 +290,16 @@ class AdminAppointments extends Component
         }
 
 
-        if(!$this->min_age_filter == null && !$this->max_age_filter == null){
 
-            $appointmentsQuery->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
+        if(!$this->email_filter == null){
 
-            $this->filtered = true;
-
-
-        }
-
-
-        if(!$this->gender_filter == null){
-
-            $appointmentsQuery->where('gender', $this->gender_filter);
+            $appointmentsQuery->where('email', 'like', '%' . $this->email_filter . '%');
 
             $this->filtered = true;
 
 
         }
+
 
 
         if(!$this->filter_phone == null){
@@ -354,9 +358,7 @@ class AdminAppointments extends Component
         $this->selected_services = [];
 
         $this->name_filter = null;
-        $this->min_age_filter = null;
-        $this->max_age_filter = null;
-        $this->gender_filter = null;
+        $this->email_filter = null;
         $this->filter_phone = null;
         $this->min_estimated_filter = null;
         $this->max_estimated_filter = null;
@@ -368,7 +370,7 @@ class AdminAppointments extends Component
         $this->all_appointments = [];
         $this->filtered_appointments = [];
         $this->database_offset= 0;
-            $appointments = \App\Models\booked_patient_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
+            $appointments = \App\Models\booked_client_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
             ->skip($this->database_offset)
             ->take($this->database_limit)
             ->get();

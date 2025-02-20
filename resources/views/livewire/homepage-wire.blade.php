@@ -56,6 +56,52 @@
         </nav>
 
 
+        @if ($notify_success)
+            <div id="appointment_unfulfilled"
+                class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Message</p>
+
+                    {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
+                    <p class="text-white text-center">{{ $notify_success }}</p>
+
+                </div>
+
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
+
+                <button wire:click="clear_notify_success"
+                    class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
+
+
+
+            </div>
+        @endif
+
+
+        @if ($notify_error)
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10"
+                id="notify_error_element">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Message</p>
+
+                    {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
+                    <p class="text-white text-center">{{ $notify_error }}</p>
+
+                </div>
+
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
+
+                <button wire:click="clear_notify_error"
+                    class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
+
+
+
+            </div>
+        @endif
+
+
         {{-- Loading The Searched Data --}}
         <div class="mx-auto md:max-w-[1280px]">
             <p id="no_results_found" class="hidden"></p>
@@ -63,15 +109,15 @@
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -81,15 +127,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -454,7 +500,8 @@
             class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
-            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+            <div
+                class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{ asset('images/error-fixes.gif') }}"
                     class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                     alt="">
@@ -541,7 +588,7 @@
                     class="text-center mt-2 text-lg font-normal px-4 line-clamp-3  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                     {!! $item->description !!}</p>
 
-                <div class="mt-4 flex flex-row gap-4 mb-6">
+                <div class="flex flex-row gap-4 mb-6 mt-auto">
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
                         onclick="window.location.href='{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}'"><a
@@ -549,8 +596,9 @@
 
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                        onclick="window.location.href='{{ env('BASE_LINK') }}/details/error-fixing'"><a
-                            href="{{ env('BASE_LINK') }}/details/error-fixing">Details</a></button>
+                        onclick="window.location.href='{{ $item->blog_link }}"><a
+                            href="{{ Str::start($item->blog_link, 'http://') }}" target="_blank"
+                            rel="noopener noreferrer">Details</a></button>
                 </div>
 
             </div>
@@ -608,8 +656,7 @@
                     {{ $item['portfolio_title'] }}
                 </h2>
 
-                <div
-                    class=" w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                <div class=" w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                     {!! $item['portfolio_description'] !!}</div>
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">
@@ -648,6 +695,79 @@
 
 
 
+
+
+{{-- Admin Login Popup --}}
+
+<div class="{{ $admin_login_popup_is_active ? 'flex flex-col' : 'hidden' }} fixed justify-center items-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+    id="admin_login_popup">
+
+
+    <p class="absolute top-4 right-4 cursor-pointer text-4xl hover:scale-110 transition-all" id="admin_popup_close"
+        wire:click="adminLoginPopup">&times;
+    </p>
+
+    <h2 class="text-2xl md:text-4xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+        Admin Login</h2>
+
+    <form wire:submit.prevent="login">
+
+        <div class="flex flex-col justify-center items-center my-4">
+
+
+
+
+
+            <div class="flex flex-col mt-2 max-w-[680px]">
+
+                <label for="title"
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">User
+                    Name</label>
+
+                <input type="text" wire:model.defer="admin_name" placeholder="Admin Name"
+                    class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                    id="admin_name">
+
+            </div>
+
+
+        </div>
+
+        <div class="flex flex-col max-w-[680px]">
+
+            <label for="title"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Password</label>
+
+            <input type="text" wire:model.defer="admin_password" placeholder="Password"
+                class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="admin_password">
+
+        </div>
+
+        <p class="text-lg text-red-800 mt-4" id="admin_login_error"></p>
+
+
+        {{-- End Created Items Section --}}
+        <div class="flex justify-center">
+            <button type="submit"
+                class=" h-[64px] w-[240px] text-2xl rounded-lg bg-[#1A579F] mt-8 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Log
+                In</button>
+        </div>
+
+
+    </form>
+
+</div>
+
+{{-- End Admin Login Popup --}}
+
+
+
+
+
+
+
+
 {{-- Footer Element --}}
 <div
     class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
@@ -667,12 +787,25 @@
             class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hidden md:block opacity-50">
             |</p>
 
+        @if ($admin_active)
+            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/admin_dashboard'">Admin Dashboard</p><img
+                    src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
+                    class="h-[12px] w-[12px]" alt="">
+            </div>
+
+        @endif
+        
+        @if (!$admin_active)
         <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
             <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                onclick="window.location.href='{{ env('BASE_LINK') }}/admin_dashboard'">Admin Dashboard</p><img
+                wire:click="adminLoginPopup">Admin Dashboard</p><img
                 src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                 class="h-[12px] w-[12px]" alt="">
         </div>
+        @endif
+
         <p
             class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
             |</p>
@@ -952,6 +1085,30 @@
 
 
 
+
+        document.addEventListener('click', function(event) {
+            const admin_login_popup = document.getElementById('admin_login_popup');
+
+            const notify_error_element = document.getElementById('notify_error_element') || null;
+
+            const isClickInside = admin_login_popup.contains(event.target);
+
+            const isClickInside_notify_error_element = notify_error_element?.contains(event.target);
+
+            // If the click is outside the dropdown, perform an action
+            if (!isClickInside && !isClickInside_notify_error_element) {
+
+                if (!document.getElementById('admin_login_popup').classList.contains('hidden')) {
+
+                    document.getElementById('admin_popup_close').click();
+
+                }
+
+
+
+            }
+
+        });
 
 
     })

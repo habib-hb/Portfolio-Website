@@ -93,6 +93,20 @@
 
     </div>
 
+
+
+    <div wire:loading wire:target="bookAppointment"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing Appointment...</span>
+        </div>
+
+
+    </div>
+
     {{-- End All The Looading Notifications --}}
 
 
@@ -115,17 +129,17 @@
     @endif
 
 
-    @if (session()->has('patient_details'))
+    @if (session()->has('client_details'))
         <div
             class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{ session('patient_details') }}</p>
+                <p class="text-white text-left">{{ session('client_details') }}</p>
 
             </div>
 
-            <button wire:click="clear_patient_details"
+            <button wire:click="clear_client_details"
                 class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
@@ -342,39 +356,21 @@
 
             <div class="flex flex-col mt-2">
 
-                <label for="age"
-                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Age</label>
+                <label for="email"
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Email</label>
 
-                <input wire:model="user_age" type="number" max="100" min="1"
-                    class="w-[50vw] md:max-w-[100px] py-2   {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                    id="age">
-
-            </div>
-
-
-
-            <div class="flex flex-col mt-2">
-
-                <label for="age"
-                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Gender</label>
-
-                <div class="flex flex-row gap-4 mt-2">
-
-                    <button wire:click="selectedGender('male')"
-                        class="h-[35px] w-[100px] rounded-lg {{ $clicked_gender == 'male' ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white') }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Male</button>
-
-                    <button wire:click="selectedGender('female')"
-                        class="h-[35px] w-[100px] rounded-lg {{ $clicked_gender == 'female' ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white') }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Female</button>
-
-                </div>
+                <input wire:model="user_email" type="email"
+                    class="w-[96vw] md:max-w-full py-2   {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                    id="email">
 
             </div>
 
 
 
+
             <div class="flex flex-col mt-2">
 
-                <label for="age"
+                <label for="phone"
                     class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Contact
                     Number</label>
 
@@ -387,14 +383,25 @@
 
             <div class="flex flex-col mt-2">
 
-                <label for="name"
-                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Write
-                    Your
-                    Problem</label>
+                <label for="address"
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Address (Optional)</label>
 
-                <textarea wire:model="user_problem" type="text"
+                <textarea wire:model="user_address" type="text"
                     class="w-[96vw] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                    id="problem" rows="4"></textarea>
+                    id="address" rows="4"></textarea>
+
+            </div>
+
+            <div class="flex flex-col mt-2">
+
+                <label for="describe"
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Describe
+                    Your
+                    Needs</label>
+
+                <textarea wire:model="user_needs" type="text"
+                    class="w-[96vw] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                    id="describe" rows="4"></textarea>
 
             </div>
 
@@ -461,12 +468,13 @@
 
             calculateTotal();
 
-            Livewire.on('patient_details_submitted', () => {
+            Livewire.on('client_details_submitted', () => {
 
                 document.getElementById('name').value = null;
-                document.getElementById('age').value = null;
+                document.getElementById('email').value = null;
                 document.getElementById('phone').value = null;
-                document.getElementById('problem').value = null;
+                document.getElementById('address').value = null;
+                document.getElementById('describe').value = null;
 
                 window.location.reload();
 

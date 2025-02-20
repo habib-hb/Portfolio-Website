@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\available_schedules;
 use App\Models\booked_appointments;
+use App\Models\booked_client_details;
 use App\Models\booked_patient_details;
 use App\Models\holidays;
 use DateTime;
@@ -35,9 +36,15 @@ class PriceEstimatorFrontend extends Component
 
     public $user_name;
 
+    public $user_email;
+
     public $user_age;
 
     public $user_phone;
+
+    public $user_address;
+
+    public $user_needs;
 
     public $user_problem;
 
@@ -419,7 +426,7 @@ class PriceEstimatorFrontend extends Component
         $this->dispatch('alert-manager');
 
     }
-    
+
 
 
     public function selectedDate($date){
@@ -461,7 +468,7 @@ class PriceEstimatorFrontend extends Component
 
     public function bookAppointment(){
 
-        if($this->clicked_date && $this->clicked_time && $this->clicked_gender && $this->user_name && $this->user_age && $this->user_phone && $this->user_problem){
+        if($this->clicked_date && $this->clicked_time && $this->user_name && $this->user_email && $this->user_phone && $this->user_needs){
 
                 // "booked_appointments" Table Management
                 $appointments_on_the_specific_date=booked_appointments::where('date' , $this->clicked_date)->get();
@@ -483,22 +490,39 @@ class PriceEstimatorFrontend extends Component
 
                 }
 
+            // Testing
+                //booked_client_details Table Management
+
+                $client_details = new booked_client_details();
+                $client_details->name = $this->user_name;
+                $client_details->email = $this->user_email;
+                $client_details->contact_number = $this->user_phone;
+                $client_details->address = $this->user_address ?? "";
+                $client_details->written_need = $this->user_needs;
+                $client_details->service_name = $this->service_name;
+                $client_details->appointment_date = $this->clicked_date;
+                $client_details->appointment_time = $this->clicked_time;
+                $client_details->estimated_price = $this->total_estimated_amount;
+                $client_details->save();
+
+            // End Testing
+
 
                 // "booked_patient_details" Table Management
-                $patient_details = new booked_patient_details();
-                $patient_details->name = $this->user_name;
-                $patient_details->age = $this->user_age;
-                $patient_details->gender = $this->clicked_gender;
-                $patient_details->contact_number = $this->user_phone;
-                $patient_details->service_name = $this->service_name;
-                $patient_details->written_problem = $this->user_problem;
-                $patient_details->appointment_date = $this->clicked_date;
-                $patient_details->appointment_time = $this->clicked_time;
-                $patient_details->estimated_price = $this->total_estimated_amount;
-                $patient_details->save();
+                // $patient_details = new booked_patient_details();
+                // $patient_details->name = $this->user_name;
+                // $patient_details->age = $this->user_age;
+                // $patient_details->gender = $this->clicked_gender;
+                // $patient_details->contact_number = $this->user_phone;
+                // $patient_details->service_name = $this->service_name;
+                // $patient_details->written_problem = $this->user_problem;
+                // $patient_details->appointment_date = $this->clicked_date;
+                // $patient_details->appointment_time = $this->clicked_time;
+                // $patient_details->estimated_price = $this->total_estimated_amount;
+                // $patient_details->save();
 
                 // Flashing the session message
-                session()->flash('patient_details', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your age is ' . $this->user_age . '. You are a '. $this->clicked_gender . '. The medical service you have selected is "' . $this->service_name .  '". Your described problem is "' .  \Illuminate\Support\Str::limit($this->user_problem, 30, '...') . '". You will be contacted at ' . $this->user_phone . ' on ' . $this->clicked_date . ', 30 minutes before your appointment which is scheduled for ' . $this->clicked_time . '.');
+                session()->flash('client_details', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your email is ' . $this->user_email . '. The service you have selected is "' . $this->service_name .  '". Your described need is "' .  \Illuminate\Support\Str::limit($this->user_needs, 30, '...') . '". You will be contacted at ' . $this->user_phone . ' on ' . $this->clicked_date . ', 30 minutes before your appointment which is scheduled for ' . $this->clicked_time . '.');
 
 
 
@@ -515,21 +539,17 @@ class PriceEstimatorFrontend extends Component
 
                         session()->flash('message', 'Please Enter Your Name');
 
-                    }elseif(!$this->user_age){
+                    }elseif(!$this->user_email){
 
-                        session()->flash('message', 'Please Enter Your Age');
-
-                    }elseif(!$this->clicked_gender){
-
-                        session()->flash('message', 'Please Select Your Gender');
+                        session()->flash('message', 'Please Enter Your Email');
 
                     }elseif(!$this->user_phone){
 
                         session()->flash('message', 'Please Enter Your Phone');
 
-                    }elseif(!$this->user_problem){
+                    }elseif(!$this->user_needs){
 
-                        session()->flash('message', 'Please Enter Your Problem');
+                        session()->flash('message', 'Please Enter Your business needs');
 
                     }
 
@@ -541,29 +561,29 @@ class PriceEstimatorFrontend extends Component
 
     }
 
-    public function clear_patient_details(){
+    public function clear_client_details(){
 
-        session()->flash('patient_details', null);
+        session()->flash('client_details', null);
 
         // Clearing the livewire states
         $this->clicked_date=null;
 
         $this->clicked_time=null;
 
-        $this->clicked_gender=null;
-
         $this->user_name=null;
 
-        $this->user_age=null;
+        $this->user_email=null;
 
         $this->user_phone=null;
 
-        $this->user_problem=null;
+        $this->user_address=null;
+
+        $this->user_needs=null;
 
         $this->bookedTimesArray=[];
 
         // Sending event to javascript for clearing the input fields
-        $this->dispatch('patient_details_submitted');
+        $this->dispatch('client_details_submitted');
 
     }
 

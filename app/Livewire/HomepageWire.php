@@ -31,6 +31,18 @@ class HomepageWire extends Component
 
     public $estimation_options= [];
 
+    public $admin_login_popup_is_active = false;
+
+    public $admin_name;
+
+    public $admin_password;
+
+    public $notify_success;
+
+    public $notify_error;
+
+    public $admin_active = false;
+
 
 
     public function mount()
@@ -54,7 +66,11 @@ class HomepageWire extends Component
         //End Retriving Estimation Data
 
 
+        if(session()->has('admin_name')){
 
+            $this->admin_active = true;
+            
+        }
 
 
         $this->search_input_field_is_active = session('search_input_field_is_active');
@@ -186,6 +202,72 @@ class HomepageWire extends Component
         $this->dispatch('alert-manager');
 
     }
+
+    public function adminLoginPopup(){
+        if($this->admin_login_popup_is_active){
+
+            $this->admin_login_popup_is_active = false;
+
+        }else{
+
+            $this->admin_login_popup_is_active = true;
+
+        }
+    }
+
+
+
+    public function login()
+    {
+
+        if(empty($this->admin_name) || empty($this->admin_password)){
+            $this->notify_error = "Admin Name and Password Cann't Be Empty";
+            return;
+        }
+
+        $db_admin_name = DB::table('site_data')->where('title', 'admin_username')->pluck('data')->first();
+
+        $db_admin_password = DB::table('site_data')->where('title', 'admin_password')->pluck('data')->first();
+
+        if ($this->admin_name == $db_admin_name && $this->admin_password == $db_admin_password) {
+
+            session(['admin_name' => $this->admin_name]);
+
+            $this->notify_success = "Login Successful";
+
+            $this->admin_login_popup_is_active = false;
+
+            $this->admin_name = null;
+            $this->admin_password = null;
+
+            return redirect('/admin_dashboard');
+
+        }else {
+
+            $this->notify_error = "Invalid Credentials";
+
+            session(['admin_name' => null]);
+
+        }
+
+        // if (Auth::attempt($credentials)) {
+        //     session()->regenerate();
+        //     return redirect()->to('/admin/dashboard');
+        // } else {
+        //     $this->addError('admin_name', 'Invalid credentials.');
+        // }
+    }
+
+
+    public function clear_notify_error(){
+        $this->notify_error = null;
+    }
+
+    public function clear_notify_success(){
+        $this->notify_success = null;
+    }
+
+
 
     public function render()
     {

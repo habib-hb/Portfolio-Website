@@ -52,6 +52,8 @@ class EstimationItem extends Component
 
     public $editable_option_key_checkbox;
 
+    public $option_details_link;
+
     public function mount($item_id)
     {
 
@@ -96,6 +98,8 @@ class EstimationItem extends Component
         usort($this->items_array_php_version, function ($a, $b) use ($priority) {
             return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
         });
+
+        $this->option_details_link = DB::table('price_estimation')->where('id', $this->item_id)->value('blog_link');
 
     }
 
@@ -491,6 +495,19 @@ class EstimationItem extends Component
         $this->checkbox_title = "";
         $this->checkbox_value = "";
 
+    }
+
+
+    public function save_option_details_link(){
+
+        if(!$this->option_details_link){
+            $this->notify_error = "Please fill the Link field";
+            return;
+        }
+
+        DB::table('price_estimation')->where('id', $this->item_id)->update(['blog_link' => $this->option_details_link]);
+
+        $this->notify_success = "Link added successfully";
     }
 
 
