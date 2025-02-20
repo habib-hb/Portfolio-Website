@@ -39,6 +39,20 @@ Route::get('/consultation', function () {
 
 
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -302,7 +316,7 @@ Route::get('/admin_dashboard/blogs/blogs_manage/blog_edit/{blog_slug}', function
 
 
 
-Route::get('/admin_dashboard/banner_headline', function () {
+Route::get('/admin_dashboard/headlines', function () {
     if(!session()->has('admin_name')){
         return redirect('/');
     }

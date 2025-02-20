@@ -13,9 +13,11 @@
 
          <!-- Favicon -->
          <link rel="icon" href="{{ asset('favicons/single_blog_fav.png') }}" type="image/png">
-         
-    </head>
-    <body>
+
+         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        </head>
+        <body class="font-poppins">
 
 
         <livewire:custom-blog blog_image="{{$post->blog_image}}" blog_title="{{$post->blog_title}}" blog_excerpt="{{$post->blog_excerpt}}" :blog_text="$post->blog_text" blog_author="{{$post->blog_author}}" blog_date="{{$post->updated_at}}"/>

@@ -109,15 +109,15 @@
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -127,15 +127,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -207,27 +207,46 @@
 
                     <p id="my_name"
                         class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  "
-                        style="opacity: 0">Hello, I'm Habib,</p>
+                        style="opacity: 0">{{$top_layer_text}}</p>
+                    {{-- <p id="my_name"
+                        class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  "
+                        style="opacity: 0">Hello, I'm Habib,</p> --}}
 
                     <h2 id="full_stack"
                         class="font-poppins text-center md:text-left text-6xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">Full Stack</h2>
+                        style="opacity: 0">{{$up_middle_layer_text}}</h2>
+                    {{-- <h2 id="full_stack"
+                        class="font-poppins text-center md:text-left text-6xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
+                        style="opacity: 0">Full Stack</h2> --}}
 
                     <h2 id="developer"
                         class="font-poppins text-6xl text-center md:text-left  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">Developer</h2>
+                        style="opacity: 0">{{$down_middle_layer_text}}</h2>
+
+
+                    {{-- <h2 id="developer"
+                        class="font-poppins text-6xl text-center md:text-left  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
+                        style="opacity: 0">Developer</h2> --}}
 
                     <p id="based_in"
                         class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">based in Dhaka, Bangladesh.</p>
+                        style="opacity: 0">{{$end_layer_text}}</p>
+
+                    {{-- <p id="based_in"
+                        class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
+                        style="opacity: 0">based in Dhaka, Bangladesh.</p> --}}
 
                 </div>
 
 
                 <div class="">
-                    <img id="profile_img" src="{{ asset('images/whole_profile_new.png') }}"
+                    <img id="profile_img" src="{{ $hero_avatar_image }}"
                         class=" w-[30vh] md:w-[40vh]   " style="opacity: 0" alt="">
                 </div>
+                {{-- <div class="">
+                    <img id="profile_img" src="{{ asset('images/whole_profile_new.png') }}"
+                        class=" w-[30vh] md:w-[40vh]   " style="opacity: 0" alt="">
+                </div> --}}
 
             </div>
 
@@ -252,8 +271,8 @@
             class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             The Categories</h1>
 
-        <p class="text-sm   text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            Sub Title</p>
+        <p class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            {{$categories_caption}}</p>
 
     </div>
 
@@ -299,13 +318,13 @@
             class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             The Services</h1>
 
-        <p class="text-sm   text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            {{ $banner_headline }}</p>
+        <p class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            {{ $services_caption }}</p>
 
-        <p
+        {{-- <p
             class="text-lg font-medium text-center mt-8 px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             Click on 'Select' to get the estimated fee and book an appointment. If you want to know more, click on the
-            'Details' button</p>
+            'Details' button</p> --}}
 
     </div>
 
@@ -581,12 +600,12 @@
                 </div>
 
                 <h1
-                    class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} ">
                     {{ $item->title }}</h1>
 
-                <p
-                    class="text-center mt-2 text-lg font-normal px-4 line-clamp-3  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    {!! $item->description !!}</p>
+                <div
+                    class="text-center mt-2 text-lg font-normal px-4 line-clamp-3  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl">
+                    {!! $item->description !!}</div>
 
                 <div class="flex flex-row gap-4 mb-6 mt-auto">
                     <button
@@ -621,10 +640,13 @@
 
     {{-- Portfolio Showcase Section --}}
 
-    <div class="flex flex-col justify-center items-center mx-auto mt-[10vh] mb-8">
+    <div class="flex flex-col justify-center items-center mx-auto mt-[10vh] md:max-w-[1280px] mb-8">
 
         <img src="{{ $theme_mode == 'light' ? asset('images/portfolio-light-mode.png') : asset('images/portfolio-dark-mode.png') }}"
             class="max-h-[100px]" alt="">
+
+            <p class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                {{ $my_portfolio_caption }}</p>
 
     </div>
 
@@ -775,7 +797,7 @@
 
 
     <div
-        class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[500px] mb-4">
+        class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[700px] mb-4">
 
         <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
             <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
@@ -794,16 +816,15 @@
                     src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                     class="h-[12px] w-[12px]" alt="">
             </div>
-
         @endif
-        
+
         @if (!$admin_active)
-        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                wire:click="adminLoginPopup">Admin Dashboard</p><img
-                src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
-                class="h-[12px] w-[12px]" alt="">
-        </div>
+            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
+                    wire:click="adminLoginPopup">Admin Dashboard</p><img
+                    src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
+                    class="h-[12px] w-[12px]" alt="">
+            </div>
         @endif
 
         <p
@@ -823,6 +844,17 @@
         <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
             <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
                 onclick="window.location.href='{{ env('BASE_LINK') }}/about'">About Me</p><img
+                src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
+                class="h-[12px] w-[12px]" alt="">
+        </div>
+
+        <p
+        class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
+        |</p>
+
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
+                onclick="window.location.href='{{ env('BASE_LINK') }}/contact'">Contact Me</p><img
                 src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                 class="h-[12px] w-[12px]" alt="">
         </div>

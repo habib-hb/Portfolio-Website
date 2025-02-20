@@ -43,6 +43,22 @@ class HomepageWire extends Component
 
     public $admin_active = false;
 
+    public $hero_avatar_image;
+
+    public $top_layer_text;
+
+    public $up_middle_layer_text;
+
+    public $down_middle_layer_text;
+
+    public $end_layer_text;
+
+    public $categories_caption;
+
+    public $services_caption;
+
+    public $my_portfolio_caption;
+
 
 
     public function mount()
@@ -59,6 +75,24 @@ class HomepageWire extends Component
 
         }
 
+        $this->hero_avatar_image = DB::table('site_data')->where('title', 'hero_avatar_image')->first()->data;
+
+        $this->top_layer_text = DB::table('site_data')->where('title', 'hero_top_layer_text')->first()->data;
+
+        $this->up_middle_layer_text = DB::table('site_data')->where('title', 'hero_up_middle_layer_text')->first()->data;
+
+        $this->down_middle_layer_text = DB::table('site_data')->where('title', 'hero_down_middle_layer_text')->first()->data;
+
+        $this->end_layer_text = DB::table('site_data')->where('title', 'hero_end_layer_text')->first()->data;
+
+        $this->categories_caption = DB::table('site_data')->where('title', 'categories_caption')->first()->data;
+
+        $this->services_caption = DB::table('site_data')->where('title', 'services_caption')->first()->data;
+
+        $this->my_portfolio_caption = DB::table('site_data')->where('title', 'my_portfolio_caption')->first()->data;
+
+        
+
         //Retriving Estimation Data
             $estimationItemsArray = DB::table('price_estimation')->get();
 
@@ -69,7 +103,7 @@ class HomepageWire extends Component
         if(session()->has('admin_name')){
 
             $this->admin_active = true;
-            
+
         }
 
 

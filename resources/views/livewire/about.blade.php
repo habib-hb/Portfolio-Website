@@ -82,8 +82,9 @@
     <img src="{{asset('images/about_me_avatar.png')}}" class="max-h-[300px] max-w-[300px] rounded-lg mx-auto" alt="">
 
     <!-- Header -->
-    <header class="text-center my-12">
+    <header class="text-center flex gap-2 justify-center items-center my-12">
       <h1 class="text-4xl font-bold {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}">About Me</h1>
+      <img src="{{  asset('images/about_me_eyes.gif') }}" class="h-[100px]" alt="">
     </header>
 
     <!-- Introduction Section -->
@@ -160,6 +161,7 @@
         If you’d like to connect, collaborate, or simply have a conversation, feel free to reach out! Let’s create something amazing together.
       </p>
     </section>
+
 
   </div>
 

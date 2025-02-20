@@ -14,8 +14,10 @@
          <!-- Favicon -->
          <link rel="icon" href="{{ asset('favicons/single_blog_fav.png') }}" type="image/png">
 
-    </head>
-    <body>
+         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        </head>
+        <body class="font-poppins">
 
 
         <livewire:price-estimator-frontend service_name="{{$service_name}}" service_id="{{$service_id}}"/>
