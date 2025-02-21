@@ -519,6 +519,23 @@ Route::get('/admin_dashboard/price_estimator_management/manage_card_options/{ite
 
 
 
+Route::get('/admin_dashboard/contact_messages', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
+    return view('admin_dashboard.contact-messages');
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/categories/{category_name}', function ($category_name, Request $request){

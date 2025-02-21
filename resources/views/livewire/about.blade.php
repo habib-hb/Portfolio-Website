@@ -128,7 +128,7 @@
         <li>Banner upload system for promotional content</li>
       </ul>
       <p class="text-lg leading-relaxed">
-        You can check out the project live at <a href="https://ecommerce.valueadderhabib.com" class="text-blue-500 hover:underline">ecommerce.valueadderhabib.com</a>. This e-commerce platform allowed me to explore complex backend logic and dynamic front-end features, enhancing my skills in both Laravel and React.js.
+        You can check out the project live at <a href="https://ecommerce.valueadderhabib.com" class="text-blue-500 text-sm md:text-lg hover:underline ">ecommerce.valueadderhabib.com</a>. This e-commerce platform allowed me to explore complex backend logic and dynamic front-end features, enhancing my skills in both Laravel and React.js.
       </p>
     </section>
 
