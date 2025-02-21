@@ -2,9 +2,9 @@
 
 <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}">
 
-    <nav class="flex justify-center md:justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+    <nav class="flex justify-center  items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-        <div class=" flex justify-start md:w-[20vw] cursor-pointer">
+        <div class=" flex justify-center items-center md:w-[20vw]">
 
             <img  src="{{asset('images/the_logo_light_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}} cursor-pointer" onclick="window.location.href='/'" alt="">
 
@@ -24,16 +24,10 @@
 
         </div> --}}
 
-        <div class=" flex justify-end md:w-[20vw]">
-
-        <button class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Consult Now</button>
-
-        </div>
 
 
 
     </nav>
-
 
 
      <!-- Show a loading spinner while Doing Theme Change Processing -->
@@ -47,9 +41,6 @@
 
 
     </div>
-
-
-
 
             {{-- <div wire:click="changeThemeMode" class="flex justify-center">
 
@@ -71,68 +62,60 @@
 
 
 
-{{-- Main Element --}}
-
-{{-- About me --}}
 
 
- <!-- Main Container -->
-  <div class="max-w-[800px] mx-auto px-2 md:px-0 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">
+    {{-- Options --}}
+    <div class="mt-8 flex flex-col gap-4 min-h-screen">
 
 
-    <!-- Header -->
-    <header class="text-center flex gap-2 justify-center items-center my-12">
-      <h1 class="text-4xl font-bold {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}">About Me</h1>
-      <img src="{{ $about_icon_image }}" class="h-[100px]" alt="">
-    </header>
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer" onclick="window.location.href='/admin_dashboard/static-page-management/about-me'">
 
-    <!-- Introduction Section -->
-    <section class="mb-8">
+            <img src="{{asset('images/admin-about-me.gif')}}" class="h-[64px] rounded-lg" alt="">
 
-      <div class="flex gap-4 items-center">
-        <img src="{{ $about_profile_image }}" class="max-h-[300px] max-w-[300px] rounded-lg mx-auto" alt="">
-        <div>
-            <h2 class="text-2xl font-semibold mb-4">{{$about_title}}</h2>
-            <p class="text-lg leading-relaxed">
-                {{$about_excerpt}}
-              </p>
+            <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}" >About Me Page</h2>
+
         </div>
 
-      </div>
-    </section>
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer" onclick="window.location.href='/admin_dashboard/price_estimator_management/manage_cards'">
 
-    <div class="max-w-[800px] [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl mx-auto py-4 px-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">
-        <p>{!!$about_me_content!!}</p>
+            <img src="{{asset('images/admin-contact-me.gif')}}" class="h-[64px] rounded-lg" alt="">
+
+            <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}" >Contact Me Page</h2>
+
+        </div>
+
+
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer" onclick="window.location.href='/admin_dashboard/price_estimator_management/manage_card_options'">
+
+            <img src="{{asset('images/admin-privacy-policy.gif')}}" class="h-[64px] rounded-lg" alt="">
+
+            <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Privacy Policy Page</h2>
+
+        </div>
+
+
     </div>
 
-    <!-- Dental Project Section -->
-
-
-
-  </div>
-
-{{-- End Test About me --}}
-
-
-{{-- End Main Element --}}
 
 
 
 
 
 
+      {{-- Footer Element --}}
+      <div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-16 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
 
-        {{-- Footer Element --}}
-        <div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
+
+        <img id='search_icon' src="{{session('theme_mode') == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px] cursor-pointer"  onclick="window.location.href='/'"   alt="">
+
+        <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">All Rights Reserved @2024</p>
+
+        <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
+
+    </div>
 
 
-            <img id='search_icon' src="{{session('theme_mode') == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px] cursor-pointer"  onclick="window.location.href='/'"   alt="">
 
-            <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">All Rights Reserved @2024</p>
-
-            <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
-
-        </div>
 
 
 </div>
