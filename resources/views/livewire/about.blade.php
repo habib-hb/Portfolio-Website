@@ -89,10 +89,10 @@
     <!-- Introduction Section -->
     <section class="mb-8">
 
-      <div class="flex gap-4 items-center">
+      <div class="flex flex-col md:flex-row gap-4 items-center">
         <img src="{{ $about_profile_image }}" class="max-h-[300px] max-w-[300px] rounded-lg mx-auto" alt="">
         <div>
-            <h2 class="text-2xl font-semibold mb-4">{{$about_title}}</h2>
+            <h2 class="text-2xl block text-center md:text-left font-semibold mb-2">{{$about_title}}</h2>
             <p class="text-lg leading-relaxed">
                 {{$about_excerpt}}
               </p>

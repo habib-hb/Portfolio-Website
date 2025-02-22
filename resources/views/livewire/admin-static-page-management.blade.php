@@ -76,7 +76,7 @@
 
         </div>
 
-        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer" onclick="window.location.href='/admin_dashboard/price_estimator_management/manage_cards'">
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer" onclick="window.location.href='/admin_dashboard/static-page-management/contact-me'">
 
             <img src="{{asset('images/admin-contact-me.gif')}}" class="h-[64px] rounded-lg" alt="">
 
@@ -85,7 +85,7 @@
         </div>
 
 
-        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer" onclick="window.location.href='/admin_dashboard/price_estimator_management/manage_card_options'">
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer" onclick="window.location.href='/admin_dashboard/static-page-management/privacy-policy'">
 
             <img src="{{asset('images/admin-privacy-policy.gif')}}" class="h-[64px] rounded-lg" alt="">
 

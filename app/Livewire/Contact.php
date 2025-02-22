@@ -20,6 +20,51 @@ class Contact extends Component
 
     public $notify_error;
 
+    // Details
+    public $email;
+
+    public $phone;
+
+    public $address;
+
+    public $facebook_link;
+
+    public $instagram_link;
+
+    public $twitter_link;
+
+    public $linkedin_link;
+
+    public $github_link;
+
+    public $email_icon;
+
+    public $phone_icon;
+
+    public $address_icon;
+
+    public $social_icon;
+
+    public $title_icon;
+
+
+    public function mount(){
+        $contact_me = DB::table('contact_me_page')->where('id', 1)->first();
+        $this->email = $contact_me->email;
+        $this->phone = $contact_me->phone;
+        $this->address = $contact_me->address;
+        $this->email_icon = $contact_me->email_icon;
+        $this->phone_icon = $contact_me->phone_icon;
+        $this->address_icon = $contact_me->address_icon;
+        $this->social_icon = $contact_me->social_icon;
+        $this->title_icon = $contact_me->title_icon;
+        $this->facebook_link = $contact_me->facebook_link;
+        $this->instagram_link = $contact_me->instagram_link;
+        $this->twitter_link = $contact_me->twitter_link;
+        $this->linkedin_link = $contact_me->linkedin_link;
+        $this->github_link = $contact_me->github_link;
+    }
+
     public function changeThemeMode(){
 
         if(session('theme_mode') == 'light'){

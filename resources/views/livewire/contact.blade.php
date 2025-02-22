@@ -138,7 +138,8 @@
 
         <div class="flex flex-col-reverse md:flex-row justify-center items-center gap-1 my-8">
             <h1 class="text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[48px] font-semibold ">Contact Me</h1>
-            <img src="{{ asset('images/contact-page-gif.gif') }}" class="h-[126px]" alt="">
+            {{-- <img src="{{ asset('images/contact-page-gif.gif') }}" class="h-[126px]" alt=""> --}}
+            <img src="{{ $title_icon }}" class="h-[126px]" alt="">
         </div>
 
 
@@ -146,42 +147,46 @@
             <div class="flex flex-col justify-center gap-6 flex-1">
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                        <img src="{{ asset('images/contact-email.gif') }}" class="h-[68px] w-[88px]" alt="">
+                        {{-- <img src="{{ asset('images/contact-email.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
+                        <img src="{{ $email_icon }}" class="h-[68px] w-[88px]" alt="">
                     </div>
                     <div class="flex flex-col items-center md:items-start gap-2">
                         <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[28px] font-bold ">Email</p>
-                        <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }}  md:text-[20px]">developerhabib1230@gmail.com</p>
+                        <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }}  md:text-[20px]">{{$email}}</p>
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                        <img src="{{ asset('images/contact-phone.gif') }}" class="h-[68px] w-[88px]" alt="">
+                        {{-- <img src="{{ asset('images/contact-phone.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
+                        <img src="{{ $phone_icon }}" class="h-[68px] w-[88px]" alt="">
                     </div>
                     <div class="flex flex-col items-center md:items-start gap-2">
                         <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[28px] font-bold ">Phone</p>
-                        <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[20px]">+088 01617326260</p>
+                        <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[20px]">{{$phone}}</p>
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                        <img src="{{ asset('images/contact-location.gif') }}" class="h-[68px] w-[88px]" alt="">
+                        {{-- <img src="{{ asset('images/contact-location.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
+                        <img src="{{ $address_icon }}" class="h-[68px] w-[88px]" alt="">
                     </div>
                     <div class="flex flex-col items-center md:items-start gap-2">
                         <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[28px] font-bold ">Address</p>
-                        <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[16px]">Dakshinkhan, Uttara, Dhaka, Bangladesh</p>
+                        <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[16px]">{{$address}}</p>
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                        <img src="{{ asset('images/contact-social.gif') }}" class="h-[68px] w-[88px]" alt="">
+                        {{-- <img src="{{ asset('images/contact-social.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
+                        <img src="{{ $social_icon }}" class="h-[68px] w-[88px]" alt="">
                     </div>
                     <div class="flex flex-col">
                         <div class="flex gap-2">
-                            <a href=""><img src="{{ asset('images/contact-facebook-logo.png') }}" class="h-[48px] hover:scale-110 transition-all" alt=""></a>
-                            <a href=""><img src="{{ asset('images/contact-instagram-logo.png') }}" class="h-[48px] hover:scale-110 transition-all" alt=""></a>
-                            <a href=""><img src="{{ asset('images/contact-linkedin-logo.png') }}" class="h-[48px] hover:scale-110 transition-all" alt=""></a>
-                            <a href=""><img src="{{ asset('images/contact-twitter-logo.png') }}" class="h-[48px] hover:scale-110 transition-all" alt=""></a>
-                            <a href=""><img src="{{ asset('images/contact-github-logo.png') }}" class="h-[48px] hover:scale-110 transition-all" alt=""></a>
+                            <a href="{{ $facebook_link }}" target="_blank" class=" {{ $facebook_link  ? '' : 'hidden' }}"><img src="{{ asset('images/contact-facebook-logo.png') }}" class="h-[48px] hover:scale-110 transition-all {{ $facebook_link  ? '' : 'hidden' }}" alt="facebook"></a>
+                            <a href="{{ $instagram_link }}" target="_blank" class="{{ $instagram_link  ? '' : 'hidden' }}"><img src="{{ asset('images/contact-instagram-logo.png') }}" class="h-[48px] hover:scale-110 transition-all {{ $instagram_link  ? '' : 'hidden' }}" alt="instagram"></a>
+                            <a href="{{ $linkedin_link }}" target="_blank" class=" {{ $linkedin_link  ? '' : 'hidden' }}"><img src="{{ asset('images/contact-linkedin-logo.png') }}" class="h-[48px] hover:scale-110 transition-all {{ $linkedin_link  ? '' : 'hidden' }}" alt="linkedin"></a>
+                            <a href="{{ $twitter_link }}" target="_blank" class=" {{ $twitter_link  ? '' : 'hidden' }}"><img src="{{ asset('images/contact-twitter-logo.png') }}" class="h-[48px] hover:scale-110 transition-all {{ $twitter_link  ? '' : 'hidden' }}" alt="twitter/x"></a>
+                            <a href="{{ $github_link }}" target="_blank" class=" {{ $github_link  ? '' : 'hidden' }}"><img src="{{ asset('images/contact-github-logo.png') }}" class="h-[48px] hover:scale-110 transition-all {{ $github_link  ? '' : 'hidden' }}" alt="github"></a>
                         </div>
                     </div>
                 </div>

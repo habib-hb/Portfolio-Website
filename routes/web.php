@@ -570,6 +570,40 @@ Route::get('/admin_dashboard/static-page-management/about-me', function () {
 
 
 
+Route::get('/admin_dashboard/static-page-management/contact-me', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
+    return view('admin_dashboard.static-page-contact-me');
+});
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/admin_dashboard/static-page-management/privacy-policy', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
+    return view('admin_dashboard.static-page-privacy-policy');
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/categories/{category_name}', function ($category_name, Request $request){
