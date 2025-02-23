@@ -109,15 +109,15 @@
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -127,15 +127,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -807,47 +807,18 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div
-                class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-full justify-between gap-8 items-center">
-                    <img src="{{ $hero_avatar_image }}" class="max-h-[200px] max-w-[200px]" alt="">
-                    <div class="flex flex-col gap-0 justify-center items-center">
-                        <p class="text-[24px]">Full Name</p>
-                        <p class="text-[16px]">Full Stack Developer</p>
+            @foreach ($collaboration_cards as $item)
+                <div
+                    class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                    <div class="flex flex-col h-full justify-between gap-8 items-center">
+                        <img src="{{ $item['profile_image'] }}" class="max-h-[200px] max-w-[200px]" alt="">
+                        <div class="flex flex-col gap-0 justify-center items-center">
+                            <p class="text-[24px]">{{ $item['name'] }}</p>
+                            <p class="text-[16px]">{{ $item['profession'] }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div
-                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-full justify-between gap-8 items-center">
-                    <img src="{{ $hero_avatar_image }}" class="max-h-[200px] max-w-[200px]" alt="">
-                    <div class="flex flex-col gap-0 justify-center items-center">
-                        <p class="text-[24px]">Full Name</p>
-                        <p class="text-[16px]">Full Stack Developer</p>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-full justify-between gap-8 items-center">
-                    <img src="{{ asset('images/filtered_button.png') }}" class="max-h-[200px] max-w-[200px]" alt="">
-                    <div class="flex flex-col gap-0 justify-center items-center">
-                        <p class="text-[24px]">Full Name</p>
-                        <p class="text-[16px]">Full Stack Developer</p>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-full justify-between gap-8 items-center">
-                    <img src="{{ asset('images/tall-pic.png') }}" class="max-h-[200px] max-w-[200px]" alt="">
-                    <div class="flex flex-col gap-0 justify-center items-center">
-                        <p class="text-[24px]">Full Name</p>
-                        <p class="text-[16px]">Full Stack Developer</p>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
         <!-- If we need pagination -->
 
@@ -857,7 +828,9 @@
 
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
-        <div class="swiper-pagination [&.swiper-pagination-fraction]:!bottom-0 [&.swiper-pagination-fraction]:!text-blue-600"></div>
+        <div
+            class="swiper-pagination [&.swiper-pagination-fraction]:!bottom-0 [&.swiper-pagination-fraction]:!text-blue-600">
+        </div>
 
 
         <!-- If we need scrollbar -->
@@ -893,135 +866,46 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div
-                class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
-                    <div class="flex flex-col h-full justify-center">
-                        <div class="w-full flex justify-start">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
+            @foreach ($testimonials_cards as $item)
+                    <div
+                    class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                    <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
+                        <div class="flex flex-col h-full justify-center">
+                            <div class="w-full flex justify-start">
+                                <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z"
+                                        fill="currentColor" />
                                 </svg>
+                            </div>
+
+                            <div class="flex flex-col gap-2 justify-center items-center">
+                                <p class="text-[18px] line-clamp-4">{{ $item['quote'] }}</p>
+                            </div>
+                            <div class="w-full flex justify-end">
+                                <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z"
+                                        fill="currentColor" />
+                                </svg>
+
+                            </div>
                         </div>
 
-                        <div class="flex flex-col gap-2 justify-center items-center">
-                            <p class="text-[18px] line-clamp-4">Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer </p>
-                        </div>
-                        <div class="w-full flex justify-end">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
-                                </svg>
-
+                        <div class="flex flex-row w-full justify-start gap-4 items-center">
+                            <img src="{{ $item['profile_image'] }}" class="max-w-[114px] max-h-[114px]" alt="">
+                            <div class="flex flex-col gap-0 justify-center items-start">
+                                <p class="text-[24px]">{{ $item['name'] }}</p>
+                                <p class="text-[16px]">{{ $item['profession'] }}</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="flex flex-row w-full justify-start gap-4 items-center">
-                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
-                        <div class="flex flex-col gap-0 justify-center items-start">
-                             <p class="text-[24px]">Full NameFull NameFull NameFull Name</p>
-                             <p class="text-[16px]">Full Stack Developer</p>
-                        </div>
-                     </div>
                 </div>
-            </div>
-            <div
-                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
-                    <div class="flex flex-col h-full justify-center">
-                        <div class="w-full flex justify-start">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
-                                </svg>
-                        </div>
+            @endforeach
 
-                        <div class="flex flex-col gap-2 justify-center items-center">
-                            <p class="text-[18px] line-clamp-4">Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer </p>
-                        </div>
-                        <div class="w-full flex justify-end">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
-                                </svg>
 
-                        </div>
-                    </div>
-
-                    <div class="flex flex-row w-full justify-start gap-4 items-center">
-                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
-                        <div class="flex flex-col gap-0 justify-center items-start">
-                             <p class="text-[24px]">Full Name</p>
-                             <p class="text-[16px]">Full Stack Developer</p>
-                        </div>
-                     </div>
-                </div>
-            </div>
-            <div
-                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
-                    <div class="flex flex-col h-full justify-center">
-                        <div class="w-full flex justify-start">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
-                                </svg>
-                        </div>
-
-                        <div class="flex flex-col gap-2 justify-center items-center">
-                            <p class="text-[18px] line-clamp-4">Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
-                                Developer Full Stack Developer Full Stack Developer </p>
-                        </div>
-                        <div class="w-full flex justify-end">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
-                                </svg>
-
-                        </div>
-                    </div>
-
-                    <div class="flex flex-row w-full justify-start gap-4 items-center">
-                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
-                        <div class="flex flex-col gap-0 justify-center items-start">
-                             <p class="text-[24px]">Full Name</p>
-                             <p class="text-[16px]">Full Stack Developer</p>
-                        </div>
-                     </div>
-                </div>
-            </div>
-            <div
-                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
-                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
-                    <div class="flex flex-col h-full justify-center">
-                        <div class="w-full flex justify-start">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
-                                </svg>
-                        </div>
-
-                        <div class="flex flex-col gap-2 justify-center items-center">
-                            <p class="text-[18px] line-clamp-4">Full Stack Developer  </p>
-                        </div>
-                        <div class="w-full flex justify-end">
-                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
-                                </svg>
-
-                        </div>
-                    </div>
-
-                    <div class="flex flex-row w-full justify-start gap-4 items-center">
-                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
-                        <div class="flex flex-col gap-0 justify-center items-start">
-                             <p class="text-[24px]">Full Name</p>
-                             <p class="text-[16px]">Full Stack Developer</p>
-                        </div>
-                     </div>
-                </div>
-            </div>
 
         </div>
         <!-- If we need pagination -->

@@ -604,6 +604,41 @@ Route::get('/admin_dashboard/static-page-management/privacy-policy', function ()
 
 
 
+Route::get('/admin_dashboard/collaboration-section-management', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
+    return view('admin_dashboard.collaboration-section-management');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/admin_dashboard/testimonials-section-management', function () {
+    if(!session()->has('admin_name')){
+        return redirect('/');
+    }
+    return view('admin_dashboard.testimonials-section-management');
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/categories/{category_name}', function ($category_name, Request $request){

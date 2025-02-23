@@ -59,6 +59,10 @@ class HomepageWire extends Component
 
     public $my_portfolio_caption;
 
+    public $collaboration_cards;
+
+    public $testimonials_cards;
+
 
 
     public function mount()
@@ -91,7 +95,7 @@ class HomepageWire extends Component
 
         $this->my_portfolio_caption = DB::table('site_data')->where('title', 'my_portfolio_caption')->first()->data;
 
-        
+
 
         //Retriving Estimation Data
             $estimationItemsArray = DB::table('price_estimation')->get();
@@ -142,6 +146,29 @@ class HomepageWire extends Component
                 'id' => $item->id
             ];
         }, $portfolios_db);
+
+        $collaboration_cards_db = DB::select("SELECT * FROM collaboration_section");
+
+        $this->collaboration_cards = array_map(function ($item) {
+            return [
+                'name' => $item->name,
+                'profession' => $item->profession,
+                'profile_image' => $item->profile_image,
+                'id' => $item->id
+            ];
+        }, $collaboration_cards_db);
+
+        $testimonials_cards_db = DB::select("SELECT * FROM testimonials_section");
+
+        $this->testimonials_cards = array_map(function ($item) {
+            return [
+                'name' => $item->name,
+                'profession' => $item->profession,
+                'profile_image' => $item->profile_image,
+                'quote' => $item->quote,
+                'id' => $item->id
+            ];
+        }, $testimonials_cards_db);
     }
 
 

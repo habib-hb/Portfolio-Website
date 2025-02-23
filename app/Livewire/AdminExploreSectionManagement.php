@@ -450,7 +450,7 @@ class AdminExploreSectionManagement extends Component
         session()->flash('confirmation_alert', [
             'type' => $type,
             'message' => $message,
-            'action' => $this->confirmation_action,
+            'action' => $action,
             'title' => $title
         ]);
     }
