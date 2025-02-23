@@ -140,7 +140,7 @@ class AdminBannerHeadline extends Component
             $imagePath = $this->hero_avatar_image->store('temp_hero_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_hero_avatar = $imagePath;
 

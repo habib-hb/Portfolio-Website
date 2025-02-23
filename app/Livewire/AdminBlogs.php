@@ -58,7 +58,8 @@ class AdminBlogs extends Component
             $imagePath = $this->blog_image->store('blog_images', 'public');
 
             // Generate the full image_URL to the stored image
-            $this->image_url = asset('storage/' . $imagePath);
+            // $this->image_url = asset('storage/' . $imagePath);
+            $this->image_url = '/storage/' . $imagePath;
 
             blog_posts::create([
                 'blog_author' => $this->author_name,
@@ -128,8 +129,7 @@ class AdminBlogs extends Component
 
             $imagePath = $this->blog_image->store('temp_blog_images', 'public');
 
-            //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image = $imagePath;
 

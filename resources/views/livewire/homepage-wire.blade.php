@@ -109,15 +109,15 @@
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -127,15 +127,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -207,21 +207,21 @@
 
                     <p id="my_name"
                         class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  "
-                        style="opacity: 0">{{$top_layer_text}}</p>
+                        style="opacity: 0">{{ $top_layer_text }}</p>
                     {{-- <p id="my_name"
                         class="font-poppins text-lg text-center md:text-left  md:text-xl mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  "
                         style="opacity: 0">Hello, I'm Habib,</p> --}}
 
                     <h2 id="full_stack"
                         class="font-poppins text-center md:text-left text-6xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">{{$up_middle_layer_text}}</h2>
+                        style="opacity: 0">{{ $up_middle_layer_text }}</h2>
                     {{-- <h2 id="full_stack"
                         class="font-poppins text-center md:text-left text-6xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
                         style="opacity: 0">Full Stack</h2> --}}
 
                     <h2 id="developer"
                         class="font-poppins text-6xl text-center md:text-left  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">{{$down_middle_layer_text}}</h2>
+                        style="opacity: 0">{{ $down_middle_layer_text }}</h2>
 
 
                     {{-- <h2 id="developer"
@@ -230,7 +230,7 @@
 
                     <p id="based_in"
                         class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">{{$end_layer_text}}</p>
+                        style="opacity: 0">{{ $end_layer_text }}</p>
 
                     {{-- <p id="based_in"
                         class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
@@ -240,8 +240,8 @@
 
 
                 <div class="">
-                    <img id="profile_img" src="{{ $hero_avatar_image }}"
-                        class=" w-[30vh] md:w-[40vh]   " style="opacity: 0" alt="">
+                    <img id="profile_img" src="{{ $hero_avatar_image }}" class=" w-[30vh] md:w-[40vh]   "
+                        style="opacity: 0" alt="">
                 </div>
                 {{-- <div class="">
                     <img id="profile_img" src="{{ asset('images/whole_profile_new.png') }}"
@@ -271,8 +271,9 @@
             class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             The Categories</h1>
 
-        <p class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            {{$categories_caption}}</p>
+        <p
+            class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            {{ $categories_caption }}</p>
 
     </div>
 
@@ -318,7 +319,8 @@
             class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             The Services</h1>
 
-        <p class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <p
+            class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             {{ $services_caption }}</p>
 
         {{-- <p
@@ -645,8 +647,9 @@
         <img src="{{ $theme_mode == 'light' ? asset('images/portfolio-light-mode.png') : asset('images/portfolio-dark-mode.png') }}"
             class="max-h-[100px]" alt="">
 
-            <p class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                {{ $my_portfolio_caption }}</p>
+        <p
+            class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            {{ $my_portfolio_caption }}</p>
 
     </div>
 
@@ -709,11 +712,6 @@
 
 {{-- End Portfolio Showcase Section --}}
 
-{{-- Consult Now Button --}}
-<button
-    class="mt-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
-    onclick="window.location.href='/consultation'"><a href="{{ env('BASE_LINK') }}/consultation">Consult
-        Now</a></button>
 
 
 
@@ -721,7 +719,7 @@
 
 {{-- Admin Login Popup --}}
 
-<div class="{{ $admin_login_popup_is_active ? 'flex flex-col' : 'hidden' }} fixed justify-center items-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+<div class="{{ $admin_login_popup_is_active ? 'flex flex-col' : 'hidden' }} fixed justify-center items-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-50"
     id="admin_login_popup">
 
 
@@ -789,6 +787,271 @@
 
 
 
+{{-- The Collaborations Slider Start --}}
+
+<!-- Slider main container -->
+<div class="flex flex-col justify-center mt-[6vh]  md:max-w-[1280px]  mx-auto">
+
+    <h1
+        class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        The Collaborations</h1>
+
+    <p
+        class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        {{ $categories_caption }}</p>
+
+</div>
+<div
+    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-[360px]">
+    <div class="swiper swiper-collaboration rounded-lg" wire:ignore>
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div
+                class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-full justify-between gap-8 items-center">
+                    <img src="{{ $hero_avatar_image }}" class="max-h-[200px] max-w-[200px]" alt="">
+                    <div class="flex flex-col gap-0 justify-center items-center">
+                        <p class="text-[24px]">Full Name</p>
+                        <p class="text-[16px]">Full Stack Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-full justify-between gap-8 items-center">
+                    <img src="{{ $hero_avatar_image }}" class="max-h-[200px] max-w-[200px]" alt="">
+                    <div class="flex flex-col gap-0 justify-center items-center">
+                        <p class="text-[24px]">Full Name</p>
+                        <p class="text-[16px]">Full Stack Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-full justify-between gap-8 items-center">
+                    <img src="{{ asset('images/filtered_button.png') }}" class="max-h-[200px] max-w-[200px]" alt="">
+                    <div class="flex flex-col gap-0 justify-center items-center">
+                        <p class="text-[24px]">Full Name</p>
+                        <p class="text-[16px]">Full Stack Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-full justify-between gap-8 items-center">
+                    <img src="{{ asset('images/tall-pic.png') }}" class="max-h-[200px] max-w-[200px]" alt="">
+                    <div class="flex flex-col gap-0 justify-center items-center">
+                        <p class="text-[24px]">Full Name</p>
+                        <p class="text-[16px]">Full Stack Developer</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- If we need pagination -->
+
+
+        <!-- If we need navigation buttons -->
+
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination [&.swiper-pagination-fraction]:!bottom-0 [&.swiper-pagination-fraction]:!text-blue-600"></div>
+
+
+        <!-- If we need scrollbar -->
+        {{-- <div class="swiper-scrollbar"></div> --}}
+    </div>
+</div>
+
+
+
+
+{{-- The Collaborations Slider End --}}
+
+
+
+
+{{-- The Testimonials Slider Start --}}
+
+<!-- Slider main container -->
+<div class="flex flex-col justify-center mt-[6vh]  md:max-w-[1280px]  mx-auto">
+
+    <h1
+        class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        The Testimonials</h1>
+
+    <p
+        class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        {{ $categories_caption }}</p>
+
+</div>
+<div
+    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-fit">
+    <div class="swiper swiper-testimonials rounded-lg" wire:ignore>
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div
+                class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
+                    <div class="flex flex-col h-full justify-center">
+                        <div class="w-full flex justify-start">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
+                                </svg>
+                        </div>
+
+                        <div class="flex flex-col gap-2 justify-center items-center">
+                            <p class="text-[18px] line-clamp-4">Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer </p>
+                        </div>
+                        <div class="w-full flex justify-end">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
+                                </svg>
+
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row w-full justify-start gap-4 items-center">
+                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
+                        <div class="flex flex-col gap-0 justify-center items-start">
+                             <p class="text-[24px]">Full NameFull NameFull NameFull Name</p>
+                             <p class="text-[16px]">Full Stack Developer</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div
+                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
+                    <div class="flex flex-col h-full justify-center">
+                        <div class="w-full flex justify-start">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
+                                </svg>
+                        </div>
+
+                        <div class="flex flex-col gap-2 justify-center items-center">
+                            <p class="text-[18px] line-clamp-4">Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer </p>
+                        </div>
+                        <div class="w-full flex justify-end">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
+                                </svg>
+
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row w-full justify-start gap-4 items-center">
+                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
+                        <div class="flex flex-col gap-0 justify-center items-start">
+                             <p class="text-[24px]">Full Name</p>
+                             <p class="text-[16px]">Full Stack Developer</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div
+                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
+                    <div class="flex flex-col h-full justify-center">
+                        <div class="w-full flex justify-start">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
+                                </svg>
+                        </div>
+
+                        <div class="flex flex-col gap-2 justify-center items-center">
+                            <p class="text-[18px] line-clamp-4">Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer Full Stack Developer Full Stack
+                                Developer Full Stack Developer Full Stack Developer </p>
+                        </div>
+                        <div class="w-full flex justify-end">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
+                                </svg>
+
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row w-full justify-start gap-4 items-center">
+                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
+                        <div class="flex flex-col gap-0 justify-center items-start">
+                             <p class="text-[24px]">Full Name</p>
+                             <p class="text-[16px]">Full Stack Developer</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div
+                class="swiper-slide flex flex-col justify-between items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
+                    <div class="flex flex-col h-full justify-center">
+                        <div class="w-full flex justify-start">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21.375 0C9.61875 0 0 9.61875 0 21.375V42.75H21.375V21.375H7.125C7.125 13.4662 13.4662 7.125 21.375 7.125V0ZM57 0C45.2438 0 35.625 9.61875 35.625 21.375V42.75H57V21.375H42.75C42.75 13.4662 49.0913 7.125 57 7.125V0Z" fill="currentColor"/>
+                                </svg>
+                        </div>
+
+                        <div class="flex flex-col gap-2 justify-center items-center">
+                            <p class="text-[18px] line-clamp-4">Full Stack Developer  </p>
+                        </div>
+                        <div class="w-full flex justify-end">
+                            <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0V21.2153H14.1436C14.1436 29.065 7.84967 35.3589 0 35.3589V42.4307C11.6684 42.4307 21.2153 32.8838 21.2153 21.2153V0H0ZM35.3589 0V21.2153H49.5024C49.5024 29.065 43.2086 35.3589 35.3589 35.3589V42.4307C47.0273 42.4307 56.5742 32.8838 56.5742 21.2153V0H35.3589Z" fill="currentColor"/>
+                                </svg>
+
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row w-full justify-start gap-4 items-center">
+                        <img src="{{ $hero_avatar_image }}" class="max-w-[114px] max-h-[114px]" alt="">
+                        <div class="flex flex-col gap-0 justify-center items-start">
+                             <p class="text-[24px]">Full Name</p>
+                             <p class="text-[16px]">Full Stack Developer</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- If we need pagination -->
+
+
+        <!-- If we need navigation buttons -->
+
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination [&.swiper-pagination-fraction]:!text-blue-600"></div>
+
+
+        <!-- If we need scrollbar -->
+        {{-- <div class="swiper-scrollbar"></div> --}}
+    </div>
+</div>
+
+
+{{-- The Testimonials Slider End --}}
+
+
+
+{{-- Consult Now Button --}}
+<button
+    class="my-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
+    onclick="window.location.href='/consultation'"><a href="{{ env('BASE_LINK') }}/consultation">Consult
+        Now</a></button>
+
+
 
 {{-- Footer Element --}}
 <div
@@ -799,9 +1062,10 @@
     <div
         class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[700px] mb-4">
 
-        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                onclick="window.location.href='{{ env('BASE_LINK') }}/blog_showcase'">Blogs</p><img
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
+            onclick="window.location.href='{{ env('BASE_LINK') }}/blog_showcase'">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
+                Blogs</p><img
                 src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                 class="h-[12px] w-[12px]" alt="">
         </div>
@@ -810,18 +1074,22 @@
             |</p>
 
         @if ($admin_active)
-            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/admin_dashboard'">Admin Dashboard</p><img
+            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
+                onclick="window.location.href='{{ env('BASE_LINK') }}/admin_dashboard'">
+                <p
+                    class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
+                    Admin Dashboard</p><img
                     src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                     class="h-[12px] w-[12px]" alt="">
             </div>
         @endif
 
         @if (!$admin_active)
-            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-                <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                    wire:click="adminLoginPopup">Admin Dashboard</p><img
+            <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
+                wire:click="adminLoginPopup">
+                <p
+                    class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
+                    Admin Dashboard</p><img
                     src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                     class="h-[12px] w-[12px]" alt="">
             </div>
@@ -831,9 +1099,10 @@
             class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
             |</p>
 
-        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                onclick="window.location.href='{{ env('BASE_LINK') }}/privacy_policy'">Privacy Policy</p><img
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
+            onclick="window.location.href='{{ env('BASE_LINK') }}/privacy_policy'">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
+                Privacy Policy</p><img
                 src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                 class="h-[12px] w-[12px]" alt="">
         </div>
@@ -841,20 +1110,22 @@
             class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
             |</p>
 
-        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                onclick="window.location.href='{{ env('BASE_LINK') }}/about'">About Me</p><img
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
+            onclick="window.location.href='{{ env('BASE_LINK') }}/about'">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
+                About Me</p><img
                 src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                 class="h-[12px] w-[12px]" alt="">
         </div>
 
         <p
-        class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
-        |</p>
+            class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}  hidden md:block opacity-50">
+            |</p>
 
-        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline"
-                onclick="window.location.href='{{ env('BASE_LINK') }}/contact'">Contact Me</p><img
+        <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
+            onclick="window.location.href='{{ env('BASE_LINK') }}/contact'">
+            <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
+                Contact Me</p><img
                 src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                 class="h-[12px] w-[12px]" alt="">
         </div>
@@ -1072,7 +1343,6 @@
 
 
         Livewire.on('alert-manager', () => {
-
 
             if (document.getElementById('search_input').value !== '' || document.activeElement ===
                 document.getElementById('search_input')) {

@@ -93,7 +93,7 @@ class AdminBlogsEdit extends Component
                 $imagePath = $this->blog_image->store('blog_images', 'public');
 
                 // Generate the full image_URL to the stored image
-                $this->image_url = asset('storage/' . $imagePath);
+                $this->image_url = '/storage/' . $imagePath;
 
                 $this->temporary_image = $this->image_url;
 

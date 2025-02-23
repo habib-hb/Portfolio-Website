@@ -174,7 +174,7 @@ class PriceEstimatorManageCards extends Component
             $imagePath = $this->item_image->store('temp_item_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_estimation_card = $imagePath;
 

@@ -68,16 +68,14 @@ class AdminExploreSectionManagement extends Component
     public function mount()
     {
 
-        if(!session('theme_mode')) {
+        if (!session('theme_mode')) {
 
             $this->theme_mode = 'light';
 
             session(['theme_mode' => $this->theme_mode]);
-
-        }else{
+        } else {
 
             $this->theme_mode = session('theme_mode');
-
         }
 
         $options_db = DB::select("SELECT * FROM explore_options");
@@ -153,16 +151,16 @@ class AdminExploreSectionManagement extends Component
                 LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
                 ORDER BY explore_items.option_id;");
 
-                    $this->items_array = array_map(function ($item) {
-                        return [
-                            'option_title' => $item->option,
-                            'item_title' => $item->item_title,
-                            'image_link' => $item->item_image,
-                            'item_description' => $item->item_description,
-                            'site_link' => $item->site_link,
-                            'id' => $item->item_id
-                        ];
-                    }, $items_db);
+                $this->items_array = array_map(function ($item) {
+                    return [
+                        'option_title' => $item->option,
+                        'item_title' => $item->item_title,
+                        'image_link' => $item->item_image,
+                        'item_description' => $item->item_description,
+                        'site_link' => $item->site_link,
+                        'id' => $item->item_id
+                    ];
+                }, $items_db);
 
 
                 $this->editable_item_id = null;
@@ -254,7 +252,7 @@ class AdminExploreSectionManagement extends Component
     {
         // Checking if it's an update command
         if ($this->editable_option_id) {
-                if ($this->option_title && $this->temporary_image_option) {
+            if ($this->option_title && $this->temporary_image_option) {
                 DB::table('explore_options')->where('id', $this->editable_option_id)->update([
                     'option' => $this->option_title,
                     'image_link' => $this->temporary_image_option
@@ -276,11 +274,9 @@ class AdminExploreSectionManagement extends Component
                 $this->form_completion_message = 'Option Updated Successfully';
 
                 return;
-
-            }else{
+            } else {
 
                 $this->form_error_message = 'Please fill all the fields correctly';
-
             }
         }
 
@@ -312,7 +308,7 @@ class AdminExploreSectionManagement extends Component
             $imagePath = $this->item_image->store('temp_item_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_item = $imagePath;
 
@@ -323,7 +319,7 @@ class AdminExploreSectionManagement extends Component
             $imagePath = $this->option_image->store('temp_option_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_option = $imagePath;
 
@@ -522,7 +518,8 @@ class AdminExploreSectionManagement extends Component
     }
 
 
-    public function cancel_update_item() {
+    public function cancel_update_item()
+    {
 
         $this->editable_item_id = null;
         $this->option = "";
@@ -538,12 +535,11 @@ class AdminExploreSectionManagement extends Component
         $this->dispatch('refresh-image-area');
 
         $this->dispatch('alert-manager');
-
-
     }
 
 
-    public function cancel_update_option() {
+    public function cancel_update_option()
+    {
 
         $this->editable_option_id = null;
         $this->option_title = "";
@@ -553,6 +549,191 @@ class AdminExploreSectionManagement extends Component
         $this->select_options_selected = null;
 
         $this->resetErrorBag('option_image');
+    }
+
+
+
+    public function moveOptionUp($id)
+    {
+
+        $upItem = DB::select("SELECT * FROM explore_options WHERE id < ? ORDER BY id DESC LIMIT 1", [$id]);
+
+        $currentItem = DB::select("SELECT * FROM explore_options WHERE id = ?", [$id]);
+
+        if (!$upItem) {
+            $this->form_completion_message = "The Option is already at the top of the list.";
+            return;
+        }
+
+
+        DB::table('explore_options')->where('id', $currentItem[0]->id)->update([
+            ...(array) $upItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+
+        DB::table('explore_options')->where('id', $upItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $upItem[0]->id
+        ]);
+
+        $this->form_completion_message = "The Option has been moved up.";
+
+        $options_db = DB::select("SELECT * FROM explore_options");
+
+        $this->options_array = array_map(function ($item) {
+            return ['id' => $item->id, 'option' => $item->option, 'image_link' => $item->image_link];
+        }, $options_db);
+    }
+
+    public function moveOptionDown($id)
+    {
+
+        $downItem = DB::select("SELECT * FROM explore_options WHERE id > ? ORDER BY id ASC LIMIT 1", [$id]);
+
+        $currentItem = DB::select("SELECT * FROM explore_options WHERE id = ?", [$id]);
+
+        if (!$downItem) {
+            $this->form_completion_message = "The Option is already at the bottom of the list.";
+            return;
+        }
+
+        DB::table('explore_options')->where('id', $currentItem[0]->id)->update([
+            ...(array) $downItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+        DB::table('explore_options')->where('id', $downItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $downItem[0]->id
+        ]);
+
+
+        $this->form_completion_message = "The Option has been moved down.";
+
+        $options_db = DB::select("SELECT * FROM explore_options");
+
+        $this->options_array = array_map(function ($item) {
+            return ['id' => $item->id, 'option' => $item->option, 'image_link' => $item->image_link];
+        }, $options_db);
+    }
+
+
+
+    public function moveItemUp($id)
+    {
+
+        $currentItem = DB::select("SELECT * FROM explore_items WHERE id = ?", [$id]);
+
+        $upItem = DB::select("SELECT * FROM explore_items WHERE id < ? AND option_id = ? ORDER BY id DESC LIMIT 1", [$id , $currentItem[0]->option_id]);
+
+
+
+        if(!$upItem){
+            $this->form_completion_message = "The Item is already at the top of the list according to its option.";
+            return;
+        }
+
+        if ($upItem[0]->option_id !== $currentItem[0]->option_id) {
+            $this->form_completion_message = "The Item is already at the top of the list according to its option.";
+            return;
+        }
+
+
+        DB::table('explore_items')->where('id', $currentItem[0]->id)->update([
+            ...(array) $upItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+
+        DB::table('explore_items')->where('id', $upItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $upItem[0]->id
+        ]);
+
+        $this->form_completion_message = "The Item has been moved up.";
+
+
+        $items_db = DB::select("SELECT
+        explore_items.*,
+        explore_options.*,
+        explore_items.image_link AS item_image,
+        explore_options.image_link AS option_image,
+        explore_items.id AS item_id,
+        explore_options.id AS option_id
+        FROM explore_items
+        LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+        ORDER BY explore_items.option_id;");
+
+        $this->items_array = array_map(function ($item) {
+            return [
+                'option_title' => $item->option,
+                'item_title' => $item->item_title,
+                'image_link' => $item->item_image,
+                'item_description' => $item->item_description,
+                'site_link' => $item->site_link,
+                'id' => $item->item_id
+            ];
+        }, $items_db);
+    }
+
+    public function moveItemDown($id)
+    {
+
+        $currentItem = DB::select("SELECT * FROM explore_items WHERE id = ?", [$id]);
+
+        $downItem = DB::select("SELECT * FROM explore_items WHERE id > ? AND option_id = ?  ORDER BY id ASC LIMIT 1", [$id , $currentItem[0]->option_id]);
+
+
+
+        if (!$downItem) {
+            $this->form_completion_message = "The Item is already at the bottom of the list according to its option.";
+            return;
+        }
+
+        if ($downItem[0]->option_id !== $currentItem[0]->option_id) {
+            $this->form_completion_message = "The Item is already at the bottom of the list according to its option.";
+            return;
+        }
+
+
+        DB::table('explore_items')->where('id', $currentItem[0]->id)->update([
+            ...(array) $downItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+
+        DB::table('explore_items')->where('id', $downItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $downItem[0]->id
+        ]);
+
+
+        $this->form_completion_message = "The Item has been moved down.";
+
+
+
+        $items_db = DB::select("SELECT
+        explore_items.*,
+        explore_options.*,
+        explore_items.image_link AS item_image,
+        explore_options.image_link AS option_image,
+        explore_items.id AS item_id,
+        explore_options.id AS option_id
+        FROM explore_items
+        LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+        ORDER BY explore_items.option_id;");
+
+        $this->items_array = array_map(function ($item) {
+            return [
+                'option_title' => $item->option,
+                'item_title' => $item->item_title,
+                'image_link' => $item->item_image,
+                'item_description' => $item->item_description,
+                'site_link' => $item->site_link,
+                'id' => $item->item_id
+            ];
+        }, $items_db);
     }
 
 

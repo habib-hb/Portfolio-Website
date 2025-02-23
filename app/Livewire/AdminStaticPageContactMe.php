@@ -173,7 +173,7 @@ class AdminStaticPageContactMe extends Component
             $imagePath = $this->email_icon->store('temp_contact_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_email_icon = $imagePath;
 
@@ -185,7 +185,7 @@ class AdminStaticPageContactMe extends Component
             $imagePath = $this->phone_icon->store('temp_contact_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_phone_icon = $imagePath;
 
@@ -197,7 +197,7 @@ class AdminStaticPageContactMe extends Component
             $imagePath = $this->address_icon->store('temp_contact_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_address_icon = $imagePath;
 
@@ -210,7 +210,7 @@ class AdminStaticPageContactMe extends Component
             $imagePath = $this->social_icon->store('temp_contact_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_social_icon = $imagePath;
 
@@ -223,7 +223,7 @@ class AdminStaticPageContactMe extends Component
             $imagePath = $this->title_icon->store('temp_contact_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_title_icon = $imagePath;
 

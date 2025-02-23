@@ -132,7 +132,7 @@ class AdminStaticPageAboutMe extends Component
             $imagePath = $this->about_icon_image->store('temp_about_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_icon = $imagePath;
 
@@ -146,7 +146,7 @@ class AdminStaticPageAboutMe extends Component
             $imagePath = $this->about_profile_image->store('temp_about_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_profile = $imagePath;
 

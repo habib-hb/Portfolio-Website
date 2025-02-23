@@ -189,6 +189,31 @@
 
     </div>
 
+
+    <div wire:loading wire:target="moveItemUp"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Moving Item Up...</span>
+        </div>
+
+
+    </div>
+
+    <div wire:loading wire:target="moveItemDown"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Moving Item Down...</span>
+        </div>
+
+
+    </div>
+
     <div wire:loading wire:target="item_image"
     class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
@@ -460,6 +485,15 @@
 
                             <button wire:click="editPortfolio('{{ $item['id'] }}')"
                                 class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
+                        </div>
+
+                        <div class="flex gap-4 justify-center items-center">
+                            <button wire:click="moveItemUp('{{ $item['id'] }}')"
+                                    class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&uarr;
+                                    Move Up</button>
+                                <button wire:click="moveItemDown('{{ $item['id'] }}')"
+                                    class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&darr;
+                                    Move Down</button>
                         </div>
                     </div>
                 @endforeach

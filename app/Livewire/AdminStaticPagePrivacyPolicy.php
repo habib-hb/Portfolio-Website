@@ -148,7 +148,7 @@ class AdminStaticPagePrivacyPolicy extends Component
             $imagePath = $this->privacy_title_icon->store('temp_privacy_policy_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_privacy = $imagePath;
 

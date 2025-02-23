@@ -8,7 +8,7 @@
 
 
 
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles
 
          <!-- Favicon -->
@@ -22,7 +22,19 @@
 
         <livewire:homepage_wire/>
 
+ 
+
+
+
         @livewireScripts
+
+
+
+
+
+
+        <!-- Initialize Swiper -->
+
 
     </body>
 

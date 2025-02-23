@@ -208,7 +208,7 @@ class AdminPortfolioSectionManagement extends Component
             $imagePath = $this->item_image->store('temp_item_images', 'public');
 
             //Full Link
-            $imagePath = asset('storage/' . $imagePath);
+            $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_portfolio = $imagePath;
 
@@ -376,6 +376,86 @@ class AdminPortfolioSectionManagement extends Component
 
                 $this->dispatch('refresh-blog-area');
                 $this->dispatch('refresh-image-area');
+    }
+
+
+    public function moveItemUp($id){
+
+        $upItem = DB::select("SELECT * FROM portfolio_items WHERE id < ? ORDER BY id DESC LIMIT 1", [$id]);
+
+        $currentItem = DB::select("SELECT * FROM portfolio_items WHERE id = ?", [$id]);
+
+        if(!$upItem){
+            $this->form_completion_message = "The Item is already at the top of the list.";
+            return;
+        }
+
+        DB::table('portfolio_items')->where('id', $currentItem[0]->id)->update([
+            ...(array) $upItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+        DB::table('portfolio_items')->where('id', $upItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $upItem[0]->id
+        ]);
+
+        $this->form_completion_message = "The Item has been moved up.";
+
+        $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+
+        $this->items_array = array_map(function ($item) {
+            return [
+                'portfolio_title' => $item->portfolio_title,
+                'portfolio_description' => $item->portfolio_description,
+                'portfolio_image_link' => $item->portfolio_image_link,
+                'technologies_used' => $item->technologies_used,
+                'portfolio_site_link' => $item->portfolio_site_link,
+                'portfolio_github_link' => $item->portfolio_github_link,
+                'id' => $item->id
+            ];
+        }, $portfolios_db);
+
+
+    }
+
+    public function moveItemDown($id){
+
+        $downItem = DB::select("SELECT * FROM portfolio_items WHERE id > ? ORDER BY id ASC LIMIT 1", [$id]);
+
+        $currentItem = DB::select("SELECT * FROM portfolio_items WHERE id = ?", [$id]);
+
+        if(!$downItem){
+            $this->form_completion_message = "The Item is already at the bottom of the list.";
+            return;
+        }
+
+        DB::table('portfolio_items')->where('id', $currentItem[0]->id)->update([
+            ...(array) $downItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+        DB::table('portfolio_items')->where('id', $downItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $downItem[0]->id
+        ]);
+
+        $this->form_completion_message = "The Item has been moved down.";
+
+        $portfolios_db = DB::select("SELECT * FROM portfolio_items");
+
+        $this->items_array = array_map(function ($item) {
+            return [
+                'portfolio_title' => $item->portfolio_title,
+                'portfolio_description' => $item->portfolio_description,
+                'portfolio_image_link' => $item->portfolio_image_link,
+                'technologies_used' => $item->technologies_used,
+                'portfolio_site_link' => $item->portfolio_site_link,
+                'portfolio_github_link' => $item->portfolio_github_link,
+                'id' => $item->id
+            ];
+        }, $portfolios_db);
+
     }
 
 
