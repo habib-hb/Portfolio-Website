@@ -83,7 +83,7 @@
                 </h2>
 
                 <div
-                    class="w-full [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    class="w-full [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
                     <p>{!! $item['item_description'] !!}</p></div>
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">

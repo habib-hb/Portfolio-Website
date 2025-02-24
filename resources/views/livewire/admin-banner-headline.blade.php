@@ -210,6 +210,31 @@
         </div>
 
 
+         {{-- My Portfolio Section --}}
+         <h1 class="text-xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} text-center mt-8">Collaborations Section</h1>
+
+        <div class="flex flex-col mt-4">
+
+            <label for="banner_headline" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Collaborations Caption (300 Letters Max)</label>
+
+            <textarea type="text" wire:model="collaborations_caption" class="w-[96vw] md:max-w-full  py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="banner_headline" rows="4" maxlength="300" ></textarea>
+
+        </div>
+
+
+
+         {{-- My Portfolio Section --}}
+         <h1 class="text-xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} text-center mt-8">Testimonials Section</h1>
+
+        <div class="flex flex-col mt-4">
+
+            <label for="banner_headline" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Testimonials Caption (300 Letters Max)</label>
+
+            <textarea type="text" wire:model="testimonials_caption" class="w-[96vw] md:max-w-full  py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="banner_headline" rows="4" maxlength="300" ></textarea>
+
+        </div>
+
+
         {{-- <div class="flex flex-col mt-8">
 
             <label for="banner_headline" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Banner Headline (300 Letters Max)</label>

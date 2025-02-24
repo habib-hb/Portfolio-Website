@@ -144,7 +144,7 @@
 
 
         <div class="w-full flex flex-col lg:flex-row justify-center items-center lg:items-start gap-10">
-            <div class="flex flex-col justify-center gap-6 flex-1">
+            <div class="flex flex-col w-full justify-center gap-6 flex-1">
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
                         {{-- <img src="{{ asset('images/contact-email.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}

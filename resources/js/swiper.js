@@ -60,7 +60,7 @@ const swiper1 = new Swiper('.swiper-testimonials', {
   loop: true,
 
   slidesPerView: slidersPerViewRendererTestimonials(),
-  spaceBetween:  40,
+  spaceBetween:  48,
 
   pagination: {
     el: '.swiper-pagination',

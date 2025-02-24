@@ -47,7 +47,7 @@
 
                 <button
                     class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='/consultation'">Consult Now</button>
+                    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
 
             </div>
 
@@ -167,6 +167,19 @@
                 <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
 
                 <span class=" text-white py-2 rounded-lg"> Processing Theme Change...</span>
+            </div>
+
+
+        </div>
+
+
+        <div wire:loading wire:target="login"
+            class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+                <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing Credentials...</span>
             </div>
 
 
@@ -336,262 +349,9 @@
     <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
 
 
-        {{-- Full Project --}}
-        <div
-            class="flex flex-col w-[96vw] md:max-w-[30%] h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
-                <img src="{{ asset('images/full-project.gif') }}"
-                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                    alt="">
-            </div>
-
-            <h1
-                class="text-2xl font-semibold mt-1 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Full Project</h1>
-
-            <p
-                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Full Project encompasses Figma design, frontend, and backend for complete digital solutions.</p>
-
-            <div class="mt-4 flex flex-row gap-4 mb-6">
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/full-project'"><a
-                        href="{{ env('BASE_LINK') }}/services/full-project">Select</a></button>
-
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/full-project'"><a
-                        href="{{ env('BASE_LINK') }}/details/full-project">Details</a></button>
-            </div>
-
-        </div>
-
-
-
-
-        {{-- Front End --}}
-        <div
-            class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/front-end.gif') }}"
-                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                    alt="">
-            </div>
-
-            <h1
-                class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Front End</h1>
-
-            <p
-                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Frontend focuses on crafting responsive, interactive user interfaces for seamless digital experiences.
-            </p>
-
-            <div class="mt-4 flex flex-row gap-4 mb-6">
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/front-end'"><a
-                        href="{{ env('BASE_LINK') }}/services/front-end">Select</a></button>
-
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/front-end'"><a
-                        href="{{ env('BASE_LINK') }}/details/front-end">Details</a></button>
-            </div>
-
-        </div>
-
-
-
-
-        {{-- Backend --}}
-        <div
-            class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-
-            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/back-end.gif') }}"
-                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                    alt="">
-            </div>
-
-            <h1
-                class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Back End</h1>
-
-            <p
-                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Backend Development powers server-side logic, database management, and seamless API integration for
-                robust digital solutions.</p>
-
-            <div class="mt-4 flex flex-row gap-4 mb-6">
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/back-end'"><a
-                        href="{{ env('BASE_LINK') }}/services/back-end">Select</a></button>
-
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/back-end'"><a
-                        href="{{ env('BASE_LINK') }}/details/back-end">Details</a></button>
-            </div>
-
-        </div>
-
-
-
-
-        {{-- Figma Design --}}
-        <div
-            class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-
-            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/uiux-design.gif') }}"
-                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                    alt="">
-            </div>
-
-            <h1
-                class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Figma Design</h1>
-
-            <p
-                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Figma Design crafts intuitive, stunning, user-centered interfaces, serving as blueprints for seamless
-                experiences.</p>
-
-            <div class="mt-4 flex flex-row gap-4 mb-6">
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/figma-design'"><a
-                        href="{{ env('BASE_LINK') }}/services/figma-design">Select</a></button>
-
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/figma-design'"><a
-                        href="{{ env('BASE_LINK') }}/details/figma-design">Details</a></button>
-            </div>
-
-        </div>
-
-
-
-        {{-- WordPress --}}
-        <div
-            class="flex flex-col w-[96vw]  md:max-w-[30%] h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-
-            <div class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/wordpress.gif') }}"
-                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                    alt="">
-            </div>
-
-            <h1
-                class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                WordPress</h1>
-
-            <p
-                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Crafting tailored WordPress solutions, from design to seamless launch, for a powerful online presence.
-            </p>
-
-            <div class="mt-4 flex flex-row gap-4 mb-6">
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/wordpress'"><a
-                        href="{{ env('BASE_LINK') }}/services/wordpress">Select</a></button>
-
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/wordpress'"><a
-                        href="{{ env('BASE_LINK') }}/details/wordpress">Details</a></button>
-            </div>
-
-        </div>
-
-
-
-        {{-- Error Fixing --}}
-        <div
-            class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-
-            <div
-                class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/error-fixes.gif') }}"
-                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                    alt="">
-            </div>
-
-            <h1
-                class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Error Fixing</h1>
-
-            <p
-                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Error fixing identifies and resolves issues in code, ensuring optimal performance, stability, and
-                reliable functionality.</p>
-
-            <div class="mt-4 flex flex-row gap-4 mb-6">
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/error-fixing'"><a
-                        href="{{ env('BASE_LINK') }}/services/error-fixing">Select</a></button>
-
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/error-fixing'"><a
-                        href="{{ env('BASE_LINK') }}/details/error-fixing">Details</a></button>
-            </div>
-
-        </div>
-
-
-
-        {{-- Test --}}
-        <div
-            class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-
-            <div
-                class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
-                <img src="{{ asset('images/error-fixes.gif') }}"
-                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                    alt="">
-            </div>
-
-            <h1
-                class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Test</h1>
-
-            <p
-                class="text-center mt-2 text-lg font-normal px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                Error fixing identifies and resolves issues in code, ensuring optimal performance, stability, and
-                reliable functionality.</p>
-
-            <div class="mt-4 flex flex-row gap-4 mb-6">
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/services/test'"><a
-                        href="{{ env('BASE_LINK') }}/services/test">Select</a></button>
-
-                <button
-                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='{{ env('BASE_LINK') }}/details/error-fixing'"><a
-                        href="{{ env('BASE_LINK') }}/details/error-fixing">Details</a></button>
-            </div>
-
-        </div>
-
-
         @foreach ($estimation_options as $item)
             <div
-                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-3 px-4  h-full md:min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-3 px-4  h-full min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div
@@ -606,7 +366,7 @@
                     {{ $item->title }}</h1>
 
                 <div
-                    class="text-center mt-2 text-lg font-normal px-4 line-clamp-3  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl">
+                    class="text-center mt-2 text-lg font-normal px-4 line-clamp-3  [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }} [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl">
                     {!! $item->description !!}</div>
 
                 <div class="flex flex-row gap-4 mb-6 mt-auto">
@@ -617,8 +377,8 @@
 
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                        onclick="window.location.href='{{ $item->blog_link }}"><a
-                            href="{{ Str::start($item->blog_link, 'http://') }}" target="_blank"
+                        onclick="window.location.href='{{ env('BASE_LINK') . $item->blog_link }}'"><a
+                            href="{{ Str::start($item->blog_link, env('BASE_LINK')) }}"
                             rel="noopener noreferrer">Details</a></button>
                 </div>
 
@@ -635,8 +395,7 @@
     {{-- Consult Now Button --}}
     <button
         class="mt-4 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
-        onclick="window.location.href='/consultation'"><a href="{{ env('BASE_LINK') }}/consultation">Consult
-            Now</a></button>
+        onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
 
 
 
@@ -681,15 +440,15 @@
                     {{ $item['portfolio_title'] }}
                 </h2>
 
-                <div class=" w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    {!! $item['portfolio_description'] !!}</div>
+                <div class=" w-full [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
+                    <p>{!! $item['portfolio_description'] !!}</p></div>
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">
                     <a href="{{ $item['portfolio_site_link'] }}" target="_blank"><button
                             class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
 
                     <a href="{{ $item['portfolio_github_link'] }}" target="_blank"><button
-                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
+                            class="h-[45px] w-[160px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
                             Code</button></a>
                 </div>
 
@@ -723,7 +482,7 @@
     id="admin_login_popup">
 
 
-    <p class="absolute top-4 right-4 cursor-pointer text-4xl hover:scale-110 transition-all" id="admin_popup_close"
+    <p class="absolute top-4 right-4 cursor-pointer text-4xl hover:scale-110 transition-all {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}" id="admin_popup_close"
         wire:click="adminLoginPopup">&times;
     </p>
 
@@ -753,15 +512,39 @@
 
         </div>
 
-        <div class="flex flex-col max-w-[680px]">
+        {{-- <div class="flex flex-col max-w-[680px]">
 
             <label for="title"
                 class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Password</label>
 
-            <input type="text" wire:model.defer="admin_password" placeholder="Password"
+            <input type="password" wire:model.defer="admin_password" placeholder="Password"
                 class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="admin_password">
 
+        </div> --}}
+
+        <div class="relative max-w-[680px]">
+            <input id="hs-toggle-password" wire:model.defer="admin_password" type="password"
+                class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                placeholder="Enter password">
+            <button type="button" data-hs-toggle-password='{
+          "target": "#hs-toggle-password"
+        }'
+                class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
+                <svg class="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path class="hs-password-active:hidden" d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                    <path class="hs-password-active:hidden"
+                        d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+                    <path class="hs-password-active:hidden"
+                        d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                    <line class="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22">
+                    </line>
+                    <path class="hidden hs-password-active:block" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z">
+                    </path>
+                    <circle class="hidden hs-password-active:block" cx="12" cy="12" r="3"></circle>
+                </svg>
+            </button>
         </div>
 
         <p class="text-lg text-red-800 mt-4" id="admin_login_error"></p>
@@ -798,7 +581,7 @@
 
     <p
         class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-        {{ $categories_caption }}</p>
+        {{ $collaborations_caption }}</p>
 
 </div>
 <div
@@ -809,7 +592,7 @@
             <!-- Slides -->
             @foreach ($collaboration_cards as $item)
                 <div
-                    class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                    class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] cursor-grab">
                     <div class="flex flex-col h-full justify-between gap-8 items-center">
                         <img src="{{ $item['profile_image'] }}" class="max-h-[200px] max-w-[200px]" alt="">
                         <div class="flex flex-col gap-0 justify-center items-center">
@@ -826,8 +609,8 @@
         <!-- If we need navigation buttons -->
 
 
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev scale-50 opacity-75"></div>
+        <div class="swiper-button-next scale-50 opacity-75"></div>
         <div
             class="swiper-pagination [&.swiper-pagination-fraction]:!bottom-0 [&.swiper-pagination-fraction]:!text-blue-600">
         </div>
@@ -857,7 +640,7 @@
 
     <p
         class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-        {{ $categories_caption }}</p>
+        {{ $testimonials_caption }}</p>
 
 </div>
 <div
@@ -868,7 +651,7 @@
             <!-- Slides -->
             @foreach ($testimonials_cards as $item)
                     <div
-                    class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                    class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] cursor-grab">
                     <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
                         <div class="flex flex-col h-full justify-center">
                             <div class="w-full flex justify-start">
@@ -914,8 +697,8 @@
         <!-- If we need navigation buttons -->
 
 
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev scale-50 opacity-75"></div>
+        <div class="swiper-button-next scale-50 opacity-75"></div>
         <div class="swiper-pagination [&.swiper-pagination-fraction]:!text-blue-600"></div>
 
 
@@ -932,8 +715,11 @@
 {{-- Consult Now Button --}}
 <button
     class="my-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
-    onclick="window.location.href='/consultation'"><a href="{{ env('BASE_LINK') }}/consultation">Consult
-        Now</a></button>
+    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
+
+
+
+
 
 
 

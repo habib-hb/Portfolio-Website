@@ -6,7 +6,8 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         './app/**/*.php',
-        "./node_modules/flowbite/**/*.js"
+        "./node_modules/flowbite/**/*.js",
+        'node_modules/preline/dist/*.js',
       ],
 
   theme: {
@@ -58,7 +59,8 @@ export default {
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('preline/plugin'),
 ],
 }
 

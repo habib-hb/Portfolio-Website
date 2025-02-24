@@ -83,7 +83,7 @@
 
 
                 <h2
-                    class="text-lg font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                    class="text-lg font-semibold [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }} text-center">
                     {!! $item['description'] !!}</h2>
 
             </div>

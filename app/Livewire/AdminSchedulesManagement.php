@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\available_schedules;
 use App\Models\booked_appointments;
+use App\Models\booked_client_details;
 use App\Models\booked_patient_details;
 use App\Models\holidays;
 use DateTime;
@@ -221,7 +222,7 @@ class AdminSchedulesManagement extends Component
        foreach($datesArray as $date){
 
             // Find if there is an existing schedule
-            booked_patient_details::where('appointment_date' , $date['identifier'])->update([
+            booked_client_details::where('appointment_date' , $date['identifier'])->update([
                     'appointment_status' => 'Unsettled',
                     'testing' => $date['identifier']
 

@@ -59,6 +59,10 @@ class HomepageWire extends Component
 
     public $my_portfolio_caption;
 
+    public $collaborations_caption;
+
+    public $testimonials_caption;
+
     public $collaboration_cards;
 
     public $testimonials_cards;
@@ -94,6 +98,10 @@ class HomepageWire extends Component
         $this->services_caption = DB::table('site_data')->where('title', 'services_caption')->first()->data;
 
         $this->my_portfolio_caption = DB::table('site_data')->where('title', 'my_portfolio_caption')->first()->data;
+
+        $this->collaborations_caption = DB::table('site_data')->where('title', 'collaborations_caption')->first()->data;
+
+        $this->testimonials_caption = DB::table('site_data')->where('title', 'testimonials_caption')->first()->data;
 
 
 

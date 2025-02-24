@@ -99,7 +99,7 @@ class EstimationItem extends Component
             return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
         });
 
-        $this->option_details_link = DB::table('price_estimation')->where('id', $this->item_id)->value('blog_link');
+        $this->option_details_link = env('BASE_LINK') . DB::table('price_estimation')->where('id', $this->item_id)->value('blog_link');
 
     }
 
@@ -505,7 +505,8 @@ class EstimationItem extends Component
             return;
         }
 
-        DB::table('price_estimation')->where('id', $this->item_id)->update(['blog_link' => $this->option_details_link]);
+        $trimed_url_link = parse_url($this->option_details_link, PHP_URL_PATH);
+        DB::table('price_estimation')->where('id', $this->item_id)->update(['blog_link' => $trimed_url_link]);
 
         $this->notify_success = "Link added successfully";
     }

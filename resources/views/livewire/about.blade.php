@@ -101,7 +101,7 @@
       </div>
     </section>
 
-    <div class="max-w-[800px] [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl mx-auto py-4 px-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">
+    <div class="max-w-[800px] [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl mx-auto py-4 px-4 [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
         <p>{!!$about_me_content!!}</p>
     </div>
 

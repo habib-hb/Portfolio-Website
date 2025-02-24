@@ -22,7 +22,7 @@ class BlogShowcase extends Component
     public function mount(){
 
         $database_query = blog_posts::where('blog_type', 'custom')
-        ->orderBy('updated_at', 'desc')
+        ->orderBy('blog_id', 'desc')
         ->skip($this->database_offset)
         ->take($this->database_limit)
         ->get();

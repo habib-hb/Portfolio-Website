@@ -31,6 +31,10 @@ class AdminBannerHeadline extends Component
 
     public $my_portfolio_caption;
 
+    public $collaborations_caption;
+
+    public $testimonials_caption;
+
     public $notify_success;
 
     public $notify_error;
@@ -55,12 +59,16 @@ class AdminBannerHeadline extends Component
 
         $this->my_portfolio_caption = DB::table('site_data')->where('title', 'my_portfolio_caption')->first()->data;
 
+        $this->collaborations_caption = DB::table('site_data')->where('title', 'collaborations_caption')->first()->data;
+
+        $this->testimonials_caption = DB::table('site_data')->where('title', 'testimonials_caption')->first()->data;
+
     }
 
 
     public function save(){
 
-            if(!$this->temporary_image_hero_avatar || !$this->top_layer_text || !$this->up_middle_layer_text || !$this->down_middle_layer_text  || !$this->end_layer_text || !$this->categories_caption || !$this->services_caption || !$this->my_portfolio_caption){
+            if(!$this->temporary_image_hero_avatar || !$this->top_layer_text || !$this->up_middle_layer_text || !$this->down_middle_layer_text  || !$this->end_layer_text || !$this->categories_caption || !$this->services_caption || !$this->my_portfolio_caption || !$this->collaborations_caption || !$this->testimonials_caption){
 
                 $this->notify_error = "Please fill all the fields";
 
@@ -77,6 +85,8 @@ class AdminBannerHeadline extends Component
             DB::table('site_data')->where('title', 'categories_caption')->update(['data' => $this->categories_caption]);
             DB::table('site_data')->where('title', 'services_caption')->update(['data' => $this->services_caption]);
             DB::table('site_data')->where('title', 'my_portfolio_caption')->update(['data' => $this->my_portfolio_caption]);
+            DB::table('site_data')->where('title', 'collaborations_caption')->update(['data' => $this->collaborations_caption]);
+            DB::table('site_data')->where('title', 'testimonials_caption')->update(['data' => $this->testimonials_caption]);
 
             $this->notify_success = "Banner Headline Updated Successfully";
 
