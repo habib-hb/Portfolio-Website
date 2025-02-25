@@ -344,6 +344,8 @@ class EstimationItem extends Component
 
         $this->editable_selection_item_key = $key;
 
+        $this->dispatch('edit_option_triggered');
+
     }
 
 
@@ -509,6 +511,41 @@ class EstimationItem extends Component
         DB::table('price_estimation')->where('id', $this->item_id)->update(['blog_link' => $trimed_url_link]);
 
         $this->notify_success = "Link added successfully";
+    }
+
+
+
+    public function moveSelectionItemUp($key){
+
+        if($key == 0){
+            $this->notify_success = "Item already at the top";
+            return;
+        }
+
+        $current_option = $this->addable_selection_items[$key];
+
+        $this->addable_selection_items[$key] = $this->addable_selection_items[$key-1];
+        $this->addable_selection_items[$key-1] = $current_option;
+
+        $this->addable_selection_items = array_values($this->addable_selection_items);
+
+    }
+
+
+    public function moveSelectionItemDown($key){
+
+        if($key == count($this->addable_selection_items)-1){
+            $this->notify_success = "Item already at the bottom";
+            return;
+        }
+
+        $current_option = $this->addable_selection_items[$key];
+
+        $this->addable_selection_items[$key] = $this->addable_selection_items[$key+1];
+        $this->addable_selection_items[$key+1] = $current_option;
+
+        $this->addable_selection_items = array_values($this->addable_selection_items);
+
     }
 
 

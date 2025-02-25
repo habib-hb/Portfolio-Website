@@ -44,7 +44,7 @@
     <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
         <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
             class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
-            onclick="window.history.back()" alt="">
+            onclick="window.location.href='/admin_dashboard'" alt="">
 
         <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
             class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
@@ -248,16 +248,20 @@
                     Client Details</p>
 
                 <p class=" flex flex-row  {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                    <b>Name: &nbsp;</b>{{ $message['name'] }}</p>
+                    <b>Name: &nbsp;</b>{{ $message['name'] }}
+                </p>
 
                 <p class=" flex flex-row  {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                    <b>Email: &nbsp;</b>{{ $message['email'] }}</p>
+                    <b>Email: &nbsp;</b>{{ $message['email'] }}
+                </p>
 
                 <p class=" flex flex-row  {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                    <b>Phone: &nbsp;</b>{{ $message['phone'] }}</p>
+                    <b>Phone: &nbsp;</b>{{ $message['phone'] }}
+                </p>
 
                 <p class=" flex flex-row  {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                    <b>Message: &nbsp;</b>{{ $message['message'] }}</p>
+                    <b>Message: &nbsp;</b>{{ $message['message'] }}
+                </p>
 
 
             </div>
@@ -268,12 +272,13 @@
 
         {{-- If No Appointment Data --}}
         @if (count($all_contact_messages) == 0)
-        <div class="flex flex-col items-center h-[100vh]">
+            <div class="flex flex-col items-center h-[100vh]">
 
-            <p class="mt-16 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">No Contact Messages
-                Found</p>
+                <p class="mt-16 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">No Contact
+                    Messages
+                    Found</p>
 
-        </div>
+            </div>
         @endif
 
 

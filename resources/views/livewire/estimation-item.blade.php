@@ -271,6 +271,71 @@
 
     </div>
 
+
+    <div wire:loading wire:target="editOption"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing Edit Option...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="cancel_checkbox_option_edit"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="calcel_selection_option_edit"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="moveSelectionItemUp"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Moving Item Up...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="moveSelectionItemDown"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Moving Item Down...</span>
+        </div>
+
+
+    </div>
+
     {{-- <div wire:click="changeThemeMode" class="flex justify-center">
 
                 <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] mt-4 {{session('theme_mode') == 'light' ? '' : 'hidden'}}">
@@ -279,14 +344,18 @@
 
             </div> --}}
 
-            <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
-                <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
+    <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
+        <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
+            class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
+            onclick="window.location.href='/admin_dashboard/price_estimator_management/manage_card_options'" alt="">
 
-                <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
 
-                <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/dark_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer">
 
-            </div>
+    </div>
 
 
 
@@ -340,8 +409,7 @@
                     {{-- @if ($editable_option_id) --}}
                     <h2
                         class="text-2xl md:text-4xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                        Add
-                        Selection</h2>
+                        {{ $editable_option_key_selection !== null ? 'Update Selection' : 'Add Selection' }} </h2>
                     {{-- @endif --}}
 
                     <div class="flex flex-col mt-2 max-w-[680px]">
@@ -363,18 +431,18 @@
 
                     <h2
                         class="text-xl md:text-2xl block mx-auto {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                        Add
-                        Selection Items</h2>
+                        {{ $editable_selection_item_key !== null ? 'Update Selection Item' : 'Add Selection Item' }}
+                    </h2>
 
                     <div class="flex flex-col mt-2 max-w-[680px]">
 
                         <label for="blog_excerpt"
                             class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Item
-                            Name</label>
+                            Name (Maximum 80 characters)</label>
 
                         <textarea wire:model="selection_item_name" type="text"
                             class="w-[92vw] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                            id="blog_excerpt" rows="4"></textarea>
+                            id="blog_excerpt" maxlength="80" rows="4"></textarea>
 
                     </div>
 
@@ -433,6 +501,13 @@
                                     <button wire:click="editSelectionItem('{{ $key }}')"
                                         class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
                                 </div>
+
+                                <div class="flex gap-4 justify-center items-center">
+                                    <button wire:click="moveSelectionItemUp('{{ $key }}')"
+                                        class="h-[35px] w-[120px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all"> &uarr; Move Up</button>
+                                    <button wire:click="moveSelectionItemDown('{{ $key }}')"
+                                        class="h-[35px] w-[120px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&darr; Move Down</button>
+                                </div>
                             </div>
                         @endforeach
 
@@ -476,7 +551,7 @@
                     {{-- @if ($editable_option_id) --}}
                     <h2
                         class="text-2xl md:text-4xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                        Add Card
+                        {{ $editable_option_key_checkbox === null ? 'Add' : 'Edit' }} Card
                         Checkbox</h2>
                     {{-- @endif --}}
 
@@ -540,15 +615,14 @@
                 class="flex flex-col gap-4 w-full max-h-[70vh] overflow-auto {{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-black' }} items-center  mt-4  px-4 py-4 md:px-8 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                 <h2
                     class="text-2xl md:text-4xl font-bold {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
-                    Created
-                    Option Items</h2>
+                    Created Options</h2>
 
                 {{-- @foreach ($options_array as $option) --}}
                 @foreach ($items_array_php_version as $main_key => $item)
                     <div
                         class="flex w-full flex-col justify-center items-center py-4 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#1e1d1d]' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
 
-                        <p class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                        <p class="text-2xl px-4 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                             {{-- <span class="text-[#1A579F] text-2xl font-bold">Title: </span>This is the option</p> --}}
                             <span
                                 class="{{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} text-2xl font-bold">{{ $item['type'] == 'select' ? 'Select' : 'Checkbox' }}
@@ -621,7 +695,7 @@
                 @if (count($items_array_php_version) == 0)
                     <p
                         class="text-lg text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                        No Option Items Created</p>
+                        No Options Created</p>
                 @endif
 
             </div>
@@ -652,7 +726,8 @@
             <div class="flex flex-col mt-2 max-w-[680px]">
 
                 <label for="title"
-                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Blog Link</label>
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Blog
+                    Link</label>
 
                 <input wire:model="option_details_link" type="text"
                     class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"

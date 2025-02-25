@@ -126,7 +126,7 @@ class AdminTestimonialsSectionManagement extends Component
 
                 $this->quote = null;
 
-                $this->form_completion_message = 'Testimonials Card Updated Successfully';
+                $this->form_completion_message = 'Testimonial Card Updated Successfully';
 
                 $this->dispatch('refresh-blog-area');
                 $this->dispatch('refresh-image-area');
@@ -169,7 +169,7 @@ class AdminTestimonialsSectionManagement extends Component
             $this->quote = "";
 
             $this->dispatch('alert-manager');
-            $this->form_completion_message = "Testimonials Card Added Successfully.";
+            $this->form_completion_message = "Testimonial Card Added Successfully.";
             $this->dispatch('refresh-blog-area');
             $this->dispatch('refresh-image-area');
         } else {
@@ -226,7 +226,7 @@ class AdminTestimonialsSectionManagement extends Component
             ];
         }, $testimonials_db);
 
-        $this->form_completion_message = 'Testimonials Card deleted successfully.';
+        $this->form_completion_message = 'Testimonial Card deleted successfully.';
     }
 
     public function remove_session_message()

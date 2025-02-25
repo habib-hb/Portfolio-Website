@@ -295,7 +295,7 @@ class AdminExploreSectionManagement extends Component
 
             $this->option_image = "";
 
-            session()->flash('message', 'Option added successfully.');
+            $this->form_completion_message = 'Option Created Successfully';
         } else {
             $this->form_error_message = 'Please fill all the fields correctly';
             $this->dispatch('alert-manager');

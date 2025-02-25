@@ -165,6 +165,32 @@
 
     </div>
 
+
+    <div wire:loading wire:target="moveItemUp"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Moving Item Up...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="moveItemDown"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Moving Item Down...</span>
+        </div>
+
+
+    </div>
+
     <div wire:loading wire:target="deleteOption"
         class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
@@ -202,12 +228,68 @@
 
     </div>
 
+
+    <div wire:loading wire:target="created_portfolios"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="editEstimatorCard"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="cancel_edit"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing...</span>
+        </div>
+
+
+    </div>
+
+
+    <div wire:loading wire:target="deleteEstimation"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Deleting Estimation Card...</span>
+        </div>
+
+
+    </div>
+
     <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
-        <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
+        <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
+            class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
+            onclick="window.location.href='/admin_dashboard/price_estimator_management'" alt="">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/dark_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer">
 
     </div>
 
@@ -217,7 +299,7 @@
     <main id="add_new_estimator" class="flex flex-col min-h-screen w-[96vw]  md:max-w-[800px] mx-auto">
         <h1
             class="text-2xl font-semibold text-center mt-4 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-            {{$editable_estimator_card_id == null ? 'Add' : 'Edit'}} Estimation Card</h1>
+            {{ $editable_estimator_card_id == null ? 'Add' : 'Edit' }} Estimation Card</h1>
 
 
         <div class="flex flex-col mt-2">
@@ -240,8 +322,8 @@
                 Image (Make sure it's less than 1mb)</label>
 
             @if ($temporary_image_estimation_card)
-                <img src="{{ $temporary_image_estimation_card }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
-                    alt="">
+                <img src="{{ $temporary_image_estimation_card }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
             @endif
 
             <input wire:model="item_image" type="file" accept="image/*"
@@ -321,7 +403,7 @@
 
                     setTimeout(() => {
 
-                      document.getElementById('item_image').value = null;
+                        document.getElementById('item_image').value = null;
 
                     }, 10);
 
@@ -364,7 +446,14 @@
         <div class="flex flex-row justify-center items-center my-8">
 
             <button wire:click="save_item"
-                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Save</button>
+                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">{{ $editable_estimator_card_id !== null ? 'Update' : 'Save' }}</button>
+
+        </div>
+        <div class="flex flex-row justify-center items-center mb-8">
+
+            <button wire:click="cancel_edit"
+                class="{{ $editable_estimator_card_id !== null ? '' : 'hidden' }} bg-red-800 hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel
+                Edit</button>
 
         </div>
 
@@ -377,9 +466,7 @@
 
             <h1
                 class="flex flex-row text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                To Select Special Annual Holidays Or Annual Off Days, Click The "Select Annual Holidays" Button Below.
-                If You Want To View Already Submitted Holidays Or Delete Specific Holidays, Click The "Submitted Annual
-                Holidays" Button.</h1>
+                To manage created estimation cards, click on the "Created Cards" button below</h1>
 
             {{-- Created Items Section --}}
             <button wire:click="created_portfolios"
@@ -401,18 +488,28 @@
                         <p class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                             {{ $item['title'] }}</p>
 
-                        <div class="px-5 [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
-                            <p>{!! $item['description'] !!}</p></div>
+                        <div
+                            class=" text-center px-5 [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
+                            <p>{!! $item['description'] !!}</p>
+                        </div>
 
 
                         {{-- <button wire:click="deleteItem('{{ $item['id'] }}')" --}}
                         <div class="flex gap-4 justify-center items-center">
                             <button
-                                wire:click="confirm_window( 'deleteEstimation' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Portfolio Item?')"
+                                wire:click="confirm_window( 'deleteEstimation' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Estimation Card?')"
                                 class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
 
                             <button wire:click="editEstimatorCard('{{ $item['id'] }}')"
                                 class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
+                        </div>
+                        <div class="flex gap-4 justify-center items-center">
+                            <button wire:click="moveItemUp('{{ $item['id'] }}')"
+                                class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&uarr;
+                                Move Up</button>
+                            <button wire:click="moveItemDown('{{ $item['id'] }}')"
+                                class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&darr;
+                                Move Down</button>
                         </div>
                     </div>
                 @endforeach

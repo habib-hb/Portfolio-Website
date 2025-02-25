@@ -6,6 +6,7 @@ use App\Models\available_schedules;
 use App\Models\booked_appointments;
 use App\Models\booked_client_details;
 use App\Models\booked_patient_details;
+use App\Models\holidays;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
@@ -137,38 +138,74 @@ class AdminUnsettledAppointments extends Component
 
 
 
-        //  Dates And Time Processing
-        $datesArray = [];
-        $today = new DateTime();
+         $datesArray = [];
+            $today = new DateTime();
 
-        while(true){
+            $holidays_database_query=holidays::where('holidays_category', 'weekly')->get();
 
-            if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+            // Checking if there is at least one result
+            if ($holidays_database_query->isNotEmpty()) {
 
-            $dateInfo = [
-                'day' => $today->format('d'),
-                'day_name_abbr' => strtoupper($today->format('D')),
-                'month' => $today->format('m'),
-                'year' => $today->format('Y'),
-                'month_name' => $today->format('F'),
-                'identifier' => $today->format('Y-m-d'),
-            ];
+                // Decoding the 'holidays' field from the first row
+                $holidays_get_holidays_field = json_decode($holidays_database_query[0]->holidays);
 
-            $datesArray[] = $dateInfo;
+            } else {
 
-        }
-
-            if(count($datesArray) === 10){
-
-                break;
+                // Handling the case where no results are found
+                $holidays_get_holidays_field = [];
 
             }
 
-            // Move to the next day
-            $today->modify('+1 day');
-        }
 
-        $this->datesArray = $datesArray;
+            // Testing
+            $annual_holidays_database_query=holidays::where('holidays_category', 'annual')->get();
+
+            // Checking if there is at least one result
+            if ($annual_holidays_database_query->isNotEmpty()) {
+
+                // Decoding the 'holidays' field from the first row
+                $annual_holidays_get_holidays_field = json_decode($annual_holidays_database_query[0]->holidays);
+
+            } else {
+
+                // Handling the case where no results are found
+                $annual_holidays_get_holidays_field = [];
+
+            }
+            // End Testing
+
+
+            while(true){
+
+                $formattedDate = substr($today->format('Y-m-d'), 5);
+
+                     // if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+                if(!in_array(strtoupper($today->format('D')), $holidays_get_holidays_field) && !in_array($formattedDate, $annual_holidays_get_holidays_field)){
+
+                $dateInfo = [
+                    'day' => $today->format('d'),
+                    'day_name_abbr' => strtoupper($today->format('D')),
+                    'month' => $today->format('m'),
+                    'year' => $today->format('Y'),
+                    'month_name' => $today->format('F'),
+                    'identifier' => $today->format('Y-m-d'),
+                ];
+
+                $datesArray[] = $dateInfo;
+
+            }
+
+                if(count($datesArray) === 10){
+
+                    break;
+
+                }
+
+                // Move to the next day
+                $today->modify('+1 day');
+            }
+
+            $this->datesArray = $datesArray;
 
 
         // Setting the title Month and Year

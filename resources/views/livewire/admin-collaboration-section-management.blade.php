@@ -242,6 +242,19 @@
     </div>
 
 
+    <div wire:loading wire:target="editCollaboration"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing...</span>
+        </div>
+
+
+    </div>
+
+
     <div wire:loading wire:target="deleteCollaboration"
         class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
@@ -270,14 +283,18 @@
 
 
 
-<div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
-    <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
+    <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
+        <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
+            class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
+            onclick="window.location.href='/admin_dashboard'" alt="">
 
-    <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
 
-    <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/dark_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer">
 
-</div>
+    </div>
 
 
 
@@ -285,7 +302,7 @@
     <main id="add_new_collaboration_card" class="flex flex-col min-h-screen w-[96vw]  md:max-w-[800px] mx-auto">
         <h1
             class="text-2xl font-semibold text-center mt-4 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-            {{$editable_collaboration_id == null ? 'Add' : 'Edit'}} Collaboration Card</h1>
+            {{ $editable_collaboration_id == null ? 'Add' : 'Edit' }} Collaboration Card</h1>
 
 
         <div class="flex flex-col mt-2">
@@ -319,8 +336,8 @@
                 Image (Make sure it's less than 1mb)</label>
 
             @if ($temporary_image_collaboration)
-                <img src="{{ $temporary_image_collaboration }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
-                    alt="">
+                <img src="{{ $temporary_image_collaboration }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
             @endif
 
             <input wire:model="profile_image" type="file" accept="image/*"
@@ -348,10 +365,10 @@
         <div class="flex flex-col gap-4 justify-center items-center my-8">
 
             <button wire:click="save_item"
-                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">{{$editable_collaboration_id !== null ? 'Update' : 'Save'}}</button>
+                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">{{ $editable_collaboration_id !== null ? 'Update' : 'Save' }}</button>
 
             <button wire:click="cancel_collaboration_item_update"
-                class="{{$editable_collaboration_id !== null ? '' : 'hidden'}} bg-red-800  hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel</button>
+                class="{{ $editable_collaboration_id !== null ? '' : 'hidden' }} bg-red-800  hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel</button>
 
         </div>
 
@@ -364,9 +381,7 @@
 
             <h1
                 class="flex flex-row text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                To Select Special Annual Holidays Or Annual Off Days, Click The "Select Annual Holidays" Button Below.
-                If You Want To View Already Submitted Holidays Or Delete Specific Holidays, Click The "Submitted Annual
-                Holidays" Button.</h1>
+                To manage created collaboration cards, click on the "Created Collaboration Cards" button below</h1>
 
             {{-- Created Items Section --}}
             <button wire:click="created_collaborations"
@@ -411,11 +426,11 @@
 
                         <div class="flex gap-4 justify-center items-center">
                             <button wire:click="moveItemUp('{{ $item['id'] }}')"
-                                    class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&uarr;
-                                    Move Up</button>
-                                <button wire:click="moveItemDown('{{ $item['id'] }}')"
-                                    class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&darr;
-                                    Move Down</button>
+                                class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&uarr;
+                                Move Up</button>
+                            <button wire:click="moveItemDown('{{ $item['id'] }}')"
+                                class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&darr;
+                                Move Down</button>
                         </div>
                     </div>
                 @endforeach
@@ -469,24 +484,20 @@
 
 
     <script>
+        document.addEventListener('livewire:initialized', () => {
 
-    document.addEventListener('livewire:initialized', () => {
+            Livewire.on('editable-collaboration-area', () => {
 
-        Livewire.on('editable-collaboration-area', () => {
+                setTimeout(() => {
 
-            setTimeout(() => {
+                    window.location.href = '#add_new_collaboration_card';
 
-                window.location.href = '#add_new_collaboration_card';
+                }, 10);
 
-            }, 10);
+            })
 
         })
-
-    })
-
-
-
-</script>
+    </script>
 
 
 </div>

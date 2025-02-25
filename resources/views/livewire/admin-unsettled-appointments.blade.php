@@ -44,7 +44,7 @@
     <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
         <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
             class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
-            onclick="window.history.back()" alt="">
+            onclick="window.location.href='/admin_dashboard'" alt="">
 
         <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
             class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
@@ -750,7 +750,7 @@ transition-all {{ count($all_appointments) == 0 ? 'hidden' : '' }}  shadow-[0_4p
 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
                     <button wire:click="currently_activated_panel({{ $appointment['booked_client_id'] }})"
-                        class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle
+                        class="px-4 py-2 w-[220px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle
                         Appointment <img src="{{ asset('images/press_down.png') }}"
                             class="w-[14px] inline -mt-1 {{ $currently_activated_panel_id == $appointment['booked_client_id'] ? 'rotate-180' : 'rotate-0' }}  transition-all" /></button>
 

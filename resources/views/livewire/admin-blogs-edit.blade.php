@@ -104,11 +104,15 @@
 
 
     <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
-        <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
+        <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
+            class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
+            onclick="window.location.href='/admin_dashboard'" alt="">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{ asset('images/dark_mode_toggler.png') }}"
+            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer">
 
     </div>
 
@@ -195,94 +199,96 @@
         </div>
 
 
-       <!-- The editor container -->
-       <div
-       class="{{ session('theme_mode') == 'light' ? '[&_.theme-changable]:bg-[#deeaf8] [&_.theme-changable]:text-black' : '[&_.theme-changable]:bg-[#202329] [&_.theme-changable]:text-white' }} [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black [&_.ql-picker-options]:!bg-[#deeaf8]' : 'text-white [&_span]:!text-white [&_.ql-picker-options]:!bg-[#202329]' }}"
-       >
-       <div wire:ignore>
-           <div id="editor"
-               class="w-[96vw] md:max-w-full [&_.ql-editor]:min-h-[400px] theme-changable rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none">
-               {!! $blog_area !!}
-           </div>
-       </div>
-   </div>
-   <!-- The editor container End -->
+        <!-- The editor container -->
+        <div
+            class="{{ session('theme_mode') == 'light' ? '[&_.theme-changable]:bg-[#deeaf8] [&_.theme-changable]:text-black' : '[&_.theme-changable]:bg-[#202329] [&_.theme-changable]:text-white' }} [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black [&_.ql-picker-options]:!bg-[#deeaf8]' : 'text-white [&_span]:!text-white [&_.ql-picker-options]:!bg-[#202329]' }}">
+            <div wire:ignore>
+                <div id="editor"
+                    class="w-[96vw] md:max-w-full [&_.ql-editor]:min-h-[400px] theme-changable rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none">
+                    {!! $blog_area !!}
+                </div>
+            </div>
+        </div>
+        <!-- The editor container End -->
 
 
-    <!-- Include the Quill library -->
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+        <!-- Include the Quill library -->
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
-    <!-- Initialize Quill editor -->
-    <script>
-        let quill = new Quill('#editor', {
-            theme: 'snow'
-        });
-
-        document.addEventListener('livewire:initialized', function() {
-
-            Livewire.on('alert-manager', () => {
-
-                // setTimeout(() => {
-                //     quill = new Quill('#editor', {
-                //         theme: 'snow'
-                //     })
-                //     let existing_content = @json($blog_area);
-                //     quill.setText(existing_content);
-                //     alert(existing_content);
-                // }, 10);
-
+        <!-- Initialize Quill editor -->
+        <script>
+            let quill = new Quill('#editor', {
+                theme: 'snow'
             });
 
-            Livewire.on('refresh-blog-area', () => {
+            document.addEventListener('livewire:initialized', function() {
 
-                setTimeout(() => {
+                Livewire.on('alert-manager', () => {
 
-                    quill.setText("");
+                    // setTimeout(() => {
+                    //     quill = new Quill('#editor', {
+                    //         theme: 'snow'
+                    //     })
+                    //     let existing_content = @json($blog_area);
+                    //     quill.setText(existing_content);
+                    //     alert(existing_content);
+                    // }, 10);
 
-                }, 10);
-
-            });
-
-
-        })
-
-        quill.on('text-change', (delta, oldDelta, source) => {
-            // if (source == 'user') {
-            console.log('A user action triggered this change.');
-            let checkNull = quill.getText();
-            if (checkNull == '\n') {
-                Livewire.dispatch('updateTextarea', {
-                    text: ''
                 });
-                return;
-            }
-            let deltaOps = quill.root.innerHTML;
-            Livewire.dispatch('updateTextarea', {
-                text: deltaOps
+
+                Livewire.on('refresh-blog-area', () => {
+
+                    setTimeout(() => {
+
+                        quill.setText("");
+
+                    }, 10);
+
+                });
+
+
+            })
+
+            quill.on('text-change', (delta, oldDelta, source) => {
+                // if (source == 'user') {
+                console.log('A user action triggered this change.');
+                let checkNull = quill.getText();
+                if (checkNull == '\n') {
+                    Livewire.dispatch('updateTextarea', {
+                        text: ''
+                    });
+                    return;
+                }
+                let deltaOps = quill.root.innerHTML;
+                Livewire.dispatch('updateTextarea', {
+                    text: deltaOps
+                });
+                // }
             });
-            // }
-        });
-    </script>
+        </script>
 
 
 
 
 
-    <div class="flex flex-col gap-4 md:gap-8 justify-center items-center my-8 {{ $loading_image ? 'hidden' : '' }}">
+        <div
+            class="flex flex-col gap-4 md:gap-8 justify-center items-center my-8 {{ $loading_image ? 'hidden' : '' }}">
 
-        <button wire:click="save" class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Update</button>
+            <button wire:click="save"
+                class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Update</button>
 
-        <button onclick="history.back()" class="bg-red-800 hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel</button>
+            <button onclick="history.back()"
+                class="bg-red-800 hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Cancel</button>
 
-    </div>
-
-
-
-
-
+        </div>
 
 
-                {{-- <button wire:click="test_image" >Image DD Test</button>
+
+
+
+
+
+        {{-- <button wire:click="test_image" >Image DD Test</button>
 
                 <button wire:click="test_textarea" >Textarea DD Test</button> --}}
 
@@ -298,11 +304,17 @@
 
 
     {{-- Blogs Edit Section --}}
-    <div class="flex flex-col justify-center items-center mt-8 {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+    <div
+        class="flex flex-col justify-center items-center mt-8 {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-        <h1 class="flex flex-row text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">To edit or delete blogs, click on the "Manage Blogs" button below</h1>
+        <h1 class="flex flex-row text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">To
+            edit or delete blogs, click on the "Manage Blogs" button below</h1>
 
-        <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"  onclick="window.location.href='/admin_dashboard/blogs/blogs_manage'">Manage Blogs <img src="{{ asset('images/external_link_dark_mode.png') }}" class="w-[14px] inline -mt-1 transition-all" /></button>
+        <button
+            class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+            onclick="window.location.href='/admin_dashboard/blogs/blogs_manage'">Manage Blogs <img
+                src="{{ asset('images/external_link_dark_mode.png') }}"
+                class="w-[14px] inline -mt-1 transition-all" /></button>
 
     </div>
     {{-- End Blogs Edit Section --}}
@@ -313,17 +325,22 @@
 
 
 
- {{-- Footer Element --}}
- <div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
+    {{-- Footer Element --}}
+    <div
+        class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
 
 
-    <img id='search_icon' src="{{ session('theme_mode') == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}" class="h-[44px] cursor-pointer"  onclick="window.location.href='/'"   alt="">
+        <img id='search_icon'
+            src="{{ session('theme_mode') == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}"
+            class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
 
-    <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All Rights Reserved @2024</p>
+        <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All
+            Rights Reserved @2024</p>
 
-    <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">@valueadderhabib</p>
+        <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            @valueadderhabib</p>
 
-</div>
+    </div>
 
 
 </div>

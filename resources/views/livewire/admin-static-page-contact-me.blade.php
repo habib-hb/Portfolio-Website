@@ -160,7 +160,7 @@
     <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
         <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
             class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
-            onclick="window.history.back()" alt="">
+            onclick="window.location.href='/admin_dashboard/static-page-management'" alt="">
 
         <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
             class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
@@ -214,7 +214,8 @@
         <div class="flex flex-col mt-2">
 
             <label for="author_name"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Facebook Link</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Facebook
+                Link</label>
 
             <input wire:model="facebook_link" type="text"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -225,7 +226,8 @@
         <div class="flex flex-col mt-2">
 
             <label for="author_name"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Instagram Link</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Instagram
+                Link</label>
 
             <input wire:model="instagram_link" type="text"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -236,7 +238,8 @@
         <div class="flex flex-col mt-2">
 
             <label for="author_name"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Linkedin Link</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Linkedin
+                Link</label>
 
             <input wire:model="linkedin_link" type="text"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -247,7 +250,8 @@
         <div class="flex flex-col mt-2">
 
             <label for="author_name"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Twitter/x Link</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Twitter/x
+                Link</label>
 
             <input wire:model="twitter_link" type="text"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -258,7 +262,8 @@
         <div class="flex flex-col mt-2">
 
             <label for="author_name"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Github Link</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Github
+                Link</label>
 
             <input wire:model="github_link" type="text"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -281,7 +286,8 @@
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="about_icon_image" />
 
-            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To Be
+            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To
+                Be
                 Less Than 1 MB</p>
 
             @error('email_icon')
@@ -294,7 +300,8 @@
         <div class="flex flex-col mt-2 mb-6">
 
             <label for="blog_image"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Phone Icon</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Phone
+                Icon</label>
 
             @if ($temporary_image_phone_icon)
                 <img src="{{ $temporary_image_phone_icon }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
@@ -305,7 +312,8 @@
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="about_profile_image" />
 
-            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To Be
+            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To
+                Be
                 Less Than 1 MB</p>
 
             @error('phone_icon')
@@ -318,18 +326,20 @@
         <div class="flex flex-col mt-2 mb-6">
 
             <label for="blog_image"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Address Icon</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Address
+                Icon</label>
 
             @if ($temporary_image_address_icon)
-                <img src="{{ $temporary_image_address_icon }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
-                    alt="">
+                <img src="{{ $temporary_image_address_icon }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
             @endif
 
             <input wire:model="address_icon" type="file" accept="image/*"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="about_profile_image" />
 
-            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To Be
+            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To
+                Be
                 Less Than 1 MB</p>
 
             @error('address_icon')
@@ -342,18 +352,20 @@
         <div class="flex flex-col mt-2 mb-6">
 
             <label for="blog_image"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Social Icon</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Social
+                Icon</label>
 
             @if ($temporary_image_social_icon)
-                <img src="{{ $temporary_image_social_icon }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
-                    alt="">
+                <img src="{{ $temporary_image_social_icon }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
             @endif
 
             <input wire:model="social_icon" type="file" accept="image/*"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="about_profile_image" />
 
-            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To Be
+            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To
+                Be
                 Less Than 1 MB</p>
 
             @error('social_icon')
@@ -367,7 +379,8 @@
         <div class="flex flex-col mt-2 mb-6">
 
             <label for="blog_image"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Title Icon</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Title
+                Icon</label>
 
             @if ($temporary_image_title_icon)
                 <img src="{{ $temporary_image_title_icon }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
@@ -378,7 +391,8 @@
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="title_icon" />
 
-            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To Be
+            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To
+                Be
                 Less Than 1 MB</p>
 
             @error('title_icon')
@@ -394,7 +408,6 @@
 
         <!-- Initialize Quill editor -->
         <script>
-
             document.addEventListener('livewire:initialized', function() {
 
 
@@ -418,7 +431,6 @@
 
 
             })
-
         </script>
 
 

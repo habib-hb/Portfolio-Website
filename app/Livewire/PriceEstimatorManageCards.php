@@ -123,7 +123,7 @@ class PriceEstimatorManageCards extends Component
                 $this->temporary_image_estimation_card = "";
 
                 $this->dispatch('alert-manager');
-                $this->form_completion_message = "Estimation Card Item Updated Successfully.";
+                $this->form_completion_message = "Estimation Card Updated Successfully.";
                 $this->dispatch('refresh-blog-area');
                 $this->dispatch('refresh-image-area');
 
@@ -157,7 +157,7 @@ class PriceEstimatorManageCards extends Component
             $this->temporary_image_estimation_card = "";
 
             $this->dispatch('alert-manager');
-            $this->form_completion_message = "Estimation Card Item Added Successfully.";
+            $this->form_completion_message = "Estimation Card Added Successfully.";
             $this->dispatch('refresh-blog-area');
             $this->dispatch('refresh-image-area');
         } else {
@@ -308,6 +308,82 @@ class PriceEstimatorManageCards extends Component
     }
 
 
+
+    public function moveItemUp($id){
+
+        $upItem = DB::select("SELECT * FROM price_estimation WHERE id < ? ORDER BY id DESC LIMIT 1", [$id]);
+
+        $currentItem = DB::select("SELECT * FROM price_estimation WHERE id = ?", [$id]);
+
+        if(!$upItem){
+            $this->form_completion_message = "The Item is already at the top of the list.";
+            return;
+        }
+
+        DB::table('price_estimation')->where('id', $currentItem[0]->id)->update([
+            ...(array) $upItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+        DB::table('price_estimation')->where('id', $upItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $upItem[0]->id
+        ]);
+
+        $this->form_completion_message = "The Item has been moved up.";
+
+        $estimation_cards_db = DB::select("SELECT * FROM price_estimation");
+
+        $this->items_array = array_map(function ($item) {
+            return [
+                'id' => $item->id,
+                'title' => $item->title,
+                'description' => $item->description,
+                'icon_link' => $item->icon_link
+            ];
+        }, $estimation_cards_db);
+
+
+    }
+
+    public function moveItemDown($id){
+
+        $downItem = DB::select("SELECT * FROM price_estimation WHERE id > ? ORDER BY id ASC LIMIT 1", [$id]);
+
+        $currentItem = DB::select("SELECT * FROM price_estimation WHERE id = ?", [$id]);
+
+        if(!$downItem){
+            $this->form_completion_message = "The Item is already at the bottom of the list.";
+            return;
+        }
+
+        DB::table('price_estimation')->where('id', $currentItem[0]->id)->update([
+            ...(array) $downItem[0],
+            'id' => $currentItem[0]->id
+        ]);
+
+        DB::table('price_estimation')->where('id', $downItem[0]->id)->update([
+            ...(array) $currentItem[0],
+            'id' => $downItem[0]->id
+        ]);
+
+        $this->form_completion_message = "The Item has been moved down.";
+
+        $estimation_cards_db = DB::select("SELECT * FROM price_estimation");
+
+        $this->items_array = array_map(function ($item) {
+            return [
+                'id' => $item->id,
+                'title' => $item->title,
+                'description' => $item->description,
+                'icon_link' => $item->icon_link
+            ];
+        }, $estimation_cards_db);
+
+    }
+
+
+
     public function editEstimatorCard($id)
     {
 
@@ -323,6 +399,19 @@ class PriceEstimatorManageCards extends Component
 
             $this->dispatch('editable-estimator-card-area', estimator_data: $this->blog_area);
         }
+    }
+
+
+    public function cancel_edit(){
+        $this->editable_estimator_card_id = null;
+
+        $this->item_title = "";
+        $this->blog_area = "";
+        $this->temporary_image_estimation_card = "";
+
+        $this->dispatch('alert-manager');
+        $this->dispatch('refresh-blog-area');
+        $this->dispatch('refresh-image-area');
     }
 
 

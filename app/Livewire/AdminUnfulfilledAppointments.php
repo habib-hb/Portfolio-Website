@@ -510,6 +510,17 @@ class AdminUnfulfilledAppointments extends Component
     }
 
 
+    public function clear_appointment_deletable_id(){
+
+        $this->appointment_deletable_id = null;
+
+        $this->appointment_deletable_identification_date= null;
+
+        $this->appointment_deletable_identification_time= null;
+
+    }
+
+
 
 
 

@@ -445,10 +445,10 @@
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">
                     <a href="{{ $item['portfolio_site_link'] }}" target="_blank"><button
-                            class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
+                            class="{{ $item['portfolio_site_link']  ? '' : 'hidden' }} h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
 
                     <a href="{{ $item['portfolio_github_link'] }}" target="_blank"><button
-                            class="h-[45px] w-[160px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
+                            class="{{  $item['portfolio_github_link']  ? '' : 'hidden' }} h-[45px] w-[160px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
                             Code</button></a>
                 </div>
 

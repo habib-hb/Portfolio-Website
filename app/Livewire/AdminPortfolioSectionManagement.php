@@ -65,16 +65,14 @@ class AdminPortfolioSectionManagement extends Component
     public function mount()
     {
 
-        if(!session('theme_mode')) {
+        if (!session('theme_mode')) {
 
             $this->theme_mode = 'light';
 
             session(['theme_mode' => $this->theme_mode]);
-
-        }else{
+        } else {
 
             $this->theme_mode = session('theme_mode');
-
         }
 
         $portfolios_db = DB::select("SELECT * FROM portfolio_items");
@@ -113,14 +111,14 @@ class AdminPortfolioSectionManagement extends Component
     {
 
         if ($this->editable_portfolio_id) {
-            if ($this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->site_link && $this->github_link && $this->technologies_used) {
+            if ($this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->technologies_used) {
                 DB::table('portfolio_items')->where('id', $this->editable_portfolio_id)->update([
                     'portfolio_title' => $this->item_title,
                     'portfolio_description' => $this->blog_area,
                     'portfolio_image_link' => $this->temporary_image_portfolio,
                     'technologies_used' => $this->technologies_used,
-                    'portfolio_site_link' => $this->site_link,
-                    'portfolio_github_link' => $this->github_link
+                    'portfolio_site_link' => $this->site_link ?? null,
+                    'portfolio_github_link' => $this->github_link ?? null
                 ]);
 
                 $portfolios_db = DB::select("SELECT * FROM portfolio_items");
@@ -162,8 +160,8 @@ class AdminPortfolioSectionManagement extends Component
         //     'item_image' => 'image|max:1024', // Image validation (1MB max)
         // ]);
         // if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->site_link) {
-        if ($this->item_title && $this->blog_area && $this->temporary_image_portfolio && $this->site_link && $this->github_link && $this->technologies_used) {
-            DB::insert("INSERT INTO portfolio_items (portfolio_title , portfolio_description , portfolio_image_link , technologies_used , portfolio_site_link , portfolio_github_link) VALUES (?, ?, ?, ?, ? , ?)", [$this->item_title, $this->blog_area, $this->temporary_image_portfolio, $this->technologies_used, $this->site_link, $this->github_link]);
+        if ($this->item_title && $this->blog_area && $this->temporary_image_portfolio  && $this->technologies_used) {
+            DB::insert("INSERT INTO portfolio_items (portfolio_title , portfolio_description , portfolio_image_link , technologies_used , portfolio_site_link , portfolio_github_link) VALUES (?, ?, ?, ?, ? , ?)", [$this->item_title, $this->blog_area, $this->temporary_image_portfolio, $this->technologies_used, $this->site_link ?? null, $this->github_link ?? null]);
 
 
             $portfolios_db = DB::select("SELECT * FROM portfolio_items");
@@ -362,30 +360,32 @@ class AdminPortfolioSectionManagement extends Component
 
 
 
-    public function cancel_portfolio_item_update(){
+    public function cancel_portfolio_item_update()
+    {
         $this->editable_portfolio_id = null;
 
-                $this->option = "";
-                $this->item_title = "";
-                $this->blog_area = "";
-                $this->temporary_image_portfolio = "";
-                $this->item_image = "";
-                $this->site_link = "";
-                $this->github_link = "";
-                $this->technologies_used = "";
+        $this->option = "";
+        $this->item_title = "";
+        $this->blog_area = "";
+        $this->temporary_image_portfolio = "";
+        $this->item_image = "";
+        $this->site_link = "";
+        $this->github_link = "";
+        $this->technologies_used = "";
 
-                $this->dispatch('refresh-blog-area');
-                $this->dispatch('refresh-image-area');
+        $this->dispatch('refresh-blog-area');
+        $this->dispatch('refresh-image-area');
     }
 
 
-    public function moveItemUp($id){
+    public function moveItemUp($id)
+    {
 
         $upItem = DB::select("SELECT * FROM portfolio_items WHERE id < ? ORDER BY id DESC LIMIT 1", [$id]);
 
         $currentItem = DB::select("SELECT * FROM portfolio_items WHERE id = ?", [$id]);
 
-        if(!$upItem){
+        if (!$upItem) {
             $this->form_completion_message = "The Item is already at the top of the list.";
             return;
         }
@@ -415,17 +415,16 @@ class AdminPortfolioSectionManagement extends Component
                 'id' => $item->id
             ];
         }, $portfolios_db);
-
-
     }
 
-    public function moveItemDown($id){
+    public function moveItemDown($id)
+    {
 
         $downItem = DB::select("SELECT * FROM portfolio_items WHERE id > ? ORDER BY id ASC LIMIT 1", [$id]);
 
         $currentItem = DB::select("SELECT * FROM portfolio_items WHERE id = ?", [$id]);
 
-        if(!$downItem){
+        if (!$downItem) {
             $this->form_completion_message = "The Item is already at the bottom of the list.";
             return;
         }
@@ -455,7 +454,6 @@ class AdminPortfolioSectionManagement extends Component
                 'id' => $item->id
             ];
         }, $portfolios_db);
-
     }
 
 

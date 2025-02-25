@@ -120,7 +120,7 @@
     <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
         <img src="{{ session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png') }}"
             class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer"
-            onclick="window.history.back()" alt="">
+            onclick="window.location.href='/admin_dashboard/static-page-management'" alt="">
 
         <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
             class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
@@ -201,7 +201,8 @@
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="about_profile_image" />
 
-            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To Be
+            <p class="text-sm {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">The Image Has To
+                Be
                 Less Than 1 MB</p>
 
             @error('about_profile_image')

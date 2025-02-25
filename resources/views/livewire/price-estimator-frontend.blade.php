@@ -94,6 +94,19 @@
     </div>
 
 
+    <div wire:loading wire:target="toggle_currency_mode"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Changing Currency...</span>
+        </div>
+
+
+    </div>
+
+
 
     <div wire:loading wire:target="bookAppointment"
         class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
@@ -204,7 +217,7 @@
                             class=" text-lg mb-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">{{ $element['title'] }}</label>
 
                         <select id="{{ $element['id_name'] }}"
-                            class="w-full py-2  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} ">
+                            class="w-full md:max-w-[800px] py-2  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} ">
                             {{-- <option value="150">Blog: Simple blogging platform - {{ 150 * $currency_rate }}</option>
                         <option value="300">Business Website: Corporate or portfolio site - {{ 300 * $currency_rate }}
                         </option>
@@ -213,8 +226,9 @@
                         <option value="700">Custom Website: Tailored features and functionalities -
                             {{ 700 * $currency_rate }}</option> --}}
                             @foreach ($element['options'] as $option)
-                                <option value="{{ $option['option_value'] }}">{{ $option['option_name'] }} -
-                                    {{ $option['option_value'] * $currency_rate }}
+                                <option class="w-full md:max-w-[800px]" value="{{ $option['option_value'] }}">
+                                    <p class="w-full md:max-w-[800px] line-clamp-1">{{ \Illuminate\Support\Str::limit($option['option_name'], 80, '...') }} -
+                                        {{ $option['option_value'] * $currency_rate }}</p>
                                 </option>
                             @endforeach
                         </select>
@@ -427,7 +441,7 @@
 
 
 
-    <p>{{ $estimate_options_json }}</p>
+    {{-- <p>{{ $estimate_options_json }}</p> --}}
 
 
 
