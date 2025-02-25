@@ -282,6 +282,8 @@ class EstimationItem extends Component
             return ($priority[$a['type']] ?? 2) <=> ($priority[$b['type']] ?? 2);
         });
 
+        DB::table('price_estimation')->where('id', $this->item_id)->update(['items_array' => json_encode($this->items_array_php_version)]);
+
     }
 
     public function clear_confirmDeleteOption(){

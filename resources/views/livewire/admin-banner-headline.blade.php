@@ -233,7 +233,7 @@
         </div>
 
 
-        {{-- My Portfolio Section --}}
+
         <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-8">My
             Portfolio Section</h1>
 
@@ -252,7 +252,7 @@
         </div>
 
 
-        {{-- My Portfolio Section --}}
+
         <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-8">
             Collaborations Section</h1>
 
@@ -270,7 +270,7 @@
 
 
 
-        {{-- My Portfolio Section --}}
+
         <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-8">
             Testimonials Section</h1>
 
@@ -285,6 +285,40 @@
                 id="banner_headline" rows="4" maxlength="300"></textarea>
 
         </div>
+
+
+
+        <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-8">
+            Categories Page Caption</h1>
+
+        <div class="flex flex-col mt-4">
+
+            <label for="banner_headline"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Categories Page
+                Caption (300 Letters Max)</label>
+
+            <textarea type="text" wire:model="categories_page_caption"
+                class="w-[96vw] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="banner_headline" rows="4" maxlength="300"></textarea>
+
+        </div>
+
+
+        <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-4">Currency Rate Per Dollar</h1>
+
+        <div class="flex flex-col mt-2">
+
+            <label for="title"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Tk per Dollar</label>
+
+            <input wire:model="dollar_rate_in_tk" type="number"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="title">
+
+        </div>
+
+
+
 
 
         {{-- <div class="flex flex-col mt-8">

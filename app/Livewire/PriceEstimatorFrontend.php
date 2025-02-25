@@ -58,6 +58,8 @@ class PriceEstimatorFrontend extends Component
 
     public $estimate_options_json ;
 
+    public $dollar_rate_in_tk;
+
 
 
     public function mount($service_name , $service_id){
@@ -85,6 +87,10 @@ class PriceEstimatorFrontend extends Component
             $this->estimate_options_json = DB::table('price_estimation')->where('id', $service_id)->value('items_array');
 
             $this->estimate_options = json_decode($this->estimate_options_json, true);
+
+            $this->dollar_rate_in_tk = DB::table('site_data')->where('title', 'dollar_rate_in_tk')->value('data');
+
+            $this->dollar_rate_in_tk = floatval($this->dollar_rate_in_tk);
 
 
             $service_name_db = DB::table('price_estimation')->where('id', $service_id)->value('title');
@@ -411,7 +417,7 @@ class PriceEstimatorFrontend extends Component
     public function toggle_currency_mode (){
          if($this->currency_mode == 'USD'){
              $this->currency_mode = 'TK';
-             $this->currency_rate = 80;
+             $this->currency_rate = $this->dollar_rate_in_tk;
          }else{
              $this->currency_mode = 'USD';
              $this->currency_rate = 1;

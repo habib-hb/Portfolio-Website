@@ -82,12 +82,12 @@
                 <img src="{{ $item['icon_link'] }}" class="h-[64px] rounded-lg" alt="">
 
                 <h2
-                    class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                    class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                     {{ $item['title'] }}</h2>
 
 
                 <h2
-                    class="text-lg font-semibold [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }} text-center">
+                    class="text-lg font-semibold [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }} text-center px-2">
                     {!! $item['description'] !!}</h2>
 
             </div>

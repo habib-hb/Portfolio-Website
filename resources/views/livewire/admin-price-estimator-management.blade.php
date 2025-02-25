@@ -82,7 +82,7 @@
 
             <img src="{{ asset('images/manage-cards.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Manage Cards</h2>
 
         </div>
@@ -93,7 +93,7 @@
 
             <img src="{{ asset('images/manage-card-options.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Manage Card Options</h2>
 
         </div>

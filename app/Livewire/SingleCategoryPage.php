@@ -15,6 +15,8 @@ class SingleCategoryPage extends Component
 
     public $items_array=[];
 
+    public $page_caption;
+
     public function mount($category_title, $category_id)
     {
 
@@ -30,9 +32,11 @@ class SingleCategoryPage extends Component
 
         }
 
-        
+
         $this->category_title = $category_title;
         $this->category_id = $category_id;
+
+        $this->page_caption = DB::table('site_data')->where('title', 'categories_page_caption')->first()->data;
 
         $items_db = DB::select("SELECT
                     explore_items.*,

@@ -78,12 +78,12 @@
 
 
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
-            onclick="window.location.href='/admin_dashboard/headlines'">
+            onclick="window.location.href='/admin_dashboard/headlines-sitedata'">
 
             <img src="{{ asset('images/banner_headline.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
-                Headlines</h2>
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                Headlines & Site Data</h2>
 
         </div>
 
@@ -93,7 +93,7 @@
 
             <img src="{{ asset('images/appointments.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Appointments</h2>
 
         </div>
@@ -104,7 +104,7 @@
 
             <img src="{{ asset('images/blogs.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Blogs</h2>
 
         </div>
@@ -115,7 +115,7 @@
 
             <img src="{{ asset('images/schedule_management.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Schedules Management</h2>
 
         </div>
@@ -126,7 +126,7 @@
 
             <img src="{{ asset('images/explore_section.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Explore Section Management</h2>
 
         </div>
@@ -137,7 +137,7 @@
 
             <img src="{{ asset('images/portfolio_section.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Portfolio Section Management</h2>
 
         </div>
@@ -149,7 +149,7 @@
 
             <img src="{{ asset('images/price_estimator_management.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Price Estimator Management</h2>
 
         </div>
@@ -160,7 +160,7 @@
 
             <img src="{{ asset('images/contact-messages.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Contact Messages</h2>
 
         </div>
@@ -172,7 +172,7 @@
 
             <img src="{{ asset('images/static-page-management.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Static Page Management</h2>
 
         </div>
@@ -184,7 +184,7 @@
 
             <img src="{{ asset('images/admin-collaboration.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Collaboration Section Management</h2>
 
         </div>
@@ -196,7 +196,7 @@
 
             <img src="{{ asset('images/admin-testimonial.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Testimonials Section Management</h2>
 
         </div>

@@ -336,6 +336,19 @@
 
     </div>
 
+
+    <div wire:loading wire:target="confirmDeleteOption"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Deleting Option...</span>
+        </div>
+
+
+    </div>
+
     {{-- <div wire:click="changeThemeMode" class="flex justify-center">
 
                 <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] mt-4 {{session('theme_mode') == 'light' ? '' : 'hidden'}}">

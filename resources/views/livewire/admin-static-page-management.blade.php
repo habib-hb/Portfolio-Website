@@ -82,7 +82,7 @@
 
             <img src="{{ asset('images/admin-about-me.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 About Me Page</h2>
 
         </div>
@@ -92,7 +92,7 @@
 
             <img src="{{ asset('images/admin-contact-me.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Contact Me Page</h2>
 
         </div>
@@ -103,7 +103,7 @@
 
             <img src="{{ asset('images/admin-privacy-policy.gif') }}" class="h-[64px] rounded-lg" alt="">
 
-            <h2 class="text-2xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+            <h2 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Privacy Policy Page</h2>
 
         </div>

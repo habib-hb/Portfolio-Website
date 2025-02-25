@@ -193,10 +193,10 @@
                 Amount</p>
             <div>
                 <img src="{{ asset('images/currency-mode-dollar.png') }}" wire:click="toggle_currency_mode"
-                    class="h-[36px] w-auto mt-2 cursor-pointer {{ $currency_mode == 'USD' ? '' : 'hidden' }}"
+                    class="h-[36px] w-auto mt-2 cursor-pointer {{ $currency_mode == 'USD' ? '' : 'hidden' }} "
                     alt="">
                 <img src="{{ asset('images/currency-mode-taka.png') }}" wire:click="toggle_currency_mode"
-                    class="h-[36px] w-auto mt-2 cursor-pointer {{ $currency_mode == 'TK' ? '' : 'hidden' }}"
+                    class="h-[36px] w-auto mt-2 cursor-pointer {{ $currency_mode == 'TK' ? '' : 'hidden' }} "
                     alt="">
             </div>
             <p class="font-bold text-4xl {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} mt-2"

@@ -316,7 +316,7 @@ Route::get('/admin_dashboard/blogs/blogs_manage/blog_edit/{blog_slug}', function
 
 
 
-Route::get('/admin_dashboard/headlines', function () {
+Route::get('/admin_dashboard/headlines-sitedata', function () {
     if(!session()->has('admin_name')){
         return redirect('/');
     }
