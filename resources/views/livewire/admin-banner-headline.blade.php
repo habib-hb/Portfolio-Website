@@ -118,10 +118,61 @@
 
         <h1
             class="text-3xl font-bold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center">
-            Set Headlines</h1>
+            Set Headlines & Site Data</h1>
+
+        {{-- Site Logo --}}
+        <h1
+            class="text-xl mt-10 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-4">
+            Header Logo</h1>
+        <div class="flex flex-col mt-10">
+
+            <label for="item_image"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Site Logo -
+                Light Mode (Make sure it's less than 1mb)</label>
+
+            @if ($temporary_image_site_logo_light)
+                <img src="{{ $temporary_image_site_logo_light }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
+            @endif
+
+            <input wire:model="site_logo_light" type="file" accept="image/*"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="item_image" />
+
+            @error('site_logo_light')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+
+        </div>
+
+        <div class="flex flex-col mt-6">
+
+            <label for="item_image"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Site Logo -
+                Dark Mode (Make sure it's less than 1mb) (Make sure it's less than 1mb)</label>
+
+            @if ($temporary_image_site_logo_dark)
+                <img src="{{ $temporary_image_site_logo_dark }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
+            @endif
+
+            <input wire:model="site_logo_dark" type="file" accept="image/*"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="item_image" />
+
+            @error('site_logo_dark')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+
+        </div>
+        {{-- End Site Logo --}}
+
+
 
         {{-- Hero Section --}}
-        <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-4">Hero
+        <h1
+            class="text-xl mt-10 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-4">
+            Hero
             Section</h1>
 
         <div class="flex flex-col mt-2">
@@ -173,15 +224,15 @@
 
         </div>
 
-        <div class="flex flex-col mt-2">
+        <div class="flex flex-col mt-6">
 
             <label for="item_image"
                 class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Hero Section
                 Avatar (Make sure it's less than 1mb)</label>
 
             @if ($temporary_image_hero_avatar)
-                <img src="{{ $temporary_image_hero_avatar }}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"
-                    alt="">
+                <img src="{{ $temporary_image_hero_avatar }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
             @endif
 
             <input wire:model="hero_avatar_image" type="file" accept="image/*"
@@ -294,7 +345,8 @@
         <div class="flex flex-col mt-4">
 
             <label for="banner_headline"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Categories Page
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Categories
+                Page
                 Caption (300 Letters Max)</label>
 
             <textarea type="text" wire:model="categories_page_caption"
@@ -304,18 +356,112 @@
         </div>
 
 
-        <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-4">Currency Rate Per Dollar</h1>
+        <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-8">
+            Price Estimation Page Caption</h1>
+
+        <div class="flex flex-col mt-4">
+
+            <label for="banner_headline"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Price
+                Estimation Page
+                Caption (300 Letters Max)</label>
+
+            <textarea type="text" wire:model="price_estimation_page_caption"
+                class="w-[96vw] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="banner_headline" rows="4" maxlength="300"></textarea>
+
+        </div>
+
+
+        <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-4">
+            Currency Rate Per Dollar</h1>
 
         <div class="flex flex-col mt-2">
 
             <label for="title"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Tk per Dollar</label>
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Tk per
+                Dollar</label>
 
             <input wire:model="dollar_rate_in_tk" type="number"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="title">
 
         </div>
+
+
+
+        {{-- Footer Logo --}}
+        <h1
+            class="text-xl mt-10 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-4">
+            Footer Section</h1>
+        <div class="flex flex-col mt-10">
+
+            <label for="item_image"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Footer Logo -
+                Light Mode (Make sure it's less than 1mb)</label>
+
+            @if ($temporary_image_footer_logo_light)
+                <img src="{{ $temporary_image_footer_logo_light }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
+            @endif
+
+            <input wire:model="footer_logo_light" type="file" accept="image/*"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="item_image" />
+
+            @error('footer_logo_light')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+
+        </div>
+
+        <div class="flex flex-col mt-6">
+
+            <label for="item_image"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Footer Logo -
+                Dark Mode (Make sure it's less than 1mb) (Make sure it's less than 1mb)</label>
+
+            @if ($temporary_image_footer_logo_dark)
+                <img src="{{ $temporary_image_footer_logo_dark }}"
+                    class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]" alt="">
+            @endif
+
+            <input wire:model="footer_logo_dark" type="file" accept="image/*"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="item_image" />
+
+            @error('footer_logo_dark')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+
+        </div>
+
+        <div class="flex flex-col mt-2">
+
+            <label for="title"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Top Layer
+                Text</label>
+
+            <input wire:model="footer_top_layer_text" type="text"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="title">
+
+        </div>
+
+        <div class="flex flex-col mt-2">
+
+            <label for="title"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Bottom Layer
+                Text</label>
+
+            <input type="text" wire:model="footer_bottom_layer_text"
+                class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="title">
+
+        </div>
+
+
+        {{-- Footer Logo --}}
 
 
 
@@ -330,8 +476,8 @@
         </div> --}}
 
 
-        <div wire:click="save" class="flex justify-center items-center">
-            <button
+        <div class="flex justify-center items-center">
+            <button wire:click="save"
                 class="px-16 py-2 bg-[#1A579F] text-white rounded-lg mt-8 hover:scale-110 transition-all">Save</button>
         </div>
 

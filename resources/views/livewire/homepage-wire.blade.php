@@ -1,59 +1,112 @@
 <div id="main_div"
     class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
 
+
+    <div class="sticky top-0  {{ $theme_mode == 'light' ? 'bg-[#eff9ff]' : 'bg-[#090909]' }} z-50">
+        <nav
+        class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+
+        <div class=" flex justify-start md:w-[20vw] cursor-pointer">
+
+            <img src="{{ $site_logo_light }}"
+                class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
+                onclick="window.location.href='/'" alt="">
+
+            <img src="{{ $site_logo_dark }}"
+                class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
+                onclick="window.location.href='/'" alt="">
+
+
+        </div>
+
+        <div id="input_div" class="relative">
+
+            <img id="{{ session('theme_mode') == 'light' ? 'search_icon' : '' }}"
+                src="{{ asset('images/search_light_mode.gif') }}"
+                class="{{ session('theme_mode') == 'light' ? '' : 'hidden' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
+                alt="">
+
+            <img id="{{ session('theme_mode') == 'light' ? '' : 'search_icon' }}"
+                src="{{ asset('images/search_dark_mode.gif') }}"
+                class="{{ session('theme_mode') == 'light' ? 'hidden' : '' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
+                alt="">
+
+            {{-- <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/search_light_mode.gif') : asset('images/search_dark_mode.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt=""> --}}
+
+            <span id='search_text'
+                class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]' }} {{ $search_input_field_is_active ? 'hidden' : '' }}">Search</span>
+
+            <input wire:model.live='searchtext' id='search_input' type="text"
+                class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{ $theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus: outline-none border-none ">
+
+
+
+        </div>
+
+        <div class=" flex justify-end md:w-[20vw]">
+
+            <button
+                class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
+
+        </div>
+
+
+    </nav>
+
+                {{-- Loading The Searched Data --}}
+                <div class="mx-auto md:max-w-[1280px] mt-2 px-2">
+                    <p id="no_results_found" class="hidden {{ $theme_mode == 'light' ? 'text-[#121212]' : 'text-[#e7e7e7]' }}"></p>
+
+
+                    @if ($search_output)
+                        @foreach ($search_output as $post)
+                            @if ($theme_mode == 'light')
+                                <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
+                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                    $post->blog_link .
+                                    '`" >' .
+                                    $post->blog_title .
+                                    '</p>' !!}</p>
+                                <p>{!! '<p style="color: #121212; ; cursor:pointer"
+                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                    $post->blog_link .
+                                    '`" >' .
+                                    $post->blog_excerpt .
+                                    '</p>' !!}</p>
+                                <hr>
+                            @endif
+
+                            @if ($theme_mode == 'dark')
+                                <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
+                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                    $post->blog_link .
+                                    '`" >' .
+                                    $post->blog_title .
+                                    '</p>' !!}</p>
+                                <p>{!! '<p style="color: #ededed; ; cursor:pointer"
+                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                    $post->blog_link .
+                                    '`" >' .
+                                    $post->blog_excerpt .
+                                    '</p>' !!}</p>
+                                <hr>
+                            @endif
+                        @endforeach
+                    @endif
+                </div>
+    </div>
+
+
+
+
     <div class="h-[100vh] flex flex-col">
 
-        <nav
-            class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-            <div class=" flex justify-start md:w-[20vw] cursor-pointer">
-
-                <img src="{{ asset('images/the_logo_light_mode.png') }}"
-                    class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
-                    onclick="window.location.href='/'" alt="">
-
-                <img src="{{ asset('images/the_logo_dark_mode.png') }}"
-                    class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
-                    onclick="window.location.href='/'" alt="">
-
-
-            </div>
-
-            <div id="input_div" class="relative">
-
-                <img id="{{ session('theme_mode') == 'light' ? 'search_icon' : '' }}"
-                    src="{{ asset('images/search_light_mode.gif') }}"
-                    class="{{ session('theme_mode') == 'light' ? '' : 'hidden' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
-                    alt="">
-
-                <img id="{{ session('theme_mode') == 'light' ? '' : 'search_icon' }}"
-                    src="{{ asset('images/search_dark_mode.gif') }}"
-                    class="{{ session('theme_mode') == 'light' ? 'hidden' : '' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
-                    alt="">
-
-                {{-- <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/search_light_mode.gif') : asset('images/search_dark_mode.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt=""> --}}
-
-                <span id='search_text'
-                    class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]' }} {{ $search_input_field_is_active ? 'hidden' : '' }}">Search</span>
-
-                <input wire:model.live='searchtext' id='search_input' type="text"
-                    class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{ $theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus: outline-none border-none ">
-
-
-
-            </div>
-
-            <div class=" flex justify-end md:w-[20vw]">
-
-                <button
-                    class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
-
-            </div>
-
-
-
-        </nav>
 
 
         @if ($notify_success)
@@ -102,49 +155,7 @@
         @endif
 
 
-        {{-- Loading The Searched Data --}}
-        <div class="mx-auto md:max-w-[1280px]">
-            <p id="no_results_found" class="hidden"></p>
-            @if ($search_output)
-                @foreach ($search_output as $post)
-                    @if ($theme_mode == 'light')
-                        <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_title .
-                            '</p>' !!}</p>
-                        <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_excerpt .
-                            '</p>' !!}</p>
-                        <hr>
-                    @endif
 
-                    @if ($theme_mode == 'dark')
-                        <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_title .
-                            '</p>' !!}</p>
-                        <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_excerpt .
-                            '</p>' !!}</p>
-                        <hr>
-                    @endif
-                @endforeach
-            @endif
-        </div>
 
 
 
@@ -293,7 +304,7 @@
     <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
         @foreach ($options_array as $option)
             <div
-                class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full md:min-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div
@@ -351,7 +362,7 @@
 
         @foreach ($estimation_options as $item)
             <div
-                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-3 px-4  h-full min-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-3 px-4  h-full max-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div
@@ -721,8 +732,6 @@
 
 
 
-
-
 {{-- Footer Element --}}
 <div
     class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
@@ -745,7 +754,7 @@
 
         @if ($admin_active)
             <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
-                onclick="window.location.href='{{ env('BASE_LINK') }}/admin_dashboard'">
+                onclick="window.open('{{ env('BASE_LINK') }}/admin_dashboard', '_blank')">
                 <p
                     class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
                     Admin Dashboard</p><img
@@ -957,6 +966,8 @@
 
     document.getElementById('input_div').addEventListener('click', () => {
         document.getElementById('search_input').focus();
+
+        Livewire.dispatch('activate_search_input_field', {});
     })
 
     document.getElementById('search_input').addEventListener('focus', () => {
@@ -1088,3 +1099,5 @@
 
 
 </div>
+
+

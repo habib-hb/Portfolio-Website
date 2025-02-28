@@ -2,7 +2,8 @@
 
 <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}">
 
-    <nav class="flex justify-center md:justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+    <div class="sticky top-0  {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-[#090909]' }} z-50">
+    <nav class="flex justify-center md:justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto my-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
         <div class=" flex justify-start md:w-[20vw] cursor-pointer">
 
@@ -33,6 +34,7 @@
 
 
     </nav>
+    </div>
 
             {{-- <div wire:click="changeThemeMode" class="flex justify-center">
 

@@ -67,6 +67,21 @@ class HomepageWire extends Component
 
     public $testimonials_cards;
 
+    //New Additions
+    public $site_logo_light;
+
+    public $site_logo_dark;
+
+    public $footer_logo_light;
+
+    public $footer_logo_dark;
+
+    public $footer_top_layer_text;
+
+    public $footer_bottom_layer_text;
+    //End New Additions
+
+
 
 
     public function mount()
@@ -102,6 +117,20 @@ class HomepageWire extends Component
         $this->collaborations_caption = DB::table('site_data')->where('title', 'collaborations_caption')->first()->data;
 
         $this->testimonials_caption = DB::table('site_data')->where('title', 'testimonials_caption')->first()->data;
+
+        //New Additions
+        $this->site_logo_light = DB::table('site_data')->where('title', 'site_logo_light_mode')->first()->data;
+
+        $this->site_logo_dark = DB::table('site_data')->where('title', 'site_logo_dark_mode')->first()->data;
+
+        $this->footer_logo_light = DB::table('site_data')->where('title', 'footer_logo_light_mode')->first()->data;
+
+        $this->footer_logo_dark = DB::table('site_data')->where('title', 'footer_logo_dark_mode')->first()->data;
+
+        $this->footer_top_layer_text = DB::table('site_data')->where('title', 'footer_top_layer_text')->first()->data;
+
+        $this->footer_bottom_layer_text = DB::table('site_data')->where('title', 'footer_bottom_layer_text')->first()->data;
+        //End New Additions
 
 
 
@@ -250,6 +279,15 @@ class HomepageWire extends Component
     }
 
 
+    #[On('activate_search_input_field')]
+    public function activate_search_input_field()
+    {
+        $this->search_input_field_is_active = true;
+
+        session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+    }
+
+
 
     // #[On('theme-change')]
     public function changeThemeMode(){
@@ -282,6 +320,8 @@ class HomepageWire extends Component
             $this->admin_login_popup_is_active = true;
 
         }
+
+        $this->dispatch('alert-manager');
     }
 
 
@@ -319,6 +359,8 @@ class HomepageWire extends Component
 
         }
 
+        $this->dispatch('alert-manager');
+
         // if (Auth::attempt($credentials)) {
         //     session()->regenerate();
         //     return redirect()->to('/admin/dashboard');
@@ -330,10 +372,12 @@ class HomepageWire extends Component
 
     public function clear_notify_error(){
         $this->notify_error = null;
+        $this->dispatch('alert-manager');
     }
 
     public function clear_notify_success(){
         $this->notify_success = null;
+        $this->dispatch('alert-manager');
     }
 
 

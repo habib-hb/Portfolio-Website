@@ -1,8 +1,8 @@
 <div
     class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
-
+    <div class="sticky top-0  {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-[#090909]' }} z-50">
     <nav
-        class="flex justify-center items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+        class="flex justify-center items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto my-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
         <div class=" flex justify-start cursor-pointer">
 
@@ -33,6 +33,7 @@
 
 
     </nav>
+    </div>
 
     <div wire:loading wire:target="send_message" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
         <div class="flex flex-row justify-center items-center px-2 gap-2">

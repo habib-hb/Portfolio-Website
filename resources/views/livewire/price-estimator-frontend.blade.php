@@ -120,6 +120,19 @@
 
     </div>
 
+
+    <div id="price_estimation_loading"
+        class="hidden text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing Price...</span>
+        </div>
+
+
+    </div>
+
     {{-- End All The Looading Notifications --}}
 
 
@@ -177,7 +190,7 @@
 
 
 
-            <h2 class="text-2xl text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} ">
+            <h2 class="text-4xl font-bold text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} ">
                 {{ $service_name }}</h2>
 
 
@@ -188,7 +201,7 @@
         <div
             class="flex flex-col sticky top-2  justify-between items-center py-2 w-[96vw] md:max-w-[800px]  mx-auto rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
             <p class="text-center px-4 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Please
-                complete the form below to receive an accurate price estimation.</p>
+                complete the form below to receive the price estimation for your needs.</p>
             <p class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Total Estimated
                 Amount</p>
             <div>
@@ -201,6 +214,8 @@
             </div>
             <p class="font-bold text-4xl {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} mt-2"
                 id="totalAmount">{{ $total_estimated_amount * $currency_rate }} {{ $currency_mode }}</p>
+            {{-- <p class="font-bold text-4xl {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} mt-2"
+                id="totalAmount">{{ $total_estimated_amount * $currency_rate }} {{ $currency_mode }}</p> --}}
             {{-- <p class="font-bold text-4xl text-[#1A579F]" id="totalAmount">{{ $total_estimated_amount }}</p> --}}
         </div>
 
@@ -506,8 +521,14 @@
         // Total Amount Element
         const totalAmountSpan = document.getElementById('totalAmount');
 
+        let first_load_check = true;
+
         // Function to calculate total price
         function calculateTotal() {
+            !first_load_check && document.getElementById('price_estimation_loading').classList.remove('hidden');
+
+            first_load_check = false;
+
             let total = 0;
 
             estimateOptions.forEach(option => {
@@ -532,7 +553,7 @@
             })
 
             // Update total amount
-            totalAmountSpan.textContent = total + ' ' + @json($currency_mode)
+            // totalAmountSpan.textContent = total + ' ' + @json($currency_mode)
 
             localStorage.setItem('total', total);
 
