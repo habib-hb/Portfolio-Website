@@ -65,8 +65,6 @@ class AdminBannerHeadline extends Component
 
     public $footer_bottom_layer_text;
 
-    public $primary_color="#6c1e1e";
-
 
 
 
