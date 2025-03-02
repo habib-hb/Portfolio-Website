@@ -57,9 +57,9 @@ Route::get('/contact', function () {
 
 
 
-Route::get('/services/full-project', function () {
-    return view('services.full-project');
-});
+// Route::get('/services/full-project', function () {
+//     return view('services.full-project');
+// });
 
 
 
@@ -71,9 +71,9 @@ Route::get('/services/full-project', function () {
 
 
 
-Route::get('/services/front-end', function () {
-    return view('services.front-end');
-});
+// Route::get('/services/front-end', function () {
+//     return view('services.front-end');
+// });
 
 
 
@@ -84,9 +84,9 @@ Route::get('/services/front-end', function () {
 
 
 
-Route::get('/services/back-end', function () {
-    return view('services.back-end');
-});
+// Route::get('/services/back-end', function () {
+//     return view('services.back-end');
+// });
 
 
 
@@ -96,9 +96,9 @@ Route::get('/services/back-end', function () {
 
 
 
-Route::get('/services/figma-design', function () {
-    return view('services.figma-design');
-});
+// Route::get('/services/figma-design', function () {
+//     return view('services.figma-design');
+// });
 
 
 
@@ -108,9 +108,9 @@ Route::get('/services/figma-design', function () {
 
 
 
-Route::get('/services/wordpress', function () {
-    return view('services.wordpress');
-});
+// Route::get('/services/wordpress', function () {
+//     return view('services.wordpress');
+// });
 
 
 
@@ -122,9 +122,9 @@ Route::get('/services/wordpress', function () {
 
 
 
-Route::get('/services/error-fixing', function () {
-    return view('services.error-fixing');
-});
+// Route::get('/services/error-fixing', function () {
+//     return view('services.error-fixing');
+// });
 
 
 
@@ -134,9 +134,9 @@ Route::get('/services/error-fixing', function () {
 
 
 
-Route::get('/services/test', function () {
-    return view('services.test');
-});
+// Route::get('/services/test', function () {
+//     return view('services.test');
+// });
 
 
 
@@ -316,11 +316,11 @@ Route::get('/admin_dashboard/blogs/blogs_manage/blog_edit/{blog_slug}', function
 
 
 
-Route::get('/admin_dashboard/headlines-sitedata', function () {
+Route::get('/admin_dashboard/site-configuration', function () {
     if(!session()->has('admin_name')){
         return redirect('/');
     }
-    return view('admin_dashboard.banner_headline');
+    return view('admin_dashboard.site-configuration');
 });
 
 

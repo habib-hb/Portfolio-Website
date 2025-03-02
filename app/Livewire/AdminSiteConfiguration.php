@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class AdminBannerHeadline extends Component
+class AdminSiteConfiguration extends Component
 {
 
     use WithFileUploads;
@@ -66,6 +66,21 @@ class AdminBannerHeadline extends Component
     public $footer_bottom_layer_text;
 
 
+    // New section this page specific
+    public $site_logo_light_specific;
+
+    public $site_logo_dark_specific;
+
+    public $footer_logo_light_specific;
+
+    public $footer_logo_dark_specific;
+
+    public $footer_top_layer_text_specific;
+
+    public $footer_bottom_layer_text_specific;
+    // End New section this page specific
+
+
 
 
 
@@ -108,6 +123,20 @@ class AdminBannerHeadline extends Component
         $this->footer_top_layer_text = DB::table('site_data')->where('title', 'footer_top_layer_text')->first()->data;
 
         $this->footer_bottom_layer_text = DB::table('site_data')->where('title', 'footer_bottom_layer_text')->first()->data;
+
+        // New section this page specific
+        $this->site_logo_light_specific = DB::table('site_data')->where('title', 'site_logo_light_mode')->first()->data;
+
+        $this->site_logo_dark_specific = DB::table('site_data')->where('title', 'site_logo_dark_mode')->first()->data;
+
+        $this->footer_logo_light_specific = DB::table('site_data')->where('title', 'footer_logo_light_mode')->first()->data;
+
+        $this->footer_logo_dark_specific = DB::table('site_data')->where('title', 'footer_logo_dark_mode')->first()->data;
+
+        $this->footer_top_layer_text_specific = DB::table('site_data')->where('title', 'footer_top_layer_text')->first()->data;
+
+        $this->footer_bottom_layer_text_specific = DB::table('site_data')->where('title', 'footer_bottom_layer_text')->first()->data;
+        // End New section this page specific
 
     }
 
@@ -288,6 +317,6 @@ class AdminBannerHeadline extends Component
 
     public function render()
     {
-        return view('livewire.admin-banner-headline');
+        return view('livewire.admin-site-configuration');
     }
 }

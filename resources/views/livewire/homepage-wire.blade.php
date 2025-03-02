@@ -814,13 +814,12 @@
 
 
     <img id='footer_icon'
-        src="{{ $theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}"
+        src="{{ $theme_mode == 'light' ? $footer_logo_light : $footer_logo_dark }}"
         class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
 
-    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All Rights
-        Reserved @2024</p>
+    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">{{$footer_top_layer_text}}</p>
 
-    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">@valueadderhabib
+    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">{{$footer_bottom_layer_text}}
     </p>
 
 
