@@ -57,7 +57,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/site-configuration">
-                            <img src="{{ asset('images/site_configuration.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/site-configuration.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs  rounded-lg whitespace-nowrap "
@@ -72,7 +72,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/appointments">
-                            <img src="{{ asset('images/appointments.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/appointments.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs  rounded-lg whitespace-nowrap "
@@ -87,7 +87,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/blogs">
-                            <img src="{{ asset('images/blogs.gif') }}" class="h-[36px] rounded-lg" alt="">
+                            <img src="{{ asset('images/blogs.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1" alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs  rounded-lg whitespace-nowrap "
                                 role="tooltip">
@@ -101,7 +101,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/schedules_management">
-                            <img src="{{ asset('images/schedule_management.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/schedules-management.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs  rounded-lg whitespace-nowrap "
@@ -116,7 +116,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/explore_section_management">
-                            <img src="{{ asset('images/explore_section.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/explore-section-management.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs rounded-lg whitespace-nowrap"
@@ -131,7 +131,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/portfolio_section_management">
-                            <img src="{{ asset('images/portfolio_section.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/portfolio-section-management.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs rounded-lg whitespace-nowrap"
@@ -146,8 +146,8 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/price_estimator_management">
-                            <img src="{{ asset('images/price_estimator_management.gif') }}"
-                                class="h-[36px] rounded-lg" alt="">
+                            <img src="{{ asset('images/price-estimator-management.png') }}"
+                                class="h-[36px] rounded-lg bg-[#eff9ff] p-1" alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs rounded-lg whitespace-nowrap"
                                 role="tooltip">
@@ -161,7 +161,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/contact_messages">
-                            <img src="{{ asset('images/contact-messages.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/contact-messages.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs rounded-lg whitespace-nowrap"
@@ -176,7 +176,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/static-page-management">
-                            <img src="{{ asset('images/static-page-management.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/static-page-management.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs rounded-lg whitespace-nowrap"
@@ -191,7 +191,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/collaboration-section-management">
-                            <img src="{{ asset('images/admin-collaboration.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/collaboration-section-management.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs rounded-lg whitespace-nowrap"
@@ -206,7 +206,7 @@
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             href="/admin_dashboard/testimonials-section-management">
-                            <img src="{{ asset('images/admin-testimonial.gif') }}" class="h-[36px] rounded-lg"
+                            <img src="{{ asset('images/testimonials-section-management.png') }}" class="h-[36px] rounded-lg bg-[#eff9ff] p-1"
                                 alt="">
                             <span
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs rounded-lg whitespace-nowrap"

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\banner_headline;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -209,7 +210,7 @@ class AdminSiteConfiguration extends Component
     //     }
 
 
-
+    #[On('notify-from-child-component')]
     public function changeThemeMode(){
 
         if(session('theme_mode') == 'light'){

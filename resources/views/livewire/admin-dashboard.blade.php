@@ -92,7 +92,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/site-configuration'">
 
-            <img src="{{ asset('images/site_configuration.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/site-configuration.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -104,7 +104,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/appointments'">
 
-            <img src="{{ asset('images/appointments.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/appointments.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -116,7 +116,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/blogs'">
 
-            <img src="{{ asset('images/blogs.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/blogs.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -128,7 +128,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/schedules_management'">
 
-            <img src="{{ asset('images/schedule_management.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/schedules-management.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -140,7 +140,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/explore_section_management'">
 
-            <img src="{{ asset('images/explore_section.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/explore-section-management.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -152,7 +152,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/portfolio_section_management'">
 
-            <img src="{{ asset('images/portfolio_section.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/portfolio-section-management.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -165,7 +165,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/price_estimator_management'">
 
-            <img src="{{ asset('images/price_estimator_management.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/price-estimator-management.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -177,7 +177,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/contact_messages'">
 
-            <img src="{{ asset('images/contact-messages.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/contact-messages.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -190,7 +190,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/static-page-management'">
 
-            <img src="{{ asset('images/static-page-management.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/static-page-management.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -203,7 +203,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/collaboration-section-management'">
 
-            <img src="{{ asset('images/admin-collaboration.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/collaboration-section-management.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -216,7 +216,7 @@
         <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 transition-all cursor-pointer"
             onclick="window.location.href='/admin_dashboard/testimonials-section-management'">
 
-            <img src="{{ asset('images/admin-testimonial.gif') }}" class="h-[64px] rounded-lg" alt="">
+            <img src="{{ asset('images/testimonials-section-management.png') }}" class="h-[64px] rounded-lg  bg-[#eff9ff] p-1" alt="">
 
             <h2
                 class="text-2xl font-semibold text-center px-2 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
