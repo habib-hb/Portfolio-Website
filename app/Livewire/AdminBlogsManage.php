@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\blog_posts;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AdminBlogsManage extends Component
@@ -104,7 +105,7 @@ class AdminBlogsManage extends Component
 
 
 
-
+    #[On('notify-from-child-component')]
     public function changeThemeMode(){
 
         if(session('theme_mode') == 'light'){

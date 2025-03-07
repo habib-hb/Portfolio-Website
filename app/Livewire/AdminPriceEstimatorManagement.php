@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AdminPriceEstimatorManagement extends Component
 {
 
+    #[On('notify-from-child-component')]
     public function changeThemeMode(){
 
         if(session('theme_mode') == 'light'){

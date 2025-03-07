@@ -847,12 +847,6 @@
 
         //Doing 100ms delay cause the DOM is not loaded yet.
         setTimeout(() => {
-            // const profile_img = document.getElementById("profile_img");
-            // const my_name_text = document.getElementById("my_name");
-            // const full_stack = document.getElementById("full_stack");
-            // const developer = document.getElementById("developer");
-            // const based_in = document.getElementById("based_in");
-            // const scroll_down = document.getElementById("scroll_down");
 
             profile_img.style.opacity = 0;
             profile_img.style.transform = "translateY(16px)";
@@ -924,12 +918,6 @@
     const css_stablizer = () => {
         //Doing 100ms delay cause the DOM is not loaded yet.
         setTimeout(() => {
-            // const profile_img = document.getElementById("profile_img");
-            // const my_name_text = document.getElementById("my_name");
-            // const full_stack = document.getElementById("full_stack");
-            // const developer = document.getElementById("developer");
-            // const based_in = document.getElementById("based_in");
-            // const scroll_down = document.getElementById("scroll_down");
 
             profile_img.style.opacity = 1;
             profile_img.style.transform = "translateY(0)";
@@ -949,18 +937,18 @@
             scroll_down.style.opacity = 1;
             scroll_down.style.transform = "translateY(0)";
 
+            if (document.getElementById('search_input').value == '' && document.activeElement !==
+                document.getElementById('search_input')) {
+                    document.getElementById('search_icon').style.display = 'block';
+                    document.getElementById('search_text').style.display = 'block';
+            }
+
 
         }, 1);
 
     }
 
-    //    function changeThemeMode(){
 
-    //         Livewire.dispatch('theme-change', { })
-
-    //         window.location.reload();
-
-    //     }
 
 
     document.getElementById('input_div').addEventListener('click', () => {
@@ -1024,8 +1012,11 @@
 
         Livewire.on('alert-manager', () => {
 
+            // if (document.getElementById('search_input').value !== '') {
             if (document.getElementById('search_input').value !== '' || document.activeElement ===
                 document.getElementById('search_input')) {
+            // if (document.getElementById('search_input').value !== '' || document.activeElement ===
+            //     document.getElementById('search_input')) {
 
                 // Doing 100ms delay cause the DOM is not loaded yet.
                 setTimeout(() => {
@@ -1062,6 +1053,15 @@
 
             animation_function();
 
+
+        })
+
+
+
+
+        Livewire.on('redirect_to_admin_dashboard', () => {
+
+            window.open("/admin_dashboard", "_blank");
 
         })
 

@@ -104,6 +104,7 @@ class EstimationItem extends Component
     }
 
 
+    #[On('notify-from-child-component')]
     public function changeThemeMode(){
 
         if($this->theme_mode == 'light'){

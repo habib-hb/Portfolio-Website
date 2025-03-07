@@ -209,7 +209,7 @@ class AdminBlogsEdit extends Component
 
 
 
-
+    #[On('notify-from-child-component')]
     public function changeThemeMode(){
 
         if(session('theme_mode') == 'light'){

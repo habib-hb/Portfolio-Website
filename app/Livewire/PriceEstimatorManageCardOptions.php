@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 
 class PriceEstimatorManageCardOptions extends Component
 {
@@ -35,6 +36,8 @@ class PriceEstimatorManageCardOptions extends Component
         }, $estimation_cards_db);
     }
 
+
+    #[On('notify-from-child-component')]
     public function changeThemeMode(){
 
         if(session('theme_mode') == 'light'){

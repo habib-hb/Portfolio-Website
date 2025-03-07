@@ -107,6 +107,8 @@ class AdminExploreSectionManagement extends Component
         }, $items_db);
     }
 
+
+    #[On('notify-from-child-component')]
     public function changeThemeMode()
     {
 

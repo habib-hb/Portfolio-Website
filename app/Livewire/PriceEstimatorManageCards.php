@@ -75,6 +75,9 @@ class PriceEstimatorManageCards extends Component
         }, $estimation_cards_db);
     }
 
+
+
+    #[On('notify-from-child-component')]
     public function changeThemeMode()
     {
 

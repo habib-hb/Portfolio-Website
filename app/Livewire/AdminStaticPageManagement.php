@@ -2,11 +2,14 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AdminStaticPageManagement extends Component
 {
 
+
+    #[On('notify-from-child-component')]
     public function changeThemeMode(){
 
         if(session('theme_mode') == 'light'){
@@ -23,7 +26,7 @@ class AdminStaticPageManagement extends Component
         $this->dispatch('alert-manager');
 
     }
-    
+
     public function render()
     {
         return view('livewire.admin-static-page-management');

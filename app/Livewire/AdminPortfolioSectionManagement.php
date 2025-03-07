@@ -90,6 +90,9 @@ class AdminPortfolioSectionManagement extends Component
         }, $portfolios_db);
     }
 
+
+
+    #[On('notify-from-child-component')]
     public function changeThemeMode()
     {
 

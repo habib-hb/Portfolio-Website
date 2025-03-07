@@ -13,7 +13,7 @@ class HomepageWire extends Component
 
     public $theme_mode;
 
-    public $searchtext='';
+    public $searchtext = '';
 
     public $search_output;
 
@@ -29,7 +29,7 @@ class HomepageWire extends Component
 
     public $portfolios_array = [];
 
-    public $estimation_options= [];
+    public $estimation_options = [];
 
     public $admin_login_popup_is_active = false;
 
@@ -86,16 +86,14 @@ class HomepageWire extends Component
 
     public function mount()
     {
-        if(!session('theme_mode')) {
+        if (!session('theme_mode')) {
 
             $this->theme_mode = 'light';
 
             session(['theme_mode' => $this->theme_mode]);
-
-        }else{
+        } else {
 
             $this->theme_mode = session('theme_mode');
-
         }
 
         $this->hero_avatar_image = DB::table('site_data')->where('title', 'hero_avatar_image')->first()->data;
@@ -135,16 +133,15 @@ class HomepageWire extends Component
 
 
         //Retriving Estimation Data
-            $estimationItemsArray = DB::table('price_estimation')->get();
+        $estimationItemsArray = DB::table('price_estimation')->get();
 
-            $this->estimation_options = $estimationItemsArray;
+        $this->estimation_options = $estimationItemsArray;
         //End Retriving Estimation Data
 
 
-        if(session()->has('admin_name')){
+        if (session()->has('admin_name')) {
 
             $this->admin_active = true;
-
         }
 
 
@@ -153,14 +150,12 @@ class HomepageWire extends Component
         //Database test for banner_headline
         $banner_headline_check = banner_headline::where('banner_type', "homepage")->first();
 
-        if($banner_headline_check){
+        if ($banner_headline_check) {
 
             $this->banner_headline = $banner_headline_check->banner_text;
-
-        }else{
+        } else {
 
             $this->banner_headline = 'We use only the best quality materials on the market in order to provide the best products to our patients, So don’t worry about anything and book yourself.';
-
         }
 
         $options_db = DB::select("SELECT * FROM explore_options");
@@ -236,26 +231,22 @@ class HomepageWire extends Component
 
             $this->search_output_length = $this->search_output->count();
 
-            if($this->search_output_length == 0){
+            if ($this->search_output_length == 0) {
 
                 $this->dispatch('no_results_found');
-
             }
 
 
             $this->search_input_field_is_active = true;
 
             session(['search_input_field_is_active' => $this->search_input_field_is_active]);
-
-
-        }else{
+        } else {
 
             $this->search_output = null;
 
             $this->search_input_field_is_active = false;
 
             session(['search_input_field_is_active' => $this->search_input_field_is_active]);
-
         }
 
         $this->dispatch('alert-manager');
@@ -270,7 +261,7 @@ class HomepageWire extends Component
 
         session(['search_input_field_is_active' => $this->search_input_field_is_active]);
 
-        if($this->first_load){
+        if ($this->first_load) {
 
             $this->dispatch('load_animation');
 
@@ -285,40 +276,39 @@ class HomepageWire extends Component
         $this->search_input_field_is_active = true;
 
         session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+
+        $this->dispatch('alert-manager');
     }
 
 
 
     // #[On('theme-change')]
-    public function changeThemeMode(){
+    public function changeThemeMode()
+    {
 
-        if($this->theme_mode == 'light'){
+        if ($this->theme_mode == 'light') {
 
             $this->theme_mode = 'dark';
 
             session(['theme_mode' => $this->theme_mode]);
-
-        }else{
+        } else {
 
             $this->theme_mode = 'light';
 
             session(['theme_mode' => $this->theme_mode]);
-
         }
 
         $this->dispatch('alert-manager');
-
     }
 
-    public function adminLoginPopup(){
-        if($this->admin_login_popup_is_active){
+    public function adminLoginPopup()
+    {
+        if ($this->admin_login_popup_is_active) {
 
             $this->admin_login_popup_is_active = false;
-
-        }else{
+        } else {
 
             $this->admin_login_popup_is_active = true;
-
         }
 
         $this->dispatch('alert-manager');
@@ -329,7 +319,7 @@ class HomepageWire extends Component
     public function login()
     {
 
-        if(empty($this->admin_name) || empty($this->admin_password)){
+        if (empty($this->admin_name) || empty($this->admin_password)) {
             $this->notify_error = "Admin Name and Password Cann't Be Empty";
             return;
         }
@@ -349,14 +339,14 @@ class HomepageWire extends Component
             $this->admin_name = null;
             $this->admin_password = null;
 
-            return redirect('/admin_dashboard');
+            // return redirect('/admin_dashboard');
+            $this->dispatch('redirect_to_admin_dashboard');
 
-        }else {
+        } else {
 
             $this->notify_error = "Invalid Credentials";
 
             session(['admin_name' => null]);
-
         }
 
         $this->dispatch('alert-manager');
@@ -370,12 +360,14 @@ class HomepageWire extends Component
     }
 
 
-    public function clear_notify_error(){
+    public function clear_notify_error()
+    {
         $this->notify_error = null;
         $this->dispatch('alert-manager');
     }
 
-    public function clear_notify_success(){
+    public function clear_notify_success()
+    {
         $this->notify_success = null;
         $this->dispatch('alert-manager');
     }
