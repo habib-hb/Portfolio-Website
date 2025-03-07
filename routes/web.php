@@ -1,13 +1,48 @@
 <?php
 
+use App\Mail\TestEmail;
 use App\Models\blog_posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
+
+
+
+
+
+
+Route::get('/test-email', function () {
+    $email = 'developerhabib1230@gmail.com';
+    Mail::to($email)->send(new TestEmail("This is the custom message from HB"));
+
+    return 'Email sent to ' . $email;
+});
+
+
+
+
+
+
+Route::get('/test-cron', function () {
+   DB::table('cron-test')->insert([
+    'text' => "This is it from cron"
+   ]);
+
+    return 'added' . now();
+});
+
+
+
+
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');

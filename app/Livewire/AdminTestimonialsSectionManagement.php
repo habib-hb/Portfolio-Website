@@ -73,6 +73,9 @@ class AdminTestimonialsSectionManagement extends Component
         }, $testimonials_db);
     }
 
+
+
+    #[On('notify-from-child-component')]
     public function changeThemeMode()
     {
 

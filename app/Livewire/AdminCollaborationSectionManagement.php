@@ -70,6 +70,8 @@ class AdminCollaborationSectionManagement extends Component
         }, $collaborations_db);
     }
 
+
+    #[On('notify-from-child-component')]
     public function changeThemeMode()
     {
 
