@@ -55,11 +55,11 @@ class AdminBlogs extends Component
             ]);
 
             // Store the uploaded image and get the file path
-            $imagePath = $this->blog_image->store('blog_images', 'public');
+            // $imagePath = $this->blog_image->store('blog_images', 'public');
 
             // Generate the full image_URL to the stored image
             // $this->image_url = asset('storage/' . $imagePath);
-            $this->image_url = '/storage/' . $imagePath;
+            $this->image_url = $this->temporary_image;
 
             blog_posts::create([
                 'blog_author' => $this->author_name,

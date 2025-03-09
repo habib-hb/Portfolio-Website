@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\blog_posts;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -11,7 +12,7 @@ class AdminBlogsManage extends Component
 {
 
 
-    public $blogs=[];
+    public $blogs = [];
 
     public $database_offset = 0;
 
@@ -28,13 +29,14 @@ class AdminBlogsManage extends Component
     public $notify_error;
 
 
-    public function mount(){
+    public function mount()
+    {
 
         $database_query = blog_posts::where('blog_type', 'custom')
-        ->orderBy('blog_id', 'desc')
-        ->skip($this->database_offset)
-        ->take($this->database_limit)
-        ->get();
+            ->orderBy('blog_id', 'desc')
+            ->skip($this->database_offset)
+            ->take($this->database_limit)
+            ->get();
 
         $this->blogs = $database_query->toArray();
 
@@ -42,56 +44,68 @@ class AdminBlogsManage extends Component
 
         // Increase the offset for the next load
         $this->database_offset += $this->database_limit;
-
     }
 
-    public function loadMore(){
+    public function loadMore()
+    {
 
         $database_query = blog_posts::where('blog_type', 'custom')
-        ->orderBy('updated_at', 'desc')
-        ->skip($this->database_offset)
-        ->take($this->database_limit)
-        ->get();
+            ->orderBy('updated_at', 'desc')
+            ->skip($this->database_offset)
+            ->take($this->database_limit)
+            ->get();
 
 
 
 
-        if($database_query->isEmpty()){
+        if ($database_query->isEmpty()) {
 
             $this->notification = 'No More Blog Posts Found';
-
         }
 
         //Merging Both collections
         $this->blogs = array_merge($this->blogs, $database_query->toArray());
 
 
-         // Increase the offset for the next load
-         $this->database_offset += $this->database_limit;
-
-
+        // Increase the offset for the next load
+        $this->database_offset += $this->database_limit;
     }
 
 
 
-    public function delete_blog($id){
+    public function delete_blog($id)
+    {
 
-       $this->deletable_blog_id = $id;
+        $this->deletable_blog_id = $id;
 
-       $this->notification = 'Are You Sure You Want To Delete This Blog?';
-
+        $this->notification = 'Are You Sure You Want To Delete This Blog?';
     }
 
 
-    public function delete_confirmed(){
+    public function delete_confirmed()
+    {
 
-        blog_posts::where('blog_id', $this->deletable_blog_id)->delete();
+            // blog_posts::where('blog_id', $this->deletable_blog_id)->delete();
+        // Retrieving the blog post to get the image path
+        $blogPost = blog_posts::where('blog_id', $this->deletable_blog_id)->first();
+
+        if ($blogPost) {
+            // Deleting the image from storage
+            $imagePath = str_replace('/storage/', '', $blogPost->blog_image); // Adjust this according to your database structure
+            if (Storage::disk('public')->exists($imagePath)) {
+
+                Storage::disk('public')->delete($imagePath);
+
+                // Deleting the blog post from the database
+                $blogPost->delete();
+            }
+        }
 
         //Rearrenging the data
         $database_query = blog_posts::where('blog_type', 'custom')
-        ->orderBy('blog_id', 'desc')
-        ->take($this->database_offset)
-        ->get();
+            ->orderBy('blog_id', 'desc')
+            ->take($this->database_offset)
+            ->get();
 
         $this->blogs = $database_query->toArray();
 
@@ -100,38 +114,36 @@ class AdminBlogsManage extends Component
 
 
         $this->notification = 'The Blog Has Been Deleted Successfully';
-
     }
 
 
 
     #[On('notify-from-child-component')]
-    public function changeThemeMode(){
+    public function changeThemeMode()
+    {
 
-        if(session('theme_mode') == 'light'){
+        if (session('theme_mode') == 'light') {
 
             session(['theme_mode' => 'dark']);
-
-        }else{
+        } else {
 
 
             session(['theme_mode' => 'light']);
-
         }
 
         $this->dispatch('alert-manager');
-
     }
 
 
 
-    public function moveItemDown($id){
+    public function moveItemDown($id)
+    {
 
         $upItem = DB::select("SELECT * FROM blog_posts WHERE blog_id < ? ORDER BY blog_id DESC LIMIT 1", [$id]);
 
         $currentItem = DB::select("SELECT * FROM blog_posts WHERE blog_id = ?", [$id]);
 
-        if(!$upItem){
+        if (!$upItem) {
             $this->notify_success = "The Blog is already at the bottom of the list.";
             return;
         }
@@ -149,22 +161,21 @@ class AdminBlogsManage extends Component
         $this->notify_success = "The Blog has been moved down.";
 
         $database_query = blog_posts::where('blog_type', 'custom')
-        ->orderBy('blog_id', 'desc')
-        ->take($this->database_offset)
-        ->get();
+            ->orderBy('blog_id', 'desc')
+            ->take($this->database_offset)
+            ->get();
 
         $this->blogs = $database_query->toArray();
-
-
     }
 
-    public function moveItemUp($id){
+    public function moveItemUp($id)
+    {
 
         $downItem = DB::select("SELECT * FROM blog_posts WHERE blog_id > ? ORDER BY blog_id ASC LIMIT 1", [$id]);
 
         $currentItem = DB::select("SELECT * FROM blog_posts WHERE blog_id = ?", [$id]);
 
-        if(!$downItem){
+        if (!$downItem) {
             $this->notify_success = "The Blog is already at the top of the list.";
             return;
         }
@@ -182,9 +193,9 @@ class AdminBlogsManage extends Component
         $this->notify_success = "The Blog has been moved up.";
 
         $database_query = blog_posts::where('blog_type', 'custom')
-        ->orderBy('blog_id', 'desc')
-        ->take($this->database_offset)
-        ->get();
+            ->orderBy('blog_id', 'desc')
+            ->take($this->database_offset)
+            ->get();
 
         $this->blogs = $database_query->toArray();
 
@@ -205,24 +216,24 @@ class AdminBlogsManage extends Component
     }
 
 
-    public function clear_notify_success(){
+    public function clear_notify_success()
+    {
 
         $this->notify_success = null;
-
     }
 
-    public function clear_notify_error(){
+    public function clear_notify_error()
+    {
 
         $this->notify_error = null;
-
     }
 
 
 
-    public function clear_notification(){
+    public function clear_notification()
+    {
 
         $this->notification = null;
-
     }
 
 

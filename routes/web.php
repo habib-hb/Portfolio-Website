@@ -59,7 +59,6 @@ Route::get('/', function () {
 
 
 
-
 Route::get('/consultation', function () {
     return view('consultation');
 });

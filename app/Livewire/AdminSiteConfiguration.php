@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\banner_headline;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -81,6 +82,23 @@ class AdminSiteConfiguration extends Component
     public $footer_bottom_layer_text_specific;
     // End New section this page specific
 
+    // Checking changes
+    public $temporary_image_hero_avatar_changed = false;
+    public $temporary_image_hero_avatar_previous = null;
+
+    public $temporary_image_site_logo_light_changed = false;
+    public $temporary_image_site_logo_light_previous = null;
+
+    public $temporary_image_site_logo_dark_changed = false;
+    public $temporary_image_site_logo_dark_previous = null;
+
+    public $temporary_image_footer_logo_light_changed = false;
+    public $temporary_image_footer_logo_light_previous = null;
+
+    public $temporary_image_footer_logo_dark_changed = false;
+    public $temporary_image_footer_logo_dark_previous = null;
+    // End Checking changes
+
 
 
 
@@ -149,6 +167,71 @@ class AdminSiteConfiguration extends Component
                 $this->notify_error = "Please fill all the fields";
 
                 return;
+            }
+
+            if($this->temporary_image_hero_avatar_changed){
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_hero_avatar_previous);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                    $this->temporary_image_hero_avatar_changed = false;
+
+                    $this->temporary_image_hero_avatar_previous = null;
+
+                }
+            }
+
+            if($this->temporary_image_site_logo_light_changed){
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_site_logo_light_previous);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                    $this->temporary_image_site_logo_light_changed = false;
+
+                    $this->temporary_image_site_logo_light_previous = null;
+
+                }
+            }
+
+            if($this->temporary_image_site_logo_dark_changed){
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_site_logo_dark_previous);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                    $this->temporary_image_site_logo_dark_changed = false;
+
+                    $this->temporary_image_site_logo_dark_previous = null;
+
+                }
+            }
+
+            if($this->temporary_image_footer_logo_light_changed){
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_footer_logo_light_previous);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                    $this->temporary_image_footer_logo_light_changed = false;
+
+                    $this->temporary_image_footer_logo_light_previous = null;
+
+                }
+            }
+
+            if($this->temporary_image_footer_logo_dark_changed){
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_footer_logo_dark_previous);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                    $this->temporary_image_footer_logo_dark_changed = false;
+
+                    $this->temporary_image_footer_logo_dark_previous = null;
+
+                }
             }
 
 
@@ -232,58 +315,172 @@ class AdminSiteConfiguration extends Component
     public function updated($property)
     {
         if ($property === 'hero_avatar_image') {
+            // Checking if re-updating the image without going through the save process
+            $reupdated = false;
+            if($this->temporary_image_hero_avatar_changed){
+                $reupdated = true;
+
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_hero_avatar);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                }
+
+            }
+
             $imagePath = $this->hero_avatar_image->store('temp_hero_images', 'public');
 
             //Full Link
             $imagePath = '/storage/' . $imagePath;
 
+            $this->temporary_image_hero_avatar && $this->temporary_image_hero_avatar_changed = true;
+
+            // Making sure that the original previous image is set as previous, not the concurrent changing ones
+            !$reupdated && $this->temporary_image_hero_avatar_previous = $this->temporary_image_hero_avatar;
+
             $this->temporary_image_hero_avatar = $imagePath;
 
             $this->resetErrorBag('hero_avatar_image');
+
+            $reupdated = false;
+
         }
 
         if ($property === 'site_logo_light') {
+             // Checking if re-updating the image without going through the save process
+             $reupdated = false;
+             if($this->temporary_image_site_logo_light_changed){
+                 $reupdated = true;
+
+                 $imagePath = str_replace('/storage/', '', $this->temporary_image_site_logo_light);
+                 if (Storage::disk('public')->exists($imagePath)) {
+
+                     Storage::disk('public')->delete($imagePath);
+
+                 }
+
+             }
+
+
             $imagePath = $this->site_logo_light->store('temp_site_logo_light_images', 'public');
 
             //Full Link
             $imagePath = '/storage/' . $imagePath;
 
+            $this->temporary_image_site_logo_light && $this->temporary_image_site_logo_light_changed = true;
+
+            // Making sure that the original previous image is set as previous, not the concurrent changing ones
+            !$reupdated && $this->temporary_image_site_logo_light_previous = $this->temporary_image_site_logo_light;
+
             $this->temporary_image_site_logo_light = $imagePath;
 
             $this->resetErrorBag('site_logo_light');
+
+            $reupdated = false;
+
         }
 
         if ($property === 'site_logo_dark') {
+            // Checking if re-updating the image without going through the save process
+            $reupdated = false;
+            if($this->temporary_image_site_logo_dark_changed){
+                $reupdated = true;
+
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_site_logo_dark);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                }
+
+            }
+
+
             $imagePath = $this->site_logo_dark->store('temp_site_logo_dark_images', 'public');
 
             //Full Link
             $imagePath = '/storage/' . $imagePath;
 
+            $this->temporary_image_site_logo_dark && $this->temporary_image_site_logo_dark_changed = true;
+
+            // Making sure that the original previous image is set as previous, not the concurrent changing ones
+            !$reupdated && $this->temporary_image_site_logo_dark_previous = $this->temporary_image_site_logo_dark;
+
             $this->temporary_image_site_logo_dark = $imagePath;
 
             $this->resetErrorBag('site_logo_dark');
+
+            $reupdated = false;
+
         }
 
         if ($property === 'footer_logo_light') {
+             // Checking if re-updating the image without going through the save process
+             $reupdated = false;
+             if($this->temporary_image_footer_logo_light_changed){
+                 $reupdated = true;
+
+                 $imagePath = str_replace('/storage/', '', $this->temporary_image_footer_logo_light);
+                 if (Storage::disk('public')->exists($imagePath)) {
+
+                     Storage::disk('public')->delete($imagePath);
+
+                 }
+
+             }
+
+
             $imagePath = $this->footer_logo_light->store('temp_footer_logo_light_images', 'public');
 
             //Full Link
             $imagePath = '/storage/' . $imagePath;
 
+            $this->temporary_image_footer_logo_light && $this->temporary_image_footer_logo_light_changed = true;
+
+            // Making sure that the original previous image is set as previous, not the concurrent changing ones
+            !$reupdated && $this->temporary_image_footer_logo_light_previous = $this->temporary_image_footer_logo_light;
+
             $this->temporary_image_footer_logo_light = $imagePath;
 
             $this->resetErrorBag('footer_logo_light');
+
+            $reupdated = false;
+
         }
 
         if ($property === 'footer_logo_dark') {
+            // Checking if re-updating the image without going through the save process
+            $reupdated = false;
+            if($this->temporary_image_footer_logo_dark_changed){
+                $reupdated = true;
+
+                $imagePath = str_replace('/storage/', '', $this->temporary_image_footer_logo_dark);
+                if (Storage::disk('public')->exists($imagePath)) {
+
+                    Storage::disk('public')->delete($imagePath);
+
+                }
+
+            }
+
+
             $imagePath = $this->footer_logo_dark->store('temp_footer_logo_dark_images', 'public');
 
             //Full Link
             $imagePath = '/storage/' . $imagePath;
 
+            $this->temporary_image_footer_logo_dark && $this->temporary_image_footer_logo_dark_changed = true;
+
+            // Making sure that the original previous image is set as previous, not the concurrent changing ones
+            !$reupdated && $this->temporary_image_footer_logo_dark_previous = $this->temporary_image_footer_logo_dark;
+
             $this->temporary_image_footer_logo_dark = $imagePath;
 
             $this->resetErrorBag('footer_logo_dark');
+
+            $reupdated = false;
+
         }
     }
 
