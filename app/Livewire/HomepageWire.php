@@ -7,6 +7,8 @@ use App\Models\blog_posts;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 
 class HomepageWire extends Component
 {
@@ -80,6 +82,8 @@ class HomepageWire extends Component
 
     public $footer_bottom_layer_text;
     //End New Additions
+
+    public $consultation_client_phone;
 
 
 
@@ -370,6 +374,46 @@ class HomepageWire extends Component
     {
         $this->notify_success = null;
         $this->dispatch('alert-manager');
+    }
+
+
+    public function consultationStripeRedirect()
+    {
+        if(!$this->consultation_client_phone){
+            $this->notify_error = "Please Enter Your Phone Number";
+            $this->dispatch('alert-manager');
+            return;
+        }
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'Your Product Name',
+                    ],
+                    'unit_amount' => 2000,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('payment.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('payment.cancel'),
+        ]);
+
+        DB::table('consultation_stripe_bookings')->insert([
+            'client_session_id' => $session->id,
+            'client_phone' => $this->consultation_client_phone,
+            'payment_status' => 'pending',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect($session->url);
+        // return redirect()->to('https://buy.stripe.com/test_dR6aV95550000000000000000');
     }
 
 

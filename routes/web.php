@@ -12,6 +12,9 @@ use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StripeWebhookController;
+
 
 
 
@@ -796,3 +799,7 @@ Route::get('/generate-sitemap', function () {
 
     return response()->json(['message' => 'Sitemap generated successfully!']);
 });
+
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook'])->name('cashier.webhook');

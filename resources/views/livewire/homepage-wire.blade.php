@@ -2,103 +2,105 @@
     class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
 
 
-    <div class="sticky top-0  {{ $theme_mode == 'light' ? 'bg-[#eff9ff]' : 'bg-[#090909]' }} z-50">
+    <div class="sticky top-0  {{ $theme_mode == 'light' ? 'bg-[#eff9ff]' : 'bg-[#090909]' }} z-40">
         <nav
-        class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-        <div class=" flex justify-start md:w-[20vw] cursor-pointer">
+            <div class=" flex justify-start md:w-[20vw] cursor-pointer">
 
-            <img src="{{ $site_logo_light }}"
-                class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
+                <img src="{{ $site_logo_light }}"
+                    class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
+                    onclick="window.location.href='/'" alt="">
 
-            <img src="{{ $site_logo_dark }}"
-                class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
-
-
-        </div>
-
-        <div id="input_div" class="relative">
-
-            <img id="{{ session('theme_mode') == 'light' ? 'search_icon' : '' }}"
-                src="{{ asset('images/search_light_mode.gif') }}"
-                class="{{ session('theme_mode') == 'light' ? '' : 'hidden' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
-                alt="">
-
-            <img id="{{ session('theme_mode') == 'light' ? '' : 'search_icon' }}"
-                src="{{ asset('images/search_dark_mode.gif') }}"
-                class="{{ session('theme_mode') == 'light' ? 'hidden' : '' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
-                alt="">
-
-            {{-- <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/search_light_mode.gif') : asset('images/search_dark_mode.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt=""> --}}
-
-            <span id='search_text'
-                class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]' }} {{ $search_input_field_is_active ? 'hidden' : '' }}">Search</span>
-
-            <input wire:model.live='searchtext' id='search_input' type="text"
-                class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{ $theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus: outline-none border-none ">
+                <img src="{{ $site_logo_dark }}"
+                    class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
+                    onclick="window.location.href='/'" alt="">
 
 
+            </div>
 
-        </div>
+            <div id="input_div" class="relative">
 
-        <div class=" flex justify-end md:w-[20vw]">
+                <img id="{{ session('theme_mode') == 'light' ? 'search_icon' : '' }}"
+                    src="{{ asset('images/search_light_mode.gif') }}"
+                    class="{{ session('theme_mode') == 'light' ? '' : 'hidden' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
+                    alt="">
 
-            <button
-                class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
+                <img id="{{ session('theme_mode') == 'light' ? '' : 'search_icon' }}"
+                    src="{{ asset('images/search_dark_mode.gif') }}"
+                    class="{{ session('theme_mode') == 'light' ? 'hidden' : '' }} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{ $search_input_field_is_active ? 'hidden' : '' }}"
+                    alt="">
 
-        </div>
+                {{-- <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/search_light_mode.gif') : asset('images/search_dark_mode.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt=""> --}}
+
+                <span id='search_text'
+                    class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]' }} {{ $search_input_field_is_active ? 'hidden' : '' }}">Search</span>
+
+                <input wire:model.live='searchtext' id='search_input' type="text"
+                    class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{ $theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus: outline-none border-none ">
 
 
-    </nav>
 
-                {{-- Loading The Searched Data --}}
-                <div class="mx-auto md:max-w-[1280px] mt-2 px-2">
-                    <p id="no_results_found" class="hidden {{ $theme_mode == 'light' ? 'text-[#121212]' : 'text-[#e7e7e7]' }}"></p>
+            </div>
+
+            <div class=" flex justify-end md:w-[20vw]">
+
+                <button
+                    class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact
+                        Me</a></button>
+
+            </div>
 
 
-                    @if ($search_output)
-                        @foreach ($search_output as $post)
-                            @if ($theme_mode == 'light')
-                                <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
-                                    $post->blog_link .
-                                    '`" >' .
-                                    $post->blog_title .
-                                    '</p>' !!}</p>
-                                <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
-                                    $post->blog_link .
-                                    '`" >' .
-                                    $post->blog_excerpt .
-                                    '</p>' !!}</p>
-                                <hr>
-                            @endif
+        </nav>
 
-                            @if ($theme_mode == 'dark')
-                                <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
-                                    $post->blog_link .
-                                    '`" >' .
-                                    $post->blog_title .
-                                    '</p>' !!}</p>
-                                <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
-                                    $post->blog_link .
-                                    '`" >' .
-                                    $post->blog_excerpt .
-                                    '</p>' !!}</p>
-                                <hr>
-                            @endif
-                        @endforeach
+        {{-- Loading The Searched Data --}}
+        <div class="mx-auto md:max-w-[1280px] mt-2 px-2">
+            <p id="no_results_found" class="hidden {{ $theme_mode == 'light' ? 'text-[#121212]' : 'text-[#e7e7e7]' }}">
+            </p>
+
+
+            @if ($search_output)
+                @foreach ($search_output as $post)
+                    @if ($theme_mode == 'light')
+                        <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
+                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                            $post->blog_link .
+                            '`" >' .
+                            $post->blog_title .
+                            '</p>' !!}</p>
+                        <p>{!! '<p style="color: #121212; ; cursor:pointer"
+                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                            $post->blog_link .
+                            '`" >' .
+                            $post->blog_excerpt .
+                            '</p>' !!}</p>
+                        <hr>
                     @endif
-                </div>
+
+                    @if ($theme_mode == 'dark')
+                        <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
+                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                            $post->blog_link .
+                            '`" >' .
+                            $post->blog_title .
+                            '</p>' !!}</p>
+                        <p>{!! '<p style="color: #ededed; ; cursor:pointer"
+                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                            $post->blog_link .
+                            '`" >' .
+                            $post->blog_excerpt .
+                            '</p>' !!}</p>
+                        <hr>
+                    @endif
+                @endforeach
+            @endif
+        </div>
     </div>
 
 
@@ -111,7 +113,7 @@
 
         @if ($notify_success)
             <div id="appointment_unfulfilled"
-                class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-50">
                 <div class="flex flex-col justify-between items-center px-8">
 
                     <p class="text-white text-3xl font-semibold">Message</p>
@@ -133,7 +135,7 @@
 
 
         @if ($notify_error)
-            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10"
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-50"
                 id="notify_error_element">
                 <div class="flex flex-col justify-between items-center px-8">
 
@@ -172,7 +174,7 @@
         {{-- Loaders --}}
         <!-- Show a loading spinner while Doing Theme Change Processing -->
         <div wire:loading wire:target="changeThemeMode"
-            class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-50">
 
             <div class="flex flex-row justify-center items-center px-2 gap-2">
                 <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
@@ -185,7 +187,7 @@
 
 
         <div wire:loading wire:target="login"
-            class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-50">
 
             <div class="flex flex-row justify-center items-center px-2 gap-2">
                 <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
@@ -195,6 +197,21 @@
 
 
         </div>
+
+
+        <div wire:loading wire:target="consultationStripeRedirect"
+            class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-50">
+
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+                <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing Payment...</span>
+            </div>
+
+
+        </div>
+
+
         {{-- End Loaders --}}
 
 
@@ -451,15 +468,17 @@
                     {{ $item['portfolio_title'] }}
                 </h2>
 
-                <div class=" w-full [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
-                    <p>{!! $item['portfolio_description'] !!}</p></div>
+                <div
+                    class=" w-full [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
+                    <p>{!! $item['portfolio_description'] !!}</p>
+                </div>
 
                 <div class="flex gap-4 justify-center md:justify-start w-full my-4">
                     <a href="{{ $item['portfolio_site_link'] }}" target="_blank"><button
-                            class="{{ $item['portfolio_site_link']  ? '' : 'hidden' }} h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
+                            class="{{ $item['portfolio_site_link'] ? '' : 'hidden' }} h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
 
                     <a href="{{ $item['portfolio_github_link'] }}" target="_blank"><button
-                            class="{{  $item['portfolio_github_link']  ? '' : 'hidden' }} h-[45px] w-[160px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
+                            class="{{ $item['portfolio_github_link'] ? '' : 'hidden' }} h-[45px] w-[160px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Source
                             Code</button></a>
                 </div>
 
@@ -489,12 +508,12 @@
 
 {{-- Admin Login Popup --}}
 
-<div class="{{ $admin_login_popup_is_active ? 'flex flex-col' : 'hidden' }} fixed justify-center items-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-50"
+<div class="{{ $admin_login_popup_is_active ? 'flex flex-col' : 'hidden' }} fixed justify-center items-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-40"
     id="admin_login_popup">
 
 
-    <p class="absolute top-4 right-4 cursor-pointer text-4xl hover:scale-110 transition-all {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}" id="admin_popup_close"
-        wire:click="adminLoginPopup">&times;
+    <p class="absolute top-4 right-4 cursor-pointer text-4xl hover:scale-110 transition-all {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}"
+        id="admin_popup_close" wire:click="adminLoginPopup">&times;
     </p>
 
     <h2 class="text-2xl md:text-4xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
@@ -549,7 +568,8 @@
                         d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
                     <path class="hs-password-active:hidden"
                         d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
-                    <line class="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22">
+                    <line class="hs-password-active:hidden" x1="2" x2="22" y1="2"
+                        y2="22">
                     </line>
                     <path class="hidden hs-password-active:block" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z">
                     </path>
@@ -661,7 +681,7 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             @foreach ($testimonials_cards as $item)
-                    <div
+                <div
                     class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] cursor-grab">
                     <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
                         <div class="flex flex-col h-full justify-center">
@@ -689,7 +709,8 @@
                         </div>
 
                         <div class="flex flex-row w-full justify-start gap-4 items-center">
-                            <img src="{{ $item['profile_image'] }}" class="max-w-[114px] max-h-[114px]" alt="">
+                            <img src="{{ $item['profile_image'] }}" class="max-w-[114px] max-h-[114px]"
+                                alt="">
                             <div class="flex flex-col gap-0 justify-center items-start">
                                 <p class="text-[24px]">{{ $item['name'] }}</p>
                                 <p class="text-[16px]">{{ $item['profession'] }}</p>
@@ -723,7 +744,34 @@
 
 
 
-{{-- Consult Now Button --}}
+
+{{-- Consultation Section Start --}}
+<div class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-10">
+    <p class="text-center font-medium mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        To get a professional consultation, please click the button below.
+    </p>
+    <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center">
+
+            <label for="phone"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Contact
+                Number</label>
+
+            <input wire:model="consultation_client_phone" type="number"
+                class="w-full md:w-[90%] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="phone">
+
+        </div>
+        <button wire:click="consultationStripeRedirect" class="bg-[#1A579F] text-white px-4 py-2 rounded-md hover:scale-105 transition-all mt-4">
+            Consult Now
+        </button>
+    </div>
+</div>
+{{-- Consultation Section End --}}
+
+
+
+{{-- Contact Me Button --}}
 <button
     class="my-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
     onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
@@ -813,13 +861,14 @@
     </div>
 
 
-    <img id='footer_icon'
-        src="{{ $theme_mode == 'light' ? $footer_logo_light : $footer_logo_dark }}"
+    <img id='footer_icon' src="{{ $theme_mode == 'light' ? $footer_logo_light : $footer_logo_dark }}"
         class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
 
-    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">{{$footer_top_layer_text}}</p>
+    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        {{ $footer_top_layer_text }}</p>
 
-    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">{{$footer_bottom_layer_text}}
+    <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        {{ $footer_bottom_layer_text }}
     </p>
 
 
@@ -939,8 +988,8 @@
 
             if (document.getElementById('search_input').value == '' && document.activeElement !==
                 document.getElementById('search_input')) {
-                    document.getElementById('search_icon').style.display = 'block';
-                    document.getElementById('search_text').style.display = 'block';
+                document.getElementById('search_icon').style.display = 'block';
+                document.getElementById('search_text').style.display = 'block';
             }
 
 
@@ -1015,8 +1064,8 @@
             // if (document.getElementById('search_input').value !== '') {
             if (document.getElementById('search_input').value !== '' || document.activeElement ===
                 document.getElementById('search_input')) {
-            // if (document.getElementById('search_input').value !== '' || document.activeElement ===
-            //     document.getElementById('search_input')) {
+                // if (document.getElementById('search_input').value !== '' || document.activeElement ===
+                //     document.getElementById('search_input')) {
 
                 // Doing 100ms delay cause the DOM is not loaded yet.
                 setTimeout(() => {
@@ -1098,5 +1147,3 @@
 
 
 </div>
-
-
