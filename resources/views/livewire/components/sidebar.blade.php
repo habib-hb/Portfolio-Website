@@ -111,6 +111,20 @@
                     </div>
                     <!-- End Manage Blogs -->
 
+                    <!-- Skills Section Management -->
+                    <div class="hs-tooltip [--placement:right] inline-block">
+                        <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"
+                            href="/admin_dashboard/skills-section-management">
+                                <img src="{{ asset('images/admin-skills-section-management.png') }}" class="h-[36px] rounded-lg bg-white p-1" alt="">
+                            <span
+                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 {{ session('theme_mode') == 'light' ? 'bg-[#1e1d1d] text-white' : 'bg-white text-black' }} text-xs  rounded-lg whitespace-nowrap "
+                                role="tooltip">
+                                Skills Section Management
+                            </span>
+                        </a>
+                    </div>
+                    <!-- End Skills Section Management -->
+
                     <!-- Schedules Management -->
                     <div class="hs-tooltip [--placement:right] inline-block">
                         <a class="hs-tooltip-toggle size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent disabled:opacity-50 disabled:pointer-events-none"

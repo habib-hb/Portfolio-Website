@@ -109,7 +109,7 @@
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{ $notify_success }}</p>
+                <p class="text-white text-center">{{ $notify_success }}</p>
 
             </div>
 

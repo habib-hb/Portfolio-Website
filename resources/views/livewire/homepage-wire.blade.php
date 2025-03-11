@@ -1,7 +1,6 @@
 <div id="main_div"
     class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
 
-
     <div class="sticky top-0  {{ $theme_mode == 'light' ? 'bg-[#eff9ff]' : 'bg-[#090909]' }} z-40">
         <nav
             class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
@@ -15,7 +14,6 @@
                 <img src="{{ $site_logo_dark }}"
                     class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
                     onclick="window.location.href='/'" alt="">
-
 
             </div>
 
@@ -39,8 +37,6 @@
                 <input wire:model.live='searchtext' id='search_input' type="text"
                     class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{ $theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus: outline-none border-none ">
 
-
-
             </div>
 
             <div class=" flex justify-end md:w-[20vw]">
@@ -52,28 +48,35 @@
 
             </div>
 
-
         </nav>
+
+
+
+
+
+
+
+
+
 
         {{-- Loading The Searched Data --}}
         <div class="mx-auto md:max-w-[1280px] mt-2 px-2">
             <p id="no_results_found" class="hidden {{ $theme_mode == 'light' ? 'text-[#121212]' : 'text-[#e7e7e7]' }}">
             </p>
 
-
             @if ($search_output)
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -83,15 +86,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -103,13 +106,7 @@
         </div>
     </div>
 
-
-
-
     <div class="h-[100vh] flex flex-col">
-
-
-
 
         @if ($notify_success)
             <div id="appointment_unfulfilled"
@@ -128,11 +125,8 @@
                 <button wire:click="clear_notify_success"
                     class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
-
-
             </div>
         @endif
-
 
         @if ($notify_error)
             <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-50"
@@ -151,16 +145,8 @@
                 <button wire:click="clear_notify_error"
                     class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
-
-
             </div>
         @endif
-
-
-
-
-
-
 
         {{-- <div wire:click="changeThemeMode" class="flex justify-center">
 
@@ -172,6 +158,7 @@
 
 
         {{-- Loaders --}}
+
         <!-- Show a loading spinner while Doing Theme Change Processing -->
         <div wire:loading wire:target="changeThemeMode"
             class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-50">
@@ -195,7 +182,6 @@
                 <span class=" text-white py-2 rounded-lg"> Processing Credentials...</span>
             </div>
 
-
         </div>
 
 
@@ -207,7 +193,6 @@
 
                 <span class=" text-white py-2 rounded-lg"> Processing Payment...</span>
             </div>
-
 
         </div>
 
@@ -228,17 +213,6 @@
 
         </div>
 
-
-
-        <div class="flex justify-center mt-6 md:hidden hidden">
-
-            <button
-                class="h-[55px] w-[209px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                onclick="window.location.href='/consultation'">Consult Now</button>
-
-        </div>
-
-
         <div class="flex flex-col max-w-[1280px] justify-center items-center mx-auto grow mt-2 md:mt-0">
 
             <div
@@ -256,26 +230,14 @@
                     <h2 id="full_stack"
                         class="font-poppins text-center md:text-left text-6xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
                         style="opacity: 0">{{ $up_middle_layer_text }}</h2>
-                    {{-- <h2 id="full_stack"
-                        class="font-poppins text-center md:text-left text-6xl {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">Full Stack</h2> --}}
 
                     <h2 id="developer"
                         class="font-poppins text-6xl text-center md:text-left  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
                         style="opacity: 0">{{ $down_middle_layer_text }}</h2>
 
-
-                    {{-- <h2 id="developer"
-                        class="font-poppins text-6xl text-center md:text-left  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">Developer</h2> --}}
-
                     <p id="based_in"
                         class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
                         style="opacity: 0">{{ $end_layer_text }}</p>
-
-                    {{-- <p id="based_in"
-                        class="font-poppins text-center md:text-left  text-lg md:text-xl mt-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}    "
-                        style="opacity: 0">based in Dhaka, Bangladesh.</p> --}}
 
                 </div>
 
@@ -284,10 +246,6 @@
                     <img id="profile_img" src="{{ $hero_avatar_image }}" class=" w-[30vh] md:w-[40vh]   "
                         style="opacity: 0" alt="">
                 </div>
-                {{-- <div class="">
-                    <img id="profile_img" src="{{ asset('images/whole_profile_new.png') }}"
-                        class=" w-[30vh] md:w-[40vh]   " style="opacity: 0" alt="">
-                </div> --}}
 
             </div>
 
@@ -296,16 +254,61 @@
                     style="opacity: 0" alt="Scroll Down">
             </div>
 
-
-
-
         </div>
 
     </div>
 
 
-    {{-- Explore Section Start --}}
 
+
+
+
+
+
+
+
+
+    {{-- Skills Section Start --}}
+    <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
+
+        <h1
+            class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            My Skills</h1>
+
+        <p
+            class="text-[16px] md:max-w-[765px] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            I primarily use - Laravel and MySQL on the backend ; Next or Livewire with Tailwind on the frontend ; and Figma for UI/UX designing. </p>
+
+        <div class="flex justify-center items-center gap-6 my-6 flex-wrap px-2">
+
+            @foreach ($skills_section_items_array as $item)
+            <div
+            class="flex justify-start p-2 gap-2 items-center w-full max-w-[324px] shrink-0 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}">
+
+            <div
+                class="h-[60px] w-[60px] rounded-lg flex justify-center items-center shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
+                <img src="{{ $item['skill_icon'] }}" class="max-w-[50px] max-h-[50px]" alt="">
+            </div>
+
+            <h2 class="text-2xl font-semibold {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    {{ $item['skill_title'] }}</h2>
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+    {{-- Skills Section End --}}
+
+
+
+
+
+
+
+
+
+
+    {{-- Explore Section Start --}}
     <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
         <h1
@@ -323,9 +326,8 @@
             <div
                 class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-
                 <div
-                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-white ">
                     <img src="{{ $option['image_link'] }}"
                         class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                         alt="">
@@ -334,7 +336,6 @@
                 <h1
                     class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} line-clamp-2">
                     {{ $option['option'] }}</h1>
-
 
                 <div class="mt-4 flex flex-row justify-center items-center mb-6">
                     <button
@@ -354,6 +355,16 @@
 
 
 
+
+
+
+
+
+
+
+
+
+    {{-- Service Cards --}}
     <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
         <h1
@@ -364,26 +375,16 @@
             class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
             {{ $services_caption }}</p>
 
-        {{-- <p
-            class="text-lg font-medium text-center mt-8 px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            Click on 'Select' to get the estimated fee and book an appointment. If you want to know more, click on the
-            'Details' button</p> --}}
-
     </div>
 
-
-
-    {{-- Service Cards --}}
     <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
-
 
         @foreach ($estimation_options as $item)
             <div
                 class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-3 px-4  h-full max-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-
                 <div
-                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-white ">
                     <img src="{{ $item->icon_link }}"
                         class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                         alt="">
@@ -413,10 +414,13 @@
             </div>
         @endforeach
 
-
-
-
     </div>
+
+
+
+
+
+
 
 
 
@@ -424,6 +428,13 @@
     <button
         class="mt-4 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
         onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
+
+
+
+
+
+
+
 
 
 
@@ -448,8 +459,6 @@
                 <div class="flex w-full py-8  h-fit md:h-[600px]"
                     style="{{ $index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : '' }} ">
         @endif
-
-
 
         <div
             class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} justify-center items-center h-full">
@@ -491,15 +500,15 @@
 
         </div>
 
-
-
-
-
-
 </div>
 @endforeach
 
 {{-- End Portfolio Showcase Section --}}
+
+
+
+
+
 
 
 
@@ -511,7 +520,6 @@
 <div class="{{ $admin_login_popup_is_active ? 'flex flex-col' : 'hidden' }} fixed justify-center items-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-40"
     id="admin_login_popup">
 
-
     <p class="absolute top-4 right-4 cursor-pointer text-4xl hover:scale-110 transition-all {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}"
         id="admin_popup_close" wire:click="adminLoginPopup">&times;
     </p>
@@ -522,10 +530,6 @@
     <form wire:submit.prevent="login">
 
         <div class="flex flex-col justify-center items-center my-4">
-
-
-
-
 
             <div class="flex flex-col mt-2 max-w-[680px]">
 
@@ -539,19 +543,7 @@
 
             </div>
 
-
         </div>
-
-        {{-- <div class="flex flex-col max-w-[680px]">
-
-            <label for="title"
-                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Password</label>
-
-            <input type="password" wire:model.defer="admin_password" placeholder="Password"
-                class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                id="admin_password">
-
-        </div> --}}
 
         <div class="relative max-w-[680px]">
             <input id="hs-toggle-password" wire:model.defer="admin_password" type="password"
@@ -580,7 +572,6 @@
 
         <p class="text-lg text-red-800 mt-4" id="admin_login_error"></p>
 
-
         {{-- End Created Items Section --}}
         <div class="flex justify-center">
             <button type="submit"
@@ -588,12 +579,15 @@
                 In</button>
         </div>
 
-
     </form>
 
 </div>
 
 {{-- End Admin Login Popup --}}
+
+
+
+
 
 
 
@@ -634,34 +628,28 @@
                 </div>
             @endforeach
         </div>
-        <!-- If we need pagination -->
-
 
         <!-- If we need navigation buttons -->
-
-
         <div class="swiper-button-prev scale-50 opacity-75"></div>
         <div class="swiper-button-next scale-50 opacity-75"></div>
         <div
             class="swiper-pagination [&.swiper-pagination-fraction]:!bottom-0 [&.swiper-pagination-fraction]:!text-blue-600">
         </div>
 
-
-        <!-- If we need scrollbar -->
-        {{-- <div class="swiper-scrollbar"></div> --}}
     </div>
 </div>
-
-
-
-
 {{-- The Collaborations Slider End --}}
 
 
 
 
-{{-- The Testimonials Slider Start --}}
 
+
+
+
+
+
+{{-- The Testimonials Slider Start --}}
 <!-- Slider main container -->
 <div class="flex flex-col justify-center mt-[6vh]  md:max-w-[1280px]  mx-auto">
 
@@ -683,7 +671,7 @@
             @foreach ($testimonials_cards as $item)
                 <div
                     class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] cursor-grab">
-                    <div class="flex flex-col h-[320px] justify-between gap-8 items-center">
+                    <div class="flex flex-col h-[356px] justify-between gap-8 items-center">
                         <div class="flex flex-col h-full justify-center">
                             <div class="w-full flex justify-start">
                                 <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor"
@@ -695,7 +683,7 @@
                             </div>
 
                             <div class="flex flex-col gap-2 justify-center items-center">
-                                <p class="text-[18px] line-clamp-4">{{ $item['quote'] }}</p>
+                                <p class="text-[18px] line-clamp-8">{{ $item['quote'] }}</p>
                             </div>
                             <div class="w-full flex justify-end">
                                 <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor"
@@ -709,7 +697,7 @@
                         </div>
 
                         <div class="flex flex-row w-full justify-start gap-4 items-center">
-                            <img src="{{ $item['profile_image'] }}" class="max-w-[114px] max-h-[114px]"
+                            <img src="{{ $item['profile_image'] }}" class="max-w-[64px] max-h-[64px]"
                                 alt="">
                             <div class="flex flex-col gap-0 justify-center items-start">
                                 <p class="text-[24px]">{{ $item['name'] }}</p>
@@ -723,30 +711,27 @@
 
 
         </div>
-        <!-- If we need pagination -->
-
-
         <!-- If we need navigation buttons -->
-
-
         <div class="swiper-button-prev scale-50 opacity-75"></div>
         <div class="swiper-button-next scale-50 opacity-75"></div>
         <div class="swiper-pagination [&.swiper-pagination-fraction]:!text-blue-600"></div>
 
-
-        <!-- If we need scrollbar -->
-        {{-- <div class="swiper-scrollbar"></div> --}}
     </div>
 </div>
-
-
 {{-- The Testimonials Slider End --}}
 
 
 
 
+
+
+
+
+
+
 {{-- Consultation Section Start --}}
-<div class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-10">
+<div
+    class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-10">
     <p class="text-center font-medium mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
         To get a professional consultation, please click the button below.
     </p>
@@ -758,16 +743,24 @@
                 Number</label>
 
             <input wire:model="consultation_client_phone" type="number"
-                class="w-full md:w-[90%] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                class="w-full md:w-[90%] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="phone">
 
         </div>
-        <button wire:click="consultationStripeRedirect" class="bg-[#1A579F] text-white px-4 py-2 rounded-md hover:scale-105 transition-all mt-4">
+        <button wire:click="consultationStripeRedirect"
+            class="bg-[#1A579F] text-white px-4 py-2 rounded-md hover:scale-105 transition-all mt-4">
             Consult Now
         </button>
     </div>
 </div>
 {{-- Consultation Section End --}}
+
+
+
+
+
+
+
 
 
 
@@ -780,11 +773,14 @@
 
 
 
+
+
+
+
+
 {{-- Footer Element --}}
 <div
     class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
-
-
 
     <div
         class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[700px] mb-4">
@@ -860,7 +856,6 @@
 
     </div>
 
-
     <img id='footer_icon' src="{{ $theme_mode == 'light' ? $footer_logo_light : $footer_logo_dark }}"
         class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
 
@@ -871,8 +866,11 @@
         {{ $footer_bottom_layer_text }}
     </p>
 
-
 </div>
+
+
+
+
 
 
 
@@ -893,7 +891,6 @@
     const scroll_down = document.getElementById("scroll_down");
 
     const animation_function = () => {
-
         //Doing 100ms delay cause the DOM is not loaded yet.
         setTimeout(() => {
 
@@ -914,7 +911,6 @@
 
             scroll_down.style.opacity = 0;
             scroll_down.style.transform = "translateY(16px)";
-
 
             const timeline = gsap.timeline();
 
@@ -961,9 +957,6 @@
 
     }
 
-
-
-
     const css_stablizer = () => {
         //Doing 100ms delay cause the DOM is not loaded yet.
         setTimeout(() => {
@@ -992,97 +985,60 @@
                 document.getElementById('search_text').style.display = 'block';
             }
 
-
         }, 1);
 
     }
 
-
-
-
     document.getElementById('input_div').addEventListener('click', () => {
         document.getElementById('search_input').focus();
-
         Livewire.dispatch('activate_search_input_field', {});
     })
 
     document.getElementById('search_input').addEventListener('focus', () => {
-
         document.getElementById('search_icon').style.display = 'none';
         document.getElementById('search_text').style.display = 'none';
-
     })
 
 
 
 
     document.getElementById('search_input').addEventListener('blur', () => {
-
         if (document.getElementById('search_input').value == '') {
             document.getElementById('search_icon').style.display = 'block';
             document.getElementById('search_text').style.display = 'block';
         }
-
     })
 
 
     // Without this , the search bar shows the text previously entered when I come back using the back button even though the actual value of the input field is empty
     window.addEventListener('load', () => {
-
-
         setTimeout(() => {
             document.getElementById('search_input').value = '';
         }, 100);
-
-
     });
-
 
     let item = "";
 
-
     document.addEventListener('livewire:initialized', () => {
-
         // Sending Data To backend
         //  setTimeout(() => {
-
         if (document.getElementById('search_input').value == '') {
-
-
             Livewire.dispatch('new_load_alert_for_serch_strings', {});
-
-
-
         }
 
-
-        // }, 10);
-
-
         Livewire.on('alert-manager', () => {
-
             // if (document.getElementById('search_input').value !== '') {
             if (document.getElementById('search_input').value !== '' || document.activeElement ===
                 document.getElementById('search_input')) {
-                // if (document.getElementById('search_input').value !== '' || document.activeElement ===
-                //     document.getElementById('search_input')) {
-
-                // Doing 100ms delay cause the DOM is not loaded yet.
                 setTimeout(() => {
                     document.getElementById('search_icon').style.display = 'none';
                     document.getElementById('search_text').style.display = 'none';
                 }, 10);
-
             }
-
             css_stablizer();
-
-
-
         })
 
         Livewire.on('no_results_found', () => {
-
             // Doing 100ms delay cause the DOM is not loaded yet.
             setTimeout(() => {
                 document.getElementById('no_results_found').textContent = 'No Results Found';
@@ -1091,59 +1047,30 @@
                     document.getElementById('no_results_found').classList.remove('hidden');
                 }
             }, 10);
-
-
         })
-
-
-
 
         Livewire.on('load_animation', () => { // Doing this to avoid the rerendering issue in javascript
-
             animation_function();
-
-
         })
-
-
-
 
         Livewire.on('redirect_to_admin_dashboard', () => {
-
             window.open("/admin_dashboard", "_blank");
-
         })
-
-
-
 
         document.addEventListener('click', function(event) {
             const admin_login_popup = document.getElementById('admin_login_popup');
-
             const notify_error_element = document.getElementById('notify_error_element') || null;
-
             const isClickInside = admin_login_popup.contains(event.target);
-
             const isClickInside_notify_error_element = notify_error_element?.contains(event.target);
 
             // If the click is outside the dropdown, perform an action
             if (!isClickInside && !isClickInside_notify_error_element) {
-
                 if (!document.getElementById('admin_login_popup').classList.contains('hidden')) {
-
                     document.getElementById('admin_popup_close').click();
-
                 }
-
-
-
             }
-
         });
-
-
     })
 </script>
-
 
 </div>

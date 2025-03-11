@@ -20,10 +20,11 @@ use App\Http\Controllers\StripeWebhookController;
 
 
 
+
+
 Route::get('/test-email', function () {
     $email = 'developerhabib1230@gmail.com';
     Mail::to($email)->send(new TestEmail("This is the custom message from HB"));
-
     return 'Email sent to ' . $email;
 });
 
@@ -36,7 +37,6 @@ Route::get('/test-cron', function () {
     DB::table('cron-test')->insert([
         'text' => "This is it from cron"
     ]);
-
     return 'added' . now();
 });
 
@@ -82,99 +82,6 @@ Route::get('/contact', function () {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::get('/services/full-project', function () {
-//     return view('services.full-project');
-// });
-
-
-
-
-
-
-
-
-
-
-
-// Route::get('/services/front-end', function () {
-//     return view('services.front-end');
-// });
-
-
-
-
-
-
-
-
-
-
-// Route::get('/services/back-end', function () {
-//     return view('services.back-end');
-// });
-
-
-
-
-
-
-
-
-
-// Route::get('/services/figma-design', function () {
-//     return view('services.figma-design');
-// });
-
-
-
-
-
-
-
-
-
-// Route::get('/services/wordpress', function () {
-//     return view('services.wordpress');
-// });
-
-
-
-
-
-
-
-
-
-
-
-// Route::get('/services/error-fixing', function () {
-//     return view('services.error-fixing');
-// });
-
-
-
-
-
-
-
-
-
-// Route::get('/services/test', function () {
-//     return view('services.test');
-// });
 
 
 
@@ -676,12 +583,27 @@ Route::get('/admin_dashboard/testimonials-section-management', function () {
 
 
 
+Route::get('/admin_dashboard/skills-section-management', function () {
+    if (!session()->has('admin_name')) {
+        return redirect('/');
+    }
+    return view('admin_dashboard.skills-section-management');
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
 Route::get('/categories/{category_name}', function ($category_name, Request $request) {
     $id = $request->query('id'); // Get the 'id' query parameter
-
     return view('dynamic_content.single-category-page', ['category_name' => $category_name, 'category_id' => $id]);
 });
 
@@ -713,7 +635,6 @@ Route::get('/blogs/{slug}', function ($slug) {
 
 
 Route::get('/blog_showcase', function () {
-
     return view('blog_showcase');
 });
 
@@ -731,7 +652,6 @@ Route::get('/blog_showcase', function () {
 
 
 Route::get('/privacy_policy', function () {
-
     return view('privacy_policy');
 });
 
@@ -748,7 +668,6 @@ Route::get('/privacy_policy', function () {
 
 
 Route::get('/about', function () {
-
     return view('about');
 });
 
@@ -771,7 +690,6 @@ Route::get('/generate-sitemap', function () {
     // Create a new Sitemap instance
     $sitemap = Sitemap::create();
 
-
     $custom_blogs = blog_posts::where('blog_type', 'custom')->get();
     foreach ($custom_blogs as $custom_blog) {
         $sitemap->add(
@@ -782,17 +700,12 @@ Route::get('/generate-sitemap', function () {
         );
     }
 
-
-
-
     // $sitemap->add(
     //     Url::create(env('BASE_LINK') . '/consultation')
     //         ->setLastModificationDate(now())
     //         ->setChangeFrequency('monthly')
     //         ->setPriority(0.7)
     // );
-
-
 
     // Write the sitemap to the specified path
     $sitemap->writeToFile($path);

@@ -27,6 +27,8 @@ class HomepageWire extends Component
 
     public $first_load = true;
 
+    public $skills_section_items_array = [];
+
     public $options_array = [];
 
     public $portfolios_array = [];
@@ -134,6 +136,13 @@ class HomepageWire extends Component
         $this->footer_bottom_layer_text = DB::table('site_data')->where('title', 'footer_bottom_layer_text')->first()->data;
         //End New Additions
 
+        //Retriving Skills Section Data
+        $skills_section_items_db = DB::select("SELECT * FROM skills_section");
+
+        $this->skills_section_items_array = array_map(function ($item) {
+            return ['id' => $item->id, 'skill_title' => $item->skill_title, 'skill_icon' => $item->skill_icon];
+        }, $skills_section_items_db);
+        //End Retriving Skills Section Data
 
 
         //Retriving Estimation Data
