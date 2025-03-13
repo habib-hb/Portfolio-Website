@@ -7,6 +7,7 @@ use App\Models\blog_posts;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 
@@ -57,6 +58,8 @@ class HomepageWire extends Component
 
     public $end_layer_text;
 
+    public $skills_caption;
+
     public $categories_caption;
 
     public $services_caption;
@@ -87,6 +90,8 @@ class HomepageWire extends Component
 
     public $consultation_client_phone;
 
+    public $recaptcha_token;
+
 
 
 
@@ -113,6 +118,8 @@ class HomepageWire extends Component
         $this->end_layer_text = DB::table('site_data')->where('title', 'hero_end_layer_text')->first()->data;
 
         $this->categories_caption = DB::table('site_data')->where('title', 'categories_caption')->first()->data;
+
+        $this->skills_caption = DB::table('site_data')->where('title', 'skills_caption')->first()->data;
 
         $this->services_caption = DB::table('site_data')->where('title', 'services_caption')->first()->data;
 
@@ -294,6 +301,15 @@ class HomepageWire extends Component
     }
 
 
+    #[On('recaptcha_token')]
+    public function recaptcha_token($token)
+    {
+
+        $this->recaptcha_token = $token;
+
+    }
+
+
 
     // #[On('theme-change')]
     public function changeThemeMode()
@@ -332,8 +348,25 @@ class HomepageWire extends Component
     public function login()
     {
 
-        if (empty($this->admin_name) || empty($this->admin_password)) {
-            $this->notify_error = "Admin Name and Password Cann't Be Empty";
+        if (empty($this->admin_name) || empty($this->admin_password) || empty($this->recaptcha_token)) {
+            $this->notify_error = "Admin Name and Password Cann't Be Empty. And Please Verify The Captcha";
+            return;
+        }
+
+        $recaptcha_secret = env('RECAPTCHA_SECRET_KEY');
+        $recaptcha_response = $this->recaptcha_token;
+
+        $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
+
+        $recaptcha = Http::asForm()->post($recaptcha_url, [
+            'secret' => $recaptcha_secret,
+            'response' => $recaptcha_response
+        ]);
+
+        $recaptcha = $recaptcha->json();
+
+        if (!$recaptcha['success']) {
+            $this->notify_error = "Please Verify The Captcha";
             return;
         }
 

@@ -277,7 +277,8 @@
 
         <p
             class="text-[16px] md:max-w-[765px] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            I primarily use - Laravel and MySQL on the backend ; Next or Livewire with Tailwind on the frontend ; and Figma for UI/UX designing. </p>
+            {{ $skills_caption }}
+        </p>
 
         <div class="flex justify-center items-center gap-6 my-6 flex-wrap px-2">
 
@@ -327,14 +328,14 @@
                 class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
                 <div
-                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-white ">
+                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1 p-2  bg-white   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <img src="{{ $option['image_link'] }}"
-                        class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+                        class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}"
                         alt="">
                 </div>
 
                 <h1
-                    class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} line-clamp-2">
+                    class="text-2xl font-semibold mt-2 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} line-clamp-2">
                     {{ $option['option'] }}</h1>
 
                 <div class="mt-4 flex flex-row justify-center items-center mb-6">
@@ -381,21 +382,21 @@
 
         @foreach ($estimation_options as $item)
             <div
-                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-3 px-4  h-full max-h-[300px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-4 md:[&_p]:line-clamp-3 px-4  h-[324px] md:h-[310px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
                 <div
-                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1  bg-white ">
+                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1 p-1 bg-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <img src="{{ $item->icon_link }}"
-                        class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+                        class=" h-[62px] w-[62px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }} "
                         alt="">
                 </div>
 
                 <h1
-                    class="text-2xl font-semibold mt-1 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} ">
+                    class="text-2xl font-semibold mt-2 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} ">
                     {{ $item->title }}</h1>
 
                 <div
-                    class="text-center mt-2 text-lg font-normal px-4 line-clamp-3  [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }} [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl">
+                    class="text-center my-2  text-lg font-normal px-4 line-clamp-3  [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }} [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl">
                     {!! $item->description !!}</div>
 
                 <div class="flex flex-row gap-4 mb-6 mt-auto">
@@ -516,6 +517,7 @@
 
 
 {{-- Admin Login Popup --}}
+<script async src="https://www.google.com/recaptcha/api.js"></script>
 
 <div class="{{ $admin_login_popup_is_active ? 'flex flex-col' : 'hidden' }} fixed justify-center items-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-40"
     id="admin_login_popup">
@@ -534,7 +536,7 @@
             <div class="flex flex-col mt-2 max-w-[680px]">
 
                 <label for="title"
-                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">User
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Admin
                     Name</label>
 
                 <input type="text" wire:model.defer="admin_name" placeholder="Admin Name"
@@ -545,6 +547,8 @@
 
         </div>
 
+        <label for="title"
+        class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Password</label>
         <div class="relative max-w-[680px]">
             <input id="hs-toggle-password" wire:model.defer="admin_password" type="password"
                 class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -570,7 +574,12 @@
             </button>
         </div>
 
-        <p class="text-lg text-red-800 mt-4" id="admin_login_error"></p>
+        <div class="mt-4 flex justify-center" wire:ignore>
+            <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}" data-callback="onRecaptchaSuccess"></div>
+        </div> 
+        
+
+        <p class="text-lg text-red-800 mt-1" id="admin_login_error"></p>
 
         {{-- End Created Items Section --}}
         <div class="flex justify-center">
@@ -598,7 +607,7 @@
 {{-- The Collaborations Slider Start --}}
 
 <!-- Slider main container -->
-<div class="flex flex-col justify-center mt-[6vh]  md:max-w-[1280px]  mx-auto">
+<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -651,7 +660,7 @@
 
 {{-- The Testimonials Slider Start --}}
 <!-- Slider main container -->
-<div class="flex flex-col justify-center mt-[6vh]  md:max-w-[1280px]  mx-auto">
+<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -683,7 +692,7 @@
                             </div>
 
                             <div class="flex flex-col gap-2 justify-center items-center">
-                                <p class="text-[18px] line-clamp-8">{{ $item['quote'] }}</p>
+                                <p class="text-[18px] line-clamp-[8]">{{ $item['quote'] }}</p>
                             </div>
                             <div class="w-full flex justify-end">
                                 <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor"
@@ -731,7 +740,7 @@
 
 {{-- Consultation Section Start --}}
 <div
-    class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-10">
+    class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-[10vh]">
     <p class="text-center font-medium mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
         To get a professional consultation, please click the button below.
     </p>
@@ -1008,6 +1017,15 @@
             document.getElementById('search_text').style.display = 'block';
         }
     })
+
+
+
+    function onRecaptchaSuccess(token) {
+        // Pass the token to your Livewire component
+        Livewire.dispatch('recaptcha_token', {
+            token: token
+        });
+    }
 
 
     // Without this , the search bar shows the text previously entered when I come back using the back button even though the actual value of the input field is empty

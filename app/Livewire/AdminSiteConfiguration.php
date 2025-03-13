@@ -80,6 +80,8 @@ class AdminSiteConfiguration extends Component
     public $footer_top_layer_text_specific;
 
     public $footer_bottom_layer_text_specific;
+
+    public $skills_caption;
     // End New section this page specific
 
     // Checking changes
@@ -143,6 +145,8 @@ class AdminSiteConfiguration extends Component
 
         $this->footer_bottom_layer_text = DB::table('site_data')->where('title', 'footer_bottom_layer_text')->first()->data;
 
+        $this->skills_caption = DB::table('site_data')->where('title', 'skills_caption')->first()->data;
+
         // New section this page specific
         $this->site_logo_light_specific = DB::table('site_data')->where('title', 'site_logo_light_mode')->first()->data;
 
@@ -162,7 +166,7 @@ class AdminSiteConfiguration extends Component
 
     public function save(){
 
-            if(!$this->temporary_image_hero_avatar || !$this->temporary_image_site_logo_light || !$this->temporary_image_site_logo_dark || !$this->top_layer_text || !$this->up_middle_layer_text || !$this->down_middle_layer_text  || !$this->end_layer_text || !$this->categories_caption || !$this->services_caption || !$this->my_portfolio_caption || !$this->collaborations_caption || !$this->testimonials_caption || !$this->categories_page_caption || !$this->price_estimation_page_caption || !$this->dollar_rate_in_tk || !$this->temporary_image_footer_logo_light || !$this->temporary_image_footer_logo_dark || !$this->footer_top_layer_text || !$this->footer_bottom_layer_text){
+            if(!$this->temporary_image_hero_avatar || !$this->temporary_image_site_logo_light || !$this->temporary_image_site_logo_dark || !$this->top_layer_text || !$this->up_middle_layer_text || !$this->down_middle_layer_text  || !$this->end_layer_text || !$this->categories_caption || !$this->services_caption || !$this->my_portfolio_caption || !$this->collaborations_caption || !$this->testimonials_caption || !$this->categories_page_caption || !$this->price_estimation_page_caption || !$this->dollar_rate_in_tk || !$this->temporary_image_footer_logo_light || !$this->temporary_image_footer_logo_dark || !$this->footer_top_layer_text || !$this->footer_bottom_layer_text || !$this->skills_caption){
 
                 $this->notify_error = "Please fill all the fields";
 
@@ -255,7 +259,7 @@ class AdminSiteConfiguration extends Component
             DB::table('site_data')->where('title', 'footer_logo_dark_mode')->update(['data' => $this->temporary_image_footer_logo_dark]);
             DB::table('site_data')->where('title', 'footer_top_layer_text')->update(['data' => $this->footer_top_layer_text]);
             DB::table('site_data')->where('title', 'footer_bottom_layer_text')->update(['data' => $this->footer_bottom_layer_text]);
-
+            DB::table('site_data')->where('title', 'skills_caption')->update(['data' => $this->skills_caption]);
             $this->notify_success = "Headlines and Site data Updated Successfully";
 
 

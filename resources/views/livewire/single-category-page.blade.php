@@ -54,7 +54,7 @@
 
     </div>
 
-    <div class="mt-6">
+    <div class="mt-6 min-h-screen">
 
         <div class="flex flex-col justify-center mb-6 md:max-w-[1280px]  mx-auto">
 
@@ -83,7 +83,7 @@
 
             <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
 
-                <img src="{{ asset('images/ecommerce-portfolio.png') }}" class="max-h-[400px] rounded-lg"
+                <img src="{{ $item['image_link'] }}" class="max-h-[400px] rounded-lg"
                     alt="">
 
             </div>

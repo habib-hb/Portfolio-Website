@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\appointment_details_to_client;
 use App\Models\available_schedules;
 use App\Models\booked_appointments;
 use App\Models\booked_client_details;
@@ -62,6 +63,8 @@ class PriceEstimatorFrontend extends Component
 
     public $dollar_rate_in_tk;
 
+    public $price_estimation_page_caption;
+
 
 
     public function mount($service_name, $service_id)
@@ -98,7 +101,7 @@ class PriceEstimatorFrontend extends Component
 
         $this->service_name = $service_name_db;
 
-
+        $this->price_estimation_page_caption = DB::table('site_data')->where('title', 'price_estimation_page_caption')->value('data');
 
 
 
@@ -319,13 +322,25 @@ class PriceEstimatorFrontend extends Component
                 'name' => $this->user_name,
                 'email' => $this->user_email,
                 'phone' => $this->user_phone,
+                'address' => $this->user_address,
                 'service' => $this->service_name,
                 'date' => $this->clicked_date,
                 'time' => $this->clicked_time,
-                'needs' => $this->user_needs
+                'needs' => $this->user_needs,
+                'estimated_price' => $this->total_estimated_amount,
+                'unsubscribe_link' => route('email-unsubscribe-prompt', ['email' => $this->user_email])
             ];
 
             Mail::to(env('ADMIN_PERSONAL_EMAIL'))->send(new AppointmentBooked($bookingDetails));
+
+            $unsubscribed_email_list_check = DB::table("unsubscribed_email_list")->where('email', $this->user_email)->get();
+
+            if (count($unsubscribed_email_list_check) == 0) {
+
+            Mail::to($this->user_email)->send(new appointment_details_to_client($bookingDetails));
+
+            }
+            
         } elseif (!$this->clicked_date) {
 
             session()->flash('message', 'Please Select A Date');

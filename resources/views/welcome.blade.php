@@ -10,6 +10,7 @@
 
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @livewireStyles
 
     <!-- Favicon -->
@@ -24,6 +25,14 @@
 
 
     <livewire:homepage_wire />
+
+     <!-- Google Recaptcha Widget-->
+     {{-- <form action="?" method="POST">
+        <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+        <br/>
+        <input type="submit" value="Submit">
+      </form> --}}
+
 
 
 

@@ -286,6 +286,27 @@
         </div>
 
 
+        {{-- Skills Section --}}
+        <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-8">
+            Skills Section</h1>
+
+
+
+        <div class="flex flex-col mt-4">
+
+            <label for="skills_caption"
+                class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Skills
+                Caption (300 Letters Max)</label>
+
+            <textarea type="text" wire:model="skills_caption"
+                class="w-[96vw] md:max-w-full  py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                id="skills_caption" rows="4" maxlength="300"></textarea>
+
+        </div>
+
+
+
+
         {{-- Categories Section --}}
         <h1 class="text-xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center mt-8">
             Categories Section</h1>
