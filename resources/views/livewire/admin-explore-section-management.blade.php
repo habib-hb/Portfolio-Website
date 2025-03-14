@@ -751,7 +751,7 @@
 
                         <a href="{{ $item['site_link'] }}" target="_blank"
                             class="text-md opacity-60 {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
-                            {{ $item['site_link'] }}</a>
+                            {{  strlen($item['site_link']) > 30 ? substr($item['site_link'], 0, 30) . '...' : $item['site_link']; }}</a>
 
                         <div
                             class="px-5 [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">

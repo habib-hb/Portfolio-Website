@@ -15,8 +15,11 @@
     },
     "dependencies": {
         "alpinejs": "^3.14.8",
+        "aos": "^2.3.4",
         "flowbite": "^2.5.2",
         "gsap": "^3.12.5",
+        "kursor": "^0.1.6",
+        "particles.js": "^2.0.0",
         "preline": "^2.7.0",
         "swiper": "^11.2.4"
     }

@@ -9,7 +9,7 @@
 
 
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/animation_on_scroll.js'])
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @livewireStyles
 
@@ -23,19 +23,7 @@
 <body class="font-poppins">
 
 
-
     <livewire:homepage_wire />
-
-     <!-- Google Recaptcha Widget-->
-     {{-- <form action="?" method="POST">
-        <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
-        <br/>
-        <input type="submit" value="Submit">
-      </form> --}}
-
-
-
-
 
 
     @livewireScripts
@@ -49,5 +37,6 @@
 
 
 </body>
+
 
 </html>

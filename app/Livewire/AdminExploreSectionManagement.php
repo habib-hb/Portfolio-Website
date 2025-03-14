@@ -11,6 +11,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AdminExploreSectionManagement extends Component
 {
@@ -133,6 +134,13 @@ class AdminExploreSectionManagement extends Component
         if ($this->editable_item_id) {
 
             if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_item && $this->site_link) {
+
+                // Deleting the old image
+                $old_image_data = DB::table('explore_items')->where('id', $this->editable_item_id)->first();
+                $old_image_path = str_replace('/storage/', '', $old_image_data->image_link);
+                if (Storage::disk('public')->exists($old_image_path)) {
+                    Storage::disk('public')->delete($old_image_path);
+                }
 
                 DB::table('explore_items')->where('id', $this->editable_item_id)->update([
                     'option_id' => $this->option,
@@ -394,6 +402,12 @@ class AdminExploreSectionManagement extends Component
 
     public function deleteItem($id)
     {
+        // Deleting the old image
+        $old_image_data = DB::table('explore_items')->where('id', $id)->first();
+        $old_image_path = str_replace('/storage/', '', $old_image_data->image_link);
+        if (Storage::disk('public')->exists($old_image_path)) {
+            Storage::disk('public')->delete($old_image_path);
+        }
 
         DB::table('explore_items')->where('id', $id)->delete();
 

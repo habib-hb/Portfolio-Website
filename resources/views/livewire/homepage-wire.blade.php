@@ -9,11 +9,11 @@
 
                 <img src="{{ $site_logo_light }}"
                     class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
-                    onclick="window.location.href='/'" alt="">
+                    onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
                 <img src="{{ $site_logo_dark }}"
                     class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
-                    onclick="window.location.href='/'" alt="">
+                    onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
             </div>
 
@@ -68,15 +68,15 @@
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -86,15 +86,15 @@
 
                     @if ($theme_mode == 'dark')
                         <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                                            onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                                                                            onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_title .
                             '</p>' !!}</p>
                         <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                                            onclick="window.location.href=`' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
                             $post->blog_link .
                             '`" >' .
                             $post->blog_excerpt .
@@ -206,10 +206,10 @@
             class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all cursor-pointer">
 
             <img src="{{ asset('images/light_mode_toggler.png') }}"
-                class="h-[44px] {{ $theme_mode == 'light' ? '' : 'hidden' }}">
+                class="h-[44px] {{ $theme_mode == 'light' ? '' : 'hidden' }}" cursor-data-color="#1A579F">
 
             <img src="{{ asset('images/dark_mode_toggler.png') }}"
-                class="h-[44px] {{ $theme_mode == 'light' ? 'hidden' : '' }}">
+                class="h-[44px] {{ $theme_mode == 'light' ? 'hidden' : '' }}" cursor-data-color="#1A579F">
 
         </div>
 
@@ -271,29 +271,30 @@
     {{-- Skills Section Start --}}
     <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
-        <h1
-            class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <h1 class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+            data-aos="fade-up">
             My Skills</h1>
 
-        <p
-            class="text-[16px] md:max-w-[765px] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <p class="text-[16px] md:max-w-[765px] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+            data-aos="fade-up">
             {{ $skills_caption }}
         </p>
 
         <div class="flex justify-center items-center gap-6 my-6 flex-wrap px-2">
 
             @foreach ($skills_section_items_array as $item)
-            <div
-            class="flex justify-start p-2 gap-2 items-center w-full max-w-[324px] shrink-0 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}">
+                <div class="flex justify-start p-2 gap-2 items-center w-full max-w-[324px] shrink-0 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }}"
+                    data-aos="fade-up">
 
-            <div
-                class="h-[60px] w-[60px] rounded-lg flex justify-center items-center shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
-                <img src="{{ $item['skill_icon'] }}" class="max-w-[50px] max-h-[50px]" alt="">
-            </div>
+                    <div
+                        class="h-[60px] w-[60px] rounded-lg flex justify-center items-center shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] {{ $theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]' }}">
+                        <img src="{{ $item['skill_icon'] }}" class="max-w-[50px] max-h-[50px]" alt="">
+                    </div>
 
-            <h2 class="text-2xl font-semibold {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    {{ $item['skill_title'] }}</h2>
-            </div>
+                    <h2
+                        class="text-2xl font-semibold {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                        {{ $item['skill_title'] }}</h2>
+                </div>
             @endforeach
 
         </div>
@@ -312,20 +313,20 @@
     {{-- Explore Section Start --}}
     <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
-        <h1
-            class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <h1 class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+            data-aos="fade-up">
             The Categories</h1>
 
-        <p
-            class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <p class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+            data-aos="fade-up">
             {{ $categories_caption }}</p>
 
     </div>
 
     <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
         @foreach ($options_array as $option)
-            <div
-                class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+                data-aos="fade-up">
 
                 <div
                     class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1 p-2  bg-white   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
@@ -368,12 +369,12 @@
     {{-- Service Cards --}}
     <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
-        <h1
-            class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <h1 class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+            data-aos="fade-up">
             The Services</h1>
 
-        <p
-            class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <p class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+            data-aos="fade-up">
             {{ $services_caption }}</p>
 
     </div>
@@ -381,8 +382,8 @@
     <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
 
         @foreach ($estimation_options as $item)
-            <div
-                class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-4 md:[&_p]:line-clamp-3 px-4  h-[324px] md:h-[310px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-4 md:[&_p]:line-clamp-3 px-4  h-[324px] md:h-[310px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+                data-aos="fade-up">
 
                 <div
                     class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1 p-1 bg-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
@@ -425,10 +426,10 @@
 
 
 
-    {{-- Consult Now Button --}}
-    <button
+    {{-- Contact Me Button --}}
+    {{-- <button
         class="mt-4 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
-        onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
+        onclick="window.location.href='/contact'" data-aos="fade-up"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button> --}}
 
 
 
@@ -444,10 +445,10 @@
     <div class="flex flex-col justify-center items-center mx-auto mt-[10vh] md:max-w-[1280px] mb-8">
 
         <img src="{{ $theme_mode == 'light' ? asset('images/portfolio-light-mode.png') : asset('images/portfolio-dark-mode.png') }}"
-            class="max-h-[100px]" alt="">
+            class="max-h-[100px]" alt="" data-aos="zoom-in">
 
-        <p
-            class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+        <p class="text-[16px] mt-2 md:max-w-[80%] block mx-auto text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+            data-aos="zoom-in">
             {{ $my_portfolio_caption }}</p>
 
     </div>
@@ -455,24 +456,27 @@
     @foreach ($portfolios_array as $index => $item)
         @if ($index % 2 == 0)
             <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
-                style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
+                style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);"
+                data-aos="fade-up">
             @else
                 <div class="flex w-full py-8  h-fit md:h-[600px]"
-                    style="{{ $index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : '' }} ">
+                    style="{{ $index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : '' }} "
+                    data-aos="fade-up">
         @endif
 
         <div
             class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} justify-center items-center h-full">
 
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
+            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full "
+                data-aos="zoom-in">
 
                 <img src="{{ $item['portfolio_image_link'] }}" class="max-h-[400px] rounded-lg"
                     alt="{{ $item['portfolio_title'] }}">
 
             </div>
 
-            <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
+            <div class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full "
+                data-aos="zoom-in">
                 <h2
                     class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                     {{ $item['portfolio_title'] }}
@@ -548,7 +552,7 @@
         </div>
 
         <label for="title"
-        class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Password</label>
+            class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Password</label>
         <div class="relative max-w-[680px]">
             <input id="hs-toggle-password" wire:model.defer="admin_password" type="password"
                 class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
@@ -575,9 +579,10 @@
         </div>
 
         <div class="mt-4 flex justify-center" wire:ignore>
-            <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}" data-callback="onRecaptchaSuccess"></div>
-        </div> 
-        
+            <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
+                data-callback="onRecaptchaSuccess"></div>
+        </div>
+
 
         <p class="text-lg text-red-800 mt-1" id="admin_login_error"></p>
 
@@ -607,7 +612,7 @@
 {{-- The Collaborations Slider Start --}}
 
 <!-- Slider main container -->
-<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
+<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto" data-aos="fade-up">
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -618,8 +623,8 @@
         {{ $collaborations_caption }}</p>
 
 </div>
-<div
-    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-[360px]">
+<div class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-[360px]"
+    data-aos="fade-up">
     <div class="swiper swiper-collaboration rounded-lg" wire:ignore>
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
@@ -660,7 +665,7 @@
 
 {{-- The Testimonials Slider Start --}}
 <!-- Slider main container -->
-<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
+<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto" data-aos="fade-up">
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -671,8 +676,8 @@
         {{ $testimonials_caption }}</p>
 
 </div>
-<div
-    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-fit">
+<div class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-fit"
+    data-aos="fade-up">
     <div class="swiper swiper-testimonials rounded-lg" wire:ignore>
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
@@ -739,8 +744,8 @@
 
 
 {{-- Consultation Section Start --}}
-<div
-    class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-[10vh]">
+<div class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-[10vh]"
+    data-aos="fade-up">
     <p class="text-center font-medium mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
         To get a professional consultation, please click the button below.
     </p>
@@ -774,9 +779,12 @@
 
 
 {{-- Contact Me Button --}}
-<button
-    class="my-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
-    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button>
+<div class="flex flex-col items-center" data-aos="fade-up">
+    <button
+        class="mt-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
+        onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact" cursor-data-color="#1A579F">Contact Me</a></button>
+</div>
+
 
 
 
@@ -788,8 +796,8 @@
 
 
 {{-- Footer Element --}}
-<div
-    class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
+<div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2"
+    data-aos="zoom-in">
 
     <div
         class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[700px] mb-4">
@@ -902,6 +910,8 @@
     const animation_function = () => {
         //Doing 100ms delay cause the DOM is not loaded yet.
         setTimeout(() => {
+            AOS.refresh();
+
 
             profile_img.style.opacity = 0;
             profile_img.style.transform = "translateY(16px)";
@@ -962,6 +972,7 @@
                     ease: "power2.out",
                 })
 
+
         }, 1);
 
     }
@@ -969,6 +980,7 @@
     const css_stablizer = () => {
         //Doing 100ms delay cause the DOM is not loaded yet.
         setTimeout(() => {
+            AOS.refresh();
 
             profile_img.style.opacity = 1;
             profile_img.style.transform = "translateY(0)";
@@ -997,6 +1009,7 @@
         }, 1);
 
     }
+
 
     document.getElementById('input_div').addEventListener('click', () => {
         document.getElementById('search_input').focus();
@@ -1038,6 +1051,8 @@
     let item = "";
 
     document.addEventListener('livewire:initialized', () => {
+     
+
         // Sending Data To backend
         //  setTimeout(() => {
         if (document.getElementById('search_input').value == '') {
@@ -1090,5 +1105,6 @@
         });
     })
 </script>
+
 
 </div>
