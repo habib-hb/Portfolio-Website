@@ -66,6 +66,8 @@ class AdminExploreSectionManagement extends Component
 
     public $theme_mode;
 
+    public $item_image_edited = false;
+
     public function mount()
     {
 
@@ -135,11 +137,14 @@ class AdminExploreSectionManagement extends Component
 
             if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_item && $this->site_link) {
 
-                // Deleting the old image
-                $old_image_data = DB::table('explore_items')->where('id', $this->editable_item_id)->first();
-                $old_image_path = str_replace('/storage/', '', $old_image_data->image_link);
-                if (Storage::disk('public')->exists($old_image_path)) {
-                    Storage::disk('public')->delete($old_image_path);
+                // Deleting the old image conditionally
+                if ($this->item_image_edited) {
+                    $old_image_data = DB::table('explore_items')->where('id', $this->editable_item_id)->first();
+                    $old_image_path = str_replace('/storage/', '', $old_image_data->image_link);
+                    if (Storage::disk('public')->exists($old_image_path)) {
+                        Storage::disk('public')->delete($old_image_path);
+                    }
+                    $this->item_image_edited = false;
                 }
 
                 DB::table('explore_items')->where('id', $this->editable_item_id)->update([
@@ -321,6 +326,8 @@ class AdminExploreSectionManagement extends Component
             $imagePath = '/storage/' . $imagePath;
 
             $this->temporary_image_item = $imagePath;
+
+            $this->item_image_edited = true;
 
             $this->resetErrorBag('item_image');
         }
@@ -641,11 +648,11 @@ class AdminExploreSectionManagement extends Component
 
         $currentItem = DB::select("SELECT * FROM explore_items WHERE id = ?", [$id]);
 
-        $upItem = DB::select("SELECT * FROM explore_items WHERE id < ? AND option_id = ? ORDER BY id DESC LIMIT 1", [$id , $currentItem[0]->option_id]);
+        $upItem = DB::select("SELECT * FROM explore_items WHERE id < ? AND option_id = ? ORDER BY id DESC LIMIT 1", [$id, $currentItem[0]->option_id]);
 
 
 
-        if(!$upItem){
+        if (!$upItem) {
             $this->form_completion_message = "The Item is already at the top of the list according to its option.";
             return;
         }
@@ -698,7 +705,7 @@ class AdminExploreSectionManagement extends Component
 
         $currentItem = DB::select("SELECT * FROM explore_items WHERE id = ?", [$id]);
 
-        $downItem = DB::select("SELECT * FROM explore_items WHERE id > ? AND option_id = ?  ORDER BY id ASC LIMIT 1", [$id , $currentItem[0]->option_id]);
+        $downItem = DB::select("SELECT * FROM explore_items WHERE id > ? AND option_id = ?  ORDER BY id ASC LIMIT 1", [$id, $currentItem[0]->option_id]);
 
 
 

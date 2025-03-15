@@ -114,11 +114,18 @@ export default class LightCursor {
         // Add event listener for mousemove to check for elements with color #1a579f
         document.addEventListener('mousemove', this.checkElementColor.bind(this), { passive: true });
     }
+
+
     
     // Function to check if element under cursor has the specific color
     checkElementColor(e) {
         // Get element under the cursor
         const element = document.elementFromPoint(e.clientX, e.clientY);
+
+        const textElements = [
+            'P', 'SPAN'
+          ];
+
         if (element) {
             // Get computed style
             const computedStyle = window.getComputedStyle(element);
@@ -128,7 +135,7 @@ export default class LightCursor {
             const textColor = this.rgbToHex(computedStyle.color);
             const borderColor = this.rgbToHex(computedStyle.borderColor);
             
-            if (bgColor === '#1a579f' || textColor === '#1a579f' || borderColor === '#1a579f' || 
+            if (bgColor === '#1a579f' || bgColor === '#9b1c1c' || bgColor === '#494c50' || bgColor === '#9f1a1a' || textColor === '#1a579f' || borderColor === '#1a579f' || 
                 element.getAttribute('cursor-data-color') === '#1a579f' || element.getAttribute('cursor-data-color') === '#1A579F' ||
                 element.style.color === '#1a579f' || 
                 element.style.backgroundColor === '#1a579f') {
@@ -138,7 +145,11 @@ export default class LightCursor {
                     this.isHoveringSpecialElement = true;
                     this.changeCursorColor('#ffffff');
                 }
-            } else if (this.isHoveringSpecialElement) {
+            }else if (this.hasQlEditorAncestor(element) || element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT' || textElements.includes(element.tagName)){
+                this.isHoveringSpecialElement = true;
+                this.changeCursorColor('#1a579f40');
+            }
+             else if (this.isHoveringSpecialElement) {
                 // No longer over the special element, revert to default color
                 this.isHoveringSpecialElement = false;
                 this.changeCursorColor(this.defaultColor);
@@ -161,6 +172,22 @@ export default class LightCursor {
         }
         return null;
     }
+
+
+    // Checking If the element is Text Editor
+    hasQlEditorAncestor(element) {
+        while (element) {
+          if (element.classList && element.classList.contains('ql-editor')) {
+            return true; // Found an ancestor with the class 'ql-editor'
+          }
+          if (element.classList && element.classList.contains('ql-toolbar')) {
+            return true; // Found an ancestor with the class 'ql-editor'
+          }
+          element = element.parentElement; // Move up to the parent element
+        }
+        return false; // No ancestor with the class 'ql-editor' found
+      }
+
     
     // Function to change cursor color
     changeCursorColor(newColor) {

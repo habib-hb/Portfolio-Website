@@ -43,7 +43,7 @@
 
                 <button
                     class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact">Contact
+                    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact" cursor-data-color="#1A579F">Contact
                         Me</a></button>
 
             </div>
@@ -60,46 +60,34 @@
 
 
         {{-- Loading The Searched Data --}}
-        <div class="mx-auto md:max-w-[1280px] mt-2 px-2">
-            <p id="no_results_found" class="hidden {{ $theme_mode == 'light' ? 'text-[#121212]' : 'text-[#e7e7e7]' }}">
+        <div class="mx-auto md:max-w-[1280px] mt-2 px-2 [&_p]:cursor-pointer [&_span]:!bg-transparent {{ $theme_mode == 'light' ? ' [&_span]:!text-black' : ' [&_span]:!text-white' }}">
+            <p id="no_results_found" class="hidden {{ $theme_mode == 'light' ? 'text-[#121212] [&_span]:!text-black' : 'text-[#e7e7e7] [&_span]:!text-white' }}">
             </p>
 
             @if ($search_output)
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
-                        <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_title .
+                      <a href="{{$post->blog_link}}" target="_blank">
+                        <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;" >' 
+                        . $post->blog_title .
                             '</p>' !!}</p>
-                        <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_excerpt .
+                        <p>{!! '<p style="color: #121212; cursor:pointer">' 
+                        . $post->blog_excerpt .
                             '</p>' !!}</p>
                         <hr>
+                        </a>
                     @endif
 
                     @if ($theme_mode == 'dark')
-                        <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseover="this.style.textDecoration=`underline`;"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onmouseout="this.style.textDecoration=`none`;"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_title .
+                        <a href="{{$post->blog_link}}" target="_blank">
+                        <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer" >' 
+                        . $post->blog_title .
                             '</p>' !!}</p>
-                        <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onclick="window.location.href=`' .
-                            $post->blog_link .
-                            '`" >' .
-                            $post->blog_excerpt .
+                        <p>{!! '<p style="color: #ededed; ; cursor:pointer">' 
+                        . $post->blog_excerpt .
                             '</p>' !!}</p>
                         <hr>
+                        </a>
                     @endif
                 @endforeach
             @endif
@@ -343,7 +331,7 @@
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
                         onclick="window.location.href='{{ env('BASE_LINK') }}/categories/{{ str_replace(' ', '-', $option['option']) }}?id={{ $option['id'] }}'"><a
-                            href="{{ env('BASE_LINK') }}/categories/{{ str_replace(' ', '-', $option['option']) }}?id={{ $option['id'] }}">Select</a></button>
+                            href="{{ env('BASE_LINK') }}/categories/{{ str_replace(' ', '-', $option['option']) }}?id={{ $option['id'] }}" cursor-data-color="#1A579F">Select</a></button>
 
                 </div>
 
@@ -404,13 +392,13 @@
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
                         onclick="window.location.href='{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}'"><a
-                            href="{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}">Select</a></button>
+                            href="{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}" cursor-data-color="#1A579F">Select</a></button>
 
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
                         onclick="window.location.href='{{ env('BASE_LINK') . $item->blog_link }}'"><a
                             href="{{ Str::start($item->blog_link, env('BASE_LINK')) }}"
-                            rel="noopener noreferrer">Details</a></button>
+                            rel="noopener noreferrer" cursor-data-color="#1A579F">Details</a></button>
                 </div>
 
             </div>

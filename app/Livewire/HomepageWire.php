@@ -234,12 +234,32 @@ class HomepageWire extends Component
 
             // $this->search_output = Names::search($this->searchtext)->get();
 
-            $this->search_output = blog_posts::search($this->searchtext)->orderBy('blog_title', 'asc')->take(5)->get()->map(function ($post) {
+            // $this->search_output = blog_posts::search($this->searchtext)->orderBy('blog_title', 'asc')->take(5)->get()->map(function ($post) {
+            //     // Replace the search text with the highlighted version in a case-insensitive way
+            //     $highlighted = '<b class="text-[#1A579F] ">' . e($this->searchtext) . '</b>';
+
+            //     $post->blog_title = str_ireplace($this->searchtext, $highlighted, e($post->blog_title));
+            //     $post->blog_excerpt = str_ireplace($this->searchtext, $highlighted, e($post->blog_excerpt));
+
+            //     // if($post->blog_type == 'custom'){
+            //     //     $post->blog_link = '/blogs/' . $post->blog_link;
+            //     // }
+
+            //     return $post;
+            // });
+
+            // $this->search_output = DB::table('blog_posts')
+            $first_search_output = DB::table('blog_posts')
+            ->where('blog_title', 'like', '%' . $this->searchtext . '%')
+            ->orderBy('blog_title', 'asc')
+            ->get()
+            ->map(function ($post) {
                 // Replace the search text with the highlighted version in a case-insensitive way
                 $highlighted = '<b class="text-[#1A579F] ">' . e($this->searchtext) . '</b>';
 
-                $post->blog_title = str_ireplace($this->searchtext, $highlighted, e($post->blog_title));
-                $post->blog_excerpt = str_ireplace($this->searchtext, $highlighted, e($post->blog_excerpt));
+                $post->blog_title = str_ireplace($this->searchtext, $highlighted, $post->blog_title);
+                $post->blog_excerpt = str_ireplace($this->searchtext, $highlighted, $post->blog_excerpt);
+                $post->blog_link = $post->blog_link;
 
                 // if($post->blog_type == 'custom'){
                 //     $post->blog_link = '/blogs/' . $post->blog_link;
@@ -247,6 +267,25 @@ class HomepageWire extends Component
 
                 return $post;
             });
+
+
+            $second_search_output = DB::table('explore_items')
+            ->where('item_title', 'like', '%' . $this->searchtext . '%')
+            ->orderBy('item_title', 'asc')
+            ->get()
+            ->map(function ($item) {
+                $highlighted = '<b class="text-[#1A579F] ">' . e($this->searchtext) . '</b>';
+
+                $item->blog_title = str_ireplace($this->searchtext, $highlighted, $item->item_title);
+                $item->blog_excerpt = str_ireplace($this->searchtext, $highlighted, $item->item_description);
+                $item->blog_link = $item->site_link;
+                return $item;
+            });
+
+            $this->search_output = $first_search_output->merge($second_search_output);
+
+            $this->search_output = $this->search_output->take(5);
+
 
 
             $this->search_output_length = $this->search_output->count();
@@ -306,6 +345,8 @@ class HomepageWire extends Component
     {
 
         $this->recaptcha_token = $token;
+
+        $this->dispatch('alert-manager');
 
     }
 
