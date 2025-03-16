@@ -735,6 +735,101 @@
             <div
                 class="flex flex-col gap-4 w-full max-h-[70vh] overflow-auto {{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-black' }} items-center  my-4  px-4 py-4 md:px-8 {{ $created_items_selected ? '' : 'hidden' }} rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
+                {{-- Search Section Start --}}
+                <div class="flex flex-col mt-2">
+
+                    <label for="title"
+                        class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} text-center">Search</label>
+
+                    <input type="text" wire:model.live='searchtext'
+                        class="w-full md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
+                        id="title">
+
+                </div>
+
+                <div class="flex flex-col mt-2 mb-8 w-full {{ count($search_output) > 0 ? '' : 'hidden' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <p class="text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                        Search Results Start</p>
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+
+                    <div class="flex flex-col gap-4 my-4">
+                        @foreach ($search_output as $item)
+                            <div
+                                class="flex w-full flex-col justify-center items-center py-4 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#1e1d1d]' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+
+                                <img src="{{ $item['image_link'] }}"
+                                    class="h-[160px] w-auto max-w-[240px] rounded object-contain" alt="">
+
+                                <p
+                                    class="text-2xl {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                                    {{ $item['item_title'] }}</p>
+
+                                <p
+                                    class="text-lg opacity-75 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                                    {{ $item['option_title'] }}</p>
+
+                                <a href="{{ $item['site_link'] }}" target="_blank"
+                                    class="text-md opacity-60 {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
+                                    {{ strlen($item['site_link']) > 30 ? substr($item['site_link'], 0, 30) . '...' : $item['site_link'] }}</a>
+
+                                <div
+                                    class="px-5 [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
+                                    <p>{!! $item['item_description'] !!}</p>
+                                </div>
+
+                                {{-- <button wire:click="deleteItem('{{ $item['id'] }}')" --}}
+                                <div class="flex gap-4 justify-center items-center">
+                                    <button
+                                        wire:click="confirm_window( 'deleteItem' , '{{ $item['id'] }}', 'Are You Sure You Want To Delete This Item?')"
+                                        class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
+
+                                    <button wire:click="editItem('{{ $item['id'] }}')"
+                                        class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Edit</button>
+                                </div>
+                                <div class="flex gap-4 justify-center items-center">
+                                    <button wire:click="moveItemUp('{{ $item['id'] }}')"
+                                        class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&uarr;
+                                        Move Up</button>
+                                    <button wire:click="moveItemDown('{{ $item['id'] }}')"
+                                        class="h-[35px] w-[120px] rounded-lg mt-2 md:mt-4 bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">&darr;
+                                        Move Down</button>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <p class="text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                        Search Results End</p>
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                </div>
+
+                <div
+                    class="flex flex-col w-full justify-center items-center mt-4 {{ $no_search_results_found_show && !empty($searchtext) ? '' : 'hidden' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <p class="text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                        Search Results Start</p>
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+
+                    <p class="text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }} my-4">No
+                        Results Found</p>
+
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <p class="text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+                        Search Results End</p>
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                    <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                </div>
+                {{-- Search Section End --}}
+
                 @foreach ($items_array as $item)
                     <div
                         class="flex w-full flex-col justify-center items-center py-4 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#1e1d1d]' }} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
@@ -751,7 +846,7 @@
 
                         <a href="{{ $item['site_link'] }}" target="_blank"
                             class="text-md opacity-60 {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }}">
-                            {{  strlen($item['site_link']) > 30 ? substr($item['site_link'], 0, 30) . '...' : $item['site_link']; }}</a>
+                            {{ strlen($item['site_link']) > 30 ? substr($item['site_link'], 0, 30) . '...' : $item['site_link'] }}</a>
 
                         <div
                             class="px-5 [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">

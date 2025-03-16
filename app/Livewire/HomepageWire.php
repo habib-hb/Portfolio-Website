@@ -92,6 +92,8 @@ class HomepageWire extends Component
 
     public $recaptcha_token;
 
+    public $no_search_results_found_show = false;
+
 
 
 
@@ -248,6 +250,10 @@ class HomepageWire extends Component
             //     return $post;
             // });
 
+            $this->searchtext = e($this->searchtext);
+
+            $this->no_search_results_found_show = false;
+
             // $this->search_output = DB::table('blog_posts')
             $first_search_output = DB::table('blog_posts')
             ->where('blog_title', 'like', '%' . $this->searchtext . '%')
@@ -257,9 +263,10 @@ class HomepageWire extends Component
                 // Replace the search text with the highlighted version in a case-insensitive way
                 $highlighted = '<b class="text-[#1A579F] ">' . e($this->searchtext) . '</b>';
 
-                $post->blog_title = str_ireplace($this->searchtext, $highlighted, $post->blog_title);
-                $post->blog_excerpt = str_ireplace($this->searchtext, $highlighted, $post->blog_excerpt);
-                $post->blog_link = $post->blog_link;
+                $post->item_title ='<b style="font-weight: 600; color: #1A579F;">Blog: </b>' . str_ireplace($this->searchtext, $highlighted, $post->blog_title);
+                $post->item_excerpt = str_ireplace($this->searchtext, $highlighted, $post->blog_excerpt);
+                $post->item_image = $post->blog_image;
+                $post->item_link = $post->blog_link;
 
                 // if($post->blog_type == 'custom'){
                 //     $post->blog_link = '/blogs/' . $post->blog_link;
@@ -276,13 +283,44 @@ class HomepageWire extends Component
             ->map(function ($item) {
                 $highlighted = '<b class="text-[#1A579F] ">' . e($this->searchtext) . '</b>';
 
-                $item->blog_title = str_ireplace($this->searchtext, $highlighted, $item->item_title);
-                $item->blog_excerpt = str_ireplace($this->searchtext, $highlighted, $item->item_description);
-                $item->blog_link = $item->site_link;
+                $item->item_title ='<b style="font-weight: 600; color: #1A579F;">Demo: </b>' . str_ireplace($this->searchtext, $highlighted, $item->item_title);
+                $item->item_excerpt = str_ireplace($this->searchtext, $highlighted, $item->item_description);
+                $item->item_link = $item->site_link;
+                $item->item_image = $item->image_link;
                 return $item;
             });
 
-            $this->search_output = $first_search_output->merge($second_search_output);
+            $third_search_output = DB::table('portfolio_items')
+            ->where('portfolio_title', 'like', '%' . $this->searchtext . '%')
+            ->orderBy('portfolio_title', 'asc')
+            ->get()
+            ->map(function ($item) {
+                $highlighted = '<b class="text-[#1A579F] ">' . e($this->searchtext) . '</b>';
+
+                $item->item_title ='<b style="font-weight: 600; color: #1A579F;">Portfolio: </b>' . str_ireplace($this->searchtext, $highlighted, $item->portfolio_title);
+                $item->item_excerpt = str_ireplace($this->searchtext, $highlighted, $item->portfolio_description);
+                $item->item_image = $item->portfolio_image_link;
+                $item->item_link = $item->portfolio_site_link;
+                return $item;
+            });
+
+            $fourth_search_output = DB::table('price_estimation')
+            ->where('title', 'like', '%' . $this->searchtext . '%')
+            ->orderBy('title', 'asc')
+            ->get()
+            ->map(function ($item) {
+                $highlighted = '<b class="text-[#1A579F] ">' . e($this->searchtext) . '</b>';
+
+                $item->item_title ='<b style="font-weight: 600; color: #1A579F;">Service: </b>' . str_ireplace($this->searchtext, $highlighted, $item->title);
+                $item->item_excerpt = str_ireplace($this->searchtext, $highlighted, $item->description);
+                $item->item_image = $item->icon_link;
+                $item->item_link = env('BASE_LINK') . '/services/' .  str_replace(' ', '-', $item->title) . '?id=' .  $item->id;
+
+                return $item;
+            });
+
+
+            $this->search_output = $first_search_output->merge($second_search_output)->merge($third_search_output)->merge($fourth_search_output);
 
             $this->search_output = $this->search_output->take(5);
 
@@ -292,7 +330,8 @@ class HomepageWire extends Component
 
             if ($this->search_output_length == 0) {
 
-                $this->dispatch('no_results_found');
+                // $this->dispatch('no_results_found');
+                $this->no_search_results_found_show = true;
             }
 
 

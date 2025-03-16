@@ -4,6 +4,8 @@ import LightCursor from './custom_cursor';
 // Store a single instance reference
 let cursorInstance = null;
 
+
+if(window.innerWidth > 768){
 // Initialize once at page load with much simpler implementation
 document.addEventListener('DOMContentLoaded', () => {
     // Only create if it doesn't exist
@@ -28,6 +30,7 @@ document.addEventListener('livewire:navigated', () => {
         });
     }
 });
+}
 
 
 // // Import the library and styles
