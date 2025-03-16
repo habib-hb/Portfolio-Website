@@ -13,18 +13,18 @@ Artisan::command('inspire', function () {
 
 
 // Define a scheduled task
-Schedule::call(function () {
-    try {
-        // Replace with your route URL
-        $url = url(env('BASE_LINK') . '/test-email');
+// Schedule::call(function () {
+//     try {
+//         // Replace with your route URL
+//         $url = url(env('BASE_LINK') . '/test-email');
 
-        // Make a GET request to the route
-        $response = Http::get($url);
+//         // Make a GET request to the route
+//         $response = Http::get($url);
 
-        // Log the response
-        Log::info('Route triggered at: ' . now() . ' | Response: ' . $response->status());
-    } catch (\Exception $e) {
-        // Log any errors
-        Log::error('Scheduled task failed: ' . $e->getMessage());
-    }
-})->everyMinute();
+//         // Log the response
+//         Log::info('Route triggered at: ' . now() . ' | Response: ' . $response->status());
+//     } catch (\Exception $e) {
+//         // Log any errors
+//         Log::error('Scheduled task failed: ' . $e->getMessage());
+//     }
+// })->everyMinute();

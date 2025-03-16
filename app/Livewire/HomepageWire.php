@@ -7,6 +7,7 @@ use App\Models\blog_posts;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -454,7 +455,8 @@ class HomepageWire extends Component
 
         $db_admin_password = DB::table('site_data')->where('title', 'admin_password')->pluck('data')->first();
 
-        if ($this->admin_name == $db_admin_name && $this->admin_password == $db_admin_password) {
+        // if ($this->admin_name == $db_admin_name && $this->admin_password == $db_admin_password) {
+        if ($this->admin_name == $db_admin_name && Hash::check($this->admin_password, $db_admin_password)) {
 
             session(['admin_name' => $this->admin_name]);
 

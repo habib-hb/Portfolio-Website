@@ -202,6 +202,54 @@ class AdminExploreSectionManagement extends Component
 
                 $this->dispatch('alert-manager');
 
+
+
+                if (!empty($this->searchtext)) {
+
+
+                    $this->searchtext = e($this->searchtext);
+        
+                    $this->no_search_results_found_show = false;
+        
+        
+                    $search_output_db = DB::select("SELECT
+                    explore_items.*,
+                    explore_options.*,
+                    explore_items.image_link AS item_image,
+                    explore_options.image_link AS option_image,
+                    explore_items.id AS item_id,
+                    explore_options.id AS option_id
+                    FROM explore_items
+                    LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+                    WHERE explore_items.item_title LIKE ?
+                    ORDER BY explore_items.option_id
+                    LIMIT 5;", ['%' . $this->searchtext . '%']);
+        
+                    $this->search_output = array_map(function ($item) {
+                        return [
+                            'option_title' => $item->option,
+                            'item_title' => $item->item_title,
+                            'image_link' => $item->item_image,
+                            'item_description' => $item->item_description,
+                            'site_link' => $item->site_link,
+                            'id' => $item->item_id
+                        ];
+                    }, $search_output_db);
+        
+                    $this->search_output_length = count($this->search_output);
+        
+                    if ($this->search_output_length == 0) {
+        
+                        // $this->dispatch('no_results_found');
+                        $this->no_search_results_found_show = true;
+                    }
+        
+        
+                    // $this->search_input_field_is_active = true;
+        
+                    // session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+                }
+
                 return;
             } else {
 
@@ -214,6 +262,8 @@ class AdminExploreSectionManagement extends Component
         // ]);
         if ($this->option && $this->item_title && $this->blog_area && $this->temporary_image_item && $this->site_link) {
             DB::insert("INSERT INTO explore_items (option_id, item_title , image_link , item_description , site_link) VALUES (?, ?, ?, ? , ?)", [$this->option, $this->item_title, $this->temporary_image_item, $this->blog_area, $this->site_link]);
+
+            $this->item_image_edited = false;
 
 
             $items_db = DB::select("SELECT
@@ -256,6 +306,54 @@ class AdminExploreSectionManagement extends Component
             $this->dispatch('alert-manager');
             // session()->flash('message', 'Item added successfully.');
             // $this->dispatch('refresh-trigger');
+
+
+            if (!empty($this->searchtext)) {
+
+
+                $this->searchtext = e($this->searchtext);
+    
+                $this->no_search_results_found_show = false;
+    
+    
+                $search_output_db = DB::select("SELECT
+                explore_items.*,
+                explore_options.*,
+                explore_items.image_link AS item_image,
+                explore_options.image_link AS option_image,
+                explore_items.id AS item_id,
+                explore_options.id AS option_id
+                FROM explore_items
+                LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+                WHERE explore_items.item_title LIKE ?
+                ORDER BY explore_items.option_id
+                LIMIT 5;", ['%' . $this->searchtext . '%']);
+    
+                $this->search_output = array_map(function ($item) {
+                    return [
+                        'option_title' => $item->option,
+                        'item_title' => $item->item_title,
+                        'image_link' => $item->item_image,
+                        'item_description' => $item->item_description,
+                        'site_link' => $item->site_link,
+                        'id' => $item->item_id
+                    ];
+                }, $search_output_db);
+    
+                $this->search_output_length = count($this->search_output);
+    
+                if ($this->search_output_length == 0) {
+    
+                    // $this->dispatch('no_results_found');
+                    $this->no_search_results_found_show = true;
+                }
+    
+    
+                // $this->search_input_field_is_active = true;
+    
+                // session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+            }
+
         } else {
             $this->form_error_message = 'Please fill all the fields correctly';
 
@@ -295,6 +393,53 @@ class AdminExploreSectionManagement extends Component
                 $this->select_options_selected = null;
 
                 $this->form_completion_message = 'Option Updated Successfully';
+
+
+                if (!empty($this->searchtext)) {
+
+
+                    $this->searchtext = e($this->searchtext);
+        
+                    $this->no_search_results_found_show = false;
+        
+        
+                    $search_output_db = DB::select("SELECT
+                    explore_items.*,
+                    explore_options.*,
+                    explore_items.image_link AS item_image,
+                    explore_options.image_link AS option_image,
+                    explore_items.id AS item_id,
+                    explore_options.id AS option_id
+                    FROM explore_items
+                    LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+                    WHERE explore_items.item_title LIKE ?
+                    ORDER BY explore_items.option_id
+                    LIMIT 5;", ['%' . $this->searchtext . '%']);
+        
+                    $this->search_output = array_map(function ($item) {
+                        return [
+                            'option_title' => $item->option,
+                            'item_title' => $item->item_title,
+                            'image_link' => $item->item_image,
+                            'item_description' => $item->item_description,
+                            'site_link' => $item->site_link,
+                            'id' => $item->item_id
+                        ];
+                    }, $search_output_db);
+        
+                    $this->search_output_length = count($this->search_output);
+        
+                    if ($this->search_output_length == 0) {
+        
+                        // $this->dispatch('no_results_found');
+                        $this->no_search_results_found_show = true;
+                    }
+        
+        
+                    // $this->search_input_field_is_active = true;
+        
+                    // session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+                }
 
                 return;
             } else {
@@ -505,6 +650,55 @@ class AdminExploreSectionManagement extends Component
         }, $items_db);
 
         $this->form_completion_message = 'Item deleted successfully.';
+
+
+
+
+        if (!empty($this->searchtext)) {
+
+
+            $this->searchtext = e($this->searchtext);
+
+            $this->no_search_results_found_show = false;
+
+
+            $search_output_db = DB::select("SELECT
+            explore_items.*,
+            explore_options.*,
+            explore_items.image_link AS item_image,
+            explore_options.image_link AS option_image,
+            explore_items.id AS item_id,
+            explore_options.id AS option_id
+            FROM explore_items
+            LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+            WHERE explore_items.item_title LIKE ?
+            ORDER BY explore_items.option_id
+            LIMIT 5;", ['%' . $this->searchtext . '%']);
+
+            $this->search_output = array_map(function ($item) {
+                return [
+                    'option_title' => $item->option,
+                    'item_title' => $item->item_title,
+                    'image_link' => $item->item_image,
+                    'item_description' => $item->item_description,
+                    'site_link' => $item->site_link,
+                    'id' => $item->item_id
+                ];
+            }, $search_output_db);
+
+            $this->search_output_length = count($this->search_output);
+
+            if ($this->search_output_length == 0) {
+
+                // $this->dispatch('no_results_found');
+                $this->no_search_results_found_show = true;
+            }
+
+
+            // $this->search_input_field_is_active = true;
+
+            // session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+        }
     }
 
     public function clear_form_completion_message()
@@ -620,6 +814,8 @@ class AdminExploreSectionManagement extends Component
         $this->dispatch('refresh-image-area');
 
         $this->dispatch('alert-manager');
+
+        $this->item_image_edited = false;
     }
 
 
@@ -711,6 +907,8 @@ class AdminExploreSectionManagement extends Component
                 ];
             }, $items_db);
 
+
+
         } catch (\Exception $e) {
             DB::rollback();
             $this->form_error_message = "Failed to move the option: " . $e->getMessage();
@@ -789,6 +987,7 @@ class AdminExploreSectionManagement extends Component
                     'id' => $item->item_id
                 ];
             }, $items_db);
+    
             
         } catch (\Exception $e) {
             DB::rollback();
@@ -853,6 +1052,52 @@ class AdminExploreSectionManagement extends Component
                 'id' => $item->item_id
             ];
         }, $items_db);
+
+        if (!empty($this->searchtext)) {
+
+
+            $this->searchtext = e($this->searchtext);
+
+            $this->no_search_results_found_show = false;
+
+
+            $search_output_db = DB::select("SELECT
+            explore_items.*,
+            explore_options.*,
+            explore_items.image_link AS item_image,
+            explore_options.image_link AS option_image,
+            explore_items.id AS item_id,
+            explore_options.id AS option_id
+            FROM explore_items
+            LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+            WHERE explore_items.item_title LIKE ?
+            ORDER BY explore_items.option_id
+            LIMIT 5;", ['%' . $this->searchtext . '%']);
+
+            $this->search_output = array_map(function ($item) {
+                return [
+                    'option_title' => $item->option,
+                    'item_title' => $item->item_title,
+                    'image_link' => $item->item_image,
+                    'item_description' => $item->item_description,
+                    'site_link' => $item->site_link,
+                    'id' => $item->item_id
+                ];
+            }, $search_output_db);
+
+            $this->search_output_length = count($this->search_output);
+
+            if ($this->search_output_length == 0) {
+
+                // $this->dispatch('no_results_found');
+                $this->no_search_results_found_show = true;
+            }
+
+
+            // $this->search_input_field_is_active = true;
+
+            // session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+        }
     }
 
     public function moveItemDown($id)
@@ -912,6 +1157,52 @@ class AdminExploreSectionManagement extends Component
                 'id' => $item->item_id
             ];
         }, $items_db);
+
+        if (!empty($this->searchtext)) {
+
+
+            $this->searchtext = e($this->searchtext);
+
+            $this->no_search_results_found_show = false;
+
+
+            $search_output_db = DB::select("SELECT
+            explore_items.*,
+            explore_options.*,
+            explore_items.image_link AS item_image,
+            explore_options.image_link AS option_image,
+            explore_items.id AS item_id,
+            explore_options.id AS option_id
+            FROM explore_items
+            LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+            WHERE explore_items.item_title LIKE ?
+            ORDER BY explore_items.option_id
+            LIMIT 5;", ['%' . $this->searchtext . '%']);
+
+            $this->search_output = array_map(function ($item) {
+                return [
+                    'option_title' => $item->option,
+                    'item_title' => $item->item_title,
+                    'image_link' => $item->item_image,
+                    'item_description' => $item->item_description,
+                    'site_link' => $item->site_link,
+                    'id' => $item->item_id
+                ];
+            }, $search_output_db);
+
+            $this->search_output_length = count($this->search_output);
+
+            if ($this->search_output_length == 0) {
+
+                // $this->dispatch('no_results_found');
+                $this->no_search_results_found_show = true;
+            }
+
+
+            // $this->search_input_field_is_active = true;
+
+            // session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+        }
     }
 
 

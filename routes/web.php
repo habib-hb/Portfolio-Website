@@ -16,6 +16,7 @@ use Spatie\Sitemap\Tags\Url;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Middleware\AdminCheck;
+use Illuminate\Support\Facades\Hash;
 
 Route::get('/test-email', function () {
     $email = 'developerhabib1230@gmail.com';
@@ -33,6 +34,19 @@ Route::get('/test-cron', function () {
         'text' => "This is it from cron"
     ]);
     return 'added' . now();
+});
+
+
+
+
+
+
+
+
+
+Route::get('/generate-hash-password/{password}', function ($password) {
+    $hash = Hash::make($password);
+    return $hash;
 });
 
 
