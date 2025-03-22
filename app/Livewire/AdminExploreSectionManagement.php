@@ -1085,6 +1085,28 @@ class AdminExploreSectionManagement extends Component
                 ];
             }, $search_output_db);
 
+            $items_db = DB::select("SELECT
+            explore_items.*,
+            explore_options.*,
+            explore_items.image_link AS item_image,
+            explore_options.image_link AS option_image,
+            explore_items.id AS item_id,
+            explore_options.id AS option_id
+            FROM explore_items
+            LEFT JOIN explore_options ON explore_items.option_id = explore_options.id
+            ORDER BY explore_items.option_id;");
+    
+            $this->items_array = array_map(function ($item) {
+                return [
+                    'option_title' => $item->option,
+                    'item_title' => $item->item_title,
+                    'image_link' => $item->item_image,
+                    'item_description' => $item->item_description,
+                    'site_link' => $item->site_link,
+                    'id' => $item->item_id
+                ];
+            }, $items_db);
+
             $this->search_output_length = count($this->search_output);
 
             if ($this->search_output_length == 0) {

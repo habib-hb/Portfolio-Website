@@ -11,29 +11,44 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/animation_on_scroll.js'])
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     @livewireStyles
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('favicons/homepage_fav.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-
+    {{-- Testing Swiper --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    {{-- End of Testing Swiper --}}
 </head>
 
 <body class="font-poppins">
 
 
+
+
+
+
+
     <livewire:homepage_wire />
+
+
+
+
+
+
 
 
     @livewireScripts
 
+    {{-- Testing Swiper --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {{-- End of Testing Swiper --}}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
 
-
-
-
-    <!-- Initialize Swiper -->
 
 
 </body>

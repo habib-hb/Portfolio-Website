@@ -1,6 +1,6 @@
   <div>
 
-  {{-- Sidebar Test --}}
+
 
  <!-- Navigation Toggle -->
  <div class="xl:hidden fixed bottom-[40px] end-3">
@@ -12,6 +12,9 @@
     </button>
 </div>
 <!-- End Navigation Toggle -->
+
+
+ 
 
     <!-- Sidebar -->
     <div id="hs-sidebar-mini-sidebar"
@@ -256,7 +259,7 @@
     <!-- End Sidebar -->
 
 
-    {{-- End Sidebar Test --}}
+
 
     <script>
         // document.addEventListener('livewire:initialized', () => {

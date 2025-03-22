@@ -5,6 +5,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+window.Swiper = Swiper;
+
 const slidersPerViewRendererCollaboration = () => {
     if(window.innerWidth > 1280) {
         return 3;

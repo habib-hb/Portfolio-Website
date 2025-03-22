@@ -229,6 +229,12 @@ class PriceEstimatorFrontend extends Component
 
         $this->clicked_date = $date;
 
+        // Nullifying the clicked time if it is not null
+        if ($this->clicked_time) {
+
+            $this->clicked_time = null;
+        }
+
         // Processing the available times
         $the_booked_date = booked_appointments::where('date', $this->clicked_date)->get();
 

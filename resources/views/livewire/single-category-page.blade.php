@@ -62,7 +62,7 @@
                 class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                 {{ $category_title }}</h1>
 
-            <p class="text-sm   text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            <p class="text-sm max-w-[800px] mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                 {{$page_caption}}</p>
 
         </div>
@@ -83,13 +83,13 @@
 
             <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
 
-                <img src="{{ $item['image_link'] }}" class="max-h-[400px] rounded-lg"
-                    alt="">
+                <a href="{{ $item['site_link'] }}" target="_blank"><img src="{{ $item['image_link'] }}" class="max-h-[400px] rounded-lg"
+                    alt="" data-aos="zoom-in"></a>
 
             </div>
 
             <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
+                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full " data-aos="zoom-in">
                 <h2
                     class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                     {{ $item['item_title'] }}
@@ -136,5 +136,18 @@
       @valueadderhabib</p>
 
 </div>
+
+
+<script>
+    document.addEventListener('livewire:initialized', () => {
+
+        Livewire.on('alert-manager', () => {
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        })
+
+    })
+</script>
 
 </div>

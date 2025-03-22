@@ -43,7 +43,8 @@
 
                 <button
                     class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact" cursor-data-color="#1A579F">Contact
+                    onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact"
+                        cursor-data-color="#1A579F">Contact
                         Me</a></button>
 
             </div>
@@ -60,43 +61,45 @@
 
 
         {{-- Loading The Searched Data --}}
-        <div class="mx-auto md:max-w-[1280px] mt-2 px-2 [&_p]:cursor-pointer [&_span]:!bg-transparent [&_p]:!bg-transparent {{ $theme_mode == 'light' ? ' [&_span]:!text-black [&_p]:!text-black' : ' [&_span]:!text-white [&_p]:!text-white' }} max-h-[50vh] overflow-scroll md:overflow-auto shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-            <p id="no_results_found" class="hidden {{ $theme_mode == 'light' ? 'text-[#121212] [&_span]:!text-black' : 'text-[#e7e7e7] [&_span]:!text-white' }}">
+        <div
+            class="mx-auto md:max-w-[1280px] mt-2 px-2 [&_p]:cursor-pointer [&_span]:!bg-transparent [&_p]:!bg-transparent {{ $theme_mode == 'light' ? ' [&_span]:!text-black [&_p]:!text-black' : ' [&_span]:!text-white [&_p]:!text-white' }} max-h-[50vh] overflow-scroll md:overflow-auto shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <p id="no_results_found"
+                class="hidden {{ $theme_mode == 'light' ? 'text-[#121212] [&_span]:!text-black' : 'text-[#e7e7e7] [&_span]:!text-white' }}">
             </p>
 
             @if ($search_output)
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
-                      <a href="{{$post->item_link}}" target="_blank">
-                        <div class="flex flex-col md:flex-row justify-start items-center gap-4 my-4">
-                            <img src="{{$post->item_image ?? ''}}" class="max-w-[100px] max-h-[100px] rounded-lg" alt="">
-                            <div class="flex flex-col" >
-                                <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;" >' 
-                                    . $post->item_title .
+                        <a href="{{ $post->item_link }}" target="_blank">
+                            <div class="flex flex-col md:flex-row justify-start items-center gap-4 my-4">
+                                <img src="{{ $post->item_image ?? '' }}" class="max-w-[100px] max-h-[100px] rounded-lg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;" >' .
+                                        $post->item_title .
                                         '</p>' !!}</p>
-                                    <p>{!! '<p style="color: #121212; cursor:pointer">' 
-                                    . $post->item_excerpt .
-                                        '</p>' !!}</p>
+                                    <p>{!! '<p style="color: #121212; cursor:pointer">' . $post->item_excerpt . '</p>' !!}</p>
+                                </div>
                             </div>
-                        </div>
-                        <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">                       
-                        </a> 
+                            <hr
+                                class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                        </a>
                     @endif
 
                     @if ($theme_mode == 'dark')
-                        <a href="{{$post->item_link}}" target="_blank">
+                        <a href="{{ $post->item_link }}" target="_blank">
                             <div class="flex justify-start items-center gap-4 my-4">
-                                <img src="{{$post->item_image ?? ''}}" class="max-w-[100px] max-h-[100px] rounded-lg" alt="">
-                                <div class="flex flex-col" >
-                                    <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer" >' 
-                                    . $post->item_title .
+                                <img src="{{ $post->item_image ?? '' }}" class="max-w-[100px] max-h-[100px] rounded-lg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer" >' .
+                                        $post->item_title .
                                         '</p>' !!}</p>
-                                    <p>{!! '<p style="color: #ededed; ; cursor:pointer">' 
-                                    . $post->item_excerpt .
-                                        '</p>' !!}</p>
+                                    <p>{!! '<p style="color: #ededed; ; cursor:pointer">' . $post->item_excerpt . '</p>' !!}</p>
                                 </div>
                             </div>
-                            <hr class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
+                            <hr
+                                class="w-full {{ session('theme_mode') == 'light' ? 'border-gray-300' : 'border-white' }}">
                         </a>
                     @endif
                 @endforeach
@@ -245,7 +248,9 @@
 
                 <div class="">
                     <img id="profile_img" src="{{ $hero_avatar_image }}" class=" w-[30vh] md:w-[40vh]   "
-                        style="opacity: 0" alt="">
+                        alt="">
+                    {{-- <img id="profile_img" src="{{ $hero_avatar_image }}" class=" w-[30vh] md:w-[40vh]   "
+                        style="opacity: 0" alt=""> --}}
                 </div>
 
             </div>
@@ -311,57 +316,7 @@
 
 
 
-    {{-- Explore Section Start --}}
-    <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
-
-        <h1 class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
-            data-aos="fade-up">
-            The Categories</h1>
-
-        <p class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
-            data-aos="fade-up">
-            {{ $categories_caption }}</p>
-
-    </div>
-
-    <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
-        @foreach ($options_array as $option)
-            <div class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                data-aos="fade-up">
-
-                <div
-                    class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1 p-2  bg-white   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-                    <img src="{{ $option['image_link'] }}"
-                        class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}"
-                        alt="">
-                </div>
-
-                <h1
-                    class="text-2xl font-semibold mt-2 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} line-clamp-2">
-                    {{ $option['option'] }}</h1>
-
-                <div class="mt-4 flex flex-row justify-center items-center mb-6">
-                    <button
-                        class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                        onclick="window.location.href='{{ env('BASE_LINK') }}/categories/{{ str_replace(' ', '-', $option['option']) }}?id={{ $option['id'] }}'"><a
-                            href="{{ env('BASE_LINK') }}/categories/{{ str_replace(' ', '-', $option['option']) }}?id={{ $option['id'] }}" cursor-data-color="#1A579F">Select</a></button>
-
-                </div>
-
-            </div>
-        @endforeach
-
-    </div>
-
-    {{-- Explore Section End --}}
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -410,8 +365,8 @@
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
                         onclick="window.location.href='{{ env('BASE_LINK') . $item->blog_link }}'"><a
-                            href="{{ Str::start($item->blog_link, env('BASE_LINK')) }}"
-                            rel="noopener noreferrer" cursor-data-color="#1A579F">Details</a></button>
+                            href="{{ Str::start($item->blog_link, env('BASE_LINK')) }}" rel="noopener noreferrer"
+                            cursor-data-color="#1A579F">Details</a></button>
                 </div>
 
             </div>
@@ -433,7 +388,50 @@
         onclick="window.location.href='/contact'" data-aos="fade-up"><a href="{{ env('BASE_LINK') }}/contact">Contact Me</a></button> --}}
 
 
+  {{-- Explore Section Start --}}
+  <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
+    <h1 class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+        data-aos="fade-up">
+        The Categories</h1>
+
+    <p class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
+        data-aos="fade-up">
+        {{ $categories_caption }}</p>
+
+</div>
+
+<div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
+    @foreach ($options_array as $option)
+        <div class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+            data-aos="fade-up">
+
+            <div
+                class="{{ $theme_mode == 'light' ? 'bg-[#4189d1]' : '' }}  mt-6 rounded-lg  border-1 p-2  bg-white   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                <img src="{{ $option['image_link'] }}"
+                    class=" h-[70px] w-[70px] rounded-lg    {{ $theme_mode == 'light' ? 'opacity-90' : '' }}"
+                    alt="">
+            </div>
+
+            <h1
+                class="text-2xl font-semibold mt-2 text-center px-4  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} line-clamp-2">
+                {{ $option['option'] }}</h1>
+
+            <div class="mt-4 flex flex-row justify-center items-center mb-6">
+                <button
+                    class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                    onclick="window.location.href='{{ env('BASE_LINK') }}/categories/{{ str_replace(' ', '-', $option['option']) }}?id={{ $option['id'] }}'"><a
+                        href="{{ env('BASE_LINK') }}/categories/{{ str_replace(' ', '-', $option['option']) }}?id={{ $option['id'] }}"
+                        cursor-data-color="#1A579F">Select</a></button>
+
+            </div>
+
+        </div>
+    @endforeach
+
+</div>
+
+{{-- Explore Section End --}}
 
 
 
@@ -458,11 +456,11 @@
         @if ($index % 2 == 0)
             <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
                 style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);"
-                data-aos="fade-up">
+                >
             @else
                 <div class="flex w-full py-8  h-fit md:h-[600px]"
                     style="{{ $index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : '' }} "
-                    data-aos="fade-up">
+                    >
         @endif
 
         <div
@@ -613,7 +611,7 @@
 {{-- The Collaborations Slider Start --}}
 
 <!-- Slider main container -->
-<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto" data-aos="fade-up">
+<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -624,8 +622,8 @@
         {{ $collaborations_caption }}</p>
 
 </div>
-<div class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-[360px]"
-    data-aos="fade-up">
+<div
+    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-[360px]">
     <div class="swiper swiper-collaboration rounded-lg" wire:ignore>
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
@@ -666,7 +664,7 @@
 
 {{-- The Testimonials Slider Start --}}
 <!-- Slider main container -->
-<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto" data-aos="fade-up">
+<div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -677,8 +675,8 @@
         {{ $testimonials_caption }}</p>
 
 </div>
-<div class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-fit"
-    data-aos="fade-up">
+<div
+    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-fit">
     <div class="swiper swiper-testimonials rounded-lg" wire:ignore>
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
@@ -744,6 +742,12 @@
 
 
 
+
+
+
+
+
+
 {{-- Consultation Section Start --}}
 <div class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-[10vh]"
     data-aos="fade-up">
@@ -783,7 +787,8 @@
 <div class="flex flex-col items-center" data-aos="fade-up">
     <button
         class="mt-[10vh] px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
-        onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact" cursor-data-color="#1A579F">Contact Me</a></button>
+        onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact"
+            cursor-data-color="#1A579F">Contact Me</a></button>
 </div>
 
 
@@ -897,7 +902,14 @@
 
 
 
-{{-- JavaScript --}}
+
+
+
+
+
+
+
+{{-- JavaScript
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
 <script>
@@ -914,8 +926,8 @@
             AOS.refresh();
 
 
-            profile_img.style.opacity = 0;
-            profile_img.style.transform = "translateY(16px)";
+            // profile_img.style.opacity = 0;
+            // profile_img.style.transform = "translateY(16px)";
 
             my_name_text.style.opacity = 0;
             my_name_text.style.transform = "translateY(16px)";
@@ -960,12 +972,12 @@
                     transform: "translateY(0)",
                     ease: "power2.out",
                 })
-                .to(profile_img, {
-                    opacity: 1,
-                    duration: 1,
-                    transform: "translateY(0)",
-                    ease: "power2.out",
-                })
+                // .to(profile_img, {
+                //     opacity: 1,
+                //     duration: 1,
+                //     transform: "translateY(0)",
+                //     ease: "power2.out",
+                // })
                 .to(scroll_down, {
                     opacity: 1,
                     duration: 1,
@@ -1052,7 +1064,7 @@
     let item = "";
 
     document.addEventListener('livewire:initialized', () => {
-     
+
 
         // Sending Data To backend
         //  setTimeout(() => {
@@ -1070,6 +1082,9 @@
                 }, 10);
             }
             css_stablizer();
+
+
+          
         })
 
         Livewire.on('no_results_found', () => {
@@ -1105,7 +1120,16 @@
             }
         });
     })
-</script>
+</script> --}}
+
+
+
+
+
+
+
 
 
 </div>
+
+
