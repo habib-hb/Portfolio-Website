@@ -631,10 +631,10 @@
             @foreach ($collaboration_cards as $item)
                 <div
                     class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] cursor-grab">
-                    <div class="flex flex-col h-full justify-between gap-8 items-center">
-                        <img src="{{ $item['profile_image'] }}" class="max-h-[200px] max-w-[200px]" alt="">
+                    <div class="flex flex-col h-full justify-between gap-2 items-center">
+                        <img src="{{ $item['profile_image'] }}" class="h-[242px] w-[252px] rounded-lg object-cover" alt="">
                         <div class="flex flex-col gap-0 justify-center items-center">
-                            <p class="text-[24px]">{{ $item['name'] }}</p>
+                            <p class="text-[24px] leading-8">{{ $item['name'] }}</p>
                             <p class="text-[16px]">{{ $item['profession'] }}</p>
                         </div>
                     </div>
@@ -710,7 +710,7 @@
                         </div>
 
                         <div class="flex flex-row w-full justify-start gap-4 items-center">
-                            <img src="{{ $item['profile_image'] }}" class="max-w-[64px] max-h-[64px]"
+                            <img src="{{ $item['profile_image'] }}" class="max-w-[64px] max-h-[64px] rounded-lg"
                                 alt="">
                             <div class="flex flex-col gap-0 justify-center items-start">
                                 <p class="text-[24px]">{{ $item['name'] }}</p>
