@@ -65,6 +65,20 @@ class PriceEstimatorFrontend extends Component
 
     public $price_estimation_page_caption;
 
+    //New Additions
+    public $site_logo_light;
+
+    public $site_logo_dark;
+
+    public $footer_logo_light;
+
+    public $footer_logo_dark;
+
+    public $footer_top_layer_text;
+
+    public $footer_bottom_layer_text;
+    //End New Additions
+
 
 
     public function mount($service_name, $service_id)
@@ -102,6 +116,21 @@ class PriceEstimatorFrontend extends Component
         $this->service_name = $service_name_db;
 
         $this->price_estimation_page_caption = DB::table('site_data')->where('title', 'price_estimation_page_caption')->value('data');
+
+
+         //New Additions
+         $this->site_logo_light = DB::table('site_data')->where('title', 'site_logo_light_mode')->first()->data;
+
+         $this->site_logo_dark = DB::table('site_data')->where('title', 'site_logo_dark_mode')->first()->data;
+
+         $this->footer_logo_light = DB::table('site_data')->where('title', 'footer_logo_light_mode')->first()->data;
+
+         $this->footer_logo_dark = DB::table('site_data')->where('title', 'footer_logo_dark_mode')->first()->data;
+
+         $this->footer_top_layer_text = DB::table('site_data')->where('title', 'footer_top_layer_text')->first()->data;
+
+         $this->footer_bottom_layer_text = DB::table('site_data')->where('title', 'footer_bottom_layer_text')->first()->data;
+         //End New Additions
 
 
 
@@ -343,10 +372,8 @@ class PriceEstimatorFrontend extends Component
 
             if (count($unsubscribed_email_list_check) == 0) {
 
-            Mail::to($this->user_email)->send(new appointment_details_to_client($bookingDetails));
-
+                Mail::to($this->user_email)->send(new appointment_details_to_client($bookingDetails));
             }
-            
         } elseif (!$this->clicked_date) {
 
             session()->flash('message', 'Please Select A Date');

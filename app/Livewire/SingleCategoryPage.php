@@ -13,23 +13,35 @@ class SingleCategoryPage extends Component
 
     public $theme_mode;
 
-    public $items_array=[];
+    public $items_array = [];
 
     public $page_caption;
+
+    //New Additions
+    public $site_logo_light;
+
+    public $site_logo_dark;
+
+    public $footer_logo_light;
+
+    public $footer_logo_dark;
+
+    public $footer_top_layer_text;
+
+    public $footer_bottom_layer_text;
+    //End New Additions
 
     public function mount($category_title, $category_id)
     {
 
-        if(!session('theme_mode')) {
+        if (!session('theme_mode')) {
 
             $this->theme_mode = 'light';
 
             session(['theme_mode' => $this->theme_mode]);
-
-        }else{
+        } else {
 
             $this->theme_mode = session('theme_mode');
-
         }
 
 
@@ -60,27 +72,38 @@ class SingleCategoryPage extends Component
             ];
         }, $items_db);
 
+         //New Additions
+         $this->site_logo_light = DB::table('site_data')->where('title', 'site_logo_light_mode')->first()->data;
+
+         $this->site_logo_dark = DB::table('site_data')->where('title', 'site_logo_dark_mode')->first()->data;
+
+         $this->footer_logo_light = DB::table('site_data')->where('title', 'footer_logo_light_mode')->first()->data;
+
+         $this->footer_logo_dark = DB::table('site_data')->where('title', 'footer_logo_dark_mode')->first()->data;
+
+         $this->footer_top_layer_text = DB::table('site_data')->where('title', 'footer_top_layer_text')->first()->data;
+
+         $this->footer_bottom_layer_text = DB::table('site_data')->where('title', 'footer_bottom_layer_text')->first()->data;
+         //End New Additions
     }
 
 
-    public function changeThemeMode(){
+    public function changeThemeMode()
+    {
 
-        if($this->theme_mode == 'light'){
+        if ($this->theme_mode == 'light') {
 
             $this->theme_mode = 'dark';
 
             session(['theme_mode' => $this->theme_mode]);
-
-        }else{
+        } else {
 
             $this->theme_mode = 'light';
 
             session(['theme_mode' => $this->theme_mode]);
-
         }
 
         $this->dispatch('alert-manager');
-
     }
 
 

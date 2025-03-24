@@ -6,11 +6,11 @@
 
         <div class=" flex justify-start cursor-pointer">
 
-            <img src="{{ asset('images/the_logo_light_mode.png') }}"
+            <img src="{{ $site_logo_light }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
                 onclick="window.location.href='/'" alt="">
 
-            <img src="{{ asset('images/the_logo_dark_mode.png') }}"
+            <img src="{{ $site_logo_dark }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
                 onclick="window.location.href='/'" alt="">
 
@@ -468,15 +468,13 @@
 
 
         <img id='search_icon'
-            src="{{ $theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}"
+            src="{{ $theme_mode == 'light' ? $footer_logo_light : $footer_logo_dark }}"
             class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
 
-        <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All Rights
-            Reserved
-            @2024</p>
+        <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">{{ $footer_top_layer_text }}</p>
 
         <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            @valueadderhabib
+            {{ $footer_bottom_layer_text }}
         </p>
 
     </div>

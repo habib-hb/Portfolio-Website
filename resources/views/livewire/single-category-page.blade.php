@@ -3,9 +3,9 @@
 
         <div class=" flex justify-start md:w-[20vw] cursor-pointer">
 
-            <img  src="{{asset('images/the_logo_light_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}} cursor-pointer" onclick="window.location.href='/'" alt="">
+            <img  src="{{$site_logo_light}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}} cursor-pointer" onclick="window.location.href='/'" alt="">
 
-            <img  src="{{asset('images/the_logo_dark_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? 'hidden' : ''}} cursor-pointer" onclick="window.location.href='/'"  alt="">
+            <img  src="{{$site_logo_dark}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? 'hidden' : ''}} cursor-pointer" onclick="window.location.href='/'"  alt="">
 
         </div>
 
@@ -70,18 +70,18 @@
     @foreach ($items_array as $index => $item)
 
         @if ($index % 2 == 0)
-            <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
+            <div class="flex w-full px-2 {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit lg:h-[600px]"
                 style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);">
             @else
-                <div class="flex w-full py-8  h-fit md:h-[600px]" style="{{$index === count($items_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : ''}} ">
+                <div class="flex w-full px-2 py-8  h-fit lg:h-[600px]" style="{{$index === count($items_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : ''}} ">
         @endif
 
 
 
         <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} justify-center items-center h-full">
+            class="max-w-[1280px] gap-[4%] lg:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'lg:flex-row' : 'lg:flex-row-reverse' }} justify-center items-center h-full">
 
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full ">
+            <div class="flex justify-center w-[96%] mx-auto lg:mt-0 lg:mx-0 lg:w-[45%] items-center h-fit lg:h-full ">
 
                 <a href="{{ $item['site_link'] }}" target="_blank"><img src="{{ $item['image_link'] }}" class="max-h-[400px] rounded-lg"
                     alt="" data-aos="zoom-in"></a>
@@ -89,9 +89,9 @@
             </div>
 
             <div
-                class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full " data-aos="zoom-in">
+                class="flex flex-col justify-center w-[96%] mx-auto lg:mt-0 lg:mx-0 lg:w-[45%] items-center h-fit lg:h-full " data-aos="zoom-in">
                 <h2
-                    class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+                    class="text-center lg:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
                     {{ $item['item_title'] }}
                 </h2>
 
@@ -99,7 +99,7 @@
                     class="w-full [&_p]:text-md [&_h3]:text-lg [&_h2]:text-2xl [&_h1]:text-3xl [&_span]:!bg-transparent {{ session('theme_mode') == 'light' ? 'text-black [&_span]:!text-black' : 'text-white [&_span]:!text-white' }}">
                     <p>{!! $item['item_description'] !!}</p></div>
 
-                <div class="flex gap-4 justify-center md:justify-start w-full my-4">
+                <div class="flex gap-4 justify-center lg:justify-start w-full my-4">
                     <a href="{{ $item['site_link'] }}" target="_blank"><button
                             class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Demo</button></a>
                 </div>
@@ -125,15 +125,14 @@
 
 
   <img id='search_icon'
-      src="{{ session('theme_mode') == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}"
+      src="{{ session('theme_mode') == 'light' ? $footer_logo_light : $footer_logo_dark }}"
       class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
 
   <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All
-      Rights
-      Reserved @2024</p>
+      {{$footer_top_layer_text}}</p>
 
   <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-      @valueadderhabib</p>
+      {{$footer_bottom_layer_text}}</p>
 
 </div>
 

@@ -35,14 +35,14 @@
                     class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]' }} {{ $search_input_field_is_active ? 'hidden' : '' }}">Search</span>
 
                 <input wire:model.live='searchtext' id='search_input' type="text"
-                    class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{ $theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus: outline-none border-none ">
+                    class="mr-2 h-[36px] w-[50vw] lg:w-[30vw] rounded-lg {{ $theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus: outline-none border-none ">
 
             </div>
 
-            <div class=" flex justify-end md:w-[20vw]">
+            <div class=" flex justify-end lg:w-[20vw]">
 
                 <button
-                    class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
+                    class="hidden lg:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
                     onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact"
                         cursor-data-color="#1A579F">Contact
                         Me</a></button>
@@ -110,7 +110,7 @@
         </div>
     </div>
 
-    <div class="h-[100vh] flex flex-col">
+
 
         @if ($notify_success)
             <div id="appointment_unfulfilled"
@@ -205,7 +205,7 @@
 
 
 
-
+    <div class="h-[100vh] flex flex-col">
         <div wire:click="changeThemeMode"
             class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all cursor-pointer">
 
@@ -216,6 +216,9 @@
                 class="h-[44px] {{ $theme_mode == 'light' ? 'hidden' : '' }}" cursor-data-color="#1A579F">
 
         </div>
+
+
+        {{-- Hero Section --}}
 
         <div class="flex flex-col max-w-[1280px] justify-center items-center mx-auto grow mt-2 md:mt-0">
 
@@ -246,7 +249,7 @@
                 </div>
 
 
-                <div class="">
+                <div class="-mt-[5vh] md:mt-0">
                     <img id="profile_img" src="{{ $hero_avatar_image }}" class=" w-[30vh] md:w-[40vh]   "
                         alt="">
                     {{-- <img id="profile_img" src="{{ $hero_avatar_image }}" class=" w-[30vh] md:w-[40vh]   "
@@ -316,7 +319,7 @@
 
 
 
-  
+
 
 
 
@@ -335,10 +338,10 @@
 
     </div>
 
-    <div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
+    <div class="flex flex-col md:flex-row px-2 flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
 
         @foreach ($estimation_options as $item)
-            <div class="flex flex-col w-[96vw] md:max-w-[30%] [&_p]:line-clamp-4 md:[&_p]:line-clamp-3 px-4  h-[324px] md:h-[310px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+            <div class="flex flex-col w-[96vw] max-w-[384px] md:w-[384px] md:min-w-[384px] shrink-0 lg:max-w-[30%] [&_p]:line-clamp-4 lg:[&_p]:line-clamp-3 px-4  h-[332px] md:h-[310px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
                 data-aos="fade-up">
 
                 <div
@@ -401,9 +404,9 @@
 
 </div>
 
-<div class="flex flex-col md:flex-row flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
+<div class="flex flex-col md:flex-row px-2 flex-wrap justify-center items-center my-6 gap-6 md:max-w-[1280px] mx-auto">
     @foreach ($options_array as $option)
-        <div class="flex flex-col justify-center w-[96vw] md:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+        <div class="flex flex-col justify-center w-[96vw] max-w-[380px] md:w-[380px] md:min-w-[380px] lg:max-w-[30%]  h-full max-h-[247px] md:hover:scale-105 transition-all  {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
             data-aos="fade-up">
 
             <div
@@ -454,19 +457,19 @@
 
     @foreach ($portfolios_array as $index => $item)
         @if ($index % 2 == 0)
-            <div class="flex w-full {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit md:h-[600px]"
+            <div class="flex w-full px-2 {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit lg:h-[600px]"
                 style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);"
                 >
             @else
-                <div class="flex w-full py-8  h-fit md:h-[600px]"
+                <div class="flex w-full px-2 py-8  h-fit lg:h-[600px]"
                     style="{{ $index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : '' }} "
                     >
         @endif
 
         <div
-            class="max-w-[1280px] gap-[4%] md:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} justify-center items-center h-full">
+            class="max-w-[1280px] gap-[4%] lg:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'lg:flex-row' : 'lg:flex-row-reverse' }} justify-center items-center h-full">
 
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full "
+            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 lg:w-[45%] items-center h-fit lg:h-full "
                 data-aos="zoom-in">
 
                 <img src="{{ $item['portfolio_image_link'] }}" class="max-h-[400px] rounded-lg"
@@ -474,7 +477,7 @@
 
             </div>
 
-            <div class="flex flex-col justify-center w-[96%] mx-auto md:mt-0 md:mx-0 md:w-[45%] items-center h-fit md:h-full "
+            <div class="flex flex-col justify-center w-[96%] mx-auto lg:mt-0 lg:mx-0 lg:w-[45%] items-center h-fit lg:h-full "
                 data-aos="zoom-in">
                 <h2
                     class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -668,7 +671,7 @@
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-        The Testimonials</h1>
+        The Testimonials & Feedbacks</h1>
 
     <p
         class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -1084,7 +1087,7 @@
             css_stablizer();
 
 
-          
+
         })
 
         Livewire.on('no_results_found', () => {
