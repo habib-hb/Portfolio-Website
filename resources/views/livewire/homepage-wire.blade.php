@@ -457,19 +457,19 @@
 
     @foreach ($portfolios_array as $index => $item)
         @if ($index % 2 == 0)
-            <div class="flex w-full px-2 {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit lg:h-[600px]"
+            <div class="flex w-full px-2 {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} py-8  h-fit xl:h-[600px]"
                 style="box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2), inset 0px 4px 3px rgba(0, 0, 0, 0.2);"
                 >
             @else
-                <div class="flex w-full px-2 py-8  h-fit lg:h-[600px]"
+                <div class="flex w-full px-2 py-8  h-fit xl:h-[600px]"
                     style="{{ $index === count($portfolios_array) - 1 ? 'box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)' : '' }} "
                     >
         @endif
 
         <div
-            class="max-w-[1280px] gap-[4%] lg:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'lg:flex-row' : 'lg:flex-row-reverse' }} justify-center items-center h-full">
+            class="max-w-[1280px] gap-[4%] xl:gap-[10%] mx-auto flex flex-col {{ $index % 2 == 0 ? 'xl:flex-row' : 'xl:flex-row-reverse' }} justify-center items-center h-full">
 
-            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 lg:w-[45%] items-center h-fit lg:h-full "
+            <div class="flex justify-center w-[96%] mx-auto md:mt-0 md:mx-0 xl:w-[45%] items-center h-fit xl:h-full "
                 data-aos="zoom-in">
 
                 <img src="{{ $item['portfolio_image_link'] }}" class="max-h-[400px] rounded-lg"
@@ -477,7 +477,7 @@
 
             </div>
 
-            <div class="flex flex-col justify-center w-[96%] mx-auto lg:mt-0 lg:mx-0 lg:w-[45%] items-center h-fit lg:h-full "
+            <div class="flex flex-col justify-center w-[96%] mx-auto xl:mt-0 xl:mx-0 xl:w-[45%] items-center h-fit xl:h-full "
                 data-aos="zoom-in">
                 <h2
                     class="text-center md:text-left text-2xl font-medium w-full my-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -500,7 +500,7 @@
 
                 <h2
                     class="text-center md:text-left  w-full {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-                    <span class="text-lg font-medium ">Technologies Used:</span> {{ $item['technologies_used'] }}
+                    <span class="text-lg font-medium ">Tech Stack:</span> {{ $item['technologies_used'] }}
                 </h2>
 
             </div>
@@ -547,7 +547,7 @@
 
                 <input type="text" wire:model.defer="admin_name" placeholder="Admin Name"
                     class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                    id="admin_name">
+                    id="admin_name" autocomplete="off">
 
             </div>
 
@@ -558,7 +558,7 @@
         <div class="relative max-w-[680px]">
             <input id="hs-toggle-password" wire:model.defer="admin_password" type="password"
                 class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                placeholder="Enter password">
+                placeholder="Enter password" autocomplete="off">
             <button type="button" data-hs-toggle-password='{
           "target": "#hs-toggle-password"
         }'
@@ -626,7 +626,7 @@
 
 </div>
 <div
-    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-[360px]">
+    class="{{ $theme_mode == 'light' ? 'text-[#070707] [&_.swiper-slide]:bg-[#d6e0ec]' : 'text-[#fcfeff]  [&_.swiper-slide]:bg-[#1e1d1d]' }} p-4 w-full [&_.swiper]:max-w-[1200px] [&_.swiper]:h-[364px]">
     <div class="swiper swiper-collaboration rounded-lg" wire:ignore>
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
@@ -671,7 +671,7 @@
 
     <h1
         class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-        The Testimonials & Feedbacks</h1>
+        The Testimonials & Feedback</h1>
 
     <p
         class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
@@ -687,7 +687,7 @@
             @foreach ($testimonials_cards as $item)
                 <div
                     class="swiper-slide flex flex-col justify-center items-center p-8 w-[96vw] md:max-w-[1280px] rounded-lg  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] cursor-grab">
-                    <div class="flex flex-col h-[356px] justify-between gap-8 items-center">
+                    <div class="flex flex-col h-[424px] justify-between gap-8 items-center">
                         <div class="flex flex-col h-full justify-center">
                             <div class="w-full flex justify-start">
                                 <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor"
@@ -699,7 +699,7 @@
                             </div>
 
                             <div class="flex flex-col gap-2 justify-center items-center">
-                                <p class="text-[18px] line-clamp-[8]">{{ $item['quote'] }}</p>
+                                <p class="text-[14px] md:text-[18px] line-clamp-[13]">{{ $item['quote'] }}</p>
                             </div>
                             <div class="w-full flex justify-end">
                                 <svg width="27" height="22" viewBox="0 0 57 43" fill="currentColor"
@@ -716,8 +716,8 @@
                             <img src="{{ $item['profile_image'] }}" class="max-w-[64px] max-h-[64px] rounded-lg"
                                 alt="">
                             <div class="flex flex-col gap-0 justify-center items-start">
-                                <p class="text-[24px]">{{ $item['name'] }}</p>
-                                <p class="text-[16px]">{{ $item['profession'] }}</p>
+                                <p class="text-[18px] md:text-[24px]">{{ $item['name'] }}</p>
+                                <p class="text-[12px] md:text-[16px]">{{ $item['profession'] }}</p>
                             </div>
                         </div>
                     </div>
@@ -752,10 +752,10 @@
 
 
 {{-- Consultation Section Start --}}
-<div class=" {{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-[10vh]"
+<div class="{{ $theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} p-8 rounded-lg w-[calc(100%_-_16px)] max-w-xl mx-auto mt-[10vh]"
     data-aos="fade-up">
     <p class="text-center font-medium mb-2 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-        To get a professional consultation, please click the button below.
+        To get a professional paid consultation, please click the button below.
     </p>
     <div class="flex flex-col items-center">
         <div class="flex flex-col items-center">
@@ -770,9 +770,11 @@
 
         </div>
         <button wire:click="consultationStripeRedirect"
-            class="bg-[#1A579F] text-white px-4 py-2 rounded-md hover:scale-105 transition-all mt-4">
+            class="bg-[#1A579F] text-white px-4 py-2 rounded-md hover:scale-105 transition-all mt-4 ">
             Consult Now
         </button>
+
+        <img src={{ asset('images/stripe.png') }} class="h-[40px] mt-4" alt="">
     </div>
 </div>
 {{-- Consultation Section End --}}
