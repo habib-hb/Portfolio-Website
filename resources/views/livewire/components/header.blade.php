@@ -7,11 +7,11 @@
 
             <img src="{{ $site_logo_light }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
+                onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
             <img src="{{ $site_logo_dark }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
+                onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
         </div>
 
@@ -43,10 +43,10 @@
             onclick="window.location.href='{{ $back_button_link }}'" alt="">
 
         <img wire:click="notifyParentThemeChange" src="{{ asset('images/light_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
+            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
         <img wire:click="notifyParentThemeChange" src="{{ asset('images/dark_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer">
+            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
     </div>
 

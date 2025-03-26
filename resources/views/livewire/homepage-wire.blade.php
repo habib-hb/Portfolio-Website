@@ -362,14 +362,14 @@
                 <div class="flex flex-row gap-4 mb-6 mt-auto">
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                        onclick="window.location.href='{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}'"><a
-                            hreitem" cursor-data-color="#1A579F">Select</a></button>
+                        onclick="window.open('{{ env('BASE_LINK') }}/services/{{ str_replace(' ', '-', $item->title) }}?id={{ $item->id }}')"><a
+                            hreitem" cursor-data-color="#1A579F" target="_blank">Select</a></button>
 
                     <button
                         class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"
-                        onclick="window.location.href='{{ env('BASE_LINK') . $item->blog_link }}'"><a
-                            href="{{ Str::start($item->blog_link, env('BASE_LINK')) }}" rel="noopener noreferrer"
-                            cursor-data-color="#1A579F">Details</a></button>
+                        onclick="window.open('{{ env('BASE_LINK') . $item->blog_link }}')"><a
+                            href="{{ Str::start($item->blog_link, env('BASE_LINK')) }}"
+                            cursor-data-color="#1A579F" target="_blank">Details</a></button>
                 </div>
 
             </div>
@@ -853,7 +853,7 @@
         <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all"
             onclick="window.location.href='{{ env('BASE_LINK') }}/privacy_policy'">
             <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }} hover:underline">
-                Privacy Policy</p><img
+                Terms & Privacy Policy</p><img
                 src="{{ session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png') }}"
                 class="h-[12px] w-[12px]" alt="">
         </div>
@@ -885,7 +885,7 @@
     </div>
 
     <img id='footer_icon' src="{{ $theme_mode == 'light' ? $footer_logo_light : $footer_logo_dark }}"
-        class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
+        class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
     <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
         {{ $footer_top_layer_text }}</p>

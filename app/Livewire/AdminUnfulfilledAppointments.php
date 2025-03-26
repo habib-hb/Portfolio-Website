@@ -187,6 +187,8 @@ class AdminUnfulfilledAppointments extends Component
 
         $this->dispatch('alert-manager');
 
+        $this->dispatch('change-appointment-theme');
+
     }
 
 

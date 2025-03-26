@@ -237,7 +237,7 @@
 
         {{-- Filter Options Section --}}
         <div id="full_filter_options_panel"
-            class=" {{ $filter_button_is_clicked ? '' : 'hidden' }} absolute top-24 left-1/2 translate-x-[-50%] w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{ session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]' }} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
+            class=" {{ $filter_button_is_clicked ? '' : 'hidden' }} fixed top-24 left-1/2 translate-x-[-50%] w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{ session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]' }} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4 z-10">
             <h2
                 class="text-2xl font-semibold text-center {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Options</h2>
@@ -612,7 +612,7 @@
     <script>
         document.addEventListener('livewire:initialized', () => {
 
-            Livewire.on('alert-manager', () => {
+            Livewire.on('change-appointment-theme', () => {
 
                 setTimeout(() => {
 

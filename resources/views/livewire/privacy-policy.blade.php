@@ -7,9 +7,9 @@
 
         <div class=" flex justify-start md:w-[20vw] cursor-pointer">
 
-            <img  src="{{asset('images/the_logo_light_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}} cursor-pointer" onclick="window.location.href='/'" alt="">
+            <img  src="{{$site_logo_light}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}} cursor-pointer" onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
-            <img  src="{{asset('images/the_logo_dark_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? 'hidden' : ''}} cursor-pointer" onclick="window.location.href='/'"  alt="">
+            <img  src="{{$site_logo_dark}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? 'hidden' : ''}} cursor-pointer" onclick="window.location.href='/'"  alt="" cursor-data-color="#1A579F">
 
         </div>
 
@@ -64,9 +64,9 @@
             <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
                 <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
 
-                <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+                <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
-                <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
+                <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
             </div>
 
@@ -77,7 +77,7 @@
         <div class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} max-w-[800px] mx-auto px-2 md:px-0">
 
             <header class="text-center flex flex-col md:flex-row gap-2 justify-center items-center my-4">
-                <h1 class="text-4xl font-bold {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}">Privacy Policy</h1>
+                <h1 class="text-4xl font-bold {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}">Terms & Privacy Policy</h1>
                 {{-- <img src="{{  asset('images/privacy_policy_knight.gif') }}" class="h-[160px]" alt=""> --}}
                 <img src="{{  $privacy_title_icon }}" class="h-[160px]" alt="">
               </header>
@@ -102,11 +102,11 @@
         <div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
 
 
-            <img id='search_icon' src="{{session('theme_mode') == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px] cursor-pointer"  onclick="window.location.href='/'"   alt="">
+            <img id='search_icon' src="{{session('theme_mode') == 'light' ? $footer_logo_light : $footer_logo_dark}}" class="h-[44px] cursor-pointer"  onclick="window.location.href='/'"   alt="" cursor-data-color="#1A579F">
 
-            <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">All Rights Reserved @2024</p>
+            <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">{{$footer_top_layer_text}}</p>
 
-            <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
+            <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">{{$footer_bottom_layer_text}}</p>
 
         </div>
 

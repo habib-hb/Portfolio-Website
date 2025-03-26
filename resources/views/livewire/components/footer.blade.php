@@ -4,7 +4,7 @@
 
 
   <img id='footer_icon' src="{{ session('theme_mode') == 'light' ? $footer_logo_light : $footer_logo_dark }}"
-      class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
+      class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
   <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
       {{ $footer_top_layer_text }}</p>

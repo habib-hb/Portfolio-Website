@@ -6,13 +6,13 @@
 
         <div class=" flex justify-start cursor-pointer">
 
-            <img src="{{ asset('images/the_logo_light_mode.png') }}"
+            <img src="{{ $site_logo_light }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
+                onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
-            <img src="{{ asset('images/the_logo_dark_mode.png') }}"
+            <img src="{{ $site_logo_dark }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
+                onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
         </div>
 
@@ -124,10 +124,10 @@
             onclick="window.history.back()" alt="">
 
         <img wire:click="changeThemeMode" src="{{ asset('images/light_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer">
+            class="h-[44px] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
         <img wire:click="changeThemeMode" src="{{ asset('images/dark_mode_toggler.png') }}"
-            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer">
+            class="h-[44px] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
     </div>
 
@@ -149,7 +149,7 @@
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
                         {{-- <img src="{{ asset('images/contact-email.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
-                        <img src="{{ $email_icon }}" class="h-[68px] w-[88px]" alt="">
+                        <img src="{{ $email_icon }}" class="h-[68px] w-[88px] object-contain" alt="">
                     </div>
                     <div class="flex flex-col items-center md:items-start gap-2">
                         <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[28px] font-bold ">Email</p>
@@ -159,7 +159,7 @@
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
                         {{-- <img src="{{ asset('images/contact-phone.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
-                        <img src="{{ $phone_icon }}" class="h-[68px] w-[88px]" alt="">
+                        <img src="{{ $phone_icon }}" class="h-[68px] w-[88px] object-contain" alt="">
                     </div>
                     <div class="flex flex-col items-center md:items-start gap-2">
                         <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[28px] font-bold ">Phone</p>
@@ -169,7 +169,7 @@
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
                         {{-- <img src="{{ asset('images/contact-location.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
-                        <img src="{{ $address_icon }}" class="h-[68px] w-[88px]" alt="">
+                        <img src="{{ $address_icon }}" class="h-[68px] w-[88px] object-contain" alt="">
                     </div>
                     <div class="flex flex-col items-center md:items-start gap-2">
                         <p class="{{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-white' }} text-[28px] font-bold ">Address</p>
@@ -179,7 +179,7 @@
                 <div class="flex flex-col md:flex-row gap-6 p-6 items-center {{ session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]' }} rounded-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
                     <div class="flex shrink-0 p-2 gap-7 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff]' : 'bg-black' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
                         {{-- <img src="{{ asset('images/contact-social.gif') }}" class="h-[68px] w-[88px]" alt=""> --}}
-                        <img src="{{ $social_icon }}" class="h-[68px] w-[88px]" alt="">
+                        <img src="{{ $social_icon }}" class="h-[68px] w-[88px] object-contain" alt="">
                     </div>
                     <div class="flex flex-col">
                         <div class="flex gap-2">
@@ -264,15 +264,13 @@
 
 
         <img id='search_icon'
-            src="{{ session('theme_mode') == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png') }}"
-            class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
+            src="{{ session('theme_mode') == 'light' ? $footer_logo_light : $footer_logo_dark }}"
+            class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
-        <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All
-            Rights
-            Reserved @2024</p>
+        <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">{{$footer_top_layer_text}}</p>
 
         <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
-            @valueadderhabib</p>
+            {{$footer_bottom_layer_text}}</p>
 
     </div>
 

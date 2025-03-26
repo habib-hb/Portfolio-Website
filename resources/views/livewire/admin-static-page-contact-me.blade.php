@@ -172,7 +172,7 @@
             <label for="author_name"
                 class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Phone</label>
 
-            <input wire:model="phone" type="number"
+            <input wire:model="phone" type="text"
                 class="w-[96vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
                 id="author_name">
 

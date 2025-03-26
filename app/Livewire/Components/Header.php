@@ -33,6 +33,7 @@ class Header extends Component
         $this->dispatch('notify-from-child-component');
 
         $this->dispatch('theme-change');
+
     }
 
     #[On('theme-change')]
@@ -41,6 +42,7 @@ class Header extends Component
 
         //Doing nothing but re-rendering, the below event does nothing
         $this->dispatch('alert-manager');
+
     }
 
     public function render()

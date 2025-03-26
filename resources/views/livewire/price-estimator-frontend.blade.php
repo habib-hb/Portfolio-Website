@@ -8,11 +8,11 @@
 
             <img src="{{ $site_logo_light }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? '' : 'hidden' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
+                onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
             <img src="{{ $site_logo_dark }}"
                 class="ml-2 h-[64px] max-w-[45vw] {{ session('theme_mode') == 'light' ? 'hidden' : '' }} cursor-pointer"
-                onclick="window.location.href='/'" alt="">
+                onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
 
         </div>
@@ -26,9 +26,9 @@
     <div class="flex justify-center relative w-full max-w-[800px] mx-auto mt-6">
         <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
     </div>
 
@@ -190,7 +190,7 @@
 
 
 
-            <h2 class="text-4xl font-bold text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} ">
+            <h2 class="text-4xl my-2 font-bold text-center {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} ">
                 {{ $service_name }}</h2>
 
 
@@ -206,10 +206,10 @@
             <div>
                 <img src="{{ asset('images/currency-mode-dollar.png') }}" wire:click="toggle_currency_mode"
                     class="h-[36px] w-auto mt-2 cursor-pointer {{ $currency_mode == 'USD' ? '' : 'hidden' }} "
-                    alt="">
+                    alt="" cursor-data-color="#1A579F">
                 <img src="{{ asset('images/currency-mode-taka.png') }}" wire:click="toggle_currency_mode"
                     class="h-[36px] w-auto mt-2 cursor-pointer {{ $currency_mode == 'TK' ? '' : 'hidden' }} "
-                    alt="">
+                    alt="" cursor-data-color="#1A579F">
             </div>
             <p class="font-bold text-4xl {{ session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white' }} mt-2"
                 id="totalAmount">{{ $total_estimated_amount * $currency_rate }} {{ $currency_mode }}</p>
@@ -290,6 +290,24 @@
 
 
 
+    <div class="flex flex-col items-center">
+        <button
+            class="mt-10 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "
+            onclick="window.location.href='/contact'"><a href="{{ env('BASE_LINK') }}/contact"
+                cursor-data-color="#1A579F">Contact Me</a></button>
+    </div>
+
+    <div class="flex flex-col justify-center mt-8  md:max-w-[1280px]  mx-auto">
+        <p
+            class="text-[16px] md:max-w-[80%] block mx-auto mt-2 text-center px-4 {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">
+            If you'd like to have a long discussion with me, please book an appointment below</p>
+
+    </div>
+
+
+
+
+
 
 
 
@@ -365,7 +383,7 @@
 
 
             <div class="flex flex-row justify-start md:justify-center w-[100%]">
-                <p class="text-lg {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Please Enter Your Details</p>
+                <p class="text-lg {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Please Enter The Details Below</p>
             </div>
 
             <div class="flex flex-col mt-2">
@@ -469,7 +487,7 @@
 
         <img id='search_icon'
             src="{{ $theme_mode == 'light' ? $footer_logo_light : $footer_logo_dark }}"
-            class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
+            class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
         <p class=" text-center {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">{{ $footer_top_layer_text }}</p>
 
