@@ -7,6 +7,8 @@
 /vendor
 .env
 .env.backup
+env-local.txt.txt
+env-cpanel.txt.txt
 .env.production
 .phpactor.json
 .phpunit.result.cache

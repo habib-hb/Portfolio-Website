@@ -5,7 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Homepage - Digital Services</title>
+    <title>Value Adder Habib - Full Stack Laravel Developer</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Habibur Rahman - A Full Stack Laravel Developer specializing in modern web applications with Laravel, Livewire , React, and Tailwind. Please, take a look at my profile & contact me now!">
+    <meta name="keywords" content="Value Adder Habib, valueadderhabib, Laravel Developer, Full Stack Developer, Web Development, React, Tailwind, Livewire , laravel developer in bangladesh">
+    <meta name="author" content="Habib">
+    <meta name="robots" content="index, follow">
 
 
 

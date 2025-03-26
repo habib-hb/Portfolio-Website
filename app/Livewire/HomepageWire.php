@@ -517,7 +517,7 @@ class HomepageWire extends Component
                 'price_data' => [
                     'currency' => 'usd',
                     'product_data' => [
-                        'name' => 'Your Product Name',
+                        'name' => 'Paid Consultation',
                     ],
                     'unit_amount' => 2000,
                 ],

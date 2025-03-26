@@ -3,9 +3,9 @@
 
         <div class=" flex justify-start md:w-[20vw] cursor-pointer">
 
-            <img  src="{{$site_logo_light}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}} cursor-pointer" onclick="window.location.href='/'" alt="">
+            <img  src="{{$site_logo_light}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}} cursor-pointer" onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
-            <img  src="{{$site_logo_dark}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? 'hidden' : ''}} cursor-pointer" onclick="window.location.href='/'"  alt="">
+            <img  src="{{$site_logo_dark}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? 'hidden' : ''}} cursor-pointer" onclick="window.location.href='/'"  alt="" cursor-data-color="#1A579F">
 
         </div>
 
@@ -48,9 +48,9 @@
     <div class="flex justify-center relative w-full max-w-[1280px] mx-auto mt-6">
         <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="absolute left-1 md:left-0 h-[48px] w-[48px]  md:hover:scale-105 transition-all cursor-pointer" onclick="window.history.back()" alt="">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
-        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer">
+        <img wire:click="changeThemeMode" src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? 'hidden' : ''}} md:hover:scale-105 transition-all cursor-pointer" cursor-data-color="#1A579F">
 
     </div>
 
@@ -126,7 +126,7 @@
 
   <img id='search_icon'
       src="{{ session('theme_mode') == 'light' ? $footer_logo_light : $footer_logo_dark }}"
-      class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="">
+      class="h-[44px] cursor-pointer" onclick="window.location.href='/'" alt="" cursor-data-color="#1A579F">
 
   <p class=" text-center {{ session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}">All
       {{$footer_top_layer_text}}</p>
