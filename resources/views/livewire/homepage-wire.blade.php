@@ -571,7 +571,7 @@
             <div class="flex flex-col mt-2 max-w-[680px]">
 
                 <label for="title"
-                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Admin
+                    class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-[#020202]' : 'text-white' }}">Admin
                     Name</label>
 
                 <input type="text" wire:model.defer="admin_name" placeholder="Admin Name"
@@ -583,7 +583,7 @@
         </div>
 
         <label for="title"
-            class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">Password</label>
+            class="opacity-80 {{ session('theme_mode') == 'light' ? 'text-[#020202]' : 'text-white' }}">Password</label>
         <div class="relative max-w-[680px]">
             <input id="hs-toggle-password" wire:model.defer="admin_password" type="password"
                 class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"

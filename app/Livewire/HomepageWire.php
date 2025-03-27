@@ -462,6 +462,8 @@ class HomepageWire extends Component
 
             $this->notify_success = "Login Successful";
 
+            $this->admin_active = true;
+
             $this->admin_login_popup_is_active = false;
 
             $this->admin_name = null;
