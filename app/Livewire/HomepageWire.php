@@ -542,6 +542,18 @@ class HomepageWire extends Component
 
 
 
+    public function searchOutputClose(){
+        $this->search_input_field_is_active = false;
+        $this->searchtext = null;
+        $this->search_output = null;
+        $this->no_search_results_found_show = false;
+
+        $this->dispatch('alert-manager');
+        $this->dispatch('show-search-logo');
+    }
+
+
+
     public function render()
     {
         return view('livewire.homepage-wire');

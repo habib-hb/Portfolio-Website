@@ -62,16 +62,17 @@
 
         {{-- Loading The Searched Data --}}
         <div
-            class="mx-auto md:max-w-[1280px] mt-2 px-2 [&_p]:cursor-pointer [&_span]:!bg-transparent [&_p]:!bg-transparent {{ $theme_mode == 'light' ? ' [&_span]:!text-black [&_p]:!text-black' : ' [&_span]:!text-white [&_p]:!text-white' }} max-h-[50vh] overflow-scroll md:overflow-auto shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            class="relative mx-auto md:max-w-[1280px] mt-2 px-2 [&_p]:cursor-pointer [&_span]:!bg-transparent [&_p]:!bg-transparent {{ $theme_mode == 'light' ? ' [&_span]:!text-black [&_p]:!text-black' : ' [&_span]:!text-white [&_p]:!text-white' }} max-h-[50vh] overflow-scroll md:overflow-auto shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
             <p id="no_results_found"
                 class="hidden {{ $theme_mode == 'light' ? 'text-[#121212] [&_span]:!text-black' : 'text-[#e7e7e7] [&_span]:!text-white' }}">
             </p>
 
             @if ($search_output)
+              <div class="absolute top-2 right-2 cursor-pointer text-4xl bg-[#1A579F] text-white rounded-full px-2 {{ $no_search_results_found_show ? 'hidden' : '' }}" wire:click="searchOutputClose">&times;</div>
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <a href="{{ $post->item_link }}" target="_blank">
-                            <div class="flex flex-col md:flex-row justify-start items-center gap-4 my-4">
+                            <div class="flex flex-col md:flex-row justify-start items-start md:items-center gap-4 my-4">
                                 <img src="{{ $post->item_image ?? '' }}" class="max-w-[100px] max-h-[100px] rounded-lg"
                                     alt="">
                                 <div class="flex flex-col">
@@ -88,7 +89,7 @@
 
                     @if ($theme_mode == 'dark')
                         <a href="{{ $post->item_link }}" target="_blank">
-                            <div class="flex justify-start items-center gap-4 my-4">
+                            <div class="flex flex-col md:flex-row justify-start items-start md:items-center gap-4 my-4">
                                 <img src="{{ $post->item_image ?? '' }}" class="max-w-[100px] max-h-[100px] rounded-lg"
                                     alt="">
                                 <div class="flex flex-col">
@@ -105,7 +106,8 @@
                 @endforeach
             @endif
             @if ($no_search_results_found_show)
-                <p class="text-center text-lg font-semibold">No results found</p>
+            <div class="absolute top-2 right-2 cursor-pointer text-4xl bg-[#1A579F] text-white rounded-full px-2 {{ $no_search_results_found_show ? '' : 'hidden' }}" wire:click="searchOutputClose">&times;</div>
+                <p class="text-center text-lg font-semibold h-16 flex justify-center items-center">No results found</p>
             @endif
         </div>
     </div>
@@ -184,6 +186,19 @@
             <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
 
             <span class=" text-white py-2 rounded-lg"> Processing Credentials...</span>
+        </div>
+
+    </div>
+
+
+
+    <div wire:loading wire:target="searchOutputClose"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-50">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Closing Search Results...</span>
         </div>
 
     </div>
@@ -811,16 +826,16 @@
 
     <div class="flex flex-col gap-4 justify-center items-center my-4">
 
-        <h2 class="text-lg md:text-3xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
+        <h2 class="text-2xl md:text-3xl font-semibold {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
             Attributions</h2>
 
         <p class="text-center">
             <span class="text-base md:text-lg {{ session('theme_mode') == 'light' ? 'text-black' : 'text-white' }}">
                 Here, I’m crediting the awesome sources where I got the amazing icons and images for my website -
-             <a class="text-blue-600" href="https://www.flaticon.com/" target="_blank">FlatIcon</a>&nbsp; ,  &nbsp;
-             <a class="text-blue-600" href="https://www.freepnglogos.com/" target="_blank">FreePngLogos</a>&nbsp; ,  &nbsp;
-             <a class="text-blue-600" href="https://icons8.com/" target="_blank">Icons8</a>&nbsp; ,  &nbsp;
-             <a class="text-blue-600" href="https://giphy.com/" target="_blank">Giphy</a>
+             <a class="text-blue-600" href="https://www.flaticon.com/" target="_blank">FlatIcon</a>&nbsp; |  &nbsp;
+             <a class="text-blue-600" href="https://www.freepnglogos.com/" target="_blank">FreePngLogos</a>&nbsp; |  &nbsp;
+             <a class="text-blue-600" href="https://icons8.com/" target="_blank">Icons8</a>&nbsp; |  &nbsp;
+             <a class="text-blue-600" href="https://giphy.com/" target="_blank">Giphy.</a>
             </span>
         </p>
 
