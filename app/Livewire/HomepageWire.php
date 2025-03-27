@@ -447,7 +447,7 @@ class HomepageWire extends Component
         $recaptcha = $recaptcha->json();
 
         if (!$recaptcha['success']) {
-            $this->notify_error = "Please Verify The Captcha";
+            $this->notify_error = "Please Verify The Captcha. If you are retrying, please reload the page first.";
             return;
         }
 

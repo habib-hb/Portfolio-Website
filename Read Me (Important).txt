@@ -1,3 +1,4 @@
+Hey me,
 -> use env-local as env file for local development
 -> use env-cpanel when deploying to cpanel
 -> make sure to run "php artisan storage:link

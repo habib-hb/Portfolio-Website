@@ -217,6 +217,19 @@
     </div>
 
 
+
+    <div wire:loading wire:target="adminLoginPopup"
+        class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-50">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{ asset('images/loading.png') }}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing...</span>
+        </div>
+
+    </div>
+
+
     {{-- End Loaders --}}
 
 
@@ -563,7 +576,7 @@
 
                 <input type="text" wire:model.defer="admin_name" placeholder="Admin Name"
                     class="w-[92vw] md:max-w-full py-2 {{ session('theme_mode') == 'light' ? 'bg-[#eff9ff] text-black' : 'bg-[#202329] text-white' }}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"
-                    id="admin_name" autocomplete="off">
+                    id="admin_name" autocomplete="default">
 
             </div>
 
