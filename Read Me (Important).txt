@@ -1,0 +1,13 @@
+-> use env-local as env file for local development
+-> use env-cpanel when deploying to cpanel
+-> make sure to run "php artisan storage:link
+" command to link the storage folder to public
+-> when deploying to cpanel , create a file ".htaccess" and paste this to make public directory the root directory
+"
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+"
+(without the quotation marks)
+-> try to update the google drive source code files once in a while, or when you do major changes both on code or database
