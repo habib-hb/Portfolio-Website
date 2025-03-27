@@ -68,7 +68,7 @@
             </p>
 
             @if ($search_output)
-              <div class="absolute top-2 right-2 cursor-pointer text-4xl bg-[#1A579F] text-white rounded-full px-2 {{ $no_search_results_found_show ? 'hidden' : '' }}" wire:click="searchOutputClose">&times;</div>
+
                 @foreach ($search_output as $post)
                     @if ($theme_mode == 'light')
                         <a href="{{ $post->item_link }}" target="_blank">
@@ -104,6 +104,7 @@
                         </a>
                     @endif
                 @endforeach
+                <div class="sticky bottom-2 right-2 w-fit ml-auto cursor-pointer text-4xl bg-[#1A579F] text-white rounded-full px-2 {{ $no_search_results_found_show ? 'hidden' : '' }}" wire:click="searchOutputClose">&times;</div>
             @endif
             @if ($no_search_results_found_show)
             <div class="absolute top-2 right-2 cursor-pointer text-4xl bg-[#1A579F] text-white rounded-full px-2 {{ $no_search_results_found_show ? '' : 'hidden' }}" wire:click="searchOutputClose">&times;</div>
@@ -293,7 +294,7 @@
 
 
     {{-- Skills Section Start --}}
-    <div class="flex flex-col justify-center mt-[10vh]  md:max-w-[1280px]  mx-auto">
+    <div class="flex flex-col justify-center  md:max-w-[1280px]  mx-auto">
 
         <h2 class="text-3xl text-center font-semibold  {{ $theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]' }}"
             data-aos="fade-up">
